@@ -13,6 +13,8 @@ class Archive
             case 1:
                 if (strlen((int) $params[0]) == 4)
                     $this->_archiveBy('year', $params);
+                else
+                    $this->_displayPage($params[0]);
             break;
             
             case 2:

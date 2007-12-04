@@ -15,5 +15,5 @@
 <h1>Not Found</h1>
 <p>The requested URL was not found on this server.</p>
 <hr>
-<address><a href="http://www.philworks.com/frog/">Frog</a> Content Management Simplified</address>
+<address><a href="http://www.madebyfrog.com/">Frog</a> Content Management Simplified</address>
 </body></html>
