@@ -3,14 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title><?php echo __('Login') ?></title>
-  <link href="stylesheets/login.css" rel="Stylesheet" type="text/css" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link href="stylesheets/login.css" rel="Stylesheet" type="text/css" />
+  <script src="javascripts/cp-protolous.js" type="text/javascript"></script>
 </head>
 <body>
   <div id="dialog">
     <h1><?php echo __('Login') ?></h1>
 <?php if (Flash::get('error') !== null) { ?>
-        <div id="error" onclick="this.style.display = 'none'"><?php echo Flash::get('error') ?></div>
+        <div id="error" style="display: none"><?php echo Flash::get('error') ?></div>
+        <script type="text/javascript">Effect.Appear('error', {duration:.5});</script>
+<?php } ?>
+<?php if (Flash::get('success') != null) { ?>
+    <div id="success" style="display: none"><?php echo Flash::get('success') ?></div>
+    <script type="text/javascript">Effect.Appear('success', {duration:.5});</script>
 <?php } ?>
     <form action="<?php echo get_url('login/login') ?>" method="post">
       <div id="login-username-div">

@@ -34,8 +34,7 @@ p {
   margin: 8px 0;
 }
 
-
-/** Form **/
+/* Form ------------------------------------------------------------------- */
 
 label {
   margin: 3px 0;
@@ -72,7 +71,7 @@ input.submit {
   margin-top: 10px;
 }
 
-/** Construction **/
+/* Construction ----------------------------------------------------------- */
 
 #dialog {
   margin: 100px auto 0 auto;
@@ -84,26 +83,7 @@ input.submit {
   text-align: left;
 }
 
-#error, #success {
-  margin: 10px 0;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  clear: both;
-  cursor: pointer;
-  text-align: left;
-}
-
-#error {
-  background: #fbb;
-  border-color: red;
-}
-
-#success {
-  background: #9d9;
-  border-color: green;
-}
-
-/** Login dialog **/
+/* Login dialog ----------------------------------------------------------- */
 
 #login-username-div, #login-password-div {
   padding-top: 1px;
@@ -134,4 +114,20 @@ input.submit {
 
 #forgot-email {
     width: 325px;
+}
+
+/* Messages --------------------------------------------------------------- */
+
+#error, #success {
+  margin: -5px -10px 0;
+  padding: 10px 20px;
+  text-align: left;
+}
+#error {
+  background: #a22;
+  color: #fff;
+}
+#success {
+  background: #cfc;
+  color: #051;
 }
