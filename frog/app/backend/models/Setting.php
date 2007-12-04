@@ -30,6 +30,7 @@ class Setting extends Record
     public static function saveFromData($data)
     {
         $tablename = self::tableNameFromClassName('Setting');
+        
         foreach ($data as $name => $value)
         {
             $sql = 'UPDATE '.$tablename.' SET value='.self::$__CONN__->quote($value)

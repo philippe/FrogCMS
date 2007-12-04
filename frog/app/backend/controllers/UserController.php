@@ -101,6 +101,7 @@ class UserController extends Controller
             {
                 UserPermission::setPermissionsFor($user->id, $data);
             }
+
             Flash::set('success', __('User has been added!'));
         }
         else

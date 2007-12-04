@@ -34,7 +34,7 @@
     <tr>
       <td class="label"><?php echo __('Roles') ?></td>
       <td class="field">
-<?php $user_permissions = $user->getPermissions(); ?>
+<?php $user_permissions = ($user instanceof User) ? $user->getPermissions(): array('editor'); ?>
 <?php foreach ($permissions as $perm): ?>
         <span class="checkbox"><input<?php if (in_array($perm->name, $user_permissions)) echo ' checked="checked"'; ?>  id="user_permission-<?php echo $perm->name ?>" name="user_permission[<?php echo $perm->name ?>]" type="checkbox" value="<?php echo $perm->id ?>" />&nbsp;<label for="user_permission-<?php echo $perm->name ?>"><?php echo __(ucwords($perm->name)) ?></label></span>
 <?php endforeach; ?>
