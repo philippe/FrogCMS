@@ -41,7 +41,6 @@ if (!defined('APP_PATH'))           define('APP_PATH',    CORE_ROOT.DIRECTORY_SE
 if (!defined('HELPER_PATH'))        define('HELPER_PATH', CORE_ROOT.DIRECTORY_SEPARATOR.'helpers');
 
 if (!defined('BASE_URL'))           define('BASE_URL', 'http://'.dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']) .'/?/');
-if (!defined('URL_SUFFIX'))         define('URL_SUFFIX', null);
 
 if (!defined('DEFAULT_CONTROLLER')) define('DEFAULT_CONTROLLER', 'index');
 if (!defined('DEFAULT_ACTION'))     define('DEFAULT_ACTION', 'index');
@@ -121,15 +120,6 @@ final class Dispatcher
         // requested url MUST start with a slash (for route convention)
         if (strpos($requested_url, '/') !== 0) {
             $requested_url = '/' . $requested_url;
-        }
-        
-        // removing the suffix for search engine static simulations
-        if (URL_SUFFIX != null) {
-            // php will automaticaly replace . by _ in the _GET key
-            //$suffix = str_replace('.', '_', URL_SUFFIX);
-            if (($pos_to_cut = strrpos($requested_url, $suffix)) !== false) {
-                $requested_url = substr($requested_url, 0, $pos_to_cut);
-            }
         }
         
         self::$requested_url = $requested_url;
@@ -1012,7 +1002,7 @@ function use_model()
 function get_url()
 {
     $params = func_get_args();
-    if (count($params) === 1) return BASE_URL . $params[0] . URL_SUFFIX;
+    if (count($params) === 1) return BASE_URL . $params[0];
     
     $url = '';
     foreach ($params as $param) {
@@ -1020,7 +1010,7 @@ function get_url()
             $url .= $param{0} == '#' ? $param: '/'. $param;
         }
     }
-    return BASE_URL . preg_replace('/^\/(.*)$/', '$1', $url) . URL_SUFFIX;
+    return BASE_URL . preg_replace('/^\/(.*)$/', '$1', $url);
 }
 
 /**
