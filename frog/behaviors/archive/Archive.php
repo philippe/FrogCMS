@@ -73,6 +73,25 @@ class Archive
         return $pages;
     }
     
+    function archivesByYear()
+    {
+        global $__FROG_CONN__;
+        
+        $out = array();
+
+        $sql = "SELECT DISTINCT(DATE_FORMAT(created_on, '%Y')) FROM ".TABLE_PREFIX."page WHERE parent_id=? AND status_id != ".Page::STATUS_HIDDEN." ORDER BY created_on DESC";
+        
+        $stmt = $__FROG_CONN__->prepare($sql);
+        $stmt->execute(array($this->page->id));
+        
+        while ($date = $stmt->fetchColumn())
+        {
+            $out[] = $date;
+        }
+        
+        return $out;
+    }
+    
     function archivesByMonth($year='all')
     {
         global $__FROG_CONN__;
@@ -84,7 +103,6 @@ class Archive
         $sql = "SELECT DISTINCT(DATE_FORMAT(created_on, '%Y/%m')) FROM ".TABLE_PREFIX."page WHERE parent_id=? AND status_id != ".Page::STATUS_HIDDEN." ORDER BY created_on DESC";
         
         $stmt = $__FROG_CONN__->prepare($sql);
-        
         $stmt->execute(array($this->page->id));
         
         while ($date = $stmt->fetchColumn())
