@@ -28,6 +28,7 @@ class Behavior
             }
             closedir($handle);
         }
+        sort($behaviors);
         return $behaviors;
     } // findAll
 
