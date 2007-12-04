@@ -1,0 +1,104 @@
+0.8.7
+  Framework bug fixed: php6 compatiblities (magic_quote doesn't exist anymore in php6)
+  bug fixed: installation config.php not config/config.php
+  suffix url in configuration file
+  simplify installation
+  page can now be protected from editor
+  new role: editor
+  user can now edit there profile (top right name link)
+  setting editable for administrator
+  more complex textile toolbar, modification of the markdown toolbar
+  simple markdown toolbar from (http://livepipe.net)
+  new filter for a tinyMCE wysiwyg editor
+  toolbar linked with filter by using: (http://livepipe.net/projects/control_textarea/)
+  new tab in page edit for page title and metadata (including tags)
+  validation xhtml/css
+  bug fixed: cross browser (safari, firefox, opera, internet explorer)
+  backend layout modification (color and disposition)
+  adding archive behavior to the release
+  new behavior implementation (frog give the control to behavior)
+  core add: comments (frontend and backend)
+  core add: stats (frontend and backend)
+  core add: tags (frontend and backend (metadata))
+  files add: renaming files
+  user gravatar implementation
+  removing subtitle in backend
+
+0.6.2 - 0.8.6
+  all experimentation of those version has been ignored
+
+0.6.1
+  restarting with the 0.5.8 version
+  change everything to utf-8
+  replaced innoDB to MyISAM
+
+0.5.9 - 0.6.0
+  all experimentation of those version has been ignored
+
+0.5.8
+  bug fixed: page reordering drop on level 1 repair
+  new framework
+  new user permission
+  new database schemas
+  no more dependencies for PDO 
+  adding DoLite (database object lite)
+
+... a lot of experimentations have been done here ...
+
+0.2.2
+  localization of all the administration part of frog (english, french)
+  bug fixed: tab (page part) can't remove body part
+  view site link will NO LONGER open in a new window (really don't like it)
+  bug fixed: page toggle now al levels works
+  bug fixed: sortable drag and drop page on second level now display right level
+
+0.2.1
+  drag and drop sortable page position (order)
+  fontend page->children() now search first for the position and then for id
+  bug fixed: htmlentities now use utf8
+  bug fixed: url_match and url_start_with '/' compatibility
+  view site link will now open in a new window
+  bug fixed: more link in firefox osx now works (already fixed on radiantCMS)
+  bug fixed: trailing <? removed
+
+0.1.7
+  bug fixe filter and behavior listing now exclude all hidden files
+
+0.1.6
+  bug fixe edit page with a ended textarea stop display the reste of the content
+  bug fixe same as before but for snippet and layout too
+
+0.1.5
+  this is a beautiful day for me and all of you that use php5
+  frog framework is now 10 times more faster and more secure and php5 only
+  alot of optimisation have been done, and some security hole
+  routing optimization and singleton
+  flash singleton
+  zip library is now done
+  email library (from code igniter - thanks to them)
+  utilisation of php5 PDO
+  
+0.1.4
+  database abstraction for mysql, postgresql and sqlite
+  adding behavior for pages (page plugin like Radiant CMS)
+  renaming framework to Frog (bye bye Maple!)
+  over 30 bug fix
+  installation script modified (database type added (and remove! this feature will be add in a other version sorry))
+  small code cleaning
+  files tab
+
+0.1.3
+  redesign for fitting the new name Frog
+  adding installer script
+  bug fix: doadd and doedit accessed direcly redirect to index
+  renaming all the project to Frog
+  remove version.php
+  add versin in admin/index.php
+
+0.1.2
+  adding version.php
+  adding markdown filter
+  bug fix: filter in snippet is now like in parts
+  
+0.1.1
+  first public version with 1 week of dev... mega alpha beta version.

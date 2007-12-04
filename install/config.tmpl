@@ -1,0 +1,30 @@
+<?php echo '<?php'; ?> 
+
+// database informations
+// for sqlite, use sqlite:/tmp/frog.db (SQlite 3)
+// the path can only be absolute path or :memory:
+// for more info look at: www.php.net/pdo
+
+define('DB_DSN', 'mysql:dbname=<?php echo $db_name; ?>;host=<?php echo $db_host; ?>');
+define('DB_USER', '<?php echo $db_user; ?>');
+define('DB_PASS', '<?php echo $db_pass; ?>');
+
+define('TABLE_PREFIX', '<?php echo $table_prefix; ?>');
+
+define('DEBUG', false);
+
+// The full URL of your Frog CMS install
+define('URL_PUBLIC', 'http://<?php echo substr(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), 0, strrpos(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), '/')) ?>/');
+
+// The directory name of your Frog CMS administration (you will need to change it manualy)
+define('ADMIN_DIR', 'admin');
+
+// true or false (will remove the ? in the URL. You have to removed the _ before _.htaccess 
+// and set the RewriteBase (there is 2 htacces file (the other one is in the admin directory))
+define('USE_MOD_REWRITE', false);
+
+// add a suffix to pages (simluating static pages '.html')
+define('URL_SUFFIX', '<?php echo $url_suffix; ?>');
+
+// if your server doesn't have PDO (with MySQL driver) set the below to false
+define('USE_PDO', <?php echo $use_pdo ? 'true': 'false' ?>);
