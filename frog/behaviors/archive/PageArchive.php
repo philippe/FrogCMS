@@ -7,7 +7,7 @@ class PageArchive extends Page
         $this->url = trim($this->parent->url . date('/Y/m/d/', strtotime($this->created_on)). $this->slug, '/');
     }
     
-    public function title() { return strftime($this->title, $this->time); }
+    public function title() { return isset($this->time) ? strftime($this->title, $this->time): $this->title; }
     
-    public function breadcrumb() { return strftime($this->breadcrumb, $this->time); }
+    public function breadcrumb() { return isset($this->time) ? strftime($this->breadcrumb, $this->time): $this->breadcrumb; }
 }
