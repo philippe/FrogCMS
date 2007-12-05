@@ -47,10 +47,10 @@ class Archive
             $this->page = $page;
             $month = isset($params[1]) ? $params[1]: 1;
             $day = isset($params[2]) ? $params[2]: 1;
-            $time = mktime(0, 0, 0, $month, $day, $params[0]);
-            // need to replace %B, %Y, ... here in the title
-            $this->page->title = strftime($this->page->title, $time);
-            $this->page->breadcrumb = strftime($this->page->breadcrumb, $time);
+
+            $this->page->time = mktime(0, 0, 0, $month, $day, $params[0]);
+            //$this->page->title = strftime($this->page->title, $time);
+            //$this->page->breadcrumb = strftime($this->page->breadcrumb, $time);
         }
         else
         {
