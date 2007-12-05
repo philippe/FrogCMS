@@ -9,7 +9,7 @@ class Comment extends Record
         
         // Collect attributes...
         $where    = isset($args['where']) ? trim($args['where']) : '';
-        $order_by = isset($args['order']) ? trim($args['order']) : 'approved, created_on DESC';
+        $order_by = isset($args['order']) ? trim($args['order']) : 'is_approved, created_on DESC';
         $offset   = isset($args['offset']) ? (int) $args['offset'] : 0;
         $limit    = isset($args['limit']) ? (int) $args['limit'] : 0;
 
@@ -53,8 +53,9 @@ class Comment extends Record
     public static function findById($id)
     {
         return self::find(array(
-            'where' => self::tableNameFromClassName('Comment').'.id='.(int)$id,
+            'where' => 'comment.id='.(int)$id,
             'limit' => 1
         ));
     }
+    
 }

@@ -12,7 +12,7 @@ CREATE TABLE `{TABLEPREFIX}comment` (
   `author_name` varchar(50) default NULL,
   `author_email` varchar(100) default NULL,
   `author_link` varchar(100) default NULL,
-  `approved` tinyint(1) unsigned NOT NULL default '1',
+  `is_approved` tinyint(1) unsigned NOT NULL default '1',
   `created_on` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `page_id` (`page_id`),
@@ -23,8 +23,8 @@ CREATE TABLE `{TABLEPREFIX}comment` (
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `{TABLEPREFIX}comment` (`id`, `page_id`, `body`, `author_name`, `author_email`, `author_link`, `approved`, `created_on`) VALUES
-(1, 5, 'This is your first comment.', 'Philippe Archambault', 'example@example.com', 'http://www,philworks.com/', 1, '{DATETIME}');
+INSERT INTO `{TABLEPREFIX}comment` (`id`, `page_id`, `body`, `author_name`, `author_email`, `author_link`, `is_approved`, `created_on`) VALUES
+(1, 5, 'This is your first comment.', 'Philippe Archambault', 'example@example.com', 'http://www.philworks.com/', 1, '{DATETIME}');
 
 -- --------------------------------------------------------
 
@@ -182,6 +182,7 @@ INSERT INTO `{TABLEPREFIX}setting` (`name`, `value`) VALUES
 ('admin_title', 'Frog CMS'),
 ('language', 'en'),
 ('enable_comment', '1'),
+('auto_approve_comment', '1'),
 ('display_stats', '1'),
 ('display_file_manager', '1'),
 ('default_status_id', '1'),

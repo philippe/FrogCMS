@@ -298,7 +298,7 @@ class Page
         global $__FROG_CONN__;
         
         $comments = array();
-        $sql = 'SELECT * FROM '.TABLE_PREFIX.'comment WHERE page_id=?';
+        $sql = 'SELECT * FROM '.TABLE_PREFIX.'comment WHERE is_approved=1 AND page_id=?';
         
         $stmt = $__FROG_CONN__->prepare($sql);
         $stmt->execute(array($this->id));
@@ -313,7 +313,7 @@ class Page
     {
         global $__FROG_CONN__;
         
-        $sql = 'SELECT COUNT(id) AS num FROM '.TABLE_PREFIX.'comment WHERE page_id=?';
+        $sql = 'SELECT COUNT(id) AS num FROM '.TABLE_PREFIX.'comment WHERE is_approved=1 AND page_id=?';
         
         $stmt = $__FROG_CONN__->prepare($sql);
         $stmt->execute(array($this->id));
@@ -457,12 +457,20 @@ class Page
             'strong' => array()
         );
         
-        $sql = 'INSERT INTO '.TABLE_PREFIX.'comment (page_id, author_name, author_email, author_link, body, created_on) VALUES ('.
+        // get the setting for comments moderations
+        $sql = 'SELECT value FROM '.TABLE_PREFIX.'setting WHERE name=\'auto_approve_comment\'';
+        $stmt = $__FROG_CONN__->prepare($sql);
+        $stmt->execute();
+        $auto_approve_comment = (int) $stmt->fetchColumn();
+        
+        $sql = 'INSERT INTO '.TABLE_PREFIX.'comment (page_id, author_name, author_email, author_link, body, is_approved, created_on) VALUES ('.
                     '\''.$this->id.'\', '.
                     $__FROG_CONN__->quote(strip_tags($data['author_name'])).', '.
                     $__FROG_CONN__->quote(strip_tags($data['author_email'])).', '.
                     $__FROG_CONN__->quote(strip_tags($data['author_link'])).', '.
-                    $__FROG_CONN__->quote(kses($data['body'], $allowed_tags)).', \''.date('Y-m-d H:i:s').'\')';
+                    $__FROG_CONN__->quote(kses($data['body'], $allowed_tags)).', '.
+                    $__FROG_CONN__->quote($auto_approve_comment).', '.
+                    $__FROG_CONN__->quote(date('Y-m-d H:i:s')).')';
         
         $__FROG_CONN__->exec($sql);
     }

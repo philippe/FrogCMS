@@ -58,6 +58,14 @@
         <td class="help">&nbsp;</td>
       </tr>
       <tr>
+        <td class="label"><label for="setting_auto_approve_comment-yes"><?php echo __('Auto approve comments') ?></label></td>
+        <td class="field">
+          <input class="radio" id="setting_auto_approve_comment-yes" name="setting[auto_approve_comment]" size="10" type="radio" value="1"<?php if (Setting::get('auto_approve_comment')) echo ' checked="checked"'; ?> /><label for="setting_auto_approve_comment-yes"> <?php echo __('yes') ?> </label> &nbsp; 
+          <input class="radio" id="setting_auto_approve_comment-no" name="setting[auto_approve_comment]" size="10" type="radio" value="0"<?php if ( ! Setting::get('auto_approve_comment')) echo ' checked="checked"'; ?> /><label for="setting_auto_approve_comment-no"> <?php echo __('no') ?> </label>
+        </td>
+        <td class="help">&nbsp;</td>
+      </tr>
+      <tr>
         <td class="label"><label for="setting_display_stats-yes"><?php echo __('Display stats') ?></label></td>
         <td class="field">
           <input class="radio" id="setting_display_stats-yes" name="setting[display_stats]" size="10" type="radio" value="1"<?php if (Setting::get('display_stats')) echo ' checked="checked"'; ?> /><label for="setting_display_stats-yes"> <?php echo __('yes') ?> </label> &nbsp; 

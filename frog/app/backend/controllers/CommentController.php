@@ -19,7 +19,7 @@ class CommentController extends Controller
             redirect(get_url('login'));
         }
         $this->setLayout('backend');
-        //$this->assignToLayout('sidebar', new View('comment/sidebar'));
+        $this->assignToLayout('sidebar', new View('comment/sidebar'));
     }
 
 
@@ -98,5 +98,49 @@ class CommentController extends Controller
 
         redirect(get_url('comment'));
     } // delete
+
+    function approve($id)
+    {
+        // if no id set redirect to index comments
+        if (is_null($id)) redirect(getUrl('comment'));
+
+        // find the user to delete
+        if ($comment = Record::findByIdFrom('Comment', $id))
+        {
+            $comment->is_approved = 1;
+            if ($comment->save())
+            {
+                Flash::set('success', __('Comment has been approved!'));
+            }
+        }
+        else
+        {
+            Flash::set('error', __('Comment not found!'));
+        }
+
+        redirect(get_url('comment'));
+    } // approve
+    
+    function unapprove($id)
+    {
+        // if no id set redirect to index comments
+        if (is_null($id)) redirect(getUrl('comment'));
+
+        // find the user to delete
+        if ($comment = Record::findByIdFrom('Comment', $id))
+        {
+            $comment->is_approved = 0;
+            if ($comment->save())
+            {
+                Flash::set('success', __('Comment has been unapproved!'));
+            }
+        }
+        else
+        {
+            Flash::set('error', __('Comment not found!'));
+        }
+
+        redirect(get_url('comment'));
+    } // unapprove
 
 } // end CommentController class

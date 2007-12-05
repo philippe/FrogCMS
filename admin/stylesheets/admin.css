@@ -58,44 +58,6 @@ h2 { margin: 1em 0 .5em; font-size: 1.6em; }
 
 /* Navigation ------------------------------------------------------------- */
 
-/*#navigation {
-  position: relative;
-  font-size: 90%;
-  margin-top: -3px;
-  margin-bottom: -16px;
-  line-height: 100%;
-  padding: .5em;
-  padding-left: 20px;
-  text-align: left;
-}
-#navigation a {
-  background-color: #eee;
-  color: #222;
-  font-weight: normal;
-  padding: .5em;
-  padding-left: .9em;
-  padding-right: .9em;
-  text-decoration: none;
-  border-bottom: 2px solid #ccc;
-}
-#navigation a:hover {
-  color: #000;
-  background: #999;
-  border-color: #777;
-  text-decoration: none !important;
-}
-#navigation strong a,
-#navigation strong a:hover {
-  background-color: #6ad;
-  font-weight: bold;
-  text-decoration: none;
-  color: #123;
-  border-bottom: 2px solid #6ad;
-}
-#navigation .separator {
-  display: none;
-}*/
-
 #mainTabs {
     margin: 0 17px 0 20px;
     height: 29px;
@@ -756,6 +718,9 @@ table.fieldset .error-with-field small {
 #comments .even {}
 #comments .odd {}
 #comments .infos { position: absolute; top: 8px; right: 10px; font-size: .83em; color: #666; }
+#comments .approve { color: #7a7; background: #dfd; border-color: #9c9; }
+#comments .approve a { color: #696; }
+#comments .approve .infos { color: #8b8; }
 
 /* Calendar (Date picker) ------------------------------------------------- */
 
