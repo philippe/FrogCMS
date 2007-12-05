@@ -14,7 +14,7 @@ define('TABLE_PREFIX', '<?php echo $table_prefix; ?>');
 define('DEBUG', false);
 
 // The full URL of your Frog CMS install
-define('URL_PUBLIC', 'http://<?php echo substr(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), 0, strrpos(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), '/')) ?>/');
+define('URL_PUBLIC', 'http://<?php echo substr(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), 0, strrpos(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), '/')); ?>/');
 
 // The directory name of your Frog CMS administration (you will need to change it manualy)
 define('ADMIN_DIR', 'admin');
@@ -27,4 +27,4 @@ define('USE_MOD_REWRITE', false);
 define('URL_SUFFIX', '<?php echo $url_suffix; ?>');
 
 // if your server doesn't have PDO (with MySQL driver) set the below to false
-define('USE_PDO', <?php echo $use_pdo ? 'true': 'false' ?>);
+define('USE_PDO', <?php echo $use_pdo ? 'true': 'false'; ?>);

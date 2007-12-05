@@ -5,26 +5,24 @@
         <span class="w1">
           <?php if ($child->has_children): ?><img align="middle" alt="toggle children" class="expander" src="images/<?php echo $child->is_expanded ? 'collapse': 'expand'; ?>.png" title="" /><?php endif; ?>
 <?php if (AuthUser::hasPermission('editor') && $child->is_protected): ?>
-<img align="middle" class="icon" src="images/page.png" alt="page icon" /> <span class="title protected"><?php echo $child->title; ?></span> <img class="handle" src="images/drag.gif" alt="<?php echo __('Drag and Drop') ?>" align="middle" />
+<img align="middle" class="icon" src="images/page.png" alt="page icon" /> <span class="title protected"><?php echo $child->title; ?></span> <img class="handle" src="images/drag.gif" alt="<?php echo __('Drag and Drop'); ?>" align="middle" />
 <?php else: ?>
-<a href="<?php echo get_url('page/edit/'.$child->id); ?>" title="<?php echo $child->slug; ?>/"><img align="middle" class="icon" src="images/page.png" alt="page icon" /> <span class="title"><?php echo $child->title; ?></span></a> <img class="handle" src="images/drag.gif" alt="<?php echo __('Drag and Drop') ?>" align="middle" />
+<a href="<?php echo get_url('page/edit/'.$child->id); ?>" title="<?php echo $child->slug; ?>/"><img align="middle" class="icon" src="images/page.png" alt="page icon" /> <span class="title"><?php echo $child->title; ?></span></a> <img class="handle" src="images/drag.gif" alt="<?php echo __('Drag and Drop'); ?>" align="middle" />
 <?php endif; ?>
-          <?php if (! empty($child->behavior_id)): ?> <small class="info">(<?php echo Inflector::humanize($child->behavior_id) ?>)</small><?php endif; ?> 
+          <?php if (! empty($child->behavior_id)): ?> <small class="info">(<?php echo Inflector::humanize($child->behavior_id); ?>)</small><?php endif; ?> 
           <img align="middle" alt="" class="busy" id="busy-<?php echo $child->id; ?>" src="images/spinner.gif" style="display: none;" title="" />
         </span>
       </div>
-      <?php 
-        switch ($child->status_id) {
-          case Page::STATUS_DRAFT: echo '<div class="status draft-status">'.__('Draft').'</div>'; break;
-          case Page::STATUS_REVIEWED: echo '<div class="status reviewed-status">'.__('Reviewed').'</div>'; break;
-          case Page::STATUS_PUBLISHED: echo '<div class="status published-status">'.__('Published').'</div>'; break;
-          case Page::STATUS_HIDDEN: echo '<div class="status hidden-status">'.__('Hidden').'</div>'; break;
-        }
-        ?> 
+<?php switch ($child->status_id) {
+      case Page::STATUS_DRAFT: echo '<div class="status draft-status">'.__('Draft').'</div>'; break;
+      case Page::STATUS_REVIEWED: echo '<div class="status reviewed-status">'.__('Reviewed').'</div>'; break;
+      case Page::STATUS_PUBLISHED: echo '<div class="status published-status">'.__('Published').'</div>'; break;
+      case Page::STATUS_HIDDEN: echo '<div class="status hidden-status">'.__('Hidden').'</div>'; break;
+} ?> 
       <div class="modify">
-        <a href="<?php echo get_url('page/add', $child->id); ?>"><img src="images/plus.png" align="middle" alt="<?php echo __('Add child') ?>" /></a>&nbsp; 
+        <a href="<?php echo get_url('page/add', $child->id); ?>"><img src="images/plus.png" align="middle" alt="<?php echo __('Add child'); ?>" /></a>&nbsp; 
 <?php if ( ! AuthUser::hasPermission('editor') || ! $child->is_protected): ?>
-        <a class="remove" href="<?php echo get_url('page/delete/'.$child->id); ?>" onclick="return confirm('<?php echo __('Are you sure you wish to delete') ?> <?php echo $child->title ?>?');"><img src="images/icon-remove.gif" align="middle" alt="<?php echo __('Remove page') ?>" /></a>
+        <a class="remove" href="<?php echo get_url('page/delete/'.$child->id); ?>" onclick="return confirm('<?php echo __('Are you sure you wish to delete'); ?> <?php echo $child->title; ?>?');"><img src="images/icon-remove.gif" align="middle" alt="<?php echo __('Remove page'); ?>" /></a>
 <?php endif; ?>
       </div>
 <?php if ($child->is_expanded) echo $child->children_rows; ?>

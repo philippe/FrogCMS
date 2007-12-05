@@ -1,14 +1,14 @@
 <?php if (Dispatcher::getAction() == 'index'): ?>
 <!--
-<p class="button"><a href="<?php echo get_url('page/add') ?>"><img src="images/page.png" align="middle" alt="page icon" /> <?php echo __('New Page') ?></a></p>
-<p class="button"><a href="<?php echo get_url('layout/add') ?>"><img src="images/layout.png" align="middle" alt="layout icon" /> <?php echo __('New Layout') ?></a></p>
-<p class="button"><a href="<?php echo get_url('snippet/add') ?>"><img src="images/snippet.png" align="middle" alt="snippet icon" /> <?php echo __('New Snippet') ?></a></p>
+<p class="button"><a href="<?php echo get_url('page/add'); ?>"><img src="images/page.png" align="middle" alt="page icon" /> <?php echo __('New Page'); ?></a></p>
+<p class="button"><a href="<?php echo get_url('layout/add'); ?>"><img src="images/layout.png" align="middle" alt="layout icon" /> <?php echo __('New Layout'); ?></a></p>
+<p class="button"><a href="<?php echo get_url('snippet/add'); ?>"><img src="images/snippet.png" align="middle" alt="snippet icon" /> <?php echo __('New Snippet'); ?></a></p>
 
 <div class="box">
-    <h2><?php echo __('Statistics') ?></h2>
+    <h2><?php echo __('Statistics'); ?></h2>
     <p>
-        <b><?php echo Record::countFrom('Page'); ?></b> <?php echo __('pages') ?><br />
-        <b><?php echo Record::countFrom('Comment'); ?></b> <?php echo __('comments') ?>
+        <b><?php echo Record::countFrom('Page'); ?></b> <?php echo __('pages'); ?><br />
+        <b><?php echo Record::countFrom('Comment'); ?></b> <?php echo __('comments'); ?>
     </p>
     <table class="stats-table">
         <tr>
@@ -18,18 +18,18 @@
         </tr>
         <tr class="row-today">
             <th>Today</th>
-            <td class="cell-visites"><?php echo Statistic::uniqueForToday() ?></td>
-            <td class="cell-pageviews"><?php echo Statistic::viewForToday() ?></td>
+            <td class="cell-visites"><?php echo Statistic::uniqueForToday(); ?></td>
+            <td class="cell-pageviews"><?php echo Statistic::viewForToday(); ?></td>
         </tr>
         <tr class="row-yesterday">
             <th>Yesterday</th>
-            <td class="cell-visites"><?php echo Statistic::uniqueForYesterday() ?></td>
-            <td class="cell-pageviews"><?php echo Statistic::viewForYesterday() ?></td>
+            <td class="cell-visites"><?php echo Statistic::uniqueForYesterday(); ?></td>
+            <td class="cell-pageviews"><?php echo Statistic::viewForYesterday(); ?></td>
         </tr>
         <tr class="row-all-time">
             <th>All Time</th>
-            <td class="cell-visites"><?php echo Statistic::unique() ?></td>
-            <td class="cell-pageviews"><?php echo Statistic::view() ?></td>
+            <td class="cell-visites"><?php echo Statistic::unique(); ?></td>
+            <td class="cell-pageviews"><?php echo Statistic::view(); ?></td>
         </tr>
     </table>
 </div>
@@ -38,7 +38,7 @@
 
 <?php if(isset($page)): ?>
 <div class="box">
-    <h2><?php echo __('Statistics') ?></h2>
+    <h2><?php echo __('Statistics'); ?></h2>
     <table class="stats-table">
         <tr>
             <th>&nbsp;</th>
@@ -47,18 +47,18 @@
         </tr>
         <tr class="row-today">
             <th>Today</th>
-            <td class="cell-visites"><?php echo Statistic::uniqueForToday($page->id) ?></td>
-            <td class="cell-pageviews"><?php echo Statistic::viewForToday($page->id) ?></td>
+            <td class="cell-visites"><?php echo Statistic::uniqueForToday($page->id); ?></td>
+            <td class="cell-pageviews"><?php echo Statistic::viewForToday($page->id); ?></td>
         </tr>
         <tr class="row-yesterday">
             <th>Yesterday</th>
-            <td class="cell-visites"><?php echo Statistic::uniqueForYesterday($page->id) ?></td>
-            <td class="cell-pageviews"><?php echo Statistic::viewForYesterday($page->id) ?></td>
+            <td class="cell-visites"><?php echo Statistic::uniqueForYesterday($page->id); ?></td>
+            <td class="cell-pageviews"><?php echo Statistic::viewForYesterday($page->id); ?></td>
         </tr>
         <tr class="row-all-time">
             <th>All Time</th>
-            <td class="cell-visites"><?php echo Statistic::unique($page->id) ?></td>
-            <td class="cell-pageviews"><?php echo Statistic::view($page->id) ?></td>
+            <td class="cell-visites"><?php echo Statistic::unique($page->id); ?></td>
+            <td class="cell-pageviews"><?php echo Statistic::view($page->id); ?></td>
         </tr>
     </table>
     <p>Unique visitor are only base on ip address.</p>
@@ -66,7 +66,7 @@
 <?php endif; ?>
 
 <div class="box">
-    <h2><?php echo __('Quick tags list!') ?></h2>
+    <h2><?php echo __('Quick tags list!'); ?></h2>
     <p>
         <span class="this">$this-&gt;</span>id()<br />
         <span class="this">$this-&gt;</span>title()<br />
