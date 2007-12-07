@@ -23,7 +23,8 @@ h3 { font-size: 130%; margin: 1.25em 0 .5em; }
 a { color: #147; }
 a:hover { text-decoration: none; }
 p { margin: 1.2em 0 .6em; }
-h1 { margin: 0 0 .5em; font-size: 2em; }
+/*h1 { margin: 0 0 .5em; font-size: 2em; }*/
+h1 { margin: -20px -20px 0; padding: 10px 20px; font-size: 1.5em; }
 h2 { margin: 1em 0 .5em; font-size: 1.6em; }
 
 .hidden { display: none; }
@@ -266,7 +267,7 @@ h2 { margin: 1em 0 .5em; font-size: 1.6em; }
 table.index {
   font-size: 90%;
   width: 100%;
-  margin-bottom: 2em;
+  margin-top: 20px;
   border-bottom: 1px solid #ddd;
 }
 table.index td,
@@ -395,7 +396,7 @@ table.index td.note {
   padding-bottom: 6px;
 }
 #site-map .handle { display: none; cursor: move; }
-#site-map-def { position: relative; }
+#site-map-def { margin-top: 20px; position: relative; }
 #site-map-def .page {}
 #site-map-def .status { position: absolute; top: 0; right: 75px; width: 70px }
 #site-map-def .modify { position: absolute; top: 0; right: 5px; width: 50px; }
@@ -406,15 +407,9 @@ table.index td.note {
   background-color: #f5f5f5;
 }
 #site-map-root {
-  list-style: none;
-  margin: 0; 
-  padding: 0;
   font-size: 90%;
 }
 #site-map {
-  list-style: none;
-  margin: 0; 
-  padding: 0;
   border-bottom: 1px solid #ddd;
   font-size: 90%;
 }
@@ -518,7 +513,7 @@ table.index td.note {
   font-size: 150%;
 }
 table.fieldset {
-  margin-bottom: 1.5em;
+  margin-top: 20px;
   width: 100%;
 }
 table.fieldset td {
@@ -568,9 +563,7 @@ table.fieldset .error-with-field small {
 }
 #tabs-meta .tab,
 #tabs .tab {
-  background-color: #ddd;
-  color: #000;
-  display: inline;
+  display: inline-block;
   font-size: 100%;
   text-align: left;
   margin-right: 3px;
@@ -579,6 +572,8 @@ table.fieldset .error-with-field small {
   padding-bottom: 4px;
   text-decoration: none;
   text-transform: capitalize;
+  background-color: #ddd;
+  color: #000;
 }
 #tabs-meta .tab.here,
 #tabs .tab.here {
@@ -611,12 +606,12 @@ table.fieldset .error-with-field small {
   margin-bottom: 20px;
 }
 #meta-divs,
-#page_parts {
+#pages {
   background: white;
   width: 100%;
   clear: both;
 }
-#content #page_parts .page {
+#content #pages .page {
   padding: 20px;
 }
 #content textarea {
@@ -627,7 +622,7 @@ table.fieldset .error-with-field small {
   font-family: Monaco, "Courier New", Courier, monospace;
   font-size: 85%;
 }
-#content #page_parts label {
+#content #pages label {
   font-size: 85%;
   font-weight: normal !important;
 }
@@ -701,7 +696,7 @@ table.fieldset .error-with-field small {
 
 /* Comments --------------------------------------------------------------- */
 
-#comments-def { position: relative; }
+#comments-def { margin-top: 20px; position: relative; }
 #comments-def .comments {}
 #comments-def .modify { position: absolute; top: 0px; right: 5px; width: 50px }
 #comments-def div {

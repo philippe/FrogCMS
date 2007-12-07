@@ -181,6 +181,7 @@ CREATE TABLE `{TABLEPREFIX}setting` (
 INSERT INTO `{TABLEPREFIX}setting` (`name`, `value`) VALUES
 ('admin_title', 'Frog CMS'),
 ('language', 'en'),
+('theme', 'default'),
 ('enable_comment', '1'),
 ('auto_approve_comment', '1'),
 ('display_stats', '1'),

@@ -49,7 +49,7 @@
               </table>
               <script type="text/javascript">
               // <![CDATA[
-                $title = $('page_title');
+                /*$title = $('page_title');
                 $slug = $('page_slug');
                 $breadcrumb = $('page_breadcrumb');
                 $old_title = $title.value || '';
@@ -58,7 +58,7 @@
                   if ($old_title == $breadcrumb.value) $breadcrumb.value = $title.value;
                   $old_title = $title.value;
                 }
-                Event.observe('page_title', 'keyup', title_updated);
+                Event.observe('page_title', 'keyup', title_updated);*/
               // ]]>
               </script>
             </div>
@@ -81,40 +81,43 @@
           <a href="#" onclick="if(tabControl._tabify(tabControl.selected).tab_id == 'tab-1') { alert('You can\'t remove the Body Tab');} else if(confirm('<?php echo __('Delete the current tab?'); ?>')) { tabControl.removeTab(tabControl.selected) }; return false;" title="<?php echo __('Remove Tab'); ?>"><img src="images/minus.png" alt="minus icon" /></a>
         </div>
       </div>
-      <div id="page_parts">
+      <div id="pages" class="pages">
 <?php $index_part =1; foreach ($page_parts as $page_part): ?>
-<div style="display: none;" class="page" id="page-<?php echo $index_part; ?>">
+<div class="page" id="page-<?php echo $index_part; ?>">
   <div class="part" id="part-<?php echo $index_part; ?>">
+    <input id="part_<?php echo ($index_part-1); ?>_name" name="part[<?php echo ($index_part-1); ?>][name]" type="hidden" value="<?php echo $page_part->name; ?>" />
 <?php if (isset($page_part->id)) { ?>
-    <input id="part-<?php echo ($index_part-1); ?>-id" name="part[<?php echo ($index_part-1); ?>][id]" type="hidden" value="<?php echo $page_part->id; ?>" />
+    <input id="part_<?php echo ($index_part-1); ?>_id" name="part[<?php echo ($index_part-1); ?>][id]" type="hidden" value="<?php echo $page_part->id; ?>" />
 <?php } ?>
-    <input id="part-<?php echo ($index_part-1); ?>-name" name="part[<?php echo ($index_part-1); ?>][name]" type="hidden" value="<?php echo $page_part->name; ?>" />
     <p>
-      <label for="part-<?php echo ($index_part-1); ?>-filter_id"><?php echo __('Filter'); ?></label>
-      <select id="part-<?php echo ($index_part-1); ?>-filter_id" name="part[<?php echo ($index_part-1); ?>][filter_id]" onchange="setTextAreaToolbar('part-<?php echo ($index_part-1); ?>-content', this[this.selectedIndex].value)">
+      <label for="part_<?php echo ($index_part-1); ?>_filter_id"><?php echo __('Filter'); ?></label>
+      <select id="part_<?php echo ($index_part-1); ?>_filter_id" name="part[<?php echo ($index_part-1); ?>][filter_id]" onchange="setTextAreaToolbar('part_<?php echo ($index_part-1); ?>_content', this[this.selectedIndex].value)">
         <option value=""<?php if ($page_part->filter_id == '') echo ' selected="selected"'; ?>>&#8212; <?php echo __('none'); ?> &#8212;</option>
 <?php foreach ($filters as $filter): ?>
         <option value="<?php echo $filter; ?>"<?php if ($page_part->filter_id == $filter) echo ' selected="selected"'; ?>><?php echo $filter; ?></option>
 <?php endforeach; ?>
       </select>
     </p>
-    <div><textarea class="textarea" id="part-<?php echo ($index_part-1); ?>-content" name="part[<?php echo ($index_part-1); ?>][content]" style="width: 100%" rows="20" cols="40"><?php echo htmlentities($page_part->content, ENT_COMPAT, 'UTF-8'); ?></textarea></div>
+    <div><textarea class="textarea" id="part_<?php echo ($index_part-1); ?>_content" name="part[<?php echo ($index_part-1); ?>][content]" style="width: 100%" rows="20" cols="40"
+                   onkeydown="return allowTab(event, this);"
+                   onkeyup="return allowTab(event,this);"
+                   onkeypress="return allowTab(event,this);"><?php echo htmlentities($page_part->content, ENT_COMPAT, 'UTF-8'); ?></textarea></div>
   </div>
 </div>
 <script type="text/javascript">
-    setTextAreaToolbar('part-<?php echo ($index_part-1); ?>-content', '<?php echo $page_part->filter_id; ?>');
+    setTextAreaToolbar('part_<?php echo ($index_part-1); ?>_content', '<?php echo $page_part->filter_id; ?>');
 </script>
 <?php $index_part++; endforeach; ?>
       </div>
     </div>
     <script type="text/javascript">
     // <![CDATA[
-      var tabControl = new TabControl('tab-control');
+/*      var tabControl = new TabControl('tab-control');
 <?php $index_part=1; foreach ($page_parts as $page_part): ?>
       tabControl.addTab('tab-<?php echo $index_part; ?>', '<?php echo $page_part->name; ?>', 'page-<?php echo $index_part; ?>');
 <?php $index_part++; ?>
 <?php endforeach; ?>
-      tabControl.select(tabControl.firstTab());
+      tabControl.select(tabControl.firstTab());*/
     // ]]>
     </script>
     
@@ -183,7 +186,8 @@
   <div class="popup" id="add-part-popup" style="display:none;">
     <div id="busy" class="busy" style="display: none"><img alt="Spinner" src="images/spinner.gif" /></div>
     <h3><?php echo __('Add Part'); ?></h3>
-    <form action="<?php echo get_url('page/addPart'); ?>" method="post" onsubmit="if (valid_part_name()) { new Ajax.Updater('page_parts', '<?php echo get_url('page/addPart'); ?>', {asynchronous:true, evalScripts:true, insertion:Insertion.Bottom, onComplete:function(request){part_added()}, onLoading:function(request){part_loading()}, parameters:Form.serialize(this)}); }; return false;"> 
+    <!--form action="<?php echo get_url('page/addPart'); ?>" method="post" onsubmit="if (valid_part_name()) { new Ajax.Updater('page_parts', '<?php echo get_url('page/addPart'); ?>', {asynchronous:true, evalScripts:true, insertion:Insertion.Bottom, onComplete:function(request){part_added()}, onLoading:function(request){part_loading()}, parameters:Form.serialize(this)}); }; return false;"-->
+    <form action="<?php echo get_url('page/addPart'); ?>" method="post" onsubmit="if (valid_part_name()) { new Ajax.Updater('pages', '<?php echo get_url('page/addPart'); ?>', {asynchronous:true, evalScripts:true, insertion:Insertion.Bottom, onComplete:function(request){part_added()}, onLoading:function(request){part_loading()}, parameters:Form.serialize(this)}); }; return false;"> 
       <div>
         <input id="part-index-field" name="part[index]" type="hidden" value="<?php echo $index_part; ?>" />
         <input id="part-name-field" maxlength="100" name="part[name]" type="text" value="" /> 

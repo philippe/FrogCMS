@@ -30,29 +30,11 @@ class SettingController extends Controller
 
     function index()
     {
-        global $iso_639_1;
-        
         // check if trying to save
         if (get_request_method() == 'POST')
             return $this->_save();
         
-        $languages = array('en' => 'English');
-        
-        if ($handle = opendir(APP_PATH.'/i18n'))
-        {
-            while (false !== ($file = readdir($handle)))
-            {
-                if (strpos($file, '.') !== 0)
-                {
-                    $code = substr($file, 0, 2);
-                    $languages[$code] = isset($iso_639_1[$code]) ? $iso_639_1[$code]: 'unknown';
-                }
-            }
-            closedir($handle);
-        }
-        asort($languages);
-        
-        $this->display('setting/index', array('languages' => $languages));
+        $this->display('setting/index');
     }
 
     function _save()

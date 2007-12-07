@@ -6,16 +6,21 @@
     <title><?php echo Setting::get('admin_title') . ' - ' . ucfirst($ctrl = Dispatcher::getController()); ?></title>
     
     <base href="<?php echo trim(BASE_URL, '?/').'/'; ?>" />
+    
     <link href="stylesheets/admin.css" media="screen" rel="Stylesheet" type="text/css" />
     <link href="stylesheets/toolbar.css" media="screen" rel="Stylesheet" type="text/css" />
+    <link href="themes/<?php echo Setting::get('theme'); ?>.css" id="css_theme" media="screen" rel="Stylesheet" type="text/css" />
     
-    <script src="javascripts/cp-protolous.js" type="text/javascript"></script>
-    <script src="javascripts/cp-datepicker.js" type="text/javascript"></script>
-    <script src="javascripts/frog.js" type="text/javascript"></script>
-    <script src="javascripts/control.textarea.js" type="text/javascript"></script>
-    <script src="javascripts/control.textarea.default.js" type="text/javascript"></script>
+    <!--script src="javascripts/cp-protolous.js" type="text/javascript"></script>
+    <script src="javascripts/cp-datepicker.js" type="text/javascript"></script-->
+    <script type="text/javascript" charset="utf-8" src="javascripts/prototype.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/effects.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/dragdrop.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/cp-datepicker.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/frog.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/control.textarea.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/control.textarea.default.js"></script>
     
-    <!-- filters files -->
 <?php foreach(Filter::findAll() as $filter_id): ?>
 <?php $filter_dir = Inflector::underscore($filter_id); ?>
 <?php if (file_exists(CORE_ROOT . '/filters/' . $filter_dir . '/' . $filter_id . '.js')): ?>
@@ -25,7 +30,6 @@
     <link href="../frog/filters/<?php echo $filter_dir.'/'.$filter_id; ?>.css" media="screen" rel="Stylesheet" type="text/css" />
 <?php endif; ?>
 <?php endforeach; ?>
-    <!-- end filters files -->
     
   </head>
   <body id="body_<?php echo $ctrl.'_'.Dispatcher::getAction(); ?>">
@@ -84,7 +88,7 @@
 <?php endif; ?>
 
       <p id="site-links">
-        You are currently logged in as <a href="<?php echo get_url('user/edit/'.AuthUser::getId()); ?>"><?php echo AuthUser::getRecord()->name; ?></a>
+        <?php echo __('You are currently logged in as'); ?> <a href="<?php echo get_url('user/edit/'.AuthUser::getId()); ?>"><?php echo AuthUser::getRecord()->name; ?></a>
         <span class="separator"> | </span>
         <a href="<?php echo get_url('login/logout'); ?>"><?php echo __('Log Out'); ?></a>
         <span class="separator"> | </span>

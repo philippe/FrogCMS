@@ -5,7 +5,7 @@ return array(
 // general
 'Pages' => 'Pages',
 'Snippets' => 'Extraits',
-'Layouts' => 'Interfaces',
+'Layouts' => 'Gabarits',
 'Files' => 'Fichiers',
 'Users' => 'Utilisateurs',
 'Modify' => 'Modification',
@@ -30,31 +30,36 @@ return array(
 'Required.' => 'Requis.',
 'Optional.' => 'Optionnel.',
 
+
 // files
 'File' => 'Fichier',
 'Size' => 'Taille',
 'Permission' => 'Permission',
 'Change mode' => 'Changer le mode',
 'Remove file' => 'Supprimer le fichier',
-'Create new file' => 'Créer un nouveau fichier',
-'Create new directory' => 'Créer un nouveau répertoire',
+'Create new file' => 'Créer un fichier',
+'Create new directory' => 'Créer un répertoire',
 'Upload file' => 'Télécharger un fichier',
+'rename' => 'renommer',
 
 // layouts
-'Layout' => 'Interface',
+'Layout' => 'Gabarit',
 'Use layouts to apply a visual look to a Web page. Layouts can contain special tags to include
   page content and other elements such as the header or footer. Click on a layout name below to
   edit it or click <strong>Remove</strong> to delete it.' =>
-'Utiliser les interfaces pour creer l\'apparence visuel de vos pages. Les interfaces peuvent
-  contenir du code pour inclure le contenu des pages et autre éléments comme par exemple l\'entete
+'Utiliser les gabarits pour créer l\'apparence visuel de vos pages. Les interfaces peuvent
+  contenir du code pour inclure le contenu des pages et autre éléments comme par exemple l\'entête
   et le pied de page. Cliquer sur le nom de l\'interface pour la modifier ou encore sur 
   <strong>Remove</strong> pour la supprimer',
 'Add Layout' => 'Nouvelle interface',
 'Edit Layout' => 'Modification d\'une interface',
 'Remove Layout' => 'Supprimer l\'interface',
+'inherit' => 'hérite',
 
 // pages
 'Page' => 'Page',
+'Add Page' => 'Nouvelle page',
+'Edit Page' => 'Modification d\'une page',
 'Status' => 'Statut',
 'Order' => 'Ordre',
 'Add child' => 'Ajouter une sous-page',
@@ -66,10 +71,15 @@ return array(
 'Remove page disable' => 'Supprimer la page désactivé',
 'Drag and Drop' => 'Drag and Drop',
 'Drag and Drop disable' => 'Drag and Drop désactivé',
-'Page Title' => 'Titre de la page',
+'Page Title' => 'Titre',
+'Metadata' => 'Méta-données',
 'Filter' => 'Filtre',
 'none' => 'aucun',
 'Page Type' => 'Type de page',
+'Comments' => 'Commentaires',
+
+// settings
+'Settings' => 'Configurations',
 
 // snippets
 'Snippets are generally small pieces of content which are included in other pages or layouts.' =>
@@ -90,13 +100,12 @@ return array(
 'Roles' => 'Rôles',
 'Administrator' => 'Administrateur',
 'Developer' => 'Développer',
+'Editor' => 'Éditeur',
 'Optional. Please use a valid e-mail address.' => 'Optionnel. S.V.P. écrire un courriel valide.',
 'At least 3 characters. Must be unique.' => 'Minimum de 3 caractères. Doit-être unique.',
 'At least 5 characters.' => 'Minimum de 5 caractères.',
 'Leave password blank for it to remain unchanged.' => 'Laisser les champs vide et le mot de passe ne sera pas changé.',
 'Roles restrict user privileges and turn parts of the administrative interface on or off.' => 'Les rôles permettes de restreindre certaine partie de l\'administration.',
-
-
 
 
 // errors and success
@@ -117,13 +126,13 @@ return array(
 'Change mode has not been done!' => 'Le changement de permission n\'a pas fonctionné!',
 'File or directory not found!' => 'Le fichier ou le répertoire n\'a pas été trouvé!',
 
-'Layout has been added!' => 'L\'interface a été ajoutée!',
-'Layout has not been added. Name must be unique!' => 'L\'interface n\'a pas été ajoutée. Le nom doit être unique!',
-'Layout has been saved!' => 'L\'interface a été modifiée!',
-'Layout has not been saved. Name must be unique!' => 'L\'interface n\'a pas été modifiée. Le nom doit être unique!',
-'Layout :name has been deleted!' => 'L\'interface <strong>:name</strong> a été supprimée!',
-'Layout :name has not been deleted!' => 'L\'interface <strong>:name</strong> n\'a pas été supprimée',
-'Layout not found!' => 'L\'interface n\'a pas été trouvée!',
+'Layout has been added!' => 'Le gabarit a été ajoutée!',
+'Layout has not been added. Name must be unique!' => 'Le gabarit n\'a pas été ajouté. Le nom doit être unique!',
+'Layout has been saved!' => 'Le gabarit a été modifiée!',
+'Layout has not been saved. Name must be unique!' => 'Le gabarit n\'a pas été modifié. Le nom doit être unique!',
+'Layout :name has been deleted!' => 'Le gabarit <strong>:name</strong> a été supprimé!',
+'Layout :name has not been deleted!' => 'Le gabarit <strong>:name</strong> n\'a pas été supprimé',
+'Layout not found!' => 'Le gabarit n\'a pas été trouvé!',
 
 'Failed to log you in. Please check your login data and try again.' => 'Votre nom d\'utilisateur et/ou mot de passe sont invalides!',
 
@@ -155,9 +164,10 @@ return array(
 'User <strong>:name</strong> has not been deleted!' => 'L\'utilisateur <strong>:name</strong>n\'a pas été supprimé!',
 
 // layout
+'You are currently logged in as' => 'Connecté en tant que',
 'Log Out' => 'Déconnexion',
 'View Site' => 'Voir le site',
-'This site was made with PHP and is powered by' => 'Le site est fait en PHP et est propulsé par',
+'Thank you for creating with' => 'Merci de créer avec',
 'version' => 'version',
 'Page rendered in' => 'Page générée en',
 'seconds' => 'secondes',

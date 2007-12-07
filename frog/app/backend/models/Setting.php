@@ -38,4 +38,48 @@ class Setting extends Record
             self::$__CONN__->exec($sql);
         }
     }
+    
+    public static function getLanguages()
+    {
+        global $iso_639_1;
+        
+        $languages = array('en' => 'English');
+        
+        if ($handle = opendir(APP_PATH.'/i18n'))
+        {
+            while (false !== ($file = readdir($handle)))
+            {
+                if (strpos($file, '.') !== 0)
+                {
+                    $code = substr($file, 0, 2);
+                    $languages[$code] = isset($iso_639_1[$code]) ? $iso_639_1[$code]: __('unknown');
+                }
+            }
+            closedir($handle);
+        }
+        asort($languages);
+        
+        return $languages;
+    }
+    
+    public static function getThemes()
+    {
+        $themes = array();
+        
+        if ($handle = opendir(FROG_ROOT.'/'.ADMIN_DIR.'/themes/'))
+        {
+            while (false !== ($file = readdir($handle)))
+            {
+                if (strpos($file, '.') !== 0 && strpos($file, '.css') !== false)
+                {
+                    $code = substr($file, 0, -4);
+                    $themes[$code] = Inflector::humanize($code);
+                }
+            }
+            closedir($handle);
+        }
+        asort($themes);
+        
+        return $themes;
+    }
 }

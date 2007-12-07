@@ -140,8 +140,12 @@ class PageController extends Controller
 
     public function addPart()
     {
-        $data = $_POST['part'];
-        $data['name'] = trim($data['name']);
+        header('Content-Type: text/html; charset: utf-8');
+        
+        $data = isset($_POST['part']) ? $_POST['part']: array();
+        $data['name'] = isset($data['name']) ? trim($data['name']): '';
+        $data['index'] = isset($data['index']) ? $data['index']: 1;
+        
         echo $this->_getPartView($data['index'], $data['name']);
     } // addpart
 

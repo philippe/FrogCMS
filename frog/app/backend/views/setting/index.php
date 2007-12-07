@@ -3,24 +3,33 @@
 <form action="<?php echo get_url('setting'); ?>" method="post">
   <table class="fieldset" cellpadding="0" cellspacing="0" border="0">
       <tr>
-        <td colspan="3"><h3><?php echo __('Site information'); ?></h3></td>
-      </tr>
-      <tr>
         <td class="label"><label for="setting_admin_title"><?php echo __('Admin Site title'); ?></label></td>
-        <td class="field"><input class="textbox" id="setting_admin_title" maxlength="40" name="setting[admin_title]" size="40" type="text" value="<?php echo Setting::get('admin_title'); ?>" /></td>
-        <td class="help"><?php echo __('Changes the title shown in backend.'); ?></td>
+        <td class="field"><input class="textbox" id="setting_admin_title" maxlength="255" name="setting[admin_title]" size="255" type="text" value="<?php echo htmlentities(Setting::get('admin_title'), ENT_COMPAT, 'UTF-8'); ?>" /></td>
+        <td class="help"><?php echo __('By using <strong>&lt;img src="img_path" /&gt;</strong> you can set your company logo instead of a title.'); ?></td>
       </tr>
       <tr>
         <td class="label"><label for="setting_language"><?php echo __('Language'); ?></label></td>
         <td class="field">
           <select class="select" id="setting_language" name="setting[language]">
 <?php $current_language = Setting::get('language'); ?>
-<?php foreach ($languages as $code => $label): ?>
+<?php foreach (Setting::getLanguages() as $code => $label): ?>
             <option value="<?php echo $code; ?>"<?php if ($code == $current_language) echo ' selected="selected"'; ?>><?php echo __($label); ?></option>
 <?php endforeach; ?>
           </select>
         </td>
         <td class="help"><?php echo __('This will set your language for the backend.'); ?></td>
+      </tr>
+      <tr>
+        <td class="label"><label for="setting_theme"><?php echo __('Administration Theme'); ?></label></td>
+        <td class="field">
+          <select class="select" id="setting_language" name="setting[theme]" onchange="$('css_theme').href = 'themes/' + this[this.selectedIndex].value + '.css';">
+<?php $current_theme = Setting::get('theme'); ?>
+<?php foreach (Setting::getThemes() as $code => $label): ?>
+            <option value="<?php echo $code; ?>"<?php if ($code == $current_theme) echo ' selected="selected"'; ?>><?php echo __($label); ?></option>
+<?php endforeach; ?>
+          </select>
+        </td>
+        <td class="help"><?php echo __('This will change your Administration theme.'); ?></td>
       </tr>
       <tr>
         <td colspan="3"><h3><?php echo __('Page options'); ?></h3></td>

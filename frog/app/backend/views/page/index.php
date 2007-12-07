@@ -7,7 +7,7 @@
 </div>
 
 <ul id="site-map-root">
-    <li id="page_root" class="node level-0">
+    <li id="page-0" class="node level-0">
       <div class="page" style="padding-left: 4px">
         <span class="w1">
 <?php if (AuthUser::hasPermission('editor') && $root->is_protected): ?>
@@ -27,8 +27,3 @@
 
 <?php echo $content_children; ?>
 
-<script type="text/javascript">
-// <![CDATA[
-  new SiteMap('site-map', [1]);
-// ]]>
-</script>
