@@ -25,7 +25,7 @@
         <input class="long" id="forgot-email" type="text" name="forgot[email]" value="<?php echo $email; ?>" />
       </div>
       <div id="forgot-submit">
-        <input class="submit" type="submit" accesskey="s" value="<?php echo __('Send password'); ?> (Alt+S)" />
+        <input class="submit" type="submit" accesskey="s" value="<?php echo __('Send password'); ?>" />
         <span>(<a href="<?php echo get_url('login'); ?>"><?php echo __('Login'); ?></a>)</span>
       </div>
     </form>

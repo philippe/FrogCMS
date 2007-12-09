@@ -49,8 +49,6 @@ class Archive
             $day = isset($params[2]) ? $params[2]: 1;
 
             $this->page->time = mktime(0, 0, 0, $month, $day, $params[0]);
-            //$this->page->title = strftime($this->page->title, $time);
-            //$this->page->breadcrumb = strftime($this->page->breadcrumb, $time);
         }
         else
         {
@@ -114,5 +112,25 @@ class Archive
         
         return $out;
     }
-
+    
+    function archivesByDay($year='all')
+    {
+        global $__FROG_CONN__;
+        
+        $out = array();
+        
+        if ($year == 'all') $year = '';
+        
+        $sql = "SELECT DISTINCT(DATE_FORMAT(created_on, '%Y/%m/%d')) FROM ".TABLE_PREFIX."page WHERE parent_id=? AND status_id != ".Page::STATUS_HIDDEN." ORDER BY created_on DESC";
+        
+        $stmt = $__FROG_CONN__->prepare($sql);
+        $stmt->execute(array($this->page->id));
+        
+        while ($date = $stmt->fetchColumn())
+        {
+            $out[] = $date;
+        }
+        
+        return $out;
+    }
 }

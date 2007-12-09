@@ -33,7 +33,7 @@
         <label class="checkbox" for="login-remember-me"><?php echo __('Remember me for 14 days'); ?></label>
       </div>
       <div id="login_submit">
-        <input class="submit" type="submit" accesskey="s" value="<?php echo __('Login'); ?> (Alt+S)" />
+        <input class="submit" type="submit" accesskey="s" value="<?php echo __('Login'); ?>" />
         <span>(<a href="<?php echo get_url('login/forgot'); ?>"><?php echo __('Forgot password?'); ?></a>)</span>
       </div>
     </form>

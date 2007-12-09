@@ -93,7 +93,7 @@
   </table>
 
   <p class="buttons">
-    <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save'); ?> (Alt+S)" />
+    <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save'); ?>" />
   </p>
 
 </form>

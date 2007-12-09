@@ -25,8 +25,8 @@
 <?php } ?>
   </div>
   <p class="buttons">
-    <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save'); ?> (Alt+S)" />
-    <input class="button" name="continue" type="submit" accesskey="e" value="<?php echo __('Save and Continue Editing'); ?> (Alt+E)" />
+    <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save'); ?>" />
+    <input class="button" name="continue" type="submit" accesskey="e" value="<?php echo __('Save and Continue Editing'); ?>" />
     <?php echo __('or'); ?> <a href="<?php echo get_url('layout'); ?>"><?php echo __('Cancel'); ?></a>
   </p>
 </form>

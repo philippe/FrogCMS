@@ -45,7 +45,7 @@
   </table>
 
   <p class="buttons">
-    <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save'); ?> (Alt+S)" />
+    <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save'); ?>" />
     <?php echo __('or'); ?> <a href="<?php echo get_url('user'); ?>"><?php echo __('Cancel'); ?></a>
   </p>
 
