@@ -4,9 +4,10 @@
    * Simple 404 Not Found file display
    * @author Philippe Archambault <philippe.archambault@gmail.com>
    */
-
+  
   header("HTTP/1.0 404 Not Found");
-
+  header("Status: 404 Not Found");
+  
 ?>
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
 <html><head>
