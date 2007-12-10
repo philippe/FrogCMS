@@ -47,20 +47,6 @@
                 </tr>
 <?php endif; ?>
               </table>
-              <script type="text/javascript">
-              // <![CDATA[
-                /*$title = $('page_title');
-                $slug = $('page_slug');
-                $breadcrumb = $('page_breadcrumb');
-                $old_title = $title.value || '';
-                function title_updated() {
-                  if ($old_title.toSlug() == $slug.value) $slug.value = $title.value.toSlug();
-                  if ($old_title == $breadcrumb.value) $breadcrumb.value = $title.value;
-                  $old_title = $title.value;
-                }
-                Event.observe('page_title', 'keyup', title_updated);*/
-              // ]]>
-              </script>
             </div>
         </div>
     </div>
@@ -78,7 +64,7 @@
       <div id="tabs" class="tabs">
         <div id="tab-toolbar">
           <a href="#" onclick="toggle_add_part_popup(); return false;" title="<?php echo __('Add Tab'); ?>"><img src="images/plus.png" alt="plus icon" /></a>
-          <a href="#" onclick="if(tabControl._tabify(tabControl.selected).tab_id == 'tab-1') { alert('You can\'t remove the Body Tab');} else if(confirm('<?php echo __('Delete the current tab?'); ?>')) { tabControl.removeTab(tabControl.selected) }; return false;" title="<?php echo __('Remove Tab'); ?>"><img src="images/minus.png" alt="minus icon" /></a>
+          <a href="#" onclick="if (confirm('<?php echo __('Delete the current tab?'); ?>')) { tabControl.removeTab(tabControl.selected) }; return false;" title="<?php echo __('Remove Tab'); ?>"><img src="images/minus.png" alt="minus icon" /></a>
         </div>
       </div>
       <div id="pages" class="pages">
