@@ -10,7 +10,7 @@
     <li id="page-0" class="node level-0">
       <div class="page" style="padding-left: 4px">
         <span class="w1">
-<?php if (AuthUser::hasPermission('editor') && $root->is_protected): ?>
+<?php if ($root->is_protected && ! AuthUser::hasPermission('administrator') && ! AuthUser::hasPermission('developer')): ?>
           <img align="middle" class="icon" src="images/page.png" alt="page icon" /> <span class="title"><?php echo $root->title; ?></span>
 <?php else: ?>
           <a href="<?php echo get_url('page/edit/1'); ?>" title="/"><img align="middle" class="icon" src="images/page.png" alt="page icon" /> <span class="title"><?php echo $root->title; ?></span></a>
