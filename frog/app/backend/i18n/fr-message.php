@@ -29,6 +29,8 @@ return array(
 'Add' => 'Ajouter',
 'Required.' => 'Requis.',
 'Optional.' => 'Optionnel.',
+'yes' => 'oui',
+'no' => 'non',
 
 
 // files
@@ -44,12 +46,14 @@ return array(
 
 // layouts
 'Layout' => 'Gabarit',
+'New Layout' => 'Nouveau Gabarit',
+'What is a Layout?' => 'Qu\'est-ce qu\'un Gabarit?',
 'Use layouts to apply a visual look to a Web page. Layouts can contain special tags to include
   page content and other elements such as the header or footer. Click on a layout name below to
   edit it or click <strong>Remove</strong> to delete it.' =>
-'Utiliser les gabarits pour créer l\'apparence visuel de vos pages. Les interfaces peuvent
-  contenir du code pour inclure le contenu des pages et autre éléments comme par exemple l\'entête
-  et le pied de page. Cliquer sur le nom de l\'interface pour la modifier ou encore sur 
+'Utilisez les gabarits pour créer l\'apparence visuel de vos pages. Les interfaces peuvent
+  contenir du code pour inclure le contenu des pages et autre éléments comme, par exemple, l\'entête
+  et le pied de page. Cliquez sur le nom de l\'interface pour la modifier ou encore sur 
   <strong>Remove</strong> pour la supprimer',
 'Add Layout' => 'Nouvelle interface',
 'Edit Layout' => 'Modification d\'une interface',
@@ -58,6 +62,7 @@ return array(
 
 // pages
 'Page' => 'Page',
+'reorder' => 'reclasser',
 'Add Page' => 'Nouvelle page',
 'Edit Page' => 'Modification d\'une page',
 'Status' => 'Statut',
@@ -80,8 +85,25 @@ return array(
 
 // settings
 'Settings' => 'Configurations',
+'Admin Site title' => 'Titre du site admin',
+'Language' => 'Langue',
+'Administration Theme' => 'Thème administration',
+'Page options' => 'Options des pages',
+'Default Status' => 'Status par défaut',
+'Default Filter' => 'Filtre par défaut',
+'Optional component' => 'Composents optionnels',
+'Enable comments' => 'Activer les commentaires',
+'Auto approve comments' => 'Auto-approbation des commentaires',
+'Display stats' => 'Afficher les stats',
+'Display file manager' => 'Afficher l\'explorateur de fichiers',
+'By using <strong>&lt;img src="img_path" /&gt;</strong> you can set your company logo instead of a title.' => 'Utilisez <strong>&lt;img src="img_path" /&gt;</strong> pour afficher un logo personnalisé à la place du titre.',
+'This will set your language for the backend.' => 'Défini la langue du back-end.',
+'This will change your Administration theme.' => 'Permet de changer le style du back-end.',
+'Only for filter in pages, NOT in snippets' => 'Uniquement pour les filtres des pages, PAS pour les extraits.',
 
 // snippets
+'New Snippet' => 'Nouvel Extrait',
+'What is a Snippet?' => 'Qu\'est-ce qu\'un Extrait?',
 'Snippets are generally small pieces of content which are included in other pages or layouts.' =>
 'Les extraits sont en général des petites parties du site qui sont inclus dans plusieurs pages ou interface.',
 'Snippet' => 'Extrait',
@@ -92,20 +114,30 @@ return array(
 
 // users
 'Add User' => 'Nouvel utilisateur',
-'Edit User' => 'Modification d\'un utilisateur',
+'Edit user' => 'Modification d\'un utilisateur',
 'Username' => 'Nom d\'utilisateur',
 'E-mail' => 'Courriel',
 'Password' => 'Mot de passe',
+'Forgot password?' => 'Oubli du Mot de Passe?',
+'Forgot password' => 'Envoi du Mot de Passe',
+'Email address:' => 'Adresse e-mail :',
 'Confirm Password' => 'Confirmation du mot de passe',
+'Send password' => 'Envoyer',
+'No user found!' => 'Utilisateur inconnu!',
+'Login' => 'Connexion',
+'Remember me for 14 days' => 'Mémoriser ma connexion pendant 14 jours',
 'Roles' => 'Rôles',
 'Administrator' => 'Administrateur',
-'Developer' => 'Développer',
+'Developer' => 'Développeur',
 'Editor' => 'Éditeur',
 'Optional. Please use a valid e-mail address.' => 'Optionnel. S.V.P. écrire un courriel valide.',
 'At least 3 characters. Must be unique.' => 'Minimum de 3 caractères. Doit-être unique.',
 'At least 5 characters.' => 'Minimum de 5 caractères.',
 'Leave password blank for it to remain unchanged.' => 'Laisser les champs vide et le mot de passe ne sera pas changé.',
-'Roles restrict user privileges and turn parts of the administrative interface on or off.' => 'Les rôles permettes de restreindre certaine partie de l\'administration.',
+'Roles restrict user privileges and turn parts of the administrative interface on or off.' => 'Les rôles permettent de restreindre certaine partie de l\'administration.',
+'New User' => 'Nouvel utilisateur',
+'Where avatar come from?' => 'D\'où viennent les avatars?',
+'They are directly linked with <a href="http://www.gravatar.com/" target="_blank">Gravatar</a> site. It is free!' => 'Ils sont générés directement avec le site gratuit <a href="http://www.gravatar.com" target="_blank" title="Accès au site">Gravatar</a>!',
 
 
 // errors and success
@@ -167,10 +199,14 @@ return array(
 'You are currently logged in as' => 'Connecté en tant que',
 'Log Out' => 'Déconnexion',
 'View Site' => 'Voir le site',
-'Thank you for creating with' => 'Merci de créer avec',
+'Thank you for creating with' => 'Merci d\'utiliser',
 'version' => 'version',
 'Page rendered in' => 'Page générée en',
 'seconds' => 'secondes',
 'Memory usage:' => 'Mémoire utilisée:',
+
+// Comments
+'Delete' => 'Supprimer',
+'Unapprove' => 'Désapprouver',
 
 );
