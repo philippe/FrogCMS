@@ -468,7 +468,6 @@ var TabControl = Class.create({
     if (this.selected) this.selected.unselect();
     tab.select();
     this.selected = tab;
-    //document.cookie = "current_tab=" + this.pageId() + ':' + this.selected.id;
     this.onSelect(tab);
   },
 
@@ -588,12 +587,9 @@ function part_added() {
   var partNameField = $('part-name-field');
   var partIndexField = $('part-index-field');
   var index = parseInt(partIndexField.value);
-  var tab = 'tab-' + index;
-  var caption = partNameField.value;
-  var page = 'page-' + index;
-  tabControl.addTab(tab, caption, page);
+  tabControl.addTab('tab-' + index,  partNameField.value, 'page-' + index);
+  Element.toggle('busy');
   Element.hide('add-part-popup');
-  Element.hide('busy');
   partNameField.value = '';
   partIndexField.value = (index + 1).toString();
   $('add-part-button').disabled = false;
@@ -603,7 +599,7 @@ function part_added() {
 
 function part_loading() {
   $('add-part-button').disabled = true;
-  $('busy').appear();
+  Element.toggle('busy');
 }
 function valid_part_name() {
   var partNameField = $('part-name-field');
@@ -614,7 +610,7 @@ function valid_part_name() {
     return false;
   }
   tabControl.tabs.each(function(pair){
-    if (tabControl.tabs.get(pair.key).caption == name) {
+    if (tabControl.tabs.get(pair.key).label == name) {
       result = false;
       alert('Part name must be unique.');
       throw $break;

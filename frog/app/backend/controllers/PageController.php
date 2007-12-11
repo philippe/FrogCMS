@@ -366,12 +366,15 @@ class PageController extends Controller
 
     function _getPartView($index=1, $name='', $filter_id='', $content='')
     {
+        $page_part = new PagePart(array(
+            'name' => $name, 
+            'filter_id' => $filter_id, 
+            'content' => $content)
+        );
+        
         return $this->render('page/part_edit', array(
             'index'     => $index,
-            'name'      => $name,
-            'filters'   => Filter::findAll(),
-            'filter_id' => $filter_id,
-            'content'   => $content
+            'page_part' => $page_part
         ));
     }
     

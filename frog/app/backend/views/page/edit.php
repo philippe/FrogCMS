@@ -26,7 +26,7 @@
                   <td class="label optional"><label for="page_tags"><?php echo __('Tags'); ?></label></td>
                   <td class="field"><input class="textbox" id="page_tags" maxlength="255" name="page_tag[tags]" size="255" type="text" value="<?php echo join(', ', $tags); ?>" /></td>
                 </tr>
-<?php if (isset($page->created_on)): ?>
+              <?php if (isset($page->created_on)): ?>
                 <tr>
                   <td class="label"><label for="page_created_on"><?php echo __('Created date'); ?></label></td>
                   <td class="field">
@@ -35,8 +35,8 @@
                     <input id="page_created_on_time" maxlength="5" name="page[created_on_time]" size="5" type="text" value="<?php echo substr($page->created_on, 11); ?>" />
                   </td>
                 </tr>
-<?php endif; ?>
-<?php if (isset($page->published_on)): ?>
+              <?php endif; ?>
+              <?php if (isset($page->published_on)): ?>
                 <tr>
                   <td class="label"><label for="page_published_on"><?php echo __('Published date'); ?></label></td>
                   <td class="field">
@@ -45,7 +45,7 @@
                     <input id="page_published_on_time" maxlength="5" name="page[published_on_time]" size="5" type="text" value="<?php echo substr($page->published_on, 11); ?>" /> 
                   </td>
                 </tr>
-<?php endif; ?>
+              <?php endif; ?>
               </table>
             </div>
         </div>
@@ -68,44 +68,16 @@
         </div>
       </div>
       <div id="pages" class="pages">
-<?php $index_part =1; foreach ($page_parts as $page_part): ?>
-<div class="page" id="page-<?php echo $index_part; ?>">
-  <div class="part" id="part-<?php echo $index_part; ?>">
-    <input id="part_<?php echo ($index_part-1); ?>_name" name="part[<?php echo ($index_part-1); ?>][name]" type="hidden" value="<?php echo $page_part->name; ?>" />
-<?php if (isset($page_part->id)) { ?>
-    <input id="part_<?php echo ($index_part-1); ?>_id" name="part[<?php echo ($index_part-1); ?>][id]" type="hidden" value="<?php echo $page_part->id; ?>" />
-<?php } ?>
-    <p>
-      <label for="part_<?php echo ($index_part-1); ?>_filter_id"><?php echo __('Filter'); ?></label>
-      <select id="part_<?php echo ($index_part-1); ?>_filter_id" name="part[<?php echo ($index_part-1); ?>][filter_id]" onchange="setTextAreaToolbar('part_<?php echo ($index_part-1); ?>_content', this[this.selectedIndex].value)">
-        <option value=""<?php if ($page_part->filter_id == '') echo ' selected="selected"'; ?>>&#8212; <?php echo __('none'); ?> &#8212;</option>
-<?php foreach ($filters as $filter): ?>
-        <option value="<?php echo $filter; ?>"<?php if ($page_part->filter_id == $filter) echo ' selected="selected"'; ?>><?php echo $filter; ?></option>
-<?php endforeach; ?>
-      </select>
-    </p>
-    <div><textarea class="textarea" id="part_<?php echo ($index_part-1); ?>_content" name="part[<?php echo ($index_part-1); ?>][content]" style="width: 100%" rows="20" cols="40"
-                   onkeydown="return allowTab(event, this);"
-                   onkeyup="return allowTab(event,this);"
-                   onkeypress="return allowTab(event,this);"><?php echo htmlentities($page_part->content, ENT_COMPAT, 'UTF-8'); ?></textarea></div>
-  </div>
-</div>
-<script type="text/javascript">
-    setTextAreaToolbar('part_<?php echo ($index_part-1); ?>_content', '<?php echo $page_part->filter_id; ?>');
-</script>
-<?php $index_part++; endforeach; ?>
+      <?php
+      $index = 1;
+      foreach ($page_parts as $page_part)
+      {
+          echo new View('page/part_edit', array('index' => $index, 'page_part' => $page_part));
+          $index++; 
+      }
+      ?>
       </div>
     </div>
-    <script type="text/javascript">
-    // <![CDATA[
-/*      var tabControl = new TabControl('tab-control');
-<?php $index_part=1; foreach ($page_parts as $page_part): ?>
-      tabControl.addTab('tab-<?php echo $index_part; ?>', '<?php echo $page_part->name; ?>', 'page-<?php echo $index_part; ?>');
-<?php $index_part++; ?>
-<?php endforeach; ?>
-      tabControl.select(tabControl.firstTab());*/
-    // ]]>
-    </script>
     
     <div class="row">
       <p><label for="page_layout_id"><?php echo __('Layout'); ?></label>
@@ -158,7 +130,6 @@
     &nbsp;
     </small></p>
 
-
   </div>
   <p class="buttons">
     <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save'); ?>" />
@@ -167,15 +138,13 @@
   </p>
 
 </form>
-
 <div id="popups">
-  <div class="popup" id="add-part-popup" style="display:none;">
-    <div id="busy" class="busy" style="display: none"><img alt="Spinner" src="images/spinner.gif" /></div>
+  <div class="popup" id="add-part-popup" style="display: none;">
+    <div id="busy" class="busy" style="display: none;"><img alt="Spinner" src="images/spinner.gif" /></div>
     <h3><?php echo __('Add Part'); ?></h3>
-    <!--form action="<?php echo get_url('page/addPart'); ?>" method="post" onsubmit="if (valid_part_name()) { new Ajax.Updater('page_parts', '<?php echo get_url('page/addPart'); ?>', {asynchronous:true, evalScripts:true, insertion:Insertion.Bottom, onComplete:function(request){part_added()}, onLoading:function(request){part_loading()}, parameters:Form.serialize(this)}); }; return false;"-->
     <form action="<?php echo get_url('page/addPart'); ?>" method="post" onsubmit="if (valid_part_name()) { new Ajax.Updater('pages', '<?php echo get_url('page/addPart'); ?>', {asynchronous:true, evalScripts:true, insertion:Insertion.Bottom, onComplete:function(request){part_added()}, onLoading:function(request){part_loading()}, parameters:Form.serialize(this)}); }; return false;"> 
       <div>
-        <input id="part-index-field" name="part[index]" type="hidden" value="<?php echo $index_part; ?>" />
+        <input id="part-index-field" name="part[index]" type="hidden" value="<?php echo $index; ?>" />
         <input id="part-name-field" maxlength="100" name="part[name]" type="text" value="" /> 
         <input id="add-part-button" name="commit" type="submit" value="<?php echo __('Add'); ?>" />
       </div>
