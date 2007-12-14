@@ -185,7 +185,8 @@ INSERT INTO `{TABLEPREFIX}setting` (`name`, `value`) VALUES
 ('enable_comment', '1'),
 ('auto_approve_comment', '1'),
 ('default_status_id', '1'),
-('default_filter_id', '');
+('default_filter_id', ''),
+('plugins', 'a:5:{s:7:"textile";i:1;s:8:"markdown";i:1;s:7:"archive";i:1;s:14:"page_not_found";i:1;s:12:"file_manager";i:1;}');
 
 -- --------------------------------------------------------
 
