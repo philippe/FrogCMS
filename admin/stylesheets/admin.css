@@ -26,6 +26,7 @@ p { margin: 1.2em 0 .6em; }
 /*h1 { margin: 0 0 .5em; font-size: 2em; }*/
 h1 { margin: -20px -20px 0; padding: 10px 20px; font-size: 1.5em; }
 h2 { margin: 1em 0 .5em; font-size: 1.6em; }
+h3, h4 { margin: .5em 0; font-size: 1.2em; font-weight: bold; }
 
 .hidden { display: none; }
 .clear { font-size: 1px; clear: both; }
@@ -129,7 +130,7 @@ h2 { margin: 1em 0 .5em; font-size: 1.6em; }
 #body_user_add #content-wrapper,
 #body_user_edit #content-wrapper,
 #body_comment_edit #content-wrapper,
-#body_file_view #content-wrapper {
+#body_plugin_index #content-wrapper {
   margin-right: 0;
   width: 98%;
 }
@@ -157,7 +158,7 @@ h2 { margin: 1em 0 .5em; font-size: 1.6em; }
 #body_user_add #sidebar-wrapper,
 #body_user_edit #sidebar-wrapper,
 #body_comment_edit #sidebar-wrapper,
-#body_file_view #sidebar-wrapper {
+#body_plugin_index #sidebar-wrapper {
   display: none;
 }
 
@@ -285,21 +286,9 @@ table.index th {
 table.index td {
   border-top: 1px solid #ddd;
   padding: 2px 4px;
+  font-weight: normal;
 }
-table.index .status {
-  width: 8em;
-}
-table.index .add-child {
-  width: 100px;
-  padding-left: 0;
-}
-table.index .remove {
-  width: 100px;
-  padding-left: 0;
-}
-table.index .node .layout,
-table.index .node .snippet,
-table.index .node .user {
+table.index .node {
   font-size: 115%;
   font-weight: bold;
 }
@@ -318,23 +307,15 @@ table.index .even.hover,
 table.index .odd.hover {
   background: #f5f5f5;
 }
-table.index .node .snippet a,
-table.index .node .snippet a:visited,
-table.index .node .layout a,
-table.index .node .layout a:visited,
-table.index .node .user a,
-table.index .node .user a:visited {
+table.index .node a,
+table.index .node a:visited {
   position: relative;
   top: 5px;
   color: #000;
   text-decoration: none;
 }
-table.index .node .snippet a:hover, 
-table.index .node .snippet a:visited:hover,
-table.index .node .layout a:hover, 
-table.index .node .layout a:visited:hover,
-table.index .node .user a:hover, 
-table.index .node .user a:visited:hover {
+table.index .node a:hover, 
+table.index .node a:visited:hover {
   text-decoration: underline;
 }
 table.index td.note {
@@ -343,6 +324,9 @@ table.index td.note {
   font-style: italic;
   padding: 3em;
   text-align: center;
+}
+table.index p {
+  margin-top: 5px;
 }
 
 /* Site Map --------------------------------------------------------------- */
@@ -438,7 +422,6 @@ table.index td.note {
 
 .form-area {
   background-color: #9ce;
-  /*margin-top: -20px;*/
   margin-left: -20px;
   margin-right: -20px;
   padding: 20px;
@@ -554,15 +537,13 @@ table.fieldset .error-with-field small {
 
 /* Tabs ------------------------------------------------------------------- */
 
-#tabs-meta,
-#tabs {
+.tabs {
   float: left;
   width: 100%;
   margin-top: 10px;
   margin-right: -4px;
 }
-#tabs-meta .tab,
-#tabs .tab {
+.tabs .tab {
   display: inline-block;
   font-size: 100%;
   text-align: left;
@@ -575,44 +556,46 @@ table.fieldset .error-with-field small {
   background-color: #ddd;
   color: #000;
 }
-#tabs-meta .tab.here,
-#tabs .tab.here {
+.tabs .tab.here {
   background-color: #fff;
   font-weight: bold;
 }
-#tab-meta-toolbar,
-#tab-toolbar {
+.tab_toolbar {
   float: right;
   margin-top: .28em;
 }
-#tab-toolbar img { padding-bottom: 2px; }
-#meta-divs td {
+.tab_toolbar img { padding-bottom: 2px; }
+.pages {
+  background-color: #fff;
+  width: 100%;
+  clear: both;
+}
+.pages .page {
+  padding: 20px;
+}
+.pages label {
+  font-size: 85%;
+  font-weight: normal;
+}
+
+#meta-pages td {
   background-color: #fff;
   padding: 6px;
 }
-#meta-divs td.label {
+#meta-pages td.label {
   padding-top: 10px;
   vertical-align: top;
   text-align: right;
   width: 20%;
 }
-#meta-divs td.label .optional {
+#meta-pages td.label .optional {
   color: #929488;
 }
-#meta-divs #div-title,
-#meta-divs #div-metadata {
+#meta-pages #div-title,
+#meta-pages #div-metadata {
   padding: 20px;
   margin-top: .30em;
   margin-bottom: 20px;
-}
-#meta-divs,
-#pages {
-  background: white;
-  width: 100%;
-  clear: both;
-}
-#content #pages .page {
-  padding: 20px;
 }
 #content textarea {
   padding: 3px 0;
@@ -622,11 +605,6 @@ table.fieldset .error-with-field small {
   font-family: Monaco, "Courier New", Courier, monospace;
   font-size: 85%;
 }
-#content #pages label {
-  font-size: 85%;
-  font-weight: normal !important;
-}
-
 
 /* Popups ----------------------------------------------------------------- */
 
@@ -646,52 +624,6 @@ table.fieldset .error-with-field small {
 #content .popup .close-link {
   font-size: 85%;
   color: #999;
-}
-
-/* Page statistic --------------------------------------------------------- */
-
-.stats-table {
-  width: 100%;
-}
-.stats-table th {
-  font-weight: normal;
-}
-.stats-table td {
-  padding-left: 5px;
-  padding-right: 5px;
-  font-weight: bold;
-}
-.stats-table .row-today th, .stats-table .row-today td, 
-.stats-table .row-all-time th, .stats-table .row-all-time td {
-  background-color: #f7f7f7;
-}
-.stats-table .row-today th, 
-.stats-table .row-yesterday th,
-.stats-table .row-all-time th {
-  padding-right: 8px;
-  text-align: left;
-}
-.stats-table .header-visites, .stats-table .header-pageviews {
-  padding: 1px 5px;
-}
-.stats-table .header-visites { background-color: #f7f7f7; }
-.stats-table .row-today .cell-visites, 
-.stats-table .row-all-time .cell-visites { background-color: #eee; }
-.stats-table .row-yesterday .cell-visites { background-color: #f7f7f7; }
-
-
-#page-statistic dt {
-  clear: left;
-  float: left;
-  padding: 3px;
-  width: 100px;
-}
-#page-statistic dd {
-  float: left;
-  margin: 0;
-  padding: 3px;
-  width: 100px;
-  font-weight: bolder;
 }
 
 /* Comments --------------------------------------------------------------- */

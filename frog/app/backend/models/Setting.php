@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * class Setting 
+ *
+ * Provide a administration interface of some configuration
+ *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @since  0.8.7
+ */
+
 class Setting extends Record
 {
     const TABLE_NAME = 'setting';
@@ -10,7 +19,7 @@ class Setting extends Record
     public static $settings = array();
     public static $is_loaded = false;
     
-    public static function load()
+    public static function init()
     {
         if (! self::$is_loaded)
         {
@@ -82,4 +91,5 @@ class Setting extends Record
         
         return $themes;
     }
-}
+
+} // end Setting class

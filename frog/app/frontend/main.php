@@ -2,12 +2,15 @@
 
 define('FRAMEWORK_STARTING_MICROTIME', get_microtime());
 
+require APP_PATH . '/frontend/classes/Plugin.php'; // Setting, Plugin, Behavior and Filter classes
 require APP_PATH . '/frontend/classes/Page.php';
-require APP_PATH . '/frontend/classes/Comment.php';
-require APP_PATH . '/frontend/classes/Behavior.php';
 
 if ( ! defined('HELPER_PATH')) define('HELPER_PATH', CORE_ROOT.'/helpers');
 if ( ! defined('URL_SUFFIX')) define('URL_SUFFIX', '');
+
+// Intialize Setting and Plugin
+Setting::init();
+Plugin::init();
 
 /**
  * Load all functions from the helper file
@@ -114,7 +117,7 @@ function find_page_by_slug($slug, &$parent)
     
     if ($page = $stmt->fetchObject())
     {
-        // hack to be able to redefine the page class with behavior
+        // hook to be able to redefine the page class with behavior
         if ( ! empty($parent->behavior_id))
         {
             // will return Page by default (if not found!)
@@ -129,10 +132,7 @@ function find_page_by_slug($slug, &$parent)
         
         return $page;
     }
-    else
-    {
-        return false;
-    }
+    else return false;
 }
 
 function get_parts($page_id)
@@ -141,15 +141,14 @@ function get_parts($page_id)
     
     $objPart = new stdClass;
     
-    $sql = 'SELECT name, content_html FROM '.TABLE_PREFIX.'page_part WHERE page_id = ?';
+    $sql = 'SELECT name, content_html FROM '.TABLE_PREFIX.'page_part WHERE page_id=?';
     
     if ($stmt = $__FROG_CONN__->prepare($sql))
     {
         $stmt->execute(array($page_id));
+        
         while ($part = $stmt->fetchObject())
-        {
             $objPart->{$part->name} = $part;
-        }
     }
     
     return $objPart;
@@ -159,7 +158,8 @@ function url_match($url)
 {
     $url = trim($url, '/');
     
-    if (CURRENT_URI == $url) return true;
+    if (CURRENT_URI == $url)
+        return true;
     
     return false;
 }
@@ -204,17 +204,10 @@ function memory_usage()
 
 function page_not_found()
 {
+    Observer::notify('page_not_found');
+    
     include FROG_ROOT . '/404.php';
     exit;
-}
-
-function statistic_save($page_id)
-{
-    global $__FROG_CONN__;
-    
-    $sql = 'INSERT INTO '.TABLE_PREFIX.'statistic VALUES ('.$page_id.', \''.$_SERVER['REMOTE_ADDR'].'\', \''.date('Y-m-d H:i:s').'\')';
-    
-    $__FROG_CONN__->exec($sql);
 }
 
 function main()
@@ -249,7 +242,7 @@ function main()
     // if we fund it, display it!
     if (is_object($page))
     {
-        statistic_save($page->id);
+        Observer::notify('page_found', $page);
         
         // check if we need to save a comment
         if (isset($_POST['comment']))
@@ -257,10 +250,7 @@ function main()
         
         $page->_executeLayout();
     }
-    else
-    {
-        page_not_found();
-    }
+    else page_not_found();
     
 } // main
 

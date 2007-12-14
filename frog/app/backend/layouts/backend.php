@@ -11,26 +11,23 @@
     <link href="stylesheets/toolbar.css" media="screen" rel="Stylesheet" type="text/css" />
     <link href="themes/<?php echo Setting::get('theme'); ?>.css" id="css_theme" media="screen" rel="Stylesheet" type="text/css" />
     
-    <!--script src="javascripts/cp-protolous.js" type="text/javascript"></script>
-    <script src="javascripts/cp-datepicker.js" type="text/javascript"></script-->
     <script type="text/javascript" charset="utf-8" src="javascripts/prototype.js"></script>
     <script type="text/javascript" charset="utf-8" src="javascripts/effects.js"></script>
     <script type="text/javascript" charset="utf-8" src="javascripts/dragdrop.js"></script>
     <script type="text/javascript" charset="utf-8" src="javascripts/cp-datepicker.js"></script>
     <script type="text/javascript" charset="utf-8" src="javascripts/frog.js"></script>
     <script type="text/javascript" charset="utf-8" src="javascripts/control.textarea.js"></script>
-    <script type="text/javascript" charset="utf-8" src="javascripts/control.textarea.default.js"></script>
     
-<?php foreach(Filter::findAll() as $filter_id): ?>
-<?php $filter_dir = Inflector::underscore($filter_id); ?>
-<?php if (file_exists(CORE_ROOT . '/filters/' . $filter_dir . '/' . $filter_id . '.js')): ?>
-    <script src="../frog/filters/<?php echo $filter_dir.'/'.$filter_id; ?>.js" type="text/javascript"></script>
+<?php foreach(Plugin::$plugins as $plugin_id => $plugin): ?>
+<?php if (file_exists(CORE_ROOT . '/plugins/' . $plugin_id . '/' . $plugin_id . '.js')): ?>
+    <script src="../frog/plugins/<?php echo $plugin_id.'/'.$plugin_id; ?>.js" type="text/javascript"></script>
 <?php endif; ?>
-<?php if (file_exists(CORE_ROOT . '/filters/' . $filter_dir . '/' . $filter_id . '.css')): ?>
-    <link href="../frog/filters/<?php echo $filter_dir.'/'.$filter_id; ?>.css" media="screen" rel="Stylesheet" type="text/css" />
+<?php if (file_exists(CORE_ROOT . '/filters/' . $plugin_id . '/' . $plugin_id . '.css')): ?>
+    <link href="../frog/plugins/<?php echo $plugin_id.'/'.$plugin_id; ?>.css" media="screen" rel="Stylesheet" type="text/css" />
 <?php endif; ?>
 <?php endforeach; ?>
-    
+
+<?php $action = Dispatcher::getAction(); ?>
   </head>
   <body id="body_<?php echo $ctrl.'_'.Dispatcher::getAction(); ?>">
     <div id="header">
@@ -43,15 +40,16 @@
           <li><a href="<?php echo get_url('layout'); ?>"<?php if ($ctrl=='layout') echo ' class="current"'; ?>><?php echo __('Layouts'); ?></a></li>
 <?php endif; ?>
 
+<?php foreach (Plugin::$controllers as $plugin_name => $plugin): ?>
+          <li><a href="<?php echo get_url('plugin/'.$plugin_name); ?>"<?php if ($ctrl=='plugin' && $action==$plugin_name) echo ' class="current"'; ?>><?php echo __($plugin->label); ?></a></li>
+<?php endforeach; ?>
+
 <?php if (AuthUser::hasPermission('administrator')): ?> 
-          <li class="right"><a href="<?php echo get_url('setting'); ?>"<?php if ($ctrl=='setting') echo ' class="current"'; ?>><?php echo __('Settings'); ?></a></li>
+          <li class="right"><a href="<?php echo get_url('setting'); ?>"<?php if ($ctrl=='setting') echo ' class="current"'; ?>><?php echo __('Administration'); ?></a></li>
           <li class="right"><a href="<?php echo get_url('user'); ?>"<?php if ($ctrl=='user') echo ' class="current"'; ?>><?php echo __('Users'); ?></a></li>
 <?php endif; ?>
 <?php if (Setting::get('enable_comment')): ?> 
           <li class="right"><a href="<?php echo get_url('comment'); ?>"<?php if ($ctrl=='comment') echo ' class="current"'; ?>><?php echo __('Comments'); ?></a></li>
-<?php endif; ?>
-<?php if (Setting::get('display_file_manager')): ?> 
-          <li class="right"><a href="<?php echo get_url('file'); ?>"<?php if ($ctrl=='file') echo ' class="current"'; ?>><?php echo __('Files'); ?></a></li>
 <?php endif; ?>
         </ul>
       </div>

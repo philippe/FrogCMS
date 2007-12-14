@@ -9,7 +9,7 @@
       <select id="part_<?php echo ($index-1); ?>_filter_id" name="part[<?php echo ($index-1); ?>][filter_id]" onchange="setTextAreaToolbar('part_<?php echo ($index-1); ?>_content', this[this.selectedIndex].value)">
         <option value=""<?php if ($page_part->filter_id == '') echo ' selected="selected"'; ?>>&#8212; <?php echo __('none'); ?> &#8212;</option>
 <?php foreach (Filter::findAll() as $filter): ?> 
-        <option value="<?php echo $filter; ?>"<?php if ($page_part->filter_id == $filter) echo ' selected="selected"'; ?>><?php echo $filter; ?></option>
+        <option value="<?php echo $filter; ?>"<?php if ($page_part->filter_id == $filter) echo ' selected="selected"'; ?>><?php echo Inflector::humanize($filter); ?></option>
 <?php endforeach; ?> 
       </select>
     </p>

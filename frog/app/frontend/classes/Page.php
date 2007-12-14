@@ -68,7 +68,6 @@ class Page
     public $level = false;
     public $tags = false;
     
-    
     public function __construct($object, $parent)
     {
         $this->parent = $parent;
@@ -126,7 +125,7 @@ class Page
                $label
         );
     }
-
+    
     /**
      * http://php.net/strftime
      * exemple (can be useful):
@@ -143,7 +142,7 @@ class Page
         else
             return strftime($format, strtotime($this->created_on));
     }
-
+    
     public function breadcrumbs($separator='&gt;')
     {
         $url = '';
@@ -159,12 +158,9 @@ class Page
         return $out . '<span class="breadcrumb-current">'.$this->breadcrumb.'</span></div>'."\n";
         
     }
-
-    public function hasContent($part)
-    {
-        return isset($this->part->$part);
-    }
-
+    
+    public function hasContent($part) { return isset($this->part->$part); }
+    
     public function content($part='body', $inherit=false)
     {
         // if part exist we generate the content en execute it!
@@ -181,7 +177,7 @@ class Page
             return $this->parent->content($part, true);
         }
     }
-
+    
     public function children($args=null, $value=array(), $include_hidden=false)
     {
         global $__FROG_CONN__;
@@ -193,15 +189,15 @@ class Page
         $order   = isset($args['order']) ? $args['order']: 'position, id';
         $offset  = isset($args['offset']) ? $args['offset']: 0;
         $limit   = isset($args['limit']) ? $args['limit']: 0;
-
+        
         // auto offset generated with the page param
         if ($offset == 0 && isset($_GET['page']))
             $offset = ((int)$_GET['page'] - 1) * $limit;
-
+        
         // Prepare query parts
         $where_string = trim($where) == '' ? '' : "AND ".$where;
         $limit_string = $limit > 0 ? "LIMIT $offset, $limit" : '';
-
+        
         // Prepare SQL
         $sql = 'SELECT page.*, author.name AS author, author.id AS author_id, updator.name AS updator, updator.id AS updator_id '
              . 'FROM '.TABLE_PREFIX.'page AS page '
@@ -209,16 +205,16 @@ class Page
              . 'LEFT JOIN '.TABLE_PREFIX.'user AS updator ON updator.id = page.updated_by_id '
              . 'WHERE parent_id = '.$this->id.' AND (status_id='.Page::STATUS_REVIEWED.' OR status_id='.Page::STATUS_PUBLISHED.($include_hidden ? ' OR status_id='.Page::STATUS_HIDDEN: '').') '
              . "$where_string ORDER BY $order $limit_string";
-
+        
         $pages = array();
-
+        
         // hack to be able to redefine the page class with behavior
         if ( ! empty($this->behavior_id))
         {
             // will return Page by default (if not found!)
             $page_class = Behavior::loadPageHack($this->behavior_id);
         }
-
+        
         // Run!
         if ($stmt = $__FROG_CONN__->prepare($sql))
         {
@@ -235,13 +231,11 @@ class Page
         }
         
         if ($limit == 1)
-        {
             return isset($pages[0]) ? $pages[0]: false;
-        }
         
         return $pages;
-    } // children
-
+    }
+    
     public function childrenCount($args=null, $value=array(), $include_hidden=false)
     {
         global $__FROG_CONN__;
@@ -252,12 +246,10 @@ class Page
         $limit   = isset($args['limit']) ? $args['limit']: 0;
         $offset  = 0;
         
-        
-            
         // Prepare query parts
         $where_string = trim($where) == '' ? '' : "AND ".$where;
         $limit_string = $limit > 0 ? "LIMIT $offset, $limit" : '';
-
+        
         // Prepare SQL
         $sql = 'SELECT COUNT(*) AS nb_rows FROM '.TABLE_PREFIX.'page AS page '
              . 'WHERE parent_id = '.$this->id.' AND (status_id='.Page::STATUS_REVIEWED.' OR status_id='.Page::STATUS_PUBLISHED.($include_hidden ? ' OR status_id='.Page::STATUS_HIDDEN: '').') '
@@ -268,16 +260,7 @@ class Page
         
         return (int) $stmt->fetchColumn();
     }
-
-    public function pagination($count, $limit=10)
-    {
-        if (isset($_GET['page']) && $limit > 0)
-            $offset = ((int)$_GET['page'] - 1) * $limit;
-        
-        // here we need to generate the pagination like in the helper pagination of code igniter
-        
-    }
-
+    
     public function find($uri) { return find_page_by_uri($uri); }
     
     public function parent($level=null)
@@ -292,7 +275,7 @@ class Page
         else
             return $this->parent($level);
     }
-
+    
     public function comments()
     {
         global $__FROG_CONN__;
@@ -336,23 +319,21 @@ class Page
             eval('?>'.$snippet->content_html);
         }
     }
-
+    
     public function executionTime()
     {
         return execution_time();
     }
-
-    /**
-     * PRIVATES
-     */
+    
+    // Private --------------------------------------------------------------
     
     private function _inversedBreadcrumbs($separator)
     {
         $out = '<a href="'.$this->url().'" title="'.$this->breadcrumb.'">'.$this->breadcrumb.'</a> <span class="breadcrumb-separator">'.$separator.'</span> '."\n";
-
+    
         if ($this->parent)
             return $this->parent->_inversedBreadcrumbs($separator) . $out;
-
+        
         return $out;
     }
      
@@ -369,37 +350,29 @@ class Page
         {
             // if content-type not set, we set html as default
             if ($layout->content_type == '')
-            {
                 $layout->content_type = 'text/html';
-            }
-
+            
             // set content-type and charset of the page
             header('Content-Type: '.$layout->content_type.'; charset=UTF-8');
-
+            
             // execute the layout code
             eval('?>'.$layout->content);
         }
-    } // _executeLayout
-
+    }
+    
     /**
      * find the layoutId of the page where the layout is set
      */
     private function _getLayoutId()
     {
         if ($this->layout_id)
-        {
             return $this->layout_id;
-        }
         else if ($this->parent)
-        {
             return $this->parent->_getLayoutId();
-        }
         else
-        {
             exit ('You need to set a layout!');
-        }
-    } // _getLayoutId
-
+    }
+    
     private function _loadTags()
     {
         global $__FROG_CONN__;
@@ -475,4 +448,32 @@ class Page
         $__FROG_CONN__->exec($sql);
     }
     
-} // Page
+} // end Page class
+
+class Comment
+{
+    function name($class='')
+    {
+        if ($this->author_link != '')
+        {
+            return sprintf(
+                '<a class="%s" href="%s" title="%s">%s</a>',
+                $class,
+                $this->author_link,
+                $this->author_name,
+                $this->author_name
+            );
+        }
+        else return $this->author_name;
+    }
+    
+    function email() { return $this->author_email; }
+    function link() { return $this->author_link; }
+    function body() { return $this->body; }
+    
+    function date($format='%a, %e %b %Y')
+    {
+        return strftime($format, strtotime($this->created_on));
+    }
+    
+} // end Comment class

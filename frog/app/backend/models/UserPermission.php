@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * class UserPermission
+ *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @since  0.5
+ */
+
 class UserPermission extends Record
 {
     const TABLE_NAME = 'user_permission';
@@ -22,4 +29,5 @@ class UserPermission extends Record
             self::$__CONN__->exec($sql);
         }
     }
-}
+
+} // end UserPermission class

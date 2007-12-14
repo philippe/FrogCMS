@@ -3,8 +3,6 @@
 /**
  * class Snippet
  *
- * Enter description here...
- *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @since  0.1
  */

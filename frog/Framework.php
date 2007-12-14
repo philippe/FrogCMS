@@ -338,10 +338,15 @@ class Record
     
     final public static function tableNameFromClassName($class_name)
     {
-        if (class_exists($class_name) && defined($class_name.'::TABLE_NAME'))
-            return TABLE_PREFIX.constant($class_name.'::TABLE_NAME');
-            
-        return Inflector::underscore($class_name);
+        try
+        {
+            if (class_exists($class_name) && defined($class_name.'::TABLE_NAME'))
+                return TABLE_PREFIX.constant($class_name.'::TABLE_NAME');
+        }
+        catch (Exception $e)
+        {
+            return TABLE_PREFIX.Inflector::underscore($class_name);
+        }
     }
     
     final public static function escape($value)
@@ -549,7 +554,11 @@ class Record
         
         self::logQuery($sql);
         
-        return $stmt->fetchAll(self::FETCH_OBJ);
+        $objects = array();
+        while ($object = $stmt->fetchObject($class_name))
+            $objects[] = $object;
+        
+        return $objects;
     }
     
     public static function countFrom($class_name, $where=false, $values=array())
@@ -563,6 +572,7 @@ class Record
         
         return (int) $stmt->fetchColumn();
     }
+
 }
 
 /**
@@ -572,7 +582,7 @@ class Record
  * display() to get the output of the template, or just call print on the template
  * directly thanks to PHP 5's __toString magic method.
  * 
- * echo new View(APP_PATH.'/views/my_template.php',array(
+ * echo new View('my_template',array(
  *  'title' => 'My Title',
  *  'body' => 'My body content'
  * ));
@@ -609,7 +619,7 @@ class View
         $this->file = APP_PATH.'/views/'.ltrim($file, '/').'.php';
         
         if ( ! file_exists($this->file)) {
-            throw new Exception("View '{$file}' not found!");
+            throw new Exception("View '{$this->file}' not found!");
         }
         
         if ($vars !== false) {
@@ -734,6 +744,45 @@ class Controller
     
 } // end Controller class
 
+final class Observer
+{
+    static protected $events = array();
+    
+    public static function observe($event_name, $callback)
+    {
+        if ( ! isset(self::$events[$event_name]))
+            self::$events[$event_name] = array();
+        
+        self::$events[$event_name][$callback] = $callback;
+    }
+    
+    public static function stopObserving($event_name, $callback)
+    {  
+        if (isset(self::$events[$event_name][$callback]))
+            unset(self::$events[$event_name][$callback]);
+    }
+    
+    public static function clearObservers($event_name)
+    {
+        self::$events[$event_name] = array();
+    }
+    
+    public static function getObserverList($event_name)
+    {
+        return (isset(self::$events[$event_name])) ? self::$events[$event_name] : array();
+    }
+    
+    /**
+     * If your event does not need to process the return values from any observers use this instead of getObserverList()
+     */
+    public static function notify($event_name)
+    {
+        $args = array_slice(func_get_args(), 1); // removing event name from the arguments
+        
+        foreach(self::getObserverList($event_name) as $callback)
+            call_user_func_array($callback, $args);
+    }
+}
 
 /**
  * The AutoLoader class is an object oriented hook into PHP's __autoload functionality. You can add
@@ -794,7 +843,7 @@ class AutoLoader
                 }
             }
         }
-        page_not_found();
+        throw new Exception("AutoLoader did not found file for '{$class_name}'!");
     }
     
 } // end AutoLoader class

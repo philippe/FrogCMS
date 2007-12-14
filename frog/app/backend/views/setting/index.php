@@ -1,5 +1,46 @@
-<h1><?php echo __('Settings'); ?></h1>
+<h1><?php echo __('Administration'); ?></h1>
 
+<div class="form-area">
+<div id="tab-control-admin" class="tab_control">
+    <div id="tabs-admin" class="tabs">
+        <div id="tab-admin-toolbar" class="tab_toolbar">&nbsp;</div>
+    </div>
+    <div id="admin-pages" class="pages">
+
+        <div id="plugin-page" class="page">
+
+<table id="plugins" class="index" cellpadding="0" cellspacing="0" border="0">
+  <thead>
+    <tr>
+      <th class="plugin"><?php echo __('Plugin'); ?></th>
+      <th class="website"><?php echo __('Website'); ?></th>
+      <th class="version"><?php echo __('Version'); ?></th>
+      <th class="enabled"><?php echo __('Enabled'); ?></th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php foreach(Plugin::findAll() as $plugin): ?>
+    <tr>
+      <td class="plugin">
+        <h4><?php echo $plugin->title; ?></h4>
+        <p><?php echo $plugin->description; ?></p>
+      </td>
+      <td class="website"><a href="<?php echo $plugin->website; ?>" target="_blank"><?php echo __('Website') ?></a></td>
+      <td class="version"><?php echo $plugin->version; ?></td>
+      <td class="enabled"><input type="checkbox" name="enabled_<?php echo $plugin->id; ?>" value="<?php echo $plugin->id; ?>"<?php if (isset(Plugin::$plugins[$plugin->id])) echo ' checked="checked"'; ?> onclick="new Ajax.Request('<?php echo get_url('setting'); ?>'+(this.checked ? '/activate_plugin/':'/deactivate_plugin/')+this.value, {method: 'get'});" /></td>
+    </tr>
+  <?php endforeach; ?>
+  </tbody>
+</table>
+<script type="text/javascript">
+// <![CDATA[
+  new RuledTable('plugins');
+// ]]>
+</script>
+
+        </div>
+        <div id="setting-page" class="page">
+            
 <form action="<?php echo get_url('setting'); ?>" method="post">
   <table class="fieldset" cellpadding="0" cellspacing="0" border="0">
       <tr>
@@ -74,22 +115,6 @@
         </td>
         <td class="help">&nbsp;</td>
       </tr>
-      <tr>
-        <td class="label"><label for="setting_display_stats-yes"><?php echo __('Display stats'); ?></label></td>
-        <td class="field">
-          <input class="radio" id="setting_display_stats-yes" name="setting[display_stats]" size="10" type="radio" value="1"<?php if (Setting::get('display_stats')) echo ' checked="checked"'; ?> /><label for="setting_display_stats-yes"> <?php echo __('yes'); ?> </label> &nbsp; 
-          <input class="radio" id="setting_display_stats-no" name="setting[display_stats]" size="10" type="radio" value="0"<?php if ( ! Setting::get('display_stats')) echo ' checked="checked"'; ?> /><label for="setting_display_stats-no"> <?php echo __('no'); ?> </label>
-        </td>
-        <td class="help">&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="label"><label for="setting_display_file_manager-yes"><?php echo __('Display file manager'); ?></label></td>
-        <td class="field">
-          <input class="radio" id="setting_display_file_manager-yes" name="setting[display_file_manager]" size="10" type="radio" value="1"<?php if (Setting::get('display_file_manager')) echo ' checked="checked"'; ?> /><label for="setting_display_file_manager-yes"> <?php echo __('yes'); ?> </label> &nbsp; 
-          <input class="radio" id="setting_display_file_manager-no" name="setting[display_file_manager]" size="10" type="radio" value="0"<?php if ( ! Setting::get('display_file_manager')) echo ' checked="checked"'; ?> /><label for="setting_display_file_manager-no"> <?php echo __('no'); ?> </label>
-        </td>
-        <td class="help">&nbsp;</td>
-      </tr>
   </table>
 
   <p class="buttons">
@@ -101,5 +126,18 @@
 <script type="text/javascript">
 // <![CDATA[
 Field.activate('user_name');
+// ]]>
+</script>
+
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+// <![CDATA[
+  var tabControlMeta = new TabControl('tab-control-admin');
+  tabControlMeta.addTab('tab-plugin', '<?php echo __('Plugins'); ?>', 'plugin-page');
+  tabControlMeta.addTab('tab-setting', '<?php echo __('Settings'); ?>', 'setting-page');
+  tabControlMeta.select(tabControlMeta.firstTab());
 // ]]>
 </script>

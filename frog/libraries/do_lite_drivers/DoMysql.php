@@ -71,7 +71,7 @@ class DoMysql
     
     public function query($query)
     {
-        $result_set = mysql_unbuffered_query($query, $this->_connection);
+        $result_set = mysql_query($query, $this->_connection); // before was unbuffered
         if ($result_set) {
             $result = array();
             while ($row = mysql_fetch_assoc($result_set))
@@ -206,6 +206,13 @@ class DoLiteStatementMysql extends DoLiteStatement
         } else {
             $this->_query = str_replace($parameter, $escaped_var, $this->_query);
         }
+    }
+    
+    // -----------------------------------------------------------------------
+    
+    public function closeCursor()
+    {
+        return mysql_free_result($this->_result);
     }
     
     // -----------------------------------------------------------------------

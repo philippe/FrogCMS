@@ -18,7 +18,7 @@
       <select id="snippet_filter_id" name="snippet[filter_id]" onchange="setTextAreaToolbar('snippet_content', this[this.selectedIndex].value)">
         <option value=""<?php if($snippet->filter_id == '') echo ' selected="selected"'; ?>>&#8212; <?php echo __('none'); ?> &#8212;</option>
 <?php foreach ($filters as $filter): ?>
-        <option value="<?php echo $filter; ?>"<?php if($snippet->filter_id == $filter) echo ' selected="selected"'; ?>><?php echo $filter; ?></option>
+        <option value="<?php echo $filter; ?>"<?php if($snippet->filter_id == $filter) echo ' selected="selected"'; ?>><?php echo Inflector::humanize($filter); ?></option>
 <?php endforeach; ?>
       </select>
     </p>

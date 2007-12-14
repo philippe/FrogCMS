@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * class AuthUser
+ *
+ * All informations of the logged in user, plug all method for login, login
+ * and permissions
+ *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @since  0.5
+ */
+
 class AuthUser
 {
     const SESSION_KEY               = 'frog_auth_user';
@@ -17,23 +27,14 @@ class AuthUser
     static public function load()
     {
         if (isset($_SESSION[self::SESSION_KEY]) && isset($_SESSION[self::SESSION_KEY]['username']))
-        {
             $user = User::findBy('username', $_SESSION[self::SESSION_KEY]['username']);
-        }
         else if (isset($_COOKIE[self::COOKIE_KEY]))
-        {
             $user = self::challengeCookie($_COOKIE[self::COOKIE_KEY]);
-        }
         else
-        {
             return false;
-        }
         
         if ( ! $user)
-        {
-            self::logout();
-            return;
-        }
+            return self::logout();
         
         self::setInfos($user);
     }
@@ -53,11 +54,6 @@ class AuthUser
         return self::$is_logged_in;
     }
     
-    static public function isAdmin()
-    {
-        return self::$is_admin;
-    }
-    
     static public function getRecord()
     {
         return self::$record ? self::$record: false;
@@ -69,9 +65,9 @@ class AuthUser
     }
     
     static public function getUserName()
-    {  
+    {
         return self::$record ? self::$record->username: false;  
-    }  
+    }
     
     static public function getPermissions()
     {
@@ -79,17 +75,10 @@ class AuthUser
     }
     
     static public function hasPermission($permission)
-    { 
+    {
         return in_array(strtolower($permission), self::$permissions);
     }
-      
-    /** 
-     * Immediately (no redirect required) logs the user in. 
-     * @param string $name 
-     * @param string $password 
-     * @param bool $set_cookie 
-     * @return bool 
-     */  
+    
     static public function login($username, $password, $set_cookie=false)
     {
         self::logout();
@@ -118,13 +107,10 @@ class AuthUser
             if (self::DELAY_ON_INVALID_LOGIN)
             {
                 if ( ! isset($_SESSION[self::SESSION_KEY.'_invalid_logins']))
-                {
                     $_SESSION[self::SESSION_KEY.'_invalid_logins'] = 1;
-                }
                 else
-                {
                     ++$_SESSION[self::SESSION_KEY.'_invalid_logins'];
-                }
+                
                 sleep(max(0, min($_SESSION[self::SESSION_KEY.'_invalid_logins'], (ini_get('max_execution_time') - 1))));
             }
             return false;   
@@ -134,6 +120,7 @@ class AuthUser
     static public function logout()
     {
         unset($_SESSION[self::SESSION_KEY]);
+        
         self::eatCookie();
         self::$record = false;
         self::$user_id = false;
@@ -146,27 +133,22 @@ class AuthUser
         $params = self::explodeCookie($cookie);
         if (isset($params['exp'], $params['id'], $params['digest']))
         {
-            $user = Record::findByIdFrom('User', $params['id']);
-            if ( ! $user)
-            {
+            if ( ! $user = Record::findByIdFrom('User', $params['id']))
                 return false;
-            }
+            
             if (self::bakeUserCookie($params['exp'], $user) == $cookie && $params['exp'] > $_SERVER['REQUEST_TIME'])
-            {
                 return $user;
-            }  
-        }  
-        return false;  
-    }  
-      
+            
+        }
+        return false;
+    }
+    
     static protected function explodeCookie($cookie)
     {
         $pieces = explode('&', $cookie);
         
         if (count($pieces) < 2)
-        {
             return array();
-        }
         
         foreach ($pieces as $piece)
         {

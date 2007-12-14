@@ -1,9 +1,7 @@
 <?php 
 
 /**
- * class User 
- *
- * Enter description here...
+ * class User
  *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @since  0.1
@@ -37,9 +35,7 @@ class User extends Record
         $stmt->execute();
          
         while ($perm = $stmt->fetchObject())
-        {
             $perms[] = $perm->name;
-        }
         
         return $perms;
     }
@@ -71,23 +67,23 @@ class User extends Record
         $order_by = isset($args['order']) ? trim($args['order']) : '';
         $offset   = isset($args['offset']) ? (int) $args['offset'] : 0;
         $limit    = isset($args['limit']) ? (int) $args['limit'] : 0;
-
+        
         // Prepare query parts
         $where_string = empty($where) ? '' : "WHERE $where";
         $order_by_string = empty($order_by) ? '' : "ORDER BY $order_by";
         $limit_string = $limit > 0 ? "LIMIT $offset, $limit" : '';
-
+        
         $tablename = self::tableNameFromClassName('User');
-
+        
         // Prepare SQL
         $sql = "SELECT $tablename.*, creator.name AS created_by_name, updator.name AS updated_by_name FROM $tablename".
                " LEFT JOIN $tablename AS creator ON $tablename.created_by_id = creator.id".
                " LEFT JOIN $tablename AS updator ON $tablename.updated_by_id = updator.id".
                " $where_string $order_by_string $limit_string";
-
+        
         $stmt = self::$__CONN__->prepare($sql);
         $stmt->execute();
-
+        
         // Run!
         if ($limit == 1)
         {
@@ -103,7 +99,7 @@ class User extends Record
             return $objects;
         }
     
-    } // find
+    }
     
     public static function findAll($args = null)
     {
@@ -117,5 +113,5 @@ class User extends Record
             'limit' => 1
         ));
     }
-    
+
 } // end User class

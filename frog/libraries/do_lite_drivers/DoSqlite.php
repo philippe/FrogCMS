@@ -61,7 +61,7 @@ class DoLiteSqlite
     
     public function query($query)
     {
-        $result_set = sqlite_unbuffered_query($query, $this->_connection, $this->_dbinfo);
+        $result_set = sqlite_query($query, $this->_connection, $this->_dbinfo); // before was unbuffered
         
         if ($result_set) {
             $result = array();
@@ -191,6 +191,13 @@ class DoLiteStatementSqlite extends DoLiteStatement
         } else {
             $this->_query = str_replace($parameter, $escaped_var, $this->_query);
         }
+    }
+    
+    // -----------------------------------------------------------------------
+    
+    public function closeCursor()
+    {
+        return true;
     }
     
     // -----------------------------------------------------------------------

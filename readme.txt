@@ -25,11 +25,9 @@ beacause php 4 suck alot ;) as Ilia says
 
 ### optional (to remove the ? in the url)
 
-* edit file _.htaccess and set your base dir by uncommenting this line: 
-  #RewriteBase /
-  and add your base directory
+* edit file _.htaccess and set your base dir
 * rename _.htaccess to .htaccess
-* open both config.php and define USE_MOD_REWRITE to true
+* open config.php and define USE_MOD_REWRITE to true
 
 ## Notes
 

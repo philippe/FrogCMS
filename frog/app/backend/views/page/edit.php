@@ -4,19 +4,19 @@
 
   <input id="page_parent_id" name="page[parent_id]" type="hidden" value="<?php echo $page->parent_id; ?>" />
   <div class="form-area">
-    <div id="tab-control-meta">
+    <div id="tab-control-meta" class="tab_control">
         <div id="tabs-meta" class="tabs">
-            <div id="tab-meta-toolbar">&nbsp;</div>
+            <div id="tab-meta-toolbar" class="tab_toolbar">&nbsp;</div>
         </div>
-        <div id="meta-divs">
-            <div id="div-title" class="title" style="display: none">
+        <div id="meta-pages" class="pages">
+            <div id="div-title" class="title">
               <input class="textbox" id="page_title" maxlength="255" name="page[title]" size="255" type="text" value="<?php echo $page->title; ?>" />
             </div>
-            <div id="div-metadata" style="display: none">
+            <div id="div-metadata">
               <table cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td class="label"><label for="page_slug"><?php echo __('Slug'); ?></label></td>
-                  <td class="field"><input class="textbox" id="page_slug" maxlength="100" name="page[slug]" size="100" type="text" value="<?php echo Page::getSlug($page->slug); ?>" /></td>
+                  <td class="field"><input class="textbox" id="page_slug" maxlength="100" name="page[slug]" size="100" type="text" value="<?php echo $page->slug; ?>" /></td>
                 </tr>
                 <tr>
                   <td class="label"><label for="page_breadcrumb"><?php echo __('Breadcrumb'); ?></label></td>
@@ -60,10 +60,10 @@
     // ]]>
     </script>
 
-    <div id="tab-control">
+    <div id="tab-control" class="tab_control">
       <div id="tabs" class="tabs">
-        <div id="tab-toolbar">
-          <a href="#" onclick="toggle_add_part_popup(); return false;" title="<?php echo __('Add Tab'); ?>"><img src="images/plus.png" alt="plus icon" /></a>
+        <div id="tab-toolbar" class="tab_toolbar">
+          <a href="#" onclick="toggle_popup('add-part-popup', 'part-name-field'); return false;" title="<?php echo __('Add Tab'); ?>"><img src="images/plus.png" alt="plus icon" /></a>
           <a href="#" onclick="if (confirm('<?php echo __('Delete the current tab?'); ?>')) { tabControl.removeTab(tabControl.selected) }; return false;" title="<?php echo __('Remove Tab'); ?>"><img src="images/minus.png" alt="minus icon" /></a>
         </div>
       </div>

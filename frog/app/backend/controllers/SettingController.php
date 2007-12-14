@@ -3,15 +3,12 @@
 /**
  * class SettingsController
  *
- * Enter description here...
- *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @since  0.8.7
  */
 
 class SettingController extends Controller
 {
-
     function __construct()
     {
         AuthUser::load();
@@ -27,7 +24,7 @@ class SettingController extends Controller
         
         $this->setLayout('backend');
     }
-
+    
     function index()
     {
         // check if trying to save
@@ -36,18 +33,37 @@ class SettingController extends Controller
         
         $this->display('setting/index');
     }
-
+    
     function _save()
     {
-        $data = $_POST['setting'];
-
-        Setting::saveFromData($data);
+        Setting::saveFromData($_POST['setting']);
         
         Flash::set('success', __('Settings has been saved!'));
         
         redirect(get_url('setting'));
-    } // _save
-
+    }
+    
+    function activate_plugin($plugin)
+    {
+        if ( ! AuthUser::hasPermission('administrator'))
+        {
+            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            redirect(get_url());
+        }
+        
+        Plugin::activate($plugin);
+    }
+    
+    function deactivate_plugin($plugin)
+    {
+        if ( ! AuthUser::hasPermission('administrator'))
+        {
+            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            redirect(get_url());
+        }
+        
+        Plugin::deactivate($plugin);
+    }
 } // end SettingController class
 
 $GLOBALS['iso_639_1'] = array(

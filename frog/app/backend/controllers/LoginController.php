@@ -21,24 +21,20 @@ class LoginController extends Controller
     {
         // already log in ?
         if (AuthUser::isLoggedIn())
-        {
             redirect(get_url());
-        }
-
+        
         // show it!
         $this->display('login/login', array(
             'username' => Flash::get('username')
         ));
-    } // add
+    }
     
     function login()
     {
         // already log in ?
         if (AuthUser::isLoggedIn())
-        {
             redirect(get_url());
-        }
-
+        
         $data = isset($_POST['login']) ? $_POST['login']: array('username' => '', 'password' => '');
         Flash::set('username', $data['username']);
         
@@ -47,33 +43,27 @@ class LoginController extends Controller
             $this->_checkVersion();
             // redirect to defaut controller and action
             redirect(get_url());
-
         }
-        else
-        {
-            // login error
-            Flash::set('error', __('Failed to log you in. Please check your login data and try again'));
-        } // if
+        else Flash::set('error', __('Failed to log you in. Please check your login data and try again'));
         
         // not find or password is wrong
         redirect(get_url('login'));
         
-    } // login
+    }
     
     function logout()
     {
         AuthUser::logout();
         redirect(get_url());
-    } // logout
+    }
     
     function forgot()
     {
         if (get_request_method() == 'POST')
-        {
             return $this->_sendPasswordTo($_POST['forgot']['email']);
-        }
+        
         $this->display('login/forgot', array('email' => Flash::get('email')));
-    } // forgot
+    }
     
     function _sendPasswordTo($email)
     {

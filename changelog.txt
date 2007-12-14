@@ -1,3 +1,14 @@
+0.9.0
+  Plugin API
+  reorganization of the code
+  bug fixed: deleting page part
+  pass to prototype 1.6 and scriptaculous 1.8
+  removing file manager from the core
+  adding file manager plugin
+  adding observer to the front end
+  adding behavior plugin page not found
+  bug fixed: 404 from fastcgi is now sended
+
 0.8.7
   Framework bug fixed: php6 compatiblities (magic_quote doesn't exist anymore in php6)
   bug fixed: installation config.php not config/config.php

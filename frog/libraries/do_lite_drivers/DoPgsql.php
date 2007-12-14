@@ -197,6 +197,13 @@ class DoLiteStatementPgsql extends DoLiteStatement
     
     // -----------------------------------------------------------------------
     
+    public function closeCursor()
+    {
+        return pg_free_result($this->_result);
+    }
+    
+    // -----------------------------------------------------------------------
+    
     public function columnCount()
     {
         return $this->_result ? pg_num_fields($this->_result): 0;

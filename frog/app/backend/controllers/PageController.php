@@ -3,8 +3,6 @@
 /**
  * class PagesController
  *
- * Enter description here...
- *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @since  0.1
  */
@@ -15,31 +13,23 @@ class PageController extends Controller
     {
         AuthUser::load();
         if ( ! AuthUser::isLoggedIn())
-        {
             redirect(get_url('login'));
-        }
     }
-
+    
     public function index()
     {
         $this->setLayout('backend');
-        
-        $this->assignToLayout('sidebar', new View('page/sidebar'));
-        
         $this->display('page/index', array(
             'root' => Record::findByIdFrom('Page', 1),
             'content_children' => $this->children(1, 0, true)
         ));
-        
-    } // index
-
+    }
+    
     public function add($parent_id=1)
     {
         // check if trying to save
         if (get_request_method() == 'POST')
-        {
             return $this->_add();
-        }
         
         $data = Flash::get('post_data');
         $page = new Page($data);
@@ -66,16 +56,11 @@ class PageController extends Controller
                 }
             }
             else
-            {
                 $page_parts = array(new PagePart(array('filter_id' => Setting::get('default_filter_id'))));
-            }
         }
         
         // display things ...
         $this->setLayout('backend');
-        
-        $this->assignToLayout('sidebar', new View('page/sidebar'));
-        
         $this->display('page/edit', array(
             'action'     => 'add',
             'page'       => $page,
@@ -85,8 +70,8 @@ class PageController extends Controller
             'page_parts' => $page_parts,
             'layouts'    => Record::findAllFrom('Layout'))
         );
-    } // add
-
+    }
+    
     private function _add()
     {
         $data = $_POST['page'];
@@ -128,16 +113,11 @@ class PageController extends Controller
         
         // save and quit or save and continue editing ?
         if (isset($_POST['commit']))
-        {
             redirect(get_url('page'));
-        }
         else
-        {
             redirect(get_url('page/edit/'.$page->id));
-        }
+    }
     
-    } // _add
-
     public function addPart()
     {
         header('Content-Type: text/html; charset: utf-8');
@@ -147,13 +127,13 @@ class PageController extends Controller
         $data['index'] = isset($data['index']) ? $data['index']: 1;
         
         echo $this->_getPartView($data['index'], $data['name']);
-    } // addpart
-
+    }
+    
     public function edit($id=null)
     {
         if (is_null($id))
             redirect(get_url('page'));
-
+        
         $page = Page::findById($id);
         
         if ( ! $page)
@@ -171,20 +151,16 @@ class PageController extends Controller
         
         // check if trying to save
         if (get_request_method() == 'POST')
-        {
             return $this->_edit($id);
-        }
         
         // find all page_part of this pages
         $page_parts = PagePart::findByPageId($id);
-
-        if (empty($page_parts)) $page_parts = array(new PagePart);
-
+        
+        if (empty($page_parts))
+            $page_parts = array(new PagePart);
+        
         // display things ...
         $this->setLayout('backend');
-        
-        $this->assignToLayout('sidebar', new View('page/sidebar', array('page' => $page)));
-        
         $this->display('page/edit', array(
             'action'     => 'edit',
             'page'       => $page,
@@ -194,26 +170,26 @@ class PageController extends Controller
             'page_parts' => $page_parts,
             'layouts'    => Record::findAllFrom('Layout'))
         );
-    } // edit
-
+    }
+    
     private function _edit($id)
     {
         $data = $_POST['page'];
-
+        
         $page = Record::findByIdFrom('Page', $id);
         
         // need to do this because the use of a checkbox
         $data['is_protected'] = !empty($data['is_protected']) ? 1: 0;
         
         $page->setFromData($data);
-
+        
         if ($page->save())
         {
             // get data for parts of this page
             $data_parts = $_POST['part'];
-
+            
             $old_parts = PagePart::findByPageId($id);
-
+            
             // check if all old page part are passed in POST
             // if not ... we need to delete it!
             foreach ($old_parts as $old_part)
@@ -229,7 +205,7 @@ class PageController extends Controller
                         $part = new PagePart($data);
                         $part->page_id = $id;
                         $part->save();
-
+                        
                         unset($data_parts[$part_id]);
                         
                         break;
@@ -247,9 +223,8 @@ class PageController extends Controller
                 $part = new PagePart($data);
                 $part->page_id = $id;
                 $part->save();
-
             }
-
+            
             // save tags
             $page->saveTags($_POST['page_tag']['tags']);
             
@@ -260,17 +235,14 @@ class PageController extends Controller
             Flash::set('error', __('Page has not been saved!'));
             redirect(get_url('page/edit/'.$id));
         }
+        
         // save and quit or save and continue editing ?
         if (isset($_POST['commit']))
-        {
             redirect(get_url('page'));
-        }
         else
-        {
             redirect(get_url('page/edit/'.$id));
-        }
-    } // _edit
-
+    }
+    
     public function delete($id)
     {
         // security (dont delete the root page)
@@ -288,27 +260,18 @@ class PageController extends Controller
                 
                 // need to delete all page_parts too !!
                 PagePart::deleteByPageId($id);
-
+                
                 if ($page->delete())
-                {
                     Flash::set('success', __('Page :title as been deleted!', array(':title'=>$page->title)));
-                }
                 else
-                {
                     Flash::set('error', __('Page :title as not been deleted!', array(':title'=>$page->title)));
-                }
             }
-            else
-            {
-                Flash::set('error', __('Page not found!'));
-            }
+            else Flash::set('error', __('Page not found!'));
         }
-        else
-        {
-            Flash::set('error', __('Action disabled!'));
-        }
+        else Flash::set('error', __('Action disabled!'));
+        
         redirect(get_url('page'));
-    } // delete
+    }
     
     function children($parent_id, $level, $return=false)
     {
@@ -316,17 +279,16 @@ class PageController extends Controller
         
         // get all children of the page (parent_id)
         $childrens = Page::childrenOf($parent_id);
-
+        
         foreach ($childrens as $index => $child)
         {
             $childrens[$index]->has_children = Page::hasChildren($child->id);
             $childrens[$index]->is_expanded = in_array($child->id, $expanded_rows);
+            
             if ($childrens[$index]->is_expanded)
-            {
                 $childrens[$index]->children_rows = $this->children($child->id, $level+1, true);
-            }
         }
-
+        
         $content = new View('page/children', array(
             'childrens' => $childrens,
             'level'    => $level+1,
@@ -347,11 +309,11 @@ class PageController extends Controller
     function reorder($parent_id)
     {
         parse_str($_POST['data']);
-
+        
         $new_brother = false;
-
-        foreach ($pages as $position => $page_id) {
-            
+        
+        foreach ($pages as $position => $page_id)
+        {
             $page = Record::findByIdFrom('Page', $page_id);
             $page->position = (int) $position;
             $page->parent_id = (int) $parent_id;
@@ -360,10 +322,8 @@ class PageController extends Controller
         }
     }
     
-    //
-    // private methods
-    //
-
+    // Private methods -------------------------------------------------------
+    
     function _getPartView($index=1, $name='', $filter_id='', $content='')
     {
         $page_part = new PagePart(array(
@@ -377,5 +337,5 @@ class PageController extends Controller
             'page_part' => $page_part
         ));
     }
-    
+
 } // end PageController class

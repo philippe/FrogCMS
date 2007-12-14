@@ -3,12 +3,9 @@
 /**
  * class Page
  *
- * Enter description here...
- *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @since  0.1
  */
-
 
 class Page extends Record
 {
@@ -18,7 +15,7 @@ class Page extends Record
     const STATUS_REVIEWED = 50;
     const STATUS_PUBLISHED = 100;
     const STATUS_HIDDEN = 101;
-
+    
     public $title;
     public $slug;
     public $breadcrumb;
@@ -81,15 +78,13 @@ class Page extends Record
             return array();
             
         $stmt->execute();
-
+        
         // Run!
         $tags = array();
         while ($object = $stmt->fetchObject())
-        {
              $tags[$object->id] = $object->tag;
-        }
+        
         return $tags;
-
     }
     
     public function saveTags($tags)
@@ -112,9 +107,7 @@ class Page extends Record
             
             // update count (-1) of those tags
             foreach($current_tags as $tag)
-            {
                 self::$__CONN__->exec("UPDATE $tablename SET count = count - 1 WHERE name = '$tag'");
-            }
             
             return Record::deleteWhere('PageTag', 'page_id=?', array($this->id));
         }
@@ -130,9 +123,7 @@ class Page extends Record
                 {
                     // try to get it from tag list, if not we add it to the list
                     if ( ! $tag = Record::findOneFrom('Tag', 'name=?', array($tag_name)))
-                    {
                         $tag = new Tag(array('name' => trim($tag_name)));
-                    }
                     
                     $tag->count++;
                     $tag->save();
@@ -163,24 +154,24 @@ class Page extends Record
         $order_by = isset($args['order']) ? trim($args['order']) : '';
         $offset   = isset($args['offset']) ? (int) $args['offset'] : 0;
         $limit    = isset($args['limit']) ? (int) $args['limit'] : 0;
-
+        
         // Prepare query parts
         $where_string = empty($where) ? '' : "WHERE $where";
         $order_by_string = empty($order_by) ? '' : "ORDER BY $order_by";
         $limit_string = $limit > 0 ? "LIMIT $offset, $limit" : '';
-
+        
         $tablename = self::tableNameFromClassName('Page');
         $tablename_user = self::tableNameFromClassName('User');
-
+        
         // Prepare SQL
         $sql = "SELECT $tablename.*, creator.name AS created_by_name, updator.name AS updated_by_name FROM $tablename".
                " LEFT JOIN $tablename_user AS creator ON $tablename.created_by_id = creator.id".
                " LEFT JOIN $tablename_user AS updator ON $tablename.updated_by_id = updator.id".
                " $where_string $order_by_string $limit_string";
-
+        
         $stmt = self::$__CONN__->prepare($sql);
         $stmt->execute();
-
+        
         // Run!
         if ($limit == 1)
         {
@@ -190,13 +181,11 @@ class Page extends Record
         {
             $objects = array();
             while ($object = $stmt->fetchObject('Page'))
-            {
                 $objects[] = $object;
-            }
+            
             return $objects;
         }
-    
-    } // find
+    }
     
     public static function findAll($args = null)
     {
@@ -210,7 +199,7 @@ class Page extends Record
             'limit' => 1
         ));
     }
-
+    
     public static function childrenOf($id)
     {
         return self::find(array('where' => 'parent_id='.$id, 'order' => 'position, created_on DESC'));
@@ -219,31 +208,6 @@ class Page extends Record
     public static function hasChildren($id)
     {
         return (boolean) self::countFrom('Page', 'parent_id = '.(int)$id);
-    }
-    
-    public static function replacePath($old, $new)
-    {
-        $sql = "UPDATE ".self::tableNameFromClassName('Page'). " SET slug = REPLACE(slug, '$old', '$new') WHERE slug LIKE ('$old%')";
-        
-        return self::$__CONN__->exec($sql);
-    }
-    
-    public static function pathOf($id)
-    {
-        return self::findById($id)->slug;
-    }
-    
-    public static function getSlug($slug)
-    {
-        // return the last part /en/about/service/[web]
-        $pos = strrpos($slug, '/');
-        return $pos !== false ? substr($slug, $pos+1): $slug;
-    }
-    
-    public static function getPathOfSlug($slug)
-    {
-        // return the last part [/en/about/service]/web/
-        return substr($slug, 0, strrpos($slug, '/'));
     }
     
 } // end Page class

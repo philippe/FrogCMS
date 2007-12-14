@@ -3,8 +3,6 @@
 /**
  * class UserController
  *
- * Enter description here...
- *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @since    0.1
  */
@@ -16,13 +14,11 @@ class UserController extends Controller
     {
         AuthUser::load();
         if ( ! AuthUser::isLoggedIn())
-        {
             redirect(get_url('login'));
-        }
         
         $this->setLayout('backend');
         $this->assignToLayout('sidebar', new View('user/sidebar'));
-    } // __construct
+    }
     
     function index()
     {
@@ -35,7 +31,7 @@ class UserController extends Controller
         $this->display('user/index', array(
             'users' => User::findAll()
         ));
-    } // index
+    }
     
     function add()
     {
@@ -47,24 +43,20 @@ class UserController extends Controller
         
         // check if trying to save
         if (get_request_method() == 'POST')
-        {
             return $this->_add();
-        }
         
         // check if user have already enter something
         $user = Flash::get('post_data');
         
         if (empty($user))
-        {
             $user = new User;
-        }
-
+        
         $this->display('user/edit', array(
             'action' => 'add',
             'user' => $user,
             'permissions' => Record::findAllFrom('Permission')
         ));
-    } // add
+    }
     
     function _add()
     {
@@ -90,27 +82,21 @@ class UserController extends Controller
             Flash::set('error', __('Username must be 3 character minimum!'));
             redirect(get_url('user/add'));
         }
-
+        
         $user = new User($data);
-
+        
         if ($user->save())
         {
-            // now we need to add permissions
-            $data = $_POST['user_permission'];
-            if (count($data))
-            {
-                UserPermission::setPermissionsFor($user->id, $data);
-            }
-
+            // now we need to add permissions if needed
+            if ( ! empty($_POST['user_permission']))
+                UserPermission::setPermissionsFor($user->id, $_POST['user_permission']);
+            
             Flash::set('success', __('User has been added!'));
         }
-        else
-        {
-            Flash::set('error', __('User has not been added!'));
-        }
+        else Flash::set('error', __('User has not been added!'));
         
         redirect(get_url('user'));
-    } // _add
+    }
     
     function edit($id)
     {
@@ -122,9 +108,7 @@ class UserController extends Controller
         
         // check if trying to save
         if (get_request_method() == 'POST')
-        {
             return $this->_edit($id);
-        }
         
         if ($user = User::findById($id))
         {
@@ -134,16 +118,16 @@ class UserController extends Controller
                 'permissions' => Record::findAllFrom('Permission')
             ));
         }
-        else
-        {
-            Flash::set('error', __('User not found!'));
-        }
+        else Flash::set('error', __('User not found!'));
+        
+        redirect(get_url('user'));
+        
     } // edit
     
     function _edit($id)
     {
         $data = $_POST['user'];
-
+        
         // check if user want to change the password
         if (strlen($data['password']) > 0)
         {
@@ -159,10 +143,7 @@ class UserController extends Controller
                 redirect(get_url('user/edit/'.$id));
             }
         }
-        else
-        {
-            unset($data['password'], $data['confirm']);
-        }
+        else unset($data['password'], $data['confirm']);
         
         $user = Record::findByIdFrom('User', $id);
         $user->setFromData($data);
@@ -178,21 +159,14 @@ class UserController extends Controller
             
             Flash::set('success', __('User has been saved!'));
         }
-        else
-        {
-            Flash::set('error', __('User has not been saved!'));
-        }
+        else Flash::set('error', __('User has not been saved!'));
         
-        if ( AuthUser::getId() == $id)
-        {
+        if (AuthUser::getId() == $id)
             redirect(get_url('user/edit/'.$id));
-        }
         else
-        {
             redirect(get_url('user'));
-        }
         
-    } // _edit
+    }
     
     function delete($id)
     {
@@ -209,25 +183,15 @@ class UserController extends Controller
             if ($user = Record::findByIdFrom('User', $id))
             {
                 if ($user->delete())
-                {
                     Flash::set('success', __('User <strong>:name</strong> has been deleted!', array(':name' => $user->name)));
-                }
                 else
-                {
                     Flash::set('error', __('User <strong>:name</strong> has not been deleted!', array(':name' => $user->name)));
-                }
             }
-            else
-            {
-                Flash::set('error', __('User not found!'));
-            }
+            else Flash::set('error', __('User not found!'));
         }
-        else
-        {
-            Flash::set('error', __('Action disabled!'));
-        }
+        else Flash::set('error', __('Action disabled!'));
         
         redirect(get_url('user'));
-    } // delete
+    }
 
 } // end UserController class
