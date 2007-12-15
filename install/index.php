@@ -30,21 +30,21 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && ((file_exists($config_file
     $schemas_content = str_replace('{DATETIME}', date('Y-m-d H:i:s'), $schemas_content);
     
     file_put_contents($config_file, $config_content);
-    $msg .= "<p>config file writen with succes!</p>\n";
+    $msg .= "<p>Config file successfully written!</p>\n";
     
     include $config_file;
     
     if ($conn = mysql_connect($_POST['config']['db_host'], DB_USER, DB_PASS)) {
         if (mysql_select_db($_POST['config']['db_name'])) {
-            $msg .= '<p>connexion with succes to database</p>';
+            $msg .= '<p>Database connection successful</p>';
             sql_import_content($schemas_content);
-            $msg .= '<p>tables loaded with succes! you can login with: <br /><strong>login</strong>: admin<br /><strong>password</strong>: password<br />
+            $msg .= '<p>Tables loaded successfully! you can login with: <br /><strong>login</strong>: admin<br /><strong>password</strong>: password<br />
             <strong>at</strong>: <a href="../admin/">login page</a></p>';
         } else {
-            $error = '<p style="color: red;">unable to connect the database! tables not loaded, you need to load structure.sql manualy!</p>';
+            $error = '<p style="color: red;">Unable to connect to the database! Tables are not loadedl You need to load structure.sql manually!</p>';
         }
     } else {
-        $error = '<p style="color: red;">Unable to connect the database! Tables are not loaded! You need to load structure.sql manualy!<br />Don\'t forget to replace all {TABLEPREFIX} and {DATETIME} in it!</p>';
+        $error = '<p style="color: red;">Unable to connect to the database! Tables are not loaded! You need to load structure.sql manually!<br />Don\'t forget to replace every {TABLEPREFIX} and {DATETIME} in it!</p>';
     }
 
 }
@@ -70,12 +70,12 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && ((file_exists($config_file
 
 <p style="color: red">
 <?php if ( ! file_exists($config_file)) { ?>
-  <strong>error</strong>: config.php doesn't exist<br />
+  <strong>Error</strong>: config.php doesn't exist<br />
 <?php } else if ( ! is_writable($config_file)) { ?>
-  <strong>error</strong>: config.php must be writable<br />
+  <strong>Error</strong>: config.php must be writable<br />
 <?php } ?>
 <?php if ( ! is_writable('../public/')): ?>
-  <strong>error</strong>: public/ folder must be writable<br />
+  <strong>Error</strong>: public/ folder must be writable<br />
 <?php endif; ?>
 </p>
 
@@ -91,7 +91,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && ((file_exists($config_file
         <input class="radio" id="use_pdo-yes" name="config[use_pdo]" size="10" type="radio" value="1" checked="checked" /><label for="use_pdo-yes"> yes </label>
         <input class="radio" id="use_pdo-no" name="config[use_pdo]" size="10" type="radio" value="0" /><label for="use_pdo-no"> no </label>
       </td>
-      <td class="help">Required. If you have PDO with MySQL driver installed in your server, I recommend you to use it.</td>
+      <td class="help">Required. If you have PDO with MySQL driver installed on your server, it is highly recommended that you select "Yes".</td>
     </tr>
     <tr>
       <td class="label"><label for="user_name">Database server</label></td>
@@ -107,17 +107,17 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && ((file_exists($config_file
     <tr>
       <td class="label"><label class="optional" for="config_db_pass">Database password</label></td>
       <td class="field"><input class="textbox" id="config_db_pass" maxlength="40" name="config[db_pass]" size="40" type="password" value="" /></td>
-      <td class="help">Optional. If no password let's it blank.</td>
+      <td class="help">Optional. If there is no database password, leave it blank.</td>
     </tr>
     <tr>
       <td class="label"><label for="config_db_name">Database name</label></td>
       <td class="field"><input class="textbox" id="config_db_name" maxlength="40" name="config[db_name]" size="40" type="text" value="frog" /></td>
-      <td class="help">You have to create a database manualy and then put the name here.</td>
+      <td class="help">You have to create a database manually and enter its name here.</td>
     </tr>
     <tr>
       <td class="label"><label class="optional" for="config_table_prefix">Table prefix</label></td>
       <td class="field"><input class="textbox" id="config_table_prefix" maxlength="40" name="config[table_prefix]" size="40" type="text" value="" /></td>
-      <td class="help">Optional. To prevent possible tables doubled.</td>
+      <td class="help">Optional. To prevent conflicts if you have, or plan to have, multiple Frog installations with a single database user.</td>
     </tr>
     <tr>
       <td colspan="3"><h3>Other information</h3></td>
@@ -125,7 +125,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && ((file_exists($config_file
     <tr>
       <td class="label"><label class="optional" for="config_url_suffix">URL suffix</label></td>
       <td class="field"><input class="textbox" id="config_url_suffix" maxlength="40" name="config[url_suffix]" size="40" type="text" value=".html" /></td>
-      <td class="help">Optional. Add a suffix to simulate static html file.</td>
+      <td class="help">Optional. Add a suffix to simulate static html files.</td>
     </tr>
   </table>
 
@@ -140,7 +140,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && ((file_exists($config_file
 
     <?php if (isset($error)) echo $error; ?> 
 
-    <p><strong>Frog CMS</strong> is installed, <b>you must delete install folder now!</b></p>
+    <p><strong>Frog CMS</strong> is installed, <b>you must delete the <em>install/</em> folder now!</b></p>
 <?php endif; ?>
 
     </div>
