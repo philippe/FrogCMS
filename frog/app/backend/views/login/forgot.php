@@ -6,7 +6,8 @@
   <base href="<?php echo trim(BASE_URL, '?/').'/'; ?>" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <link href="stylesheets/login.css" rel="Stylesheet" type="text/css" />
-  <script src="javascripts/cp-protolous.js" type="text/javascript"></script>
+  <link href="themes/<?php echo Setting::get('theme'); ?>.css" id="css_theme" media="screen" rel="Stylesheet" type="text/css" />
+  <script src="javascripts/protolous.js" type="text/javascript"></script>
 </head>
 <body>
   <div id="dialog">
