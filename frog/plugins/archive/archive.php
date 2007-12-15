@@ -88,9 +88,7 @@ class Archive
         $stmt->execute(array($this->page->id));
         
         while ($date = $stmt->fetchColumn())
-        {
             $out[] = $date;
-        }
         
         return $out;
     }
@@ -101,17 +99,13 @@ class Archive
         
         $out = array();
         
-        if ($year == 'all') $year = '';
-        
         $sql = "SELECT DISTINCT(DATE_FORMAT(created_on, '%Y/%m')) FROM ".TABLE_PREFIX."page WHERE parent_id=? AND status_id != ".Page::STATUS_HIDDEN." ORDER BY created_on DESC";
         
         $stmt = $__FROG_CONN__->prepare($sql);
         $stmt->execute(array($this->page->id));
         
         while ($date = $stmt->fetchColumn())
-        {
-            $out[] = $date;
-        }
+            $out[] = $date; // str_replace('-', '/', substr($date, 0, 7));
         
         return $out;
     }
@@ -130,9 +124,7 @@ class Archive
         $stmt->execute(array($this->page->id));
         
         while ($date = $stmt->fetchColumn())
-        {
             $out[] = $date;
-        }
         
         return $out;
     }
