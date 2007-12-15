@@ -16,6 +16,8 @@
  *  - quote             ($string)
  *  - rollBack          ()
  *  - setAttribute      ($attribute, $mixed)
+ *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
  */
 
 // only include const I that have been implemented
@@ -74,131 +76,10 @@ class DoLite
         }
     }
     
-    // -----------------------------------------------------------------------
-    
-    public function beginTransaction()
+    public function __call($method, $args)
     {
-        return $this->_adapter->beginTransaction();
-    }
-    
-    // -----------------------------------------------------------------------
-    
-    public function commit()
-    {
-        return $this->_adapter->commit();
-    }
-    
-    /**
-     * Returns a code rappresentation of an error
-     *
-     * @return string   Code of the error
-     */
-    public function errorCode()
-    {
-        return $this->_adapter->errorCode;
-    }
-
-    /**
-     * Returns an array with error informations
-     * 
-     * @return array   array(0 => error code, 1 => error number, 2 => error string)
-     */
-    public function errorInfo()
-    {
-        return $this->_adapter->errorInfo;
-    }
-
-    /**
-     * Excecutes a query and returns affected rows
-     *
-     * @param   string  query to execute
-     *
-     * @return  mixed   number of affected rows or false on bad query.
-     */
-    public function exec($query)
-    {
-        return $this->_adapter->exec($query);
-    }
-    
-    /**
-     * Quotes correctly a string for this database
-     * 
-     * @param   int     a constant [ PDO::ATTR_SERVER_INFO,
-     *                               PDO::ATTR_SERVER_VERSION,
-     *                               PDO::ATTR_CLIENT_VERSION,
-     *                               PDO::ATTR_PERSISTENT ]
-     *
-     * @return  mixed   correct information or false
-     */
-    public function getAttribute($attribute)
-    {
-        return $this->_adapter->getAttribute($attribute);
-    }
-    
-    /**
-     * Returns last inserted id
-     *
-     * @return int  last inserted id
-     */
-    public function lastInsertId()
-    {
-        return $this->_adapter->lastInsertId();
-    }
-    
-    /**
-     * Returns a new PDOStatement
-     *
-     * @param   string  query to prepare
-     * @param   aray    this variable is not used but respects PDO original accepted parameters
-     *
-     * @return  PDOStatement    new PDOStatement to manage
-     */
-    public function prepare($query, $array=null)
-    {
-        return $this->_adapter->prepare($query, $array);
-    }
-    
-    /**
-     * Executes directly a query and returns an array with result or false on bad query
-     *
-     * @param   string  query to execute
-     *
-     * @return  mixed   false on error, array with all info on success
-     */
-    public function query($query)
-    {
-        return $this->_adapter->query($query);
-    }
-    
-    /**
-     * Quotes correctly a string for this database
-     *
-     * @param   string  string to quote
-     *
-     * @return  string  a correctly quoted string
-     */
-    public function quote($string)
-    {
-        return $this->_adapter->quote($string);
-    }
-    
-    function rollBack()
-    {
-        return $this->_adapter->rollBack();
-    }
-    
-    /**
-     * Sets database attributes, in this version only connection mode.
-     *
-     * @param   Integer     PDO_* constant, in this case only PDO::ATTR_PERSISTENT
-     * @param   Mixed       value for PDO_* constant, in this case a Boolean value
-     *                      true for permanent connection, false for default not permament connection
-     *
-     * @return  bool        true on change, false otherwise
-     */
-    public function setAttribute($attribute, $mixed)
-    {
-        return $this->_adapter->setAttribute($attribute, $mixed);
+        if (method_exists($this->_adapter, $method))
+            return call_user_func_array( array(&$this->_adapter, $method), $args );
     }
     
     //

@@ -6,8 +6,9 @@
  * For more specification on methods of this class check the PDO class
  * can be find on the same directory at PDO.php
  *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
  */
-class DoLiteSqlite
+class DoSqlite
 {
     public $errorCode = '';
     public $errorInfo = array();
@@ -140,6 +141,14 @@ class DoLiteSqlite
     public function rollBack()
     {
         return (bool) sqlite_query('ROLLBACK TRANSACTION', $this->_connection);
+    }
+    
+    public function sqliteCreateFunction($function_name, $callback, $num_args=false)
+    {
+        if ($num_args === false)
+            sqlite_create_function($this->_connection, $function_name, $callback);
+        else
+            sqlite_create_function($this->_connection, $function_name, $callback, $num_args);
     }
     
     //
@@ -292,6 +301,13 @@ class DoLiteStatementSqlite extends DoLiteStatement
                 return $result[$column-1];
         }
         return null;
+    }
+    
+    // -----------------------------------------------------------------------
+    
+    public function quote($string)
+    {
+        return "'".sqlite_escape_string($string)."'";
     }
     
     // -----------------------------------------------------------------------

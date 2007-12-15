@@ -6,7 +6,9 @@
  * For more specification on methods of this class check the PDO class
  * can be find on the same directory at DoLite.php
  *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
  */
+ 
 class DoMysql
 {
     public $errorCode = '';
