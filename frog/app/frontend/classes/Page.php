@@ -186,7 +186,7 @@ class Page
         
         // Collect attributes...
         $where   = isset($args['where']) ? $args['where']: '';
-        $order   = isset($args['order']) ? $args['order']: 'position, id';
+        $order   = isset($args['order']) ? $args['order']: 'page.position, page.id';
         $offset  = isset($args['offset']) ? $args['offset']: 0;
         $limit   = isset($args['limit']) ? $args['limit']: 0;
         
@@ -251,7 +251,7 @@ class Page
         $limit_string = $limit > 0 ? "LIMIT $offset, $limit" : '';
         
         // Prepare SQL
-        $sql = 'SELECT COUNT(*) AS nb_rows FROM '.TABLE_PREFIX.'page AS page '
+        $sql = 'SELECT COUNT(*) AS nb_rows FROM '.TABLE_PREFIX.'page '
              . 'WHERE parent_id = '.$this->id.' AND (status_id='.Page::STATUS_REVIEWED.' OR status_id='.Page::STATUS_PUBLISHED.($include_hidden ? ' OR status_id='.Page::STATUS_HIDDEN: '').') '
              . "$where_string ORDER BY $order $limit_string";
         
