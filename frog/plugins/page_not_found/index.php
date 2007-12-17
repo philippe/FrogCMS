@@ -26,8 +26,6 @@ function behavior_page_not_found()
         // if we fund it, display it!
         if (is_object($page))
         {
-            statistic_save($page->id);
-            
             header("HTTP/1.0 404 Not Found");
             header("Status: 404 Not Found");
               
