@@ -116,11 +116,11 @@ class Page
     public function link($label=null, $options='')
     {
         if ($label == null)
-            $label = $this->title;
+            $label = $this->title();
         
         return sprintf('<a href="%s" title="%s" %s>%s</a>',
                $this->url(),
-               $this->title,
+               $this->title(),
                $options,
                $label
         );
@@ -155,7 +155,7 @@ class Page
         if ($this->parent)
             $out .= $this->parent->_inversedBreadcrumbs($separator);
         
-        return $out . '<span class="breadcrumb-current">'.$this->breadcrumb.'</span></div>'."\n";
+        return $out . '<span class="breadcrumb-current">'.$this->breadcrumb().'</span></div>'."\n";
         
     }
     
