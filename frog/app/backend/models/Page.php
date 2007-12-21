@@ -195,7 +195,7 @@ class Page extends Record
     public static function findById($id)
     {
         return self::find(array(
-            'where' => self::tableNameFromClassName('Page').'.id='.(int)$id,
+            'where' => 'page.id='.(int)$id,
             'limit' => 1
         ));
     }

@@ -1,21 +1,26 @@
 /* String.js ---------------------------------------------------------------*/
 
 Object.extend(String.prototype, {
-  upcase: function() {
+  upcase: function()
+  {
     return this.toUpperCase();
   },
 
-  downcase: function() {
+  downcase: function()
+  {
     return this.toLowerCase();
   },
   
-  toInteger: function() {
+  toInteger: function()
+  {
     return parseInt(this);
   },
   
-  toSlug: function() {
+  toSlug: function()
+  {
     return this.strip().downcase().replace(/[^-a-z0-9~\s\.:;+=_]/g, '').replace(/[\s\.:;=+]+/g, '-');
   }
+
 });
 
 
@@ -23,121 +28,128 @@ Object.extend(String.prototype, {
 
 function toggle_popup(id, focus_field)
 {
-	var popup = $(id);
-	focus_field = $(focus_field);
-	center(popup);
-	Element.toggle(popup);
-	Field.focus(focus_field);
+  var popup = $(id);
+  focus_field = $(focus_field);
+  center(popup);
+  Element.toggle(popup);
+  Field.focus(focus_field);
 }
 function allowTab(event, obj)
 {
-	var keyCode = event.which ? event.which: event.keyCode;
-	
-	// 9 is the tab key code
-	if (keyCode == 9)
-	{
-		if (event.type == "keydown")
-		{
-			if (obj.setSelectionRange) // mozilla, safari
-			{
-				var content = '\t';
-				var start = obj.selectionStart;
-				var end = obj.selectionEnd;
-			
-				// with selection
-				if (end - start > 1)
-				{
-					content += obj.value.substring(start, end);
-					content = content.replace(/\n/g, '\n\t');
-				}
-			
-				obj.value = obj.value.substring(0, start) + content + obj.value.substr(end);
-				obj.setSelectionRange(start + 1, start + 1);
-				obj.focus();
-			}
-			else if (obj.createTextRange) // ie
-			{
-				// sorry selection tab doesn't work because I can develop
-				// for internet explorer. if you want me do to it, buy me a windows
-				// license and I will do it for you!
-				// here is my site to contact me: www.philworks.com
-				document.selection.createRange().text = '\t';
-				obj.onblur = function() { this.focus(); this.onblur = null; };
-			}
-			// else unsupported browsers
-		}
-		
-		if (event.returnValue) // ie
-			event.returnValue = false;
-			
-		if (event.preventDefault) // dom
-			event.preventDefault();
+  var keyCode = event.which ? event.which: event.keyCode;
+  
+  // 9 is the tab key code
+  if (keyCode == 9)
+  {
+    if (event.type == "keydown")
+    {
+      if (obj.setSelectionRange) // mozilla, safari
+      {
+        var content = '\t';
+        var start = obj.selectionStart;
+        var end = obj.selectionEnd;
+      
+        // with selection
+        if (end - start > 1)
+        {
+          content += obj.value.substring(start, end);
+          content = content.replace(/\n/g, '\n\t');
+        }
+      
+        obj.value = obj.value.substring(0, start) + content + obj.value.substr(end);
+        obj.setSelectionRange(start + 1, start + 1);
+        obj.focus();
+      }
+      else if (obj.createTextRange) // ie
+      {
+        // sorry selection tab doesn't work because I can develop
+        // for internet explorer. if you want me do to it, buy me a windows
+        // license and I will do it for you!
+        // here is my site to contact me: www.philworks.com
+        document.selection.createRange().text = '\t';
+        obj.onblur = function() { this.focus(); this.onblur = null; };
+      }
+      // else unsupported browsers
+    }
+    
+    if (event.returnValue) // ie
+      event.returnValue = false;
+      
+    if (event.preventDefault) // dom
+      event.preventDefault();
 
-		return false; // should work in all browsers
-	}
-	return true;
+    return false; // should work in all browsers
+  }
+  return true;
 }
 
 function setTextAreaToolbar(textarea, filter)
 {
-	filter = ('-'+filter.dasherize()).camelize();
+  filter = ('-'+filter.dasherize()).camelize();
 
-	var toolbar_name = textarea + '_toolbar';
-	
-	// make sure the textarea is display 
-	//(maybe some filter will choose to use a iframe like tinycme)
-	$(textarea).style.display = 'block';
-	
-	var ul_toolbar = document.getElementById(toolbar_name);
-	if (ul_toolbar != null)
-		ul_toolbar.parentNode.removeChild(ul_toolbar);
-	
-	if (Control.TextArea.ToolBar[filter] != null)
-	{
-	  var tb = new Control.TextArea.ToolBar[filter](textarea);
-	  tb.toolbar.container.id = toolbar_name;
-	}
+  var toolbar_name = textarea + '_toolbar';
+  
+  // make sure the textarea is display 
+  //(maybe some filter will choose to use a iframe like tinycme)
+  $(textarea).style.display = 'block';
+  
+  var ul_toolbar = document.getElementById(toolbar_name);
+  if (ul_toolbar != null)
+    ul_toolbar.parentNode.removeChild(ul_toolbar);
+  
+  if (Control.TextArea.ToolBar[filter] != null)
+  {
+    var tb = new Control.TextArea.ToolBar[filter](textarea);
+    tb.toolbar.container.id = toolbar_name;
+  }
 }
 
 
 /* RuledTable.js -----------------------------------------------------------*/
 
 var RuledTable = Class.create({
-  initialize: function(element) {
+  initialize: function(element)
+  {
     if (Prototype.Browser.IE)
       $(element).
         observe('mouseover', this.onMouseOverRow.bindAsEventListener(this, 'addClassName')).
         observe('mouseout', this.onMouseOverRow.bindAsEventListener(this, 'removeClassName'));
   },
   
-  onMouseOverRow: function(event, method) {
+  onMouseOverRow: function(event, method)
+  {
     var row = event.findElement('tr');
     if (row) row[method]('highlight');
   }
+
 });
 
 
 /* RuledList.js ------------------------------------------------------------*/
 
 var RuledList = Class.create({
-  initialize: function(element) {
+  initialize: function(element)
+  {
     if (Prototype.Browser.IE)
       $(element).
         observe('mouseover', this.onMouseOverRow.bindAsEventListener(this, 'addClassName')).
         observe('mouseout', this.onMouseOverRow.bindAsEventListener(this, 'removeClassName'));
   },
   
-  onMouseOverRow: function(event, method) {
+  onMouseOverRow: function(event, method)
+  {
     var row = event.findElement('li');
     if (row) row[method]('highlight');
   }
+
 });
 
 
 /* Sitemap.js --------------------------------------------------------------*/
 
 var SiteMap = Class.create(RuledList, {
-  initialize: function($super, element) {
+  initialize: function($super, element)
+  {
     $super(element);
     this.id = element;
     this.readExpandedCookie();
@@ -145,7 +157,8 @@ var SiteMap = Class.create(RuledList, {
     Event.observe(element, 'click', this.onMouseClickRow.bindAsEventListener(this));
   },
   
-  onMouseClickRow: function(event) {
+  onMouseClickRow: function(event)
+  {
     if (this.isExpander(event.target)) {
       var row = event.findElement('li');
       if (this.hasChildren(row)) {
@@ -154,57 +167,68 @@ var SiteMap = Class.create(RuledList, {
     }
   },
   
-  hasChildren: function(row) {
+  hasChildren: function(row)
+  {
     return !row.hasClassName('no-children');
   },
   
-  isExpander: function(element) {
+  isExpander: function(element)
+  {
     return element.match('img.expander');
   },
   
-  isExpanded: function(row) {
+  isExpanded: function(row)
+  {
     return row.hasClassName('children-visible');
   },
   
-  isRow: function(element) {
+  isRow: function(element)
+  {
     return element && element.tagName && element.match('li');
   },
   
-  extractLevel: function(row) {
+  extractLevel: function(row)
+  {
     if (/level-(\d+)/i.test(row.className))
       return RegExp.$1.toInteger();
   },
   
-  extractPageId: function(row) {
+  extractPageId: function(row)
+  {
     if (/page_(\d+)/i.test(row.id)) // script.aculo.us needs _ instead of - (for Sortable)
       return RegExp.$1.toInteger();
   },
   
-  getExpanderImageForRow: function(row) {
+  getExpanderImageForRow: function(row)
+  {
     return row.down('img');
   },
   
-  readExpandedCookie: function() {
+  readExpandedCookie: function()
+  {
     var matches = document.cookie.match(/expanded_rows=(.+?);/);
     this.expandedRows = matches ? matches[1].split(',') : [];
   },
 
-  saveExpandedCookie: function() {
+  saveExpandedCookie: function()
+  {
     document.cookie = "expanded_rows=" + this.expandedRows.uniq().join(",");
   }, 
 
-  persistCollapsed: function(row) {
-    var pageId = this.extractPageId(row);
-    this.expandedRows = this.expandedRows.without(pageId);
+  persistCollapsed: function(row)
+  {
+    this.expandedRows = this.expandedRows.without(this.extractPageId(row));
     this.saveExpandedCookie();
   },
 
-  persistExpanded: function(row) {
+  persistExpanded: function(row)
+  {
     this.expandedRows.push(this.extractPageId(row));
     this.saveExpandedCookie();
   },
 
-  toggleExpanded: function(row, img) {
+  toggleExpanded: function(row, img)
+  {
     if (!img) img = this.getExpanderImageForRow(row);
     if (this.isExpanded(row)) {
       img.src = img.src.replace('collapse', 'expand');
@@ -233,7 +257,8 @@ var SiteMap = Class.create(RuledList, {
     });
   },
   
-  hideBranch: function(parent, img) {
+  hideBranch: function(parent, img)
+  {
     for (var i = parent.childNodes.length-1; i>=0; i--)
     {
       if (parent.childNodes[i].nodeName == 'UL')
@@ -245,7 +270,8 @@ var SiteMap = Class.create(RuledList, {
     this.toggleExpanded(parent, img);
   },
   
-  showBranch: function(parent, img) {
+  showBranch: function(parent, img)
+  {
     var children = false;
     for (var i=parent.childNodes.length-1; i>=0; i--)
     {
@@ -261,15 +287,15 @@ var SiteMap = Class.create(RuledList, {
     this.toggleExpanded(parent, img);
   },
   
-  getBranch: function(row) {
+  getBranch: function(row)
+  {
     var id = this.extractPageId(row), level = this.extractLevel(row),
         spinner = $('busy-' + id);
     
     new Ajax.Updater(
       row,
-      '?/page/children/' + id + '/' + level,
+      'index.php?/page/children/' + id + '/' + level,
       {
-        encoding: 'utf-8',
         evalScripts: true,
         asynchronous: true,
         insertion:  "bottom",
@@ -279,7 +305,8 @@ var SiteMap = Class.create(RuledList, {
     );
   },
   
-  toggleBranch: function(row, img) {
+  toggleBranch: function(row, img)
+  {
     if (!this.updating) {
       var method = (this.isExpanded(row) ? 'hide' : 'show') + 'Branch';
       this[method](row, img);
@@ -329,8 +356,9 @@ var SiteMap = Class.create(RuledList, {
     for(var i=0; i<pages.length; i++)
       data += 'pages[]='+SiteMap.prototype.extractPageId(pages[i])+'&';
   
-    new Ajax.Request('?/page/reorder/'+parent_id, {method: 'post', parameters: { 'data': data }});
+    new Ajax.Request('index.php?/page/reorder/'+parent_id, {method: 'post', parameters: { 'data': data }});
   }
+
 });
 
 
@@ -342,7 +370,8 @@ var TabControl = Class.create({
     containing one element with it's class name set to 'tabs' and another element with it's
     class name set to 'pages'.
   */
-  initialize: function(element) {
+  initialize: function(element)
+  {
     this.element = $(element);
     this.control_id = this.element.identify();
     TabControl.controls.set(this.control_id, this);
@@ -357,7 +386,8 @@ var TabControl = Class.create({
     of the tab. The variable +page+ is the ID of an HTML element, or the HTML element
     itself. When a tab is initially added the page element is hidden.
   */
-  addTab: function(tab_id, caption, page) {
+  addTab: function(tab_id, caption, page)
+  {
     var tab = new TabControl.Tab(this, tab_id, caption, page);
     this.tabs.set(tab.id, tab);
     return this.tab_container.appendChild(tab.createElement());
@@ -366,7 +396,8 @@ var TabControl = Class.create({
   /*
     Removes +tab+. The variable +tab+ may be either a tab ID or a tab element.
   */
-  removeTab: function(tab) {
+  removeTab: function(tab)
+  {
     if (Object.isString(tab)) tab = this.tabs.get(tab);
     tab.remove();
     this.tabs.unset(tab);
@@ -382,7 +413,8 @@ var TabControl = Class.create({
     Selects +tab+ updating the control. The variable +tab+ may be either a tab ID or a
     tab element.
   */
-  select: function(tab) {
+  select: function(tab)
+  {
     if (Object.isString(tab)) tab = this.tabs.get(tab);
     if (this.selected) this.selected.unselect();
     tab.select();
@@ -393,38 +425,42 @@ var TabControl = Class.create({
   /*
     Returns the first tab element that was added using #addTab().
   */
-  firstTab: function() {
+  firstTab: function()
+  {
     return this.tabs.get(this.tabs.keys().first());
   },
   
   /*
     Returns the the last tab element that was added using #addTab().
   */
-  lastTab: function() {
+  lastTab: function()
+  {
     return this.tabs.get(this.tabs.keys().last());
   },
   
   /*
     Returns the total number of tab elements managed by the control.
   */
-  tabCount: function() {
+  tabCount: function()
+  {
     return this.tabs.keys().length;
-  },
+  }
   
 });
 
 TabControl.controls = $H();
 
 TabControl.Tab = Class.create({
-  initialize: function(control, id, label, content) {
+  initialize: function(control, id, label, content)
+  {
     this.content = $(content).hide();
     this.label   = label || id;
     this.id      = id;
     this.control = control;
-
   },
 
-  createElement: function() {
+  createElement: function()
+  {
     return this.element = new Element('a', { className: 'tab', href: '#' }).
       update("<span>" + this.label + "</span>").
       observe('click', function(event){
@@ -433,20 +469,24 @@ TabControl.Tab = Class.create({
       }.bindAsEventListener(this));
   },
 
-  select: function() {
+  select: function()
+  {
     this.content.show();
     this.element.addClassName('here');
   },
 
-  unselect: function() {
+  unselect: function()
+  {
     this.content.hide();
     this.element.removeClassName('here');
   },
 
-  remove: function() {
+  remove: function()
+  {
     this.content.remove();
     this.element.stopObserving('click').remove();
   }
+
 });
 
 
@@ -492,9 +532,11 @@ document.observe('dom:loaded', function() {
 
   });
 });
+
 function page_id() {
   return /(\d+)/.test(window.location.pathname) ? RegExp.$1 : '';
 }
+
 // When object is available, do function fn.
 function when(obj, fn) {
   if (Object.isString(obj)) obj = /^[\w-]+$/.test(obj) ? $(obj) : $(document.body).down(obj);
@@ -520,6 +562,7 @@ function part_loading() {
   $('add-part-button').disabled = true;
   Element.toggle('busy');
 }
+
 function valid_part_name() {
   var partNameField = $('part-name-field');
   var name = partNameField.value.downcase().strip();
@@ -537,6 +580,7 @@ function valid_part_name() {
   })
   return result;
 }
+
 function center(element) {
   var header = $('header')
   element = $(element);

@@ -20,7 +20,7 @@
     
 <?php foreach(Plugin::$plugins as $plugin_id => $plugin): ?>
 <?php if (file_exists(CORE_ROOT . '/plugins/' . $plugin_id . '/' . $plugin_id . '.js')): ?>
-    <script src="../frog/plugins/<?php echo $plugin_id.'/'.$plugin_id; ?>.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="../frog/plugins/<?php echo $plugin_id.'/'.$plugin_id; ?>.js"></script>
 <?php endif; ?>
 <?php if (file_exists(CORE_ROOT . '/filters/' . $plugin_id . '/' . $plugin_id . '.css')): ?>
     <link href="../frog/plugins/<?php echo $plugin_id.'/'.$plugin_id; ?>.css" media="screen" rel="Stylesheet" type="text/css" />
