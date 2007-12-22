@@ -98,6 +98,7 @@
         </select>
       </p>
 
+<?php if ( ! isset($page->id) || $page->id != 1): ?>
       <p><label for="page_status_id"><?php echo __('Status'); ?></label>
         <select id="page_status_id" name="page[status_id]">
           <option value="<?php echo Page::STATUS_DRAFT; ?>"<?php echo $page->status_id == Page::STATUS_DRAFT ? ' selected="selected"': ''; ?>><?php echo __('Draft'); ?></option>
@@ -106,7 +107,8 @@
           <option value="<?php echo Page::STATUS_HIDDEN; ?>"<?php echo $page->status_id == Page::STATUS_HIDDEN ? ' selected="selected"': ''; ?>><?php echo __('Hidden'); ?></option>
         </select>
       </p>
-      
+<?php endif; ?>
+
 <?php if (Setting::get('enable_comment')): ?> 
       <p><label for="page_comment_status"><?php echo __('Comments'); ?></label>
          <select id="page_comment_status" name="page[comment_status]">
