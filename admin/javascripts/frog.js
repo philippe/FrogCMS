@@ -299,8 +299,13 @@ var SiteMap = Class.create(RuledList, {
         evalScripts: true,
         asynchronous: true,
         insertion:  "bottom",
-        onLoading:  function() { spinner.show(); this.updating = true  }.bind(this),
-        onComplete: function() { this.sortablize(); spinner.fade(); this.updating = false }.bind(this)
+        onLoading:  function() { spinner.show(); this.updating = true; }.bind(this),
+        onComplete: function() {
+          this.sortablize();
+          spinner.fade();
+          this.updating = false;
+          $$('.handle').each(function(e) { e.style.display = toggle_handle ? 'inline': 'none'; });
+        }.bind(this)
       }
     );
   },
@@ -590,3 +595,5 @@ function center(element) {
   element.style.top = (top + 200) + 'px';
   element.style.left = ((header.offsetWidth - dim.width) / 2) + 'px';
 }
+
+var toggle_handle = false;

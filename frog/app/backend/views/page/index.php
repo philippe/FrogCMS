@@ -1,7 +1,7 @@
 <h1><?php echo __('Pages'); ?></h1>
 
 <div id="site-map-def">
-    <div class="page"><?php echo __('Page'); ?> (<a href="#" onclick="$$('.handle').each(function(e) { e.style.display = e.style.display == 'inline' ? 'none': 'inline'; }); return false;"><?php echo __('reorder'); ?></a>)</div>
+    <div class="page"><?php echo __('Page'); ?> (<a href="#" onclick="toggle_handle = !toggle_handle; $$('.handle').each(function(e) { e.style.display = toggle_handle ? 'inline': 'none'; }); return false;"><?php echo __('reorder'); ?></a>)</div>
     <div class="status"><?php echo __('Status'); ?></div>
     <div class="modify"><?php echo __('Modify'); ?></div>
 </div>
