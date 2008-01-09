@@ -135,7 +135,7 @@ class LayoutController extends Controller
         foreach ($layouts as $position => $layout_id)
         {
             $layout = Record::findByIdFrom('Layout', $layout_id);
-            $layout->position = (int) $position;
+            $layout->position = (int) $position + 1;
             $layout->save();
         }
     }

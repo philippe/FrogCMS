@@ -137,7 +137,7 @@ class SnippetController extends Controller
         foreach ($snippets as $position => $snippet_id)
         {
             $snippet = Record::findByIdFrom('Snippet', $snippet_id);
-            $snippet->position = (int) $position;
+            $snippet->position = (int) $position + 1;
             $snippet->save();
         }
     }
