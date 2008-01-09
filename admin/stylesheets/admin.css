@@ -32,6 +32,8 @@ h3, h4 { margin: .5em 0; font-size: 1.2em; font-weight: bold; }
 .clear { font-size: 1px; clear: both; }
 .warning { color: #D42B27; }
 
+.handle { display: none; cursor: move; }
+
 /* Header ----------------------------------------------------------------- */
 
 #header {
@@ -263,13 +265,24 @@ h3, h4 { margin: .5em 0; font-size: 1.2em; font-weight: bold; }
   color: #051;
 }
 
-/* Index table ------------------------------------------------------------ */
-
-table.index {
+/* Index table, list ------------------------------------------------------ */
+.index-def {
+  background-color: #f5f5f5;
+  font-size: 90%;
+  font-weight: normal;
+  margin-top: 20px;
+  padding: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.index {
   font-size: 90%;
   width: 100%;
   margin-top: 20px;
   border-bottom: 1px solid #ddd;
+}
+ul.index {
+  margin-top: 0;
 }
 table.index td,
 table.index th {
@@ -283,16 +296,17 @@ table.index th {
   padding-top: 2px;
   padding-bottom: 2px;
 }
-table.index td {
+table.index td, .index li {
+  position: relative;
   border-top: 1px solid #ddd;
   padding: 2px 4px;
   font-weight: normal;
 }
-table.index .node {
+.index .node {
   font-size: 115%;
   font-weight: bold;
 }
-table.index .node .user small {
+.index .node .user small {
   position: relative;
   top: 5px;
   color: #666;
@@ -301,21 +315,21 @@ table.index .node .user small {
   font-weight: normal;
   margin-left: .5em;
 }
-table.index .even:hover,
-table.index .odd:hover,
-table.index .even.hover,
-table.index .odd.hover {
+.index .even:hover,
+.index .odd:hover,
+.index .even.hover,
+.index .odd.hover {
   background: #f5f5f5;
 }
-table.index .node a,
-table.index .node a:visited {
+.index .node a,
+.index .node a:visited {
   position: relative;
   top: 5px;
   color: #000;
   text-decoration: none;
 }
-table.index .node a:hover, 
-table.index .node a:visited:hover {
+.index .node a:hover, 
+.index .node a:visited:hover {
   text-decoration: underline;
 }
 table.index td.note {
@@ -325,10 +339,14 @@ table.index td.note {
   padding: 3em;
   text-align: center;
 }
-table.index p {
+.index p {
   margin-top: 5px;
 }
-
+.index .remove {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
 /* Site Map --------------------------------------------------------------- */
 
 #site-map-root .node.level-0 .page,
@@ -379,7 +397,6 @@ table.index p {
   padding-top: 6px;
   padding-bottom: 6px;
 }
-#site-map .handle { display: none; cursor: move; }
 #site-map-def { margin-top: 20px; position: relative; }
 #site-map-def .page {}
 #site-map-def .status { position: absolute; top: 0; right: 75px; width: 70px }

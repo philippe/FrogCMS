@@ -30,7 +30,7 @@ class SnippetController extends Controller
     function index()
     {
         $this->display('snippet/index', array(
-            'snippets' => Record::findAllFrom('Snippet')
+            'snippets' => Record::findAllFrom('Snippet', '1=1 ORDER BY position')
         ));
     }
     
@@ -128,6 +128,18 @@ class SnippetController extends Controller
         else Flash::set('error', __('Snippet not found!'));
         
         redirect(get_url('snippet'));
+    }
+    
+    function reorder()
+    {
+        parse_str($_POST['data']);
+        
+        foreach ($snippets as $position => $snippet_id)
+        {
+            $snippet = Record::findByIdFrom('Snippet', $snippet_id);
+            $snippet->position = (int) $position;
+            $snippet->save();
+        }
     }
 
 } // end SnippetController class

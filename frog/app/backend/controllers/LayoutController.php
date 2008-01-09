@@ -30,7 +30,7 @@ class LayoutController extends Controller
     function index()
     {
         $this->display('layout/index', array(
-            'layouts' => Record::findAllFrom('Layout')
+            'layouts' => Record::findAllFrom('Layout', '1=1 ORDER BY position')
         ));
     }
     
@@ -126,6 +126,18 @@ class LayoutController extends Controller
         else Flash::set('error', __('Layout not found!'));
         
         redirect(get_url('layout'));
+    }
+    
+    function reorder()
+    {
+        parse_str($_POST['data']);
+        
+        foreach ($layouts as $position => $layout_id)
+        {
+            $layout = Record::findByIdFrom('Layout', $layout_id);
+            $layout->position = (int) $position;
+            $layout->save();
+        }
     }
 
 } // end LayoutController class

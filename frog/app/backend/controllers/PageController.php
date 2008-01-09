@@ -168,7 +168,7 @@ class PageController extends Controller
             'filters'    => Filter::findAll(),
             'behaviors'  => Behavior::findAll(),
             'page_parts' => $page_parts,
-            'layouts'    => Record::findAllFrom('Layout'))
+            'layouts'    => Record::findAllFrom('Layout', '1=1 ORDER BY position'))
         );
     }
     
@@ -309,8 +309,6 @@ class PageController extends Controller
     function reorder($parent_id)
     {
         parse_str($_POST['data']);
-        
-        $new_brother = false;
         
         foreach ($pages as $position => $page_id)
         {
