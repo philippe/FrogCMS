@@ -29,7 +29,7 @@ $PDO->exec("CREATE TABLE ".TABLE_PREFIX."layout (
   updated_on datetime default NULL,
   created_by_id int(11) default NULL,
   updated_by_id int(11) default NULL,
-  position mediumint(6) unsigned NOT NULL,
+  position mediumint(6) unsigned default NULL,
   PRIMARY KEY  (id),
   UNIQUE KEY name (name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8");
@@ -52,7 +52,7 @@ $PDO->exec("CREATE TABLE ".TABLE_PREFIX."page (
   updated_on datetime default NULL,
   created_by_id int(11) default NULL,
   updated_by_id int(11) default NULL,
-  position mediumint(6) unsigned NOT NULL,
+  position mediumint(6) unsigned default NULL,
   is_protected tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8");
@@ -111,7 +111,7 @@ $PDO->exec("CREATE TABLE ".TABLE_PREFIX."snippet (
   updated_on datetime default NULL,
   created_by_id int(11) default NULL,
   updated_by_id int(11) default NULL,
-  position mediumint(6) unsigned NOT NULL,
+  position mediumint(6) unsigned default NULL,
   PRIMARY KEY  (id),
   UNIQUE KEY name (name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8");

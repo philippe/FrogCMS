@@ -27,7 +27,7 @@ $PDO->exec("CREATE TABLE layout (
     updated_on datetime default NULL,
     created_by_id int(11) default NULL,
     updated_by_id int(11) default NULL,
-    position mediumint(6) NOT NULL
+    position mediumint(6) default NULL
 )");
 $PDO->exec("CREATE UNIQUE INDEX layout_name ON layout (name)");
 
@@ -49,7 +49,7 @@ $PDO->exec("CREATE TABLE page (
     updated_on datetime default NULL , 
     created_by_id int(11) default NULL , 
     updated_by_id int(11) default NULL , 
-    position mediumint(6) NOT NULL , 
+    position mediumint(6) default NULL , 
     is_protected tinyint(1) NOT NULL default '0'
 )");
 
@@ -105,7 +105,7 @@ $PDO->exec("CREATE TABLE snippet (
     updated_on datetime default NULL , 
     created_by_id int(11) default NULL , 
     updated_by_id int(11) default NULL,
-    position mediumint(6) NOT NULL
+    position mediumint(6) default NULL
 )");
 $PDO->exec("CREATE UNIQUE INDEX snippet_name ON snippet (name)");
 
