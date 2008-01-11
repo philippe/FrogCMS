@@ -1,3 +1,11 @@
+0.9.1
+  reorder snippet and layout
+  adding SQLite as a second database choice (sqlite 3 only)
+  adding SQLite 3 pluggin to make archive pluggin works
+  bug fixed: drag handle when opening new branch
+  bug fixed: tab (page part) position in page edit
+  bug fixed: internet explorer drag and drop bug
+
 0.9.0
   Plugin API
   reorganization of the code
