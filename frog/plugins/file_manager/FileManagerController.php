@@ -54,7 +54,7 @@ class FileManagerController extends PluginController
         $params = func_get_args();
         
         $content = '';
-        $filename = join('/', $params);
+        $filename = urldecode(join('/', $params));
         $file = FILES_DIR.'/'.$filename;
         if ( ! $this->_isImage($file) && file_exists($file))
         {
