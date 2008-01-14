@@ -144,8 +144,10 @@ class FileManagerController extends PluginController
     
     public function delete()
     {
-        $paths = Dispatcher::getParams();
-        $file = join('/', $paths);
+        $paths = func_get_args();
+        
+        $file = urldecode(join('/', $paths));
+        
         $file = FILES_DIR.'/'.str_replace('..', '', $file);
         $filename = array_pop($paths);
         $paths = join('/', $paths);
