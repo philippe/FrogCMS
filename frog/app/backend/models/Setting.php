@@ -74,15 +74,14 @@ class Setting extends Record
     public static function getThemes()
     {
         $themes = array();
-        
-        if ($handle = opendir(FROG_ROOT.'/'.ADMIN_DIR.'/themes/'))
+        $dir = FROG_ROOT.'/'.ADMIN_DIR.'/themes/';
+        if ($handle = opendir($dir))
         {
             while (false !== ($file = readdir($handle)))
             {
-                if (strpos($file, '.') !== 0 && strpos($file, '.css') !== false)
+                if (strpos($file, '.') !== 0 && is_dir($dir.$file))
                 {
-                    $code = substr($file, 0, -4);
-                    $themes[$code] = Inflector::humanize($code);
+                    $themes[$file] = Inflector::humanize($file);
                 }
             }
             closedir($handle);
