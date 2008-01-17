@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * this file has been translated by: Philippe Archambault
+ */
+
 return array(
 
 // general
