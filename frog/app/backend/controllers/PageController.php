@@ -145,7 +145,7 @@ class PageController extends Controller
         // check for protected page and editor user
         if ( ! AuthUser::hasPermission('administrator') && ! AuthUser::hasPermission('developer') && $page->is_protected)
         {
-            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            Flash::set('error', __('You do not have permission to access the requested page!'));
             redirect(get_url('page'));
         }
         
@@ -254,7 +254,7 @@ class PageController extends Controller
                 // check for permission to delete this page
                 if ( ! AuthUser::hasPermission('administrator') && ! AuthUser::hasPermission('developer') && $page->is_protected)
                 {
-                    Flash::set('error', __('You don\'t have permissions to access requested page!'));
+                    Flash::set('error', __('You do not have permission to access the requested page!'));
                     redirect(get_url('page'));
                 }
                 
@@ -262,9 +262,9 @@ class PageController extends Controller
                 PagePart::deleteByPageId($id);
                 
                 if ($page->delete())
-                    Flash::set('success', __('Page :title as been deleted!', array(':title'=>$page->title)));
+                    Flash::set('success', __('Page :title has been deleted!', array(':title'=>$page->title)));
                 else
-                    Flash::set('error', __('Page :title as not been deleted!', array(':title'=>$page->title)));
+                    Flash::set('error', __('Page :title has not been deleted!', array(':title'=>$page->title)));
             }
             else Flash::set('error', __('Page not found!'));
         }

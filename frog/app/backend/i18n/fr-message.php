@@ -34,15 +34,15 @@ return array(
 
 
 // files
-'File' => 'Fichier',
-'Size' => 'Taille',
-'Permission' => 'Permission',
-'Change mode' => 'Changer le mode',
-'Remove file' => 'Supprimer le fichier',
-'Create new file' => 'Créer un fichier',
-'Create new directory' => 'Créer un répertoire',
-'Upload file' => 'Télécharger un fichier',
-'rename' => 'renommer',
+//'File' => 'Fichier',
+//'Size' => 'Taille',
+//'Permission' => 'Permission',
+//'Change mode' => 'Changer le mode',
+//'Remove file' => 'Supprimer le fichier',
+//'Create new file' => 'Créer un fichier',
+//'Create new directory' => 'Créer un répertoire',
+//'Upload file' => 'Télécharger un fichier',
+//'rename' => 'renommer',
 
 // layouts
 'Layout' => 'Gabarit',
@@ -136,28 +136,28 @@ return array(
 'Leave password blank for it to remain unchanged.' => 'Laisser les champs vide et le mot de passe ne sera pas changé.',
 'Roles restrict user privileges and turn parts of the administrative interface on or off.' => 'Les rôles permettent de restreindre certaine partie de l\'administration.',
 'New User' => 'Nouvel utilisateur',
-'Where avatar come from?' => 'D\'où viennent les avatars?',
-'They are directly linked with <a href="http://www.gravatar.com/" target="_blank">Gravatar</a> site. It is free!' => 'Ils sont générés directement avec le site gratuit <a href="http://www.gravatar.com" target="_blank" title="Accès au site">Gravatar</a>!',
+'Where do the avatars come from?' => 'D\'où viennent les avatars?',
+'The avatars are automatically linked for those with a <a href="http://www.gravatar.com/" target="_blank">Gravatar</a> (a free service) account.' => 'Ils sont générés directement avec le site gratuit <a href="http://www.gravatar.com" target="_blank" title="Accès au site">Gravatar</a>!',
 
+
+//'File :name has been created with success!' => 'Le fichier <strong>:name</strong> a été créé avec succès!',
+//'Directory is not writable! File has not been saved!' => 'Vous ne détenez pas les droits d\'écriture sur le répertoire. Le fichier na pas été enregistré',
+//'File :name has been created!' => 'Le fichier <strong>:name</strong> a été créé!',
+//'File :name has not been created!' => 'Le fichier <strong>:name</strong> n\'a pas été créé!',
+//'Directory :name has been created!' => 'Le répertoire <strong>:name</strong> a été créé!',
+//'Directory :name has not been created!' => 'Le répertoire <strong>:name</strong> n\'a pas été créé!',
+//'File :name has been deleted with success!' => 'Le fichier <strong>:name</strong> a été supprimé avec succès!',
+//'File :name has not been deleted!' => 'Le fichier <strong>:name</strong> n\'a pas été supprimé!',
+//'Directory :name has been deleted with success!' => 'Le répertoire <strong>:name</strong> a été supprimé avec succès!',
+//'Directory :name has not been deleted!' => 'Le répertoire <strong>:name</strong> n\'a pas été supprimé!',
+//'File :name has been uploaded with success!' => 'Le fichier <strong>:name</strong> a été téléchargé avec succès!',
+//'File has not been uploaded!' => 'Le fichier n\'a pas été téléchargé!',
+//'Permissions of file has been changed!' => 'Les permissions sur le fichier ont été modifiées!',
+//'Permissions of directory has been changed!' => 'Les permissions sur le répertoire on été modifiées!',
+//'Change mode has not been done!' => 'Le changement de permission n\'a pas fonctionné!',
+//'File or directory not found!' => 'Le fichier ou le répertoire n\'a pas été trouvé!',
 
 // errors and success
-'File :name has been created with success!' => 'Le fichier <strong>:name</strong> a été créé avec succès!',
-'Directory is not writable! File has not been saved!' => 'Vous ne détenez pas les droits d\'écriture sur le répertoire. Le fichier na pas été enregistré',
-'File :name has been created!' => 'Le fichier <strong>:name</strong> a été créé!',
-'File :name has not been created!' => 'Le fichier <strong>:name</strong> n\'a pas été créé!',
-'Directory :name has been created!' => 'Le répertoire <strong>:name</strong> a été créé!',
-'Directory :name has not been created!' => 'Le répertoire <strong>:name</strong> n\'a pas été créé!',
-'File :name has been deleted with success!' => 'Le fichier <strong>:name</strong> a été supprimé avec succès!',
-'File :name has not been deleted!' => 'Le fichier <strong>:name</strong> n\'a pas été supprimé!',
-'Directory :name has been deleted with success!' => 'Le répertoire <strong>:name</strong> a été supprimé avec succès!',
-'Directory :name has not been deleted!' => 'Le répertoire <strong>:name</strong> n\'a pas été supprimé!',
-'File :name has been uploaded with success!' => 'Le fichier <strong>:name</strong> a été téléchargé avec succès!',
-'File has not been uploaded!' => 'Le fichier n\'a pas été téléchargé!',
-'Permissions of file has been changed!' => 'Les permissions sur le fichier ont été modifiées!',
-'Permissions of directory has been changed!' => 'Les permissions sur le répertoire on été modifiées!',
-'Change mode has not been done!' => 'Le changement de permission n\'a pas fonctionné!',
-'File or directory not found!' => 'Le fichier ou le répertoire n\'a pas été trouvé!',
-
 'Layout has been added!' => 'Le gabarit a été ajoutée!',
 'Layout has not been added. Name must be unique!' => 'Le gabarit n\'a pas été ajouté. Le nom doit être unique!',
 'Layout has been saved!' => 'Le gabarit a été modifiée!',
@@ -166,13 +166,13 @@ return array(
 'Layout :name has not been deleted!' => 'Le gabarit <strong>:name</strong> n\'a pas été supprimé',
 'Layout not found!' => 'Le gabarit n\'a pas été trouvé!',
 
-'Failed to log you in. Please check your login data and try again.' => 'Votre nom d\'utilisateur et/ou mot de passe sont invalides!',
+'Login failed. Please check your login data and try again.' => 'Votre nom d\'utilisateur et/ou mot de passe sont invalides!',
 
 'Page has been saved!' => 'La page a été enregistrée!',
 'Page has not been saved!' => 'La page n\'a pas été enregistrée!',
 'Page not found!' => 'La page n\'a pas été trouvée!',
-'Page :title as been deleted!' => 'La page <strong>:title</strong> a été supprimée!',
-'Page :title as not been deleted!' => 'La page <strong>:title</strong> n\'a pas été supprimée!',
+'Page :title has been deleted!' => 'La page <strong>:title</strong> a été supprimée!',
+'Page :title has not been deleted!' => 'La page <strong>:title</strong> n\'a pas été supprimée!',
 'Action disabled!' => 'Action désactivée!',
 
 'Snippet has been added!' => 'L\'extrait a été ajouté!',
@@ -183,13 +183,12 @@ return array(
 'Snippet :name has not been deleted!' => 'L\'extrait <strong>:name</strong> n\'a pas été supprimé!',
 'Snippet not found!' => 'L\'extrait n\'a pas été trouvé!',
 
-'You don\'t have permissions to access requested page!' => 'Vous n\'avez pas les permissions requissent pour accéder à cette page!',
+'You do not have permission to access the requested page!' => 'Vous n\'avez pas les permissions requissent pour accéder à cette page!',
 'Password and Confirm are not the same or too small!' => 'Le mot de passe et la confirmation sont différent ou trop petit!',
-'Username must be 3 character minimum!' => 'Le nom de l\'utilisateur doit compter 3 caractères minimum!',
+'Username must contain a minimum of 3 characters!' => 'Le nom de l\'utilisateur doit compter 3 caractères minimum!',
 'User has been added!' => 'L\'utilisateur a été ajouté!',
 'User has not been added!' => 'L\'utilisateur n\'a pas été ajouté!',
 'User not found!' => 'L\'utilisateur n\'a pas été trouvé!',
-'Username have not been save must be 3 character minimum!' => 'Le nom de l\'utilisateur n\'a pas été modifié, il doit compter 3 caractères minimum!',
 'User has been saved!' => 'L\'utilisateur a été enregistré!',
 'User has not been saved!' => 'L\'utilisateur n\'a pas été enregistré!',
 'User <strong>:name</strong> has been deleted!' => 'L\'utilisateur <strong>:name</strong> a été supprimé!',
@@ -199,7 +198,7 @@ return array(
 'You are currently logged in as' => 'Connecté en tant que',
 'Log Out' => 'Déconnexion',
 'View Site' => 'Voir le site',
-'Thank you for creating with' => 'Merci d\'utiliser',
+'Thank you for using' => 'Merci d\'utiliser',
 'version' => 'version',
 'Page rendered in' => 'Page générée en',
 'seconds' => 'secondes',
@@ -207,6 +206,6 @@ return array(
 
 // Comments
 'Delete' => 'Supprimer',
-'Unapprove' => 'Désapprouver',
+'Reject' => 'Rejeter',
 
 );

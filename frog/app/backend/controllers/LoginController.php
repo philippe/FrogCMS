@@ -44,7 +44,7 @@ class LoginController extends Controller
             // redirect to defaut controller and action
             redirect(get_url());
         }
-        else Flash::set('error', __('Failed to log you in. Please check your login data and try again'));
+        else Flash::set('error', __('Login failed. Please check your login data and try again.'));
         
         // not find or password is wrong
         redirect(get_url('login'));

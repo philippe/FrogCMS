@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {
-            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            Flash::set('error', __('You do not have permission to access the requested page!'));
             redirect(get_url());
         }
         
@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {
-            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            Flash::set('error', __('You do not have permission to access the requested page!'));
             redirect(get_url());
         }
         
@@ -79,7 +79,7 @@ class UserController extends Controller
         // check if username >= 3 chars
         if (strlen($data['username']) < 3)
         {
-            Flash::set('error', __('Username must be 3 character minimum!'));
+            Flash::set('error', __('Username must contain a minimum of 3 characters!'));
             redirect(get_url('user/add'));
         }
         
@@ -102,7 +102,7 @@ class UserController extends Controller
     {
         if ( AuthUser::getId() != $id && ! AuthUser::hasPermission('administrator'))
         {
-            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            Flash::set('error', __('You do not have permission to access the requested page!'));
             redirect(get_url());
         }
         
@@ -172,7 +172,7 @@ class UserController extends Controller
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {
-            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            Flash::set('error', __('You do not have permission to access the requested page!'));
             redirect(get_url());
         }
         

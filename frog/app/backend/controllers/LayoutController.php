@@ -19,7 +19,7 @@ class LayoutController extends Controller
         }
         else if ( ! AuthUser::hasPermission('administrator') && ! AuthUser::hasPermission('developer'))
         {
-            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            Flash::set('error', __('You do not have permission to access the requested page!'));
             redirect(get_url());
         }
         

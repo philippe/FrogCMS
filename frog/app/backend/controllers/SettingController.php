@@ -18,7 +18,7 @@ class SettingController extends Controller
         }
         else if ( ! AuthUser::hasPermission('administrator'))
         {
-            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            Flash::set('error', __('You do not have permission to access the requested page!'));
             redirect(get_url());
         }
         
@@ -47,7 +47,7 @@ class SettingController extends Controller
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {
-            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            Flash::set('error', __('You do not have permission to access the requested page!'));
             redirect(get_url());
         }
         
@@ -58,7 +58,7 @@ class SettingController extends Controller
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {
-            Flash::set('error', __('You don\'t have permissions to access requested page!'));
+            Flash::set('error', __('You do not have permission to access the requested page!'));
             redirect(get_url());
         }
         
