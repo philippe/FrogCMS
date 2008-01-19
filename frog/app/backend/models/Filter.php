@@ -12,7 +12,7 @@
 
 class Filter
 {
-    private static $filters = array();
+    static $filters = array();
     private static $filters_loaded = array();
     
     /**

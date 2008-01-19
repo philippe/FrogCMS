@@ -19,7 +19,9 @@
     </tr>
   </thead>
   <tbody>
-  <?php foreach(Plugin::findAll() as $plugin): ?>
+<?php $loaded_plugins = Plugin::$plugins; ?>
+<?php $loaded_filters = Filter::$filters; ?>
+<?php foreach(Plugin::findAll() as $plugin): ?>
     <tr>
       <td class="plugin">
         <h4><?php echo $plugin->title; ?></h4>
@@ -27,9 +29,9 @@
       </td>
       <td class="website"><a href="<?php echo $plugin->website; ?>" target="_blank"><?php echo __('Website') ?></a></td>
       <td class="version"><?php echo $plugin->version; ?></td>
-      <td class="enabled"><input type="checkbox" name="enabled_<?php echo $plugin->id; ?>" value="<?php echo $plugin->id; ?>"<?php if (isset(Plugin::$plugins[$plugin->id])) echo ' checked="checked"'; ?> onclick="new Ajax.Request('<?php echo get_url('setting'); ?>'+(this.checked ? '/activate_plugin/':'/deactivate_plugin/')+this.value, {method: 'get'});" /></td>
+      <td class="enabled"><input type="checkbox" name="enabled_<?php echo $plugin->id; ?>" value="<?php echo $plugin->id; ?>"<?php if (isset($loaded_plugins[$plugin->id])) echo ' checked="checked"'; ?> onclick="new Ajax.Request('<?php echo get_url('setting'); ?>'+(this.checked ? '/activate_plugin/':'/deactivate_plugin/')+this.value, {method: 'get'});" /></td>
     </tr>
-  <?php endforeach; ?>
+<?php endforeach; ?>
   </tbody>
 </table>
 <script type="text/javascript">
@@ -90,7 +92,9 @@
 <?php $current_default_filter_id = Setting::get('default_filter_id'); ?>
             <option value=""<?php if ($current_default_filter_id == '') echo ' selected="selected"'; ?>>&#8212; <?php echo __('none'); ?> &#8212;</option>
 <?php foreach (Filter::findAll() as $filter_id): ?>
-            <option value="<?php echo $filter_id; ?>"<?php if ($filter_id == $current_default_filter_id) echo ' selected="selected"'; ?>><?php echo $filter_id; ?></option>
+<?php if (isset($loaded_filters[$filter_id])): ?>
+            <option value="<?php echo $filter_id; ?>"<?php if ($filter_id == $current_default_filter_id) echo ' selected="selected"'; ?>><?php echo Inflector::humanize($filter_id); ?></option>
+<?php endif; ?>
 <?php endforeach; ?>
           </select>
         </td>
