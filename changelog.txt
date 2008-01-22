@@ -1,3 +1,14 @@
+0.9.2
+  bug fixed: issue 10 Remove Markdown/Textile from default plugin if not enabled
+  cleaning old files
+  bug fixed: issue 16 CSS files are pulling from the wrong path
+  some typo fixed
+  removing green and blue grey theme
+  bug fixed: SQLite 3 plugin crash the administration setting when PDO is not installed
+  adding new theme directories
+  bug fixed: file manager plugin viewing file with spaces
+  bug fixed: issue 14 deleting file in file manager plugin
+
 0.9.1
   reorder snippet and layout
   adding SQLite as a second database choice (sqlite 3 only)
