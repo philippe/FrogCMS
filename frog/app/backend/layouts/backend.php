@@ -78,7 +78,7 @@
     <hr class="hidden" />
     <div id="footer">
       <p>
-      <?php echo __('Thank you for using'); ?> <a href="http://www.madebyfrog.com/">Frog CMS</a> <?php echo FROG_VERSION; ?> | <a href="http://forum.madebyfrog.com/"><?php echo __('Feedback'); ?></a>
+      <?php echo __('Thank you for using'); ?> <a href="http://www.madebyfrog.com/">Frog CMS</a> <?php echo FROG_VERSION; ?> | <a href="http://forum.madebyfrog.com/" target="_blank"><?php echo __('Feedback'); ?></a>
       </p>
 <?php if (DEBUG): ?>
       <p class="stats"> <?php echo __('Page rendered in'); ?> <?php echo execution_time(); ?> <?php echo __('seconds'); ?>
@@ -90,7 +90,7 @@
         <span class="separator"> | </span>
         <a href="<?php echo get_url('login/logout'); ?>"><?php echo __('Log Out'); ?></a>
         <span class="separator"> | </span>
-        <a href="<?php echo substr(BASE_URL, 0, strrpos(BASE_URL, 'a')); ?>"><?php echo __('View Site'); ?></a>
+        <a href="<?php echo substr(BASE_URL, 0, strrpos(BASE_URL, 'a')); ?>" target="_blank"><?php echo __('View Site'); ?></a>
       </p>
     </div>
   </body>
