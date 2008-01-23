@@ -23,8 +23,9 @@ define('URL_PUBLIC', 'http://<?php echo substr(dirname($_SERVER['HTTP_HOST'].$_S
 // The directory name of your Frog CMS administration (you will need to change it manualy)
 define('ADMIN_DIR', 'admin');
 
-// true or false (will remove the ? in the URL. You have to removed the _ before _.htaccess 
-// and set the RewriteBase (there is 2 htacces file (the other one is in the admin directory))
+// Change this setting to enable mod_rewrite. Set to "true" to remove the "?" in the URL.
+// To enable mod_rewrite, you must also change the name of "_.htaccess" in your
+// Frog CMS root directory to ".htaccess"
 define('USE_MOD_REWRITE', false);
 
 // add a suffix to pages (simluating static pages '.html')
