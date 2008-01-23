@@ -72,7 +72,7 @@ Object.extend(Control.TextArea.ToolBar.Markdown.prototype,{
 				selection = 'Heading 1';
 			var str = '';
 			(Math.max(5,selection.length)).times(function(){
-				str += '-';
+				str += '=';
 			});
 			this.replaceSelection("\n" + selection + "\n" + str + "\n");
 		},{
@@ -85,7 +85,7 @@ Object.extend(Control.TextArea.ToolBar.Markdown.prototype,{
 				selection = 'Heading 2';
 			var str = '';
 			(Math.max(5,selection.length)).times(function(){
-				str += '=';
+				str += '-';
 			});
 			this.replaceSelection("\n" + selection + "\n" + str + "\n");
 		},{
