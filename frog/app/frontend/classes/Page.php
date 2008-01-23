@@ -178,6 +178,24 @@ class Page
         }
     }
     
+    public function previous()
+    {
+        if ($this->parent)
+            return $this->parent->children(array(
+                'limit' => 1,
+                'where' => 'page.position <= '.$this->position.' AND page.id < '. $this->id
+            ));
+    }
+    
+    public function next()
+    {
+        if ($this->parent)
+            return $this->parent->children(array(
+                'limit' => 1,
+                'where' => 'page.position >= '.$this->position.' AND page.id > '. $this->id
+            ));
+    }
+    
     public function children($args=null, $value=array(), $include_hidden=false)
     {
         global $__FROG_CONN__;
