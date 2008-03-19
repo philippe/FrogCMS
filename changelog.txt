@@ -1,3 +1,8 @@
+0.9.3
+  removing comment from the core and add them as plugin
+  addmin keyword and description meteada in pages
+  adding execution of enable and desable plugin script
+  
 0.9.2
   bug fixed: issue 10 Remove Markdown/Textile from default plugin if not enabled
   cleaning old files

@@ -23,6 +23,14 @@
                   <td class="field"><input class="textbox" id="page_breadcrumb" maxlength="160" name="page[breadcrumb]" size="160" type="text" value="<?php echo htmlentities($page->breadcrumb, ENT_COMPAT, 'UTF-8'); ?>" /></td>
                 </tr>
                 <tr>
+                  <td class="label optional"><label for="page_keywords"><?php echo __('Keywords'); ?></label></td>
+                  <td class="field"><input class="textbox" id="page_keywords" maxlength="255" name="page[keywords]" size="255" type="text" value="<?php echo $page->keywords; ?>" /></td>
+                </tr>
+                <tr>
+                  <td class="label optional"><label for="page_description"><?php echo __('Description'); ?></label></td>
+                  <td class="field"><textarea class="textarea" id="page_description" name="page[description]" rows="40" cols="3"><?php echo $page->description; ?></textarea></td>
+                </tr>
+                <tr>
                   <td class="label optional"><label for="page_tags"><?php echo __('Tags'); ?></label></td>
                   <td class="field"><input class="textbox" id="page_tags" maxlength="255" name="page_tag[tags]" size="255" type="text" value="<?php echo join(', ', $tags); ?>" /></td>
                 </tr>
@@ -33,31 +41,26 @@
                     <input id="page_created_on" maxlength="10" name="page[created_on]" size="10" type="text" value="<?php echo substr($page->created_on, 0, 10); ?>" /> 
                     <img onclick="displayDatePicker('page[created_on]');" src="images/icon_cal.gif" alt="<?php echo __('Show Calendar'); ?>" /> 
                     <input id="page_created_on_time" maxlength="5" name="page[created_on_time]" size="5" type="text" value="<?php echo substr($page->created_on, 11); ?>" />
-                  </td>
-                </tr>
-              <?php endif; ?>
-              <?php if (isset($page->published_on)): ?>
-                <tr>
-                  <td class="label"><label for="page_published_on"><?php echo __('Published date'); ?></label></td>
-                  <td class="field">
+                <?php if (isset($page->published_on)): ?>
+                    &nbsp; <label for="page_published_on"><?php echo __('Published date'); ?></label>
                     <input id="page_published_on" maxlength="10" name="page[published_on]" size="10" type="text" value="<?php echo substr($page->published_on, 0, 10); ?>" /> 
                     <img onclick="displayDatePicker('page[published_on]');" src="images/icon_cal.gif" alt="<?php echo __('Show Calendar'); ?>" />
                     <input id="page_published_on_time" maxlength="5" name="page[published_on_time]" size="5" type="text" value="<?php echo substr($page->published_on, 11); ?>" /> 
+                <?php endif; ?>
                   </td>
                 </tr>
               <?php endif; ?>
               </table>
             </div>
+            <?php Observer::notify('view_page_edit_tabs', $page); ?>
         </div>
     </div>
     
     <script type="text/javascript">
-    // <![CDATA[
       var tabControlMeta = new TabControl('tab-control-meta');
       tabControlMeta.addTab('tab-title', '<?php echo __('Page Title'); ?>', 'div-title');
       tabControlMeta.addTab('tab-metadata', '<?php echo __('Metadata'); ?>', 'div-metadata');
       tabControlMeta.select(tabControlMeta.firstTab());
-    // ]]>
     </script>
 
     <div id="tab-control" class="tab_control">
@@ -109,15 +112,7 @@
       </p>
 <?php endif; ?>
 
-<?php if (Setting::get('enable_comment')): ?> 
-      <p><label for="page_comment_status"><?php echo __('Comments'); ?></label>
-         <select id="page_comment_status" name="page[comment_status]">
-           <option value="none"<?php echo $page->comment_status == 'none' ? ' selected="selected"': ''; ?>>&#8212; <?php echo __('none'); ?> &#8212;</option>
-           <option value="open"<?php echo $page->comment_status == 'open' ? ' selected="selected"': ''; ?>><?php echo __('Open'); ?></option>
-           <option value="closed"<?php echo $page->comment_status == 'closed' ? ' selected="selected"': ''; ?>><?php echo __('Closed'); ?></option>
-         </select>
-      </p>
-<?php endif; ?> 
+<?php Observer::notify('view_page_edit_plugins', $page); ?>
 
     </div>
     <p class="clear">&nbsp;</p>
@@ -153,7 +148,11 @@
       <p><a class="close-link" href="#" onclick="Element.hide('add-part-popup'); return false;"><?php echo __('Close'); ?></a></p>
     </form>
   </div>
+
+<?php Observer::notify('view.page.edit.popup'); ?>
+
 </div>
+
 <script type="text/javascript">
     Field.activate('page_title');
 </script>

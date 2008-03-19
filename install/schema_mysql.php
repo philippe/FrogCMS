@@ -1,23 +1,5 @@
 <?php
 
-
-// Table structure for table: comment ----------------------------------------
-
-$PDO->exec("CREATE TABLE ".TABLE_PREFIX."comment (
-  id int(11) unsigned NOT NULL auto_increment,
-  page_id int(11) unsigned NOT NULL default '0',
-  body text,
-  author_name varchar(50) default NULL,
-  author_email varchar(100) default NULL,
-  author_link varchar(100) default NULL,
-  is_approved tinyint(1) unsigned NOT NULL default '1',
-  created_on datetime default NULL,
-  PRIMARY KEY  (id),
-  KEY page_id (page_id),
-  KEY created_on (created_on)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8");
-
-
 // Table structure for table: layout -----------------------------------------
 
 $PDO->exec("CREATE TABLE ".TABLE_PREFIX."layout (
@@ -42,6 +24,8 @@ $PDO->exec("CREATE TABLE ".TABLE_PREFIX."page (
   title varchar(255) default NULL,
   slug varchar(100) default NULL,
   breadcrumb varchar(160) default NULL,
+  keywords varchar(255) default NULL,
+  description text,
   parent_id int(11) unsigned default NULL,
   layout_id int(11) unsigned default NULL,
   behavior_id varchar(25) NOT NULL,

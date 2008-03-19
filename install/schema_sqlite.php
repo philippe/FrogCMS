@@ -1,20 +1,5 @@
 <?php
 
-// Table structure for table: comment ----------------------------------------
-
-$PDO->exec("CREATE TABLE comment (
-    id INTEGER NOT NULL PRIMARY KEY,
-    page_id int(11) NOT NULL default '0',
-    body text ,
-    author_name varchar(50) default NULL ,
-    author_email varchar(100) default NULL ,
-    author_link varchar(100) default NULL , 
-    is_approved tinyint(1) NOT NULL default '1' , 
-    created_on datetime default NULL 
-)");
-$PDO->exec("CREATE INDEX comment_page_id ON comment (page_id)");
-$PDO->exec("CREATE INDEX comment_created_on ON comment (created_on)");
-
 
 // Table structure for table: layout -----------------------------------------
 
@@ -38,7 +23,9 @@ $PDO->exec("CREATE TABLE page (
     id INTEGER NOT NULL PRIMARY KEY,
     title varchar(255) default NULL ,
     slug varchar(100) default NULL , 
-    breadcrumb varchar(160) default NULL , 
+    breadcrumb varchar(160) default NULL ,
+    keywords varchar(255) default NULL ,
+    description text , 
     parent_id int(11) default NULL , 
     layout_id int(11) default NULL , 
     behavior_id varchar(25) NOT NULL , 

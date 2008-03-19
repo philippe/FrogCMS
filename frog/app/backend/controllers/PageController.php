@@ -183,6 +183,8 @@ class PageController extends Controller
         
         $page->setFromData($data);
         
+        Observer::notify('page_edit_before_save');
+        
         if ($page->save())
         {
             // get data for parts of this page

@@ -49,13 +49,17 @@ if (!defined('DEFAULT_ACTION'))     define('DEFAULT_ACTION', 'index');
 error_reporting((DEBUG ? E_ALL : 0));
 
 // no more quotes escaped with a backslash
-if (PHP_VERSION < 6) {
+if (PHP_VERSION < 6)
     set_magic_quotes_runtime(0);
-}
 
-if ( ! ini_get('session.auto_start') || strtolower(ini_get('session.auto_start')) == 'off') {
+if ( ! isset($_SESSION))
     session_start();
-}
+
+ini_set('date.timezone', DEFAULT_TIMEZONE);
+if(function_exists('date_default_timezone_set'))
+    date_default_timezone_set(DEFAULT_TIMEZONE);
+else
+    putenv('TZ='.DEFAULT_TIMEZONE);
 
 /**
  * The Dispatcher main Core class is responsible for mapping urls /

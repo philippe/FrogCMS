@@ -51,6 +51,7 @@ h2 { }
 
 #info { background: #EDFE86; }
 #error { background: #a22; color: #fff; }
+#error a { color: #fff; font-weight: bold; }
 #success { background: #cfc; color: #051; }
 
 /* Index table ------------------------------------------------------------ */

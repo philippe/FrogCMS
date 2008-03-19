@@ -33,3 +33,8 @@ define('URL_SUFFIX', '<?php echo $url_suffix; ?>');
 
 // if your server doesn't have PDO (with MySQL driver) set the below to false
 define('USE_PDO', <?php echo $use_pdo ? 'true': 'false'; ?>);
+
+// Set the timezone of your choise
+// go here for more information of the available timezone:
+// http://php.net/timezones
+define('DEFAULT_TIMEZONE', '<?php $tz = date('e'); echo $tz != 'e' ? $tz: 'GMT'; ?>');

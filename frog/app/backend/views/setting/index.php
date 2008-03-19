@@ -22,22 +22,21 @@
 <?php $loaded_plugins = Plugin::$plugins; ?>
 <?php $loaded_filters = Filter::$filters; ?>
 <?php foreach(Plugin::findAll() as $plugin): ?>
-    <tr>
+    <?php $disabled = (isset($plugin->require_frog_version) and $plugin->require_frog_version > FROG_VERSION); ?>
+    <tr<?php if ($disabled) echo ' class="disabled"'; ?>>
       <td class="plugin">
-        <h4><?php echo $plugin->title; ?></h4>
-        <p><?php echo $plugin->description; ?></p>
+        <h4><?php echo $plugin->title; ?><span class="from"><?php if (isset($plugin->author)) echo ' '.__('from').' '.$plugin->author; ?></span></h4>
+        <p><?php echo $plugin->description; ?> <?php if ($disabled) echo '<span class="notes">'.__('This plugin CAN NOT be enable. It require Frog version :v', array(':v' => $plugin->require_frog_version)).'</span>'; ?></p>
       </td>
       <td class="website"><a href="<?php echo $plugin->website; ?>" target="_blank"><?php echo __('Website') ?></a></td>
       <td class="version"><?php echo $plugin->version; ?></td>
-      <td class="enabled"><input type="checkbox" name="enabled_<?php echo $plugin->id; ?>" value="<?php echo $plugin->id; ?>"<?php if (isset($loaded_plugins[$plugin->id])) echo ' checked="checked"'; ?> onclick="new Ajax.Request('<?php echo get_url('setting'); ?>'+(this.checked ? '/activate_plugin/':'/deactivate_plugin/')+this.value, {method: 'get'});" /></td>
+      <td class="enabled"><input type="checkbox" name="enabled_<?php echo $plugin->id; ?>" value="<?php echo $plugin->id; ?>"<?php if (isset($loaded_plugins[$plugin->id])) echo ' checked="checked"'; if ($disabled) echo ' disabled="disabled"'; ?> onclick="new Ajax.Request('<?php echo get_url('setting'); ?>'+(this.checked ? '/activate_plugin/':'/deactivate_plugin/')+this.value, {method: 'get'});" /></td>
     </tr>
 <?php endforeach; ?>
   </tbody>
 </table>
 <script type="text/javascript">
-// <![CDATA[
   new RuledTable('plugins');
-// ]]>
 </script>
 
         </div>
@@ -100,25 +99,6 @@
         </td>
         <td class="help"><?php echo __('Only for filter in pages, NOT in snippets'); ?></td>
       </tr>
-      <tr>
-        <td colspan="3"><h3><?php echo __('Optional component'); ?></h3></td>
-      </tr>
-      <tr>
-        <td class="label"><label for="setting_enable_comment-yes"><?php echo __('Enable comments'); ?></label></td>
-        <td class="field">
-          <input class="radio" id="setting_enable_comment-yes" name="setting[enable_comment]" size="10" type="radio" value="1"<?php if (Setting::get('enable_comment')) echo ' checked="checked"'; ?> /><label for="setting_enable_comment-yes"> <?php echo __('yes'); ?> </label> &nbsp; 
-          <input class="radio" id="setting_enable_comment-no" name="setting[enable_comment]" size="10" type="radio" value="0"<?php if ( ! Setting::get('enable_comment')) echo ' checked="checked"'; ?> /><label for="setting_enable_comment-no"> <?php echo __('no'); ?> </label>
-        </td>
-        <td class="help">&nbsp;</td>
-      </tr>
-      <tr>
-        <td class="label"><label for="setting_auto_approve_comment-yes"><?php echo __('Auto approve comments'); ?></label></td>
-        <td class="field">
-          <input class="radio" id="setting_auto_approve_comment-yes" name="setting[auto_approve_comment]" size="10" type="radio" value="1"<?php if (Setting::get('auto_approve_comment')) echo ' checked="checked"'; ?> /><label for="setting_auto_approve_comment-yes"> <?php echo __('yes'); ?> </label> &nbsp; 
-          <input class="radio" id="setting_auto_approve_comment-no" name="setting[auto_approve_comment]" size="10" type="radio" value="0"<?php if ( ! Setting::get('auto_approve_comment')) echo ' checked="checked"'; ?> /><label for="setting_auto_approve_comment-no"> <?php echo __('no'); ?> </label>
-        </td>
-        <td class="help">&nbsp;</td>
-      </tr>
   </table>
 
   <p class="buttons">
@@ -128,9 +108,7 @@
 </form>
 
 <script type="text/javascript">
-// <![CDATA[
-Field.activate('user_name');
-// ]]>
+  Field.activate('user_name');
 </script>
 
         </div>
@@ -138,10 +116,8 @@ Field.activate('user_name');
 </div>
 </div>
 <script type="text/javascript">
-// <![CDATA[
   var tabControlMeta = new TabControl('tab-control-admin');
   tabControlMeta.addTab('tab-plugin', '<?php echo __('Plugins'); ?>', 'plugin-page');
   tabControlMeta.addTab('tab-setting', '<?php echo __('Settings'); ?>', 'setting-page');
   tabControlMeta.select(tabControlMeta.firstTab());
-// ]]>
 </script>

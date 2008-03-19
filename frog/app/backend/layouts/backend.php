@@ -41,15 +41,12 @@
 <?php endif; ?>
 
 <?php foreach (Plugin::$controllers as $plugin_name => $plugin): ?>
-          <li><a href="<?php echo get_url('plugin/'.$plugin_name); ?>"<?php if ($ctrl=='plugin' && $action==$plugin_name) echo ' class="current"'; ?>><?php echo __($plugin->label); ?></a></li>
+          <li class="plugin"><a href="<?php echo get_url('plugin/'.$plugin_name); ?>"<?php if ($ctrl=='plugin' && $action==$plugin_name) echo ' class="current"'; ?>><?php echo __($plugin->label); ?></a></li>
 <?php endforeach; ?>
 
 <?php if (AuthUser::hasPermission('administrator')): ?> 
           <li class="right"><a href="<?php echo get_url('setting'); ?>"<?php if ($ctrl=='setting') echo ' class="current"'; ?>><?php echo __('Administration'); ?></a></li>
           <li class="right"><a href="<?php echo get_url('user'); ?>"<?php if ($ctrl=='user') echo ' class="current"'; ?>><?php echo __('Users'); ?></a></li>
-<?php endif; ?>
-<?php if (Setting::get('enable_comment')): ?> 
-          <li class="right"><a href="<?php echo get_url('comment'); ?>"<?php if ($ctrl=='comment') echo ' class="current"'; ?>><?php echo __('Comments'); ?></a></li>
 <?php endif; ?>
         </ul>
       </div>

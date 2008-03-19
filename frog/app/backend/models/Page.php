@@ -19,6 +19,8 @@ class Page extends Record
     public $title;
     public $slug;
     public $breadcrumb;
+    public $keywords;
+    public $description;
     public $content;
     public $parent_id;
     public $layout_id;

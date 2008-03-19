@@ -347,6 +347,23 @@ table.index td.note {
   top: 7px;
   right: 10px;
 }
+
+#plugins .disabled td {
+	color: #a22;
+}
+#plugins td .notes {
+	padding: 2px 5px;
+	border: 1px solid #ddd;
+	background-color: #eee;
+	font-size: .83em;
+	color: #222;
+}
+#plugins .plugin h4 .from
+{
+	font-size: .83em;
+	font-weight: normal;
+	color: #999;
+}
 /* Site Map --------------------------------------------------------------- */
 
 #site-map-root .node.level-0 .page,
@@ -487,12 +504,6 @@ table.index td.note {
   margin-right: 2em;
   margin-bottom: 1em;
 }
-.form-area .more-or-less {
-  float: left;
-  margin-top: 0;
-  margin-bottom: 1em;
-  width: 100%;
-}
 .form-area .fieldset {
   margin-right: .5em;
 }
@@ -614,6 +625,10 @@ table.fieldset .error-with-field small {
   margin-top: .30em;
   margin-bottom: 20px;
 }
+#meta-pages #div-metadata #page_description {
+  height: 40px;
+}
+
 #content textarea {
   padding: 3px 0;
   width: 100%;

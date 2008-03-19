@@ -8,6 +8,12 @@ require APP_PATH . '/frontend/classes/Page.php';
 if ( ! defined('HELPER_PATH')) define('HELPER_PATH', CORE_ROOT.'/helpers');
 if ( ! defined('URL_SUFFIX')) define('URL_SUFFIX', '');
 
+ini_set('date.timezone', DEFAULT_TIMEZONE);
+if(function_exists('date_default_timezone_set'))
+    date_default_timezone_set(DEFAULT_TIMEZONE);
+else
+    putenv('TZ='.DEFAULT_TIMEZONE);
+
 // Intialize Setting and Plugin
 Setting::init();
 Plugin::init();
@@ -243,11 +249,6 @@ function main()
     if (is_object($page))
     {
         Observer::notify('page_found', $page);
-        
-        // check if we need to save a comment
-        if (isset($_POST['comment']))
-            $page->_saveComment($_POST['comment']);
-        
         $page->_executeLayout();
     }
     else page_not_found();
