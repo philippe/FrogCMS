@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('I18N_PATH'))      define('I18N_PATH',   APP_PATH.DIRECTORY_SEPARATOR.'i18n');
+defined('I18N_PATH') or define('I18N_PATH', APP_PATH.DIRECTORY_SEPARATOR.'i18n');
 define('DEFAULT_LOCALE', 'en');
 
 /**
@@ -35,51 +35,48 @@ define('DEFAULT_LOCALE', 'en');
  */
 function __($string, $args=null, $catalog='message')
 {
-    if (I18n::getLocale() != DEFAULT_LOCALE) {
-        $string = I18n::getText($string, $catalog);
-    }
-    
-    if ($args === null) return $string;
-    
-    return strtr($string, $args);
+	if (I18n::getLocale() != DEFAULT_LOCALE)
+		$string = I18n::getText($string, $catalog);
+
+	if ($args === null) return $string;
+	
+	return strtr($string, $args);
 }
 
 class I18n 
 {
-    private static $locale = DEFAULT_LOCALE;
-    private static $catalogs = array();
-    
-    public static function setLocale($locale)
-    {
-        self::$locale = $locale;
-    }
-    
-    public static function getLocale()
-    {
-        return self::$locale;
-    }
-    
-    public static function getText($string, $catalog='message')
-    {
-        if ( ! isset(self::$catalogs[$catalog])) {
-            self::loadCatalog($catalog);
-        }
-            
-        $i18n =& self::$catalogs[$catalog];
-        return isset($i18n[$string]) ? $i18n[$string] : $string;
-    }
-    
-    public static function loadCatalog($catalog)
-    {
-        $catalog_file = I18N_PATH.DIRECTORY_SEPARATOR.self::$locale.'-'.$catalog.'.php';
-        
-        // assign returned value of catalog file
-        if (file_exists($catalog_file)) {
-            // will return a array (source => traduction)
-            self::$catalogs[$catalog] = include $catalog_file;
-        } else {
-            self::$catalogs[$catalog] = array();
-        }
-    }
+	private static $locale = DEFAULT_LOCALE;
+	private static $catalogs = array();
+	
+	public static function setLocale($locale)
+	{
+		self::$locale = $locale;
+	}
+	
+	public static function getLocale()
+	{
+		return self::$locale;
+	}
+	
+	public static function getText($string, $catalog='message')
+	{
+		if ( ! isset(self::$catalogs[$catalog]))
+			self::loadCatalog($catalog);
+
+		$i18n =& self::$catalogs[$catalog];
+		return isset($i18n[$string]) ? $i18n[$string] : $string;
+	}
+	
+	public static function loadCatalog($catalog)
+	{
+		$catalog_file = I18N_PATH.DIRECTORY_SEPARATOR.self::$locale.'-'.$catalog.'.php';
+
+		// assign returned value of catalog file
+		// file return a array (source => traduction)
+		if (file_exists($catalog_file))
+			self::$catalogs[$catalog] = include $catalog_file;
+		else
+			self::$catalogs[$catalog] = array();
+	}
 
 } // end I18n class
