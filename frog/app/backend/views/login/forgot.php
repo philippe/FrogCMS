@@ -6,8 +6,9 @@
   <base href="<?php echo trim(BASE_URL, '?/').'/'; ?>" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <link href="stylesheets/login.css" rel="Stylesheet" type="text/css" />
-  <link href="themes/<?php echo Setting::get('theme'); ?>.css" id="css_theme" media="screen" rel="Stylesheet" type="text/css" />
+  <link href="themes/<?php echo Setting::get('theme'); ?>/styles.css" id="css_theme" media="screen" rel="Stylesheet" type="text/css" />
   <script src="javascripts/prototype.js" type="text/javascript"></script>
+  <script src="javascripts/effects.js" type="text/javascript"></script>
 </head>
 <body>
   <div id="dialog">
