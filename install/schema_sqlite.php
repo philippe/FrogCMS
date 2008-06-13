@@ -30,7 +30,6 @@ $PDO->exec("CREATE TABLE page (
     layout_id int(11) default NULL , 
     behavior_id varchar(25) NOT NULL , 
     status_id int(11) NOT NULL default '100' , 
-    comment_status varchar(6) NOT NULL default 'none' , 
     created_on datetime default NULL , 
     published_on datetime default NULL , 
     updated_on datetime default NULL , 
