@@ -62,6 +62,8 @@ class Page
     public $updator;
     public $updator_id;
     public $slug = '';
+    public $keywords = '';
+    public $description = '';
     public $url = '';
     
     public $parent = false;
@@ -95,6 +97,8 @@ class Page
     public function updator() { return $this->updator; }
     public function updatorId() { return $this->updator_id; }
     public function slug() { return $this->slug; }
+    public function keywords() { return $this->keywords; }
+    public function description() { return $this->description; }
     public function url() { return BASE_URL . $this->url . ($this->url != '' ? URL_SUFFIX: ''); }
     
     public function level()
