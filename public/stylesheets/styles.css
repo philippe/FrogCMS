@@ -217,7 +217,7 @@ input, select, th, td {font-size:1em}
   margin: 7px 0 20px 20px;
 }
 #sidebar ul li {
-  height: 18px;
+  line-height: 18px;
   list-style: square;
 }	
 #sidebar a {
