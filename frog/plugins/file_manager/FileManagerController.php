@@ -77,12 +77,18 @@ class FileManagerController extends PluginController
         $file = FILES_DIR.'/'.$data['name'];
         if (file_exists($file))
         {
-            file_put_contents($file, $data['content']);
-            Flash::set('success', 'File has been saved with success!');
+            if (file_put_contents($file, $data['content']))
+            {
+                Flash::set('success', __('File has been saved with success!'));
+            }
+            else
+            {
+                Flash::set('error', __('File is not writable! File has not been saved!'));
+            }
         }
         else
         {
-            if (file_put_contents($file, $data['content']) !== false)
+            if (file_put_contents($file, $data['content']))
             {
                 Flash::set('success', __('File :name has been created with success!', array(':name'=>$data['name'])));
             }
