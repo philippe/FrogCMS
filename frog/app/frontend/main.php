@@ -238,9 +238,10 @@ function main()
     }
     
     // remove suffix page if founded
-    $uri = preg_replace('/^(.*)('.URL_SUFFIX.')$/i', "$1", $uri);
+    if (URL_SUFFIX !== '' and URL_SUFFIX !== '/')
+        $uri = preg_replace('#^(.*)('.URL_SUFFIX.')$#i', "$1", $uri);
     
-    define ('CURRENT_URI', trim($uri, '/'));
+    define('CURRENT_URI', trim($uri, '/'));
     
     // this is where 80% of the things is done 
     $page = find_page_by_uri($uri);

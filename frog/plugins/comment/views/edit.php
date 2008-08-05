@@ -9,6 +9,6 @@
   </div>
   <p class="buttons">
     <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save'); ?>" />
-    <?php echo __('or'); ?> <a href="<?php echo get_url('comment'); ?>"><?php echo __('Cancel'); ?></a>
+    <?php echo __('or'); ?> <a href="<?php echo get_url('plugin/comment'); ?>"><?php echo __('Cancel'); ?></a>
   </p>
 </form>
