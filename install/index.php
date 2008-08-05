@@ -10,14 +10,12 @@ if (file_exists($config_file))
   include $config_file;
 
 $msg = '';
+$PDO = false;
 
 // lets install this nice little CMS
 if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file) && is_writable($config_file)))
 { 
     $config_tmpl = new Template('config.tmpl');
-    
-    // add type of database manualy
-    $_POST['config']['db_type'] = 'mysql'; 
     
     $config_tmpl->assign($_POST['config']);
     $config_content = $config_tmpl->fetch();
@@ -29,12 +27,21 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
     
     if (USE_PDO)
     {
-        $PDO = new PDO(DB_DSN, DB_USER, DB_PASS);
+        try {
+            $PDO = new PDO(DB_DSN, DB_USER, DB_PASS);
+        } catch (PDOException $e) {
+            $msg = 'Frog has not been installed properly.<br />The following error has occured: <p><strong>'. $e->getMessage() ."</strong></p>\n";
+            file_put_contents($config_file, '');
+        }
     }
-    else
+    else if ($_POST['config']['db_driver'] == 'mysql')
     {
         require_once CORE_ROOT . '/libraries/DoLite.php';
         $PDO = new DoLite(DB_DSN, DB_USER, DB_PASS);
+    }
+    else
+    {
+        $msg = "Frog has not been installed properly.<br />You need PDO and SQLite 3 drive to use SQLite 3.<br />\n";
     }
     
     if ($PDO)
@@ -44,10 +51,10 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
         include 'schema_'.$_POST['config']['db_driver'].'.php';
         include 'sql_data.php';
         
-        $msg .= '<p>Tables loaded successfully! you can login with: <br /><strong>login</strong>: admin<br /><strong>password</strong>: password<br />
+        $msg .= '<p>Tables loaded successfully!</p><p>You can login with: <br /><br /><strong>login</strong>: admin<br /><strong>password</strong>: password<br /><br />
         <strong>at</strong>: <a href="../admin/">login page</a></p>';
     }
-    else $error = '<p style="color: red;">Unable to connect to the database! Tables are not loaded! Delete the content of <b>config.php</b> file and try again. </p>';
+    else $error = 'Unable to connect to the database! Tables are not loaded!';
 }
 
 ?>
@@ -88,7 +95,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
     <tr>
       <td colspan="3"><h3>Database information</h3></td>
     </tr>
-    <tr>
+    <!--tr>
       <td class="label"><label for="use_pdo-yes">Use <a href="http://php.net/pdo" target="_blank">PDO</a></label></td>
       <td class="field">
         <input class="radio" id="use_pdo-yes" name="config[use_pdo]" size="10" type="radio" value="1" checked="checked" /><label for="use_pdo-yes"> yes </label>
@@ -106,7 +113,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
         </script>
       </td>
       <td class="help">Required. If you have PDO with MySQL or SQLite 3 driver installed on your server, it is highly recommended that you select "Yes".</td>
-    </tr>
+    </tr-->
     <tr>
       <td class="label"><label for="config_db_driver">Database driver</label></td>
       <td class="field">
@@ -120,11 +127,12 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
             Element.toggle('row-db-host');
             Element.toggle('row-db-user');
             Element.toggle('row-db-pass');
-            
+            Element.toggle('row-table-prefix');
+
             if (driver == 'sqlite')
             {
-              $('use_pdo-yes').checked = 'checked';
-              $('help-db-name').innerHTML = 'Required. Write the absolute path to the database file.';
+              //$('use_pdo-yes').checked = 'checked';
+              $('help-db-name').innerHTML = 'Required. Write the <strong>absolute</strong> path to the database file.';
             }
             else if (driver == 'mysql')
             {
@@ -151,12 +159,12 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
       <td class="field"><input class="textbox" id="config_db_pass" maxlength="40" name="config[db_pass]" size="40" type="password" value="" /></td>
       <td class="help">Optional. If there is no database password, leave it blank.</td>
     </tr>
-    <tr>
+    <tr id="row-db-name">
       <td class="label"><label for="config_db_name">Database name</label></td>
       <td class="field"><input class="textbox" id="config_db_name" maxlength="40" name="config[db_name]" size="40" type="text" value="frog" /></td>
       <td class="help" id="help-db-name">Required. You have to create a database manually and enter its name here.</td>
     </tr>
-    <tr>
+    <tr id="row-table-prefix">
       <td class="label"><label class="optional" for="config_table_prefix">Table prefix</label></td>
       <td class="field"><input class="textbox" id="config_table_prefix" maxlength="40" name="config[table_prefix]" size="40" type="text" value="" /></td>
       <td class="help">Optional. To prevent conflicts if you have, or plan to have, multiple Frog installations with a single database.</td>
@@ -178,11 +186,15 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
 </form>
 
 <?php else: ?>
-    <?php echo $msg; ?> 
+    <?php echo $msg; ?>
 
-    <?php if (isset($error)) echo $error; ?> 
-
+    <?php if (isset($error)): ?>
+    <p style="color: red;"><?php echo $error; ?></p>
+    <p><a href="index.php">Click here and try again</a></p>
+    <?php else: ?>
     <p><strong>Frog CMS</strong> is installed, <b>you must delete the <em>install/</em> folder now!</b></p>
+    <?php endif; ?>
+
 <?php endif; ?>
 
     </div>
