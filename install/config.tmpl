@@ -32,7 +32,7 @@ define('USE_MOD_REWRITE', false);
 define('URL_SUFFIX', '<?php echo $url_suffix; ?>');
 
 // if your server doesn't have PDO (with MySQL driver) set the below to false
-define('USE_PDO', <?php echo class_exists('PDO') ? 'true': 'false'; ?>);
+define('USE_PDO', <?php echo $use_pdo ? 'true': 'false'; ?>);
 
 // Set the timezone of your choise
 // go here for more information of the available timezone:

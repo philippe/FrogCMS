@@ -14,7 +14,13 @@ $PDO = false;
 
 // lets install this nice little CMS
 if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file) && is_writable($config_file)))
-{ 
+{
+    $_POST['config']['use_pdo'] = class_exists('PDO');
+
+    // check if the PDO driver we need is installed
+    if ($_POST['config']['use_pdo'] and !in_array($_POST['config']['db_driver'], PDO::getAvailableDrivers()))
+        $_POST['config']['use_pdo'] = false;
+
     $config_tmpl = new Template('config.tmpl');
     
     $config_tmpl->assign($_POST['config']);
