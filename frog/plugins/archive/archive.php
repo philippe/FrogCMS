@@ -48,10 +48,10 @@ class Archive
         if ($page)
         {
             $this->page = $page;
-            $month = isset($params[1]) ? $params[1]: 1;
-            $day = isset($params[2]) ? $params[2]: 1;
+            $month = isset($params[1]) ? (int)$params[1]: 1;
+            $day = isset($params[2]) ? (int)$params[2]: 1;
 
-            $this->page->time = mktime(0, 0, 0, $month, $day, $params[0]);
+            $this->page->time = mktime(0, 0, 0, $month, $day, (int)$params[0]);
         }
         else
         {
