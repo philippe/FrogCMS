@@ -9,10 +9,10 @@
             <div id="tab-meta-toolbar" class="tab_toolbar">&nbsp;</div>
         </div>
         <div id="meta-pages" class="pages">
-            <div id="div-title" class="title">
+            <div id="div-title" class="title" title="<?php echo __('Page Title'); ?>">
               <input class="textbox" id="page_title" maxlength="255" name="page[title]" size="255" type="text" value="<?php echo $page->title; ?>" />
             </div>
-            <div id="div-metadata">
+            <div id="div-metadata" title="<?php echo __('Metadata'); ?>">
               <table cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td class="label"><label for="page_slug"><?php echo __('Slug'); ?></label></td>
@@ -58,8 +58,9 @@
     
     <script type="text/javascript">
       var tabControlMeta = new TabControl('tab-control-meta');
-      tabControlMeta.addTab('tab-title', '<?php echo __('Page Title'); ?>', 'div-title');
-      tabControlMeta.addTab('tab-metadata', '<?php echo __('Metadata'); ?>', 'div-metadata');
+      $('meta-pages').childElements().each(function(item) {
+        tabControlMeta.addTab('tab-'+item.id, item.title, item.id);
+      });
       tabControlMeta.select(tabControlMeta.firstTab());
     </script>
 
@@ -149,7 +150,7 @@
     </form>
   </div>
 
-<?php Observer::notify('view.page.edit.popup'); ?>
+<?php Observer::notify('view_page_edit_popup'); ?>
 
 </div>
 
