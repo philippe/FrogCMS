@@ -33,10 +33,10 @@ define('DEFAULT_LOCALE', 'en');
  *      '%year%' => $year, 
  *      '%time%' => $time)); // Publié par demo le 3 janvier 2006 à 19:30
  */
-function __($string, $args=null, $catalog='message')
+function __($string, $args=null)
 {
 	if (I18n::getLocale() != DEFAULT_LOCALE)
-		$string = I18n::getText($string, $catalog);
+		$string = I18n::getText($string);
 
 	if ($args === null) return $string;
 	
@@ -46,11 +46,13 @@ function __($string, $args=null, $catalog='message')
 class I18n 
 {
 	private static $locale = DEFAULT_LOCALE;
-	private static $catalogs = array();
+	private static $array = array();
 	
 	public static function setLocale($locale)
 	{
 		self::$locale = $locale;
+		if ($locale != DEFAULT_LOCALE)
+			self::loadArray();
 	}
 	
 	public static function getLocale()
@@ -58,25 +60,28 @@ class I18n
 		return self::$locale;
 	}
 	
-	public static function getText($string, $catalog='message')
+	public static function getText($string)
 	{
-		if ( ! isset(self::$catalogs[$catalog]))
-			self::loadCatalog($catalog);
-
-		$i18n =& self::$catalogs[$catalog];
-		return isset($i18n[$string]) ? $i18n[$string] : $string;
+		return isset(self::$array[$string]) ? self::$array[$string] : $string;
 	}
 	
-	public static function loadCatalog($catalog)
+	public static function loadArray()
 	{
-		$catalog_file = I18N_PATH.DIRECTORY_SEPARATOR.self::$locale.'-'.$catalog.'.php';
+		$catalog_file = I18N_PATH.DIRECTORY_SEPARATOR.self::$locale.'-message.php';
 
 		// assign returned value of catalog file
 		// file return a array (source => traduction)
 		if (file_exists($catalog_file))
-			self::$catalogs[$catalog] = include $catalog_file;
-		else
-			self::$catalogs[$catalog] = array();
+		{
+			$array = include $catalog_file;
+			self::add($array);
+		}
+	}
+	
+	public static function add($array)
+	{
+		if (!empty($array))
+			self::$array = array_merge(self::$array, $array);
 	}
 
 } // end I18n class

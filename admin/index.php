@@ -44,12 +44,14 @@ else
 Record::connection($__FROG_CONN__);
 Record::getConnection()->exec("set names 'utf8'");
 
-// Initialize settings and plugins
+// Initialize settings
 Setting::init();
-Plugin::init();
 
 use_helper('I18n');
 I18n::setLocale(Setting::get('language'));
+
+// Initialize Plugin
+Plugin::init();
 
 // Get controller and action and execute...
 Dispatcher::dispatch();

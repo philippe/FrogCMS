@@ -27,6 +27,13 @@ class Plugin
 			$file = CORE_ROOT.'/plugins/'.$plugin_id.'/index.php';
 			if (file_exists($file))
 				include $file;
+			
+			$file = CORE_ROOT.'/plugins/'.$plugin_id.'/i18n/'.I18n::getLocale().'-message.php';
+			if (file_exists($file))
+			{
+				$array = include $file;
+				I18n::add($array);
+			}
 		}
 	}
 

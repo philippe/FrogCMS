@@ -1,6 +1,6 @@
 ## About
 
-Frog is a migration of Radiant CMS from ruby to PHP. You are free to 
+Frog CMS is a migration of Radiant CMS from ruby to PHP. You are free to 
 use, modify or ... read the license.txt to all details.
 
 ## Requirements
@@ -11,7 +11,7 @@ PHP (5) and MySQL with InnoDB support. Apache is recommanded.
 * MySQL  : http://www.mysql.com/
 * Apache : http://www.apache.org/
 
-this is what I WAS using, if there's some probleme juste email me...
+this is what I WAS using, if there's some probleme just email me...
 now I use a php 5.2 with PDO and it work just better and faster :D
 please participate with us to make all peoples upgrading to php 5.2 
 beacause php 4 suck alot ;) as Ilia says 
