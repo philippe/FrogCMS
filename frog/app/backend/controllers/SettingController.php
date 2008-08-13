@@ -1,15 +1,32 @@
 <?php
 
 /**
- * class SettingsController
- *
- * @author Philippe Archambault <philippe.archambault@gmail.com>
- * @since  0.8.7
+   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+   Class SettingsController
+
+   Since  0.8.7
  */
 
 class SettingController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
         AuthUser::load();
         if ( ! AuthUser::isLoggedIn())
@@ -25,7 +42,7 @@ class SettingController extends Controller
         $this->setLayout('backend');
     }
     
-    function index()
+    public function index()
     {
         // check if trying to save
         if (get_request_method() == 'POST')
@@ -34,7 +51,7 @@ class SettingController extends Controller
         $this->display('setting/index');
     }
     
-    function _save()
+    private function _save()
     {
         Setting::saveFromData($_POST['setting']);
         
@@ -43,7 +60,7 @@ class SettingController extends Controller
         redirect(get_url('setting'));
     }
     
-    function activate_plugin($plugin)
+    public function activate_plugin($plugin)
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {
@@ -54,7 +71,7 @@ class SettingController extends Controller
         Plugin::activate($plugin);
     }
     
-    function deactivate_plugin($plugin)
+    public function deactivate_plugin($plugin)
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {
@@ -64,6 +81,7 @@ class SettingController extends Controller
         
         Plugin::deactivate($plugin);
     }
+
 } // end SettingController class
 
 $GLOBALS['iso_639_1'] = array(

@@ -1,16 +1,33 @@
 <?php 
 
 /**
- * class UserController
- *
- * @author Philippe Archambault <philippe.archambault@gmail.com>
- * @since    0.1
+   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+/**
+   Class UserController
+
+   Since    0.1
  */
 
 class UserController extends Controller
 {
 
-    function __construct()
+    public function __construct()
     {
         AuthUser::load();
         if ( ! AuthUser::isLoggedIn())
@@ -20,7 +37,7 @@ class UserController extends Controller
         $this->assignToLayout('sidebar', new View('user/sidebar'));
     }
     
-    function index()
+    public function index()
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {
@@ -33,7 +50,7 @@ class UserController extends Controller
         ));
     }
     
-    function add()
+    public function add()
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {
@@ -58,7 +75,7 @@ class UserController extends Controller
         ));
     }
     
-    function _add()
+    private function _add()
     {
         $data = $_POST['user'];
         
@@ -98,7 +115,7 @@ class UserController extends Controller
         redirect(get_url('user'));
     }
     
-    function edit($id)
+    public function edit($id)
     {
         if ( AuthUser::getId() != $id && ! AuthUser::hasPermission('administrator'))
         {
@@ -124,7 +141,7 @@ class UserController extends Controller
         
     } // edit
     
-    function _edit($id)
+    private function _edit($id)
     {
         $data = $_POST['user'];
         
@@ -168,7 +185,7 @@ class UserController extends Controller
         
     }
     
-    function delete($id)
+    public function delete($id)
     {
         if ( ! AuthUser::hasPermission('administrator'))
         {

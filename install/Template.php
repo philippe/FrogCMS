@@ -1,12 +1,21 @@
 <?php
 
 /**
- * Template class
- *
- * @version 0.2
- * @package Frog
- * @author Philippe Archambault <philippe.archambault@gmail.com>
- * @license http://www.opensource.org/licenses/mit-license.html MIT License
+   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 class Template
@@ -42,7 +51,7 @@ class Template
         } else {
             $this->_vars[$name] = $value;
         }
-    } // assign
+    }
 
     /**
      * Display template and return output as string
@@ -56,7 +65,7 @@ class Template
             return ob_get_clean();
         }
         ob_end_clean();
-    } // fetch
+    }
 
     /**
      * Display template
@@ -66,7 +75,7 @@ class Template
     public function display()
     {
         return $this->_includeTemplate();
-    } // display
+    }
 
     /**
      * Include specific template
@@ -81,6 +90,6 @@ class Template
             return true;
         }
         return false;
-    } // _includeTemplate
+    }
 
 } // End Template class

@@ -1,6 +1,24 @@
 <?php
 
-//  Constantes ---------------------------------------------------------------
+/**
+   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+//  Constantes  --------------------------------------------------------------
 
 define('FROG_VERSION', '0.9.3');
 
@@ -19,16 +37,15 @@ define('COOKIE_PATH', '/');
 define('COOKIE_DOMAIN', '');
 define('COOKIE_SECURE', false);
 
-
-//  Init ---------------------------------------------------------------------
-
 include FROG_ROOT.'/config.php';
 
 define('BASE_URL', URL_PUBLIC . ADMIN_DIR . (USE_MOD_REWRITE ? '/': '/?/'));
 
 include CORE_ROOT.'/Framework.php';
 
-// database connection
+
+//  Database connection  -----------------------------------------------------
+
 if (USE_PDO)
 {
     $__FROG_CONN__ = new PDO(DB_DSN, DB_USER, DB_PASS);
@@ -44,14 +61,16 @@ else
 Record::connection($__FROG_CONN__);
 Record::getConnection()->exec("set names 'utf8'");
 
-// Initialize settings
+
+//  Initialize  --------------------------------------------------------------
+
 Setting::init();
 
 use_helper('I18n');
 I18n::setLocale(Setting::get('language'));
 
-// Initialize Plugin
 Plugin::init();
 
-// Get controller and action and execute...
+//  Get controller and action and execute  -----------------------------------
+
 Dispatcher::dispatch();

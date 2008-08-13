@@ -1,16 +1,33 @@
 <?php
 
 /**
- * class SnippetsController
- *
- * @author Philippe Archambault <philippe.archambault@gmail.com>
- * @since  0.1
+   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+   Class SnippetsController
+
+   Since  0.1
  */
 
 class SnippetController extends Controller
 {
 
-    function __construct()
+    public function __construct()
     {
         AuthUser::load();
         if ( ! AuthUser::isLoggedIn())
@@ -27,14 +44,14 @@ class SnippetController extends Controller
         $this->assignToLayout('sidebar', new View('snippet/sidebar'));
     }
     
-    function index()
+    public function index()
     {
         $this->display('snippet/index', array(
             'snippets' => Record::findAllFrom('Snippet', '1=1 ORDER BY position')
         ));
     }
     
-    function add()
+    public function add()
     {
         // check if trying to save
         if (get_request_method() == 'POST')
@@ -53,7 +70,7 @@ class SnippetController extends Controller
         ));
     }
     
-    function _add()
+    private function _add()
     {
         $data = $_POST['snippet'];
         Flash::set('post_data', (object) $data);
@@ -74,7 +91,7 @@ class SnippetController extends Controller
             redirect(get_url('snippet/edit/'.$snippet->id));
     }
     
-    function edit($id)
+    public function edit($id)
     {
         if ( ! $snippet = Snippet::findById($id))
         {
@@ -93,7 +110,7 @@ class SnippetController extends Controller
         ));
     }
     
-    function _edit($id)
+    private function _edit($id)
     {
         $data = $_POST['snippet'];
         
@@ -115,7 +132,7 @@ class SnippetController extends Controller
             redirect(get_url('snippet/edit/'.$id));
     }
     
-    function delete($id)
+    public function delete($id)
     {
         // find the user to delete
         if ($snippet = Record::findByIdFrom('Snippet', $id))
@@ -130,7 +147,7 @@ class SnippetController extends Controller
         redirect(get_url('snippet'));
     }
     
-    function reorder()
+    public function reorder()
     {
         parse_str($_POST['data']);
         

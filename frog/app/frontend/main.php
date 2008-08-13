@@ -1,5 +1,23 @@
 <?php
 
+/**
+   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 define('FRAMEWORK_STARTING_MICROTIME', get_microtime());
 
 require APP_PATH . '/frontend/classes/Plugin.php'; // Setting, Plugin, Behavior and Filter classes
@@ -242,6 +260,8 @@ function main()
         $uri = preg_replace('#^(.*)('.URL_SUFFIX.')$#i', "$1", $uri);
     
     define('CURRENT_URI', trim($uri, '/'));
+    
+    Observer::notify('page_requested', $_SERVER['QUERY_STRING']);
     
     // this is where 80% of the things is done 
     $page = find_page_by_uri($uri);

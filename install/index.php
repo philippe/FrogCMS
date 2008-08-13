@@ -1,5 +1,23 @@
 <?php
 
+/**
+   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 define('CORE_ROOT', dirname(__FILE__).'/../frog');
 
 $config_file = '../config.php';
@@ -101,25 +119,6 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
     <tr>
       <td colspan="3"><h3>Database information</h3></td>
     </tr>
-    <!--tr>
-      <td class="label"><label for="use_pdo-yes">Use <a href="http://php.net/pdo" target="_blank">PDO</a></label></td>
-      <td class="field">
-        <input class="radio" id="use_pdo-yes" name="config[use_pdo]" size="10" type="radio" value="1" checked="checked" /><label for="use_pdo-yes"> yes </label>
-        <input class="radio" id="use_pdo-no" name="config[use_pdo]" size="10" type="radio" value="0" onclick="return use_pdo_no_click();" /><label for="use_pdo-no"> no </label>
-        <script type="text/javascript" language="javascript" charset="utf-8">
-         function use_pdo_no_click()
-         {
-           var select_bd_driver = $('config_db_driver');
-           if (select_bd_driver[select_bd_driver.selectedIndex].value == 'sqlite')
-           {
-             alert('SQLite 3 require PDO! If you do not have PDO use MySQL driver!');
-             return false;
-           }
-         }
-        </script>
-      </td>
-      <td class="help">Required. If you have PDO with MySQL or SQLite 3 driver installed on your server, it is highly recommended that you select "Yes".</td>
-    </tr-->
     <tr>
       <td class="label"><label for="config_db_driver">Database driver</label></td>
       <td class="field">

@@ -1,3 +1,22 @@
+
+/**
+   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /* Reset ------------------------------------------------------------------ */
 
 body {background-color: #221E1E;}
@@ -24,7 +43,7 @@ a { color: #147; }
 a:hover { text-decoration: none; }
 p { margin: 1.2em 0 .6em; }
 /*h1 { margin: 0 0 .5em; font-size: 2em; }*/
-h1 { margin: -20px -20px 0; padding: 10px 20px; font-size: 1.5em; }
+h1 { margin: -20px -20px 0; padding: 10px 20px; font-size: 1.5em; text-shadow: -1px 2px 3px #bbb; }
 h2 { margin: 1em 0 .5em; font-size: 1.6em; }
 h3, h4 { margin: .5em 0; font-size: 1.2em; font-weight: bold; }
 
@@ -58,49 +77,50 @@ h3, h4 { margin: .5em 0; font-size: 1.2em; font-weight: bold; }
   margin-top: 19px;
   margin-left: 20px;
   padding-bottom: 20px;
+  text-shadow: -1px 2px 3px #111;
 }
 
 /* Navigation ------------------------------------------------------------- */
 
 #mainTabs {
-    margin: 0 17px 0 20px;
-    height: 29px;
+  margin: 0 17px 0 20px;
+  height: 29px;
 }
 #mainTabs ul {}
 #mainTabs li {
-    display: inline;
-    list-style: none;
-    border: none;
+  display: inline;
+  list-style: none;
+  border: none;
 }
 #mainTabs a:link,
 #mainTabs a:visited {
-    float: left;
-    margin-right: 3px;
-    padding: 6px 8px 5px;
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: normal;
-    text-decoration: none !important;
-    color: #222;
-    background-color: #eee;
-    border-bottom: 2px solid #ccc;
+  float: left;
+  margin-right: 3px;
+  padding: 6px 8px 5px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  text-decoration: none !important;
+  color: #222;
+  background-color: #eee;
+  border-bottom: 2px solid #ccc;
 }
 #mainTabs a:hover {
-    color: #000;
-    background-color: #999;
-    border-color: #777;
+  color: #000;
+  background-color: #999;
+  border-color: #777;
 }
 
 #mainTabs a:link.current,
 #mainTabs a:visited.current {
-    font-weight: bold;
-    text-decoration: none;
-    color: #123;
-    background: #6ad;
-    border-color: #6ad;
+  color: #123;
+  background: #6ad;
+  border-color: #6ad;
+  font-weight: bold;
+  text-decoration: none;
 }
 #mainTabs .right {
-      float: right;
+  float: right;
 }
 
 /* Main ------------------------------------------------------------------- */
@@ -169,6 +189,7 @@ h3, h4 { margin: .5em 0; font-size: 1.2em; font-weight: bold; }
   padding: 0 0 5px 0;
   font-size: 15px;
   border-bottom: 1px solid #ddd;
+  text-shadow: -1px 2px 2px #ddd;
 }
 #sidebar .box {
   margin-bottom: 10px;
