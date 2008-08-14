@@ -1,7 +1,45 @@
-0.9.3
-  removing comment from the core and add them as plugin
-  addmin keywords and description meteada in pages
-  adding execution of enable and desable plugin script
+FROG CMS - Change Log
+
+======
+Sigla:
++ enhancement, addition
+- bug fix
+. other development
+======
+
+0.9.3 - released 2008.08.14
+
++ license change to AGPLv3
++ auto page tabs generation "javascript"
++ i18n for filemanager plugin - fr
++ i18n for plugin api
+- mktime() warning in archive plugin issue fixed
+- installation without PDO driver, but with PDO installed issue fixed
++ new improved installation script ( without choosing the use of PDO )
+. removing autoenabling comment plugin from core website
+- comment plugin edit fixed
++ Adding Russian translation
+- fixed: page updated_on and published_on
++ Adding Czech translation
+- issue #22: Fix for FileManager plugin
+- fixed CSS for ul list line-height
+- fixed sqlite use without mysql driver installed with pdo
++ adding keywords() and description() to page object
++ Bangla/Bengali translation added
++ Polish translation added
+- fixed archive sql data
+. plugin comment enable.php removing update date and id
+. plugin comment enable (snippet - insertion)
+- adding s if more then one comment in sql_data
+- schemas db comment fixed
++ login error effect is now working
+- protolype speeling mistake
+- fixed plugin comment constant usage
+. css border input + prototype.js now in login
+- fixed comment plugin install issue
++ adding Dutch translation
++ comments to moved from core to plugin
+. Hungarian translation revision
   
 0.9.2
   bug fixed: issue 10 Remove Markdown/Textile from default plugin if not enabled
