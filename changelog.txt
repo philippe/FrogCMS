@@ -7,6 +7,11 @@ Sigla:
 . other development
 ======
 
+?.?.? - release ???
+
++ Added display of latest plugin version in Frog admin section
+. Updated dutch translation
+
 0.9.3 - released 2008.08.14
 
 + license change to AGPLv3
@@ -40,7 +45,7 @@ Sigla:
 + adding Dutch translation
 + comments to moved from core to plugin
 . Hungarian translation revision
-  
+
 0.9.2
   bug fixed: issue 10 Remove Markdown/Textile from default plugin if not enabled
   cleaning old files
@@ -113,7 +118,7 @@ Sigla:
   new framework
   new user permission
   new database schemas
-  no more dependencies for PDO 
+  no more dependencies for PDO
   adding DoLite (database object lite)
 
 ... a lot of experimentations have been done here ...
@@ -150,7 +155,7 @@ Sigla:
   zip library is now done
   email library (from code igniter - thanks to them)
   utilisation of php5 PDO
-  
+
 0.1.4
   database abstraction for mysql, postgresql and sqlite
   adding behavior for pages (page plugin like Radiant CMS)
@@ -172,6 +177,6 @@ Sigla:
   adding version.php
   adding markdown filter
   bug fix: filter in snippet is now like in parts
-  
+
 0.1.1
   first public version with 1 week of dev... mega alpha beta version.

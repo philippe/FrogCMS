@@ -15,6 +15,7 @@
       <th class="plugin"><?php echo __('Plugin'); ?></th>
       <th class="website"><?php echo __('Website'); ?></th>
       <th class="version"><?php echo __('Version'); ?></th>
+      <th class="latest"><?php echo __('Latest'); ?></th>
       <th class="enabled"><?php echo __('Enabled'); ?></th>
     </tr>
   </thead>
@@ -30,6 +31,7 @@
       </td>
       <td class="website"><a href="<?php echo $plugin->website; ?>" target="_blank"><?php echo __('Website') ?></a></td>
       <td class="version"><?php echo $plugin->version; ?></td>
+      <td class="latest"><?php echo Plugin::checkLatest($plugin); ?></td>
       <td class="enabled"><input type="checkbox" name="enabled_<?php echo $plugin->id; ?>" value="<?php echo $plugin->id; ?>"<?php if (isset($loaded_plugins[$plugin->id])) echo ' checked="checked"'; if ($disabled) echo ' disabled="disabled"'; ?> onclick="new Ajax.Request('<?php echo get_url('setting'); ?>'+(this.checked ? '/activate_plugin/':'/deactivate_plugin/')+this.value, {method: 'get'});" /></td>
     </tr>
 <?php endforeach; ?>
