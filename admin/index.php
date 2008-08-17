@@ -73,4 +73,4 @@ Plugin::init();
 
 //  Get controller and action and execute  -----------------------------------
 
-Dispatcher::dispatch();
+Dispatcher::dispatch(null, Setting::get('default_tab'));

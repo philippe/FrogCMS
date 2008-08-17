@@ -79,6 +79,9 @@ class Plugin
 		$file = CORE_ROOT.'/plugins/'.$plugin_id.'/enable.php';
 		if (file_exists($file))
 			include $file;
+        
+        $class_name = Inflector::camelize($plugin_id).'Controller';        
+        AutoLoader::addFile($class_name, self::$controllers[$plugin_id]->file);
 	}
 	
 	/**
@@ -179,6 +182,8 @@ class Plugin
 			'file'	=> CORE_ROOT.'/plugins/'.$plugin_id.'/'.$class_name.'.php',
 			'permissions' => $permissions
 		);
+        
+        //AutoLoader::addFile($class_name, self::$controllers[$plugin_id]->file);
 	}
 
 } // end Plugin class

@@ -9,6 +9,7 @@ Sigla:
 
 ?.?.? - release ???
 
++ Added admin section option to choose default tab after login (issue 29)
 + Added display of latest plugin version in Frog admin section
 . Updated dutch translation
 + Added en-messages.php.template to i18n directory of core to assist translators
