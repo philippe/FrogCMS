@@ -99,6 +99,11 @@ class PageController extends Controller
             Flash::set('error', __('You have to specify a title!'));
             redirect(get_url('page/add'));
         }
+
+        // Make sure the title doesn't contain HTML
+        // TODO - Replace this by HTML Purifier?.
+        use_helper('Kses');
+        $data['title'] = kses(trim($data['title']), array());
         
         $page = new Page($data);
         
@@ -199,6 +204,11 @@ class PageController extends Controller
         
         // need to do this because the use of a checkbox
         $data['is_protected'] = !empty($data['is_protected']) ? 1: 0;
+        
+        // Make sure the title doesn't contain HTML
+        // TODO - Replace this by HTML Purifier?.
+        use_helper('Kses');
+        $data['title'] = kses(trim($data['title']), array());
         
         $page->setFromData($data);
  

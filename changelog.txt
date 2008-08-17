@@ -12,6 +12,7 @@ Sigla:
 + Added display of latest plugin version in Frog admin section
 . Updated dutch translation
 + Added en-messages.php.template to i18n directory of core to assist translators
+- Fixed bug allowing HTML code in page title, now filtered with Kses
 
 0.9.3 - released 2008.08.14
 
