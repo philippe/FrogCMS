@@ -1,0 +1,192 @@
+<?php
+
+/**
+ * This file has been translated by: <translator name here>
+ */
+
+return array(
+
+// general
+'Administration'  => '',
+'Pages'           => '',
+'Snippets'        => '',
+'Layouts'         => '',
+'Users'           => '',
+'Modify'          => '',
+'Action'          => '',
+'Close'           => '',
+'Save'            => '',
+'Save and Continue Editing' => '',
+'or'              => '',
+'Cancel'          => '',
+'Name'            => '',
+'Last updated by' => '',
+'on'              => '',
+'Upload'          => '',
+'Are you sure you wish to delete' => '',
+'Published'       => '',
+'Draft'           => '',
+'Reviewed'        => '',
+'Hidden'          => '',
+'More'            => '',
+'Less'            => '',
+'Add'             => '',
+'Required.'       => '.',
+'Optional.'       => '',
+'yes'             => '',
+'no'              => '',
+
+// layouts
+'Layout'            => '',
+'New Layout'        => '',
+'What is a Layout?' => '',
+'Use layouts to apply a visual look to a Web page. Layouts can contain special tags to include
+  page content and other elements such as the header or footer. Click on a layout name below to
+  edit it or click <strong>Remove</strong> to delete it.' => '',
+'Add Layout'        => '',
+'Edit Layout'       => '',
+'Remove Layout'     => '',
+'inherit'           => '',
+
+// pages
+'Page'                    => '',
+'reorder'                 => '',
+'Add Page'                => '',
+'Edit Page'               => '',
+'Status'                  => '',
+'Order'                   => '',
+'Add child'               => '',
+'Add Tab'                 => '',
+'Add Part'                => '',
+'Remove Tab'              => '',
+'Delete the current tab?' => '',
+'Remove page'             => '',
+'Remove page disable'     => '',
+'Drag and Drop'           => '',
+'Drag and Drop disable'   => '',
+'Page Title'              => '',
+'Metadata'                => '',
+'Filter'                  => '',
+'none'                    => '',
+'Page Type'               => '',
+
+// plugins
+'Plugin'    => '',
+'Website'   => '',
+'Version'   => '',
+'Latest'    => '',
+'Enabled'   => '',
+
+// settings
+'Settings'              => '',
+'Admin Site title'      => '',
+'Language'              => '',
+'Administration Theme'  => '',
+'Page options'          => '',
+'Default Status'        => '',
+'Default Filter'        => '',
+'Optional component'    => '',
+'Display stats'         => '',
+'Display file manager'  => '',
+'By using <strong>&lt;img src="img_path" /&gt;</strong> you can set your company logo instead of a title.' => '',
+'This will set your language for the backend.'  => '',
+'This will change your Administration theme.'   => '',
+'Only for filter in pages, NOT in snippets'     => '',
+
+// snippets
+'New Snippet'           => '',
+'What is a Snippet?'    => '',
+'Snippets are generally small pieces of content which are included in other pages or layouts.' => '',
+'Snippet'               => '',
+'Add Snippet'           => '',
+'Edit Snippet'          => '',
+'Remove Snippet'        => '',
+
+
+// users
+'Add User'                  => '',
+'Edit user'                 => '',
+'Username'                  => '',
+'E-mail'                    => '',
+'Password'                  => '',
+'Forgot password?'          => '',
+'Forgot password'           => '',
+'Email address:'            => '',
+'Confirm Password'          => '',
+'Send password'             => '',
+'No user found!'            => '',
+'Login'                     => '',
+'Remember me for 14 days'   => '',
+'Roles'                     => '',
+'Administrator'             => '',
+'Developer'                 => '',
+'Editor'                    => '',
+'Optional. Please use a valid e-mail address.'  => '',
+'At least 3 characters. Must be unique.'        => '',
+'At least 5 characters.'    => '',
+'Leave password blank for it to remain unchanged.' => '',
+'Roles restrict user privileges and turn parts of the administrative interface on or off.' => '',
+'New User'                  => '',
+'Where do the avatars come from?' => '',
+'The avatars are automatically linked for those with a <a href="http://www.gravatar.com/" target="_blank">Gravatar</a> (a free service) account.' => '',
+
+// errors and success
+'Layout has been added!'                            => '',
+'Layout has not been added. Name must be unique!'   => '',
+'Layout has been saved!'                            => '',
+'Layout has not been saved. Name must be unique!'   => '',
+'Layout :name has been deleted!'                    => '!',
+'Layout :name has not been deleted!'                => '',
+'Layout not found!'                                 => '',
+
+'Login failed. Please check your login data and try again.' => '',
+
+'Page has been saved!'              => '',
+'Page has not been saved!'          => '',
+'Page not found!'                   => '',
+'Page :title has been deleted!'     => '',
+'Page :title has not been deleted!' => '',
+'Action disabled!'                  => '',
+
+'Snippet has been added!'                                => '',
+'Snippet has not been added. Name must be unique!'       => '',
+'Snippet :name has been saved!'                          => '',
+'Snippet :name has not been saved. Name must be unique!' => '',
+'Snippet :name has been deleted!'                        => '',
+'Snippet :name has not been deleted!'                    => '',
+'Snippet not found!'                                     => '',
+
+'You do not have permission to access the requested page!' => '',
+'Password and Confirm are not the same or too small!'      => '',
+'Username must contain a minimum of 3 characters!'         => '',
+'User has been added!'                                     => '',
+'User has not been added!'                                 => '',
+'User not found!'                                          => '',
+'User has been saved!'                                     => '',
+'User has not been saved!'                                 => '',
+'User <strong>:name</strong> has been deleted!'            => '',
+'User <strong>:name</strong> has not been deleted!'        => '',
+
+// layout
+'You are currently logged in as'    => '',
+'Log Out'                           => '',
+'View Site'                         => '',
+'Thank you for using'               => '',
+'version'                           => '',
+'Page rendered in'                  => '',
+'seconds'                           => '',
+'Memory usage:'                     => '',
+
+// TO BE REMOVED IN LATER VERSIONS
+
+// File manager
+'Files' => '',
+
+// Comments
+'Enable comments'       => '',
+'Auto approve comments' => '',
+'Delete'                => '',
+'Reject'                => '',
+'Comments'              => '',
+
+);
