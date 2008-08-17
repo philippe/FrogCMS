@@ -838,7 +838,7 @@ class AutoLoader
                 }
             }
         }
-        throw new Exception("AutoLoader did not found file for '{$class_name}'!");
+        throw new Exception("AutoLoader did not find file for '{$class_name}'!");
     }
     
 } // end AutoLoader class
