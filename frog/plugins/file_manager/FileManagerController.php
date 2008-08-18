@@ -23,6 +23,20 @@ class FileManagerController extends PluginController
     var $path;
     var $fullpath;
     
+    public static function _checkPermission()
+    {
+        AuthUser::load();
+        if ( ! AuthUser::isLoggedIn())
+        {
+            redirect(get_url('login'));
+        }
+        else if ( ! AuthUser::hasPermission('administrator,developer,editor'))
+        {
+            Flash::set('error', __('You do not have permission to access the requested page!'));
+            redirect(get_url());
+        }
+    }
+    
     public function __construct()
     {
         $this->setLayout('backend');
@@ -31,11 +45,13 @@ class FileManagerController extends PluginController
     
     public function index()
     {
+        $this->_checkPermission();
         $this->browse();
     }
     
     public function browse()
     {
+        $this->_checkPermission();
         $params = func_get_args();
         
         $this->path = join('/', $params);
@@ -69,6 +85,7 @@ class FileManagerController extends PluginController
     
     public function view()
     {
+        $this->_checkPermission();
         $params = func_get_args();
         
         $content = '';
@@ -88,6 +105,7 @@ class FileManagerController extends PluginController
     
     public function save()
     {
+        $this->_checkPermission();
         $data = $_POST['file'];
         
         // security (remove all ..)
@@ -130,6 +148,7 @@ class FileManagerController extends PluginController
     
     public function create_file()
     {
+        $this->_checkPermission();
         $data = $_POST['file'];
         
         $path = str_replace('..', '', $data['path']);
@@ -149,6 +168,7 @@ class FileManagerController extends PluginController
     
     public function create_directory()
     {
+        $this->_checkPermission();
         $data = $_POST['directory'];
         
         $path = str_replace('..', '', $data['path']);
@@ -168,6 +188,7 @@ class FileManagerController extends PluginController
     
     public function delete()
     {
+        $this->_checkPermission();
         $paths = func_get_args();
         
         $file = urldecode(join('/', $paths));
@@ -192,6 +213,7 @@ class FileManagerController extends PluginController
     
     public function upload()
     {
+        $this->_checkPermission();
         $data = $_POST['upload'];
         $path = str_replace('..', '', $data['path']);
         $overwrite = isset($data['overwrite']) ? true: false;
@@ -208,6 +230,7 @@ class FileManagerController extends PluginController
     
     public function chmod()
     {
+        $this->_checkPermission();
         $data = $_POST['file'];
         $data['name'] = str_replace('..', '', $data['name']);
         $file = FILES_DIR.'/'.$data['name'];
@@ -228,6 +251,7 @@ class FileManagerController extends PluginController
     
     public function rename()
     {
+        $this->_checkPermission();
         $data = $_POST['file'];
         
         $data['current_name'] = str_replace('..', '', $data['current_name']);
@@ -382,6 +406,7 @@ class FileManagerController extends PluginController
 // Usage: upload_file($_FILE['file']['name'],'temp/',$_FILE['file']['tmp_name'])
 function upload_file($origin, $dest, $tmp_name, $overwrite=false)
 {
+    FileManagerController::_checkPermission();
     $origin = strtolower(basename($origin));
     $full_dest = $dest.$origin;
     $file_name = $origin;
@@ -411,6 +436,7 @@ function upload_file($origin, $dest, $tmp_name, $overwrite=false)
 // recursiv rmdir
 function rrmdir($dirname)
 {
+    FileManagerController::_checkPermission();
     if (is_dir($dirname))
     {
         // Append slash if necessary
