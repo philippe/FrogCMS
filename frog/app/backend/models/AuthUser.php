@@ -91,9 +91,23 @@ class AuthUser
         return self::$permissions;
     }
     
-    static public function hasPermission($permission)
+    /**
+     * Checks if user has (one of) the required permissions.
+     *
+     * @param string $permission Can contain a single permission or comma seperated list of permissions.
+     * @return boolean
+     */
+    static public function hasPermission($permissions)
     {
-        return in_array(strtolower($permission), self::$permissions);
+        if ($permissions == null || $permissions == '')
+            return true;
+
+        foreach (explode(',', $permissions) as $permission) {
+            if (in_array(strtolower($permission), self::$permissions))
+                return true;
+        }
+        
+        return false;
     }
     
     static public function login($username, $password, $set_cookie=false)

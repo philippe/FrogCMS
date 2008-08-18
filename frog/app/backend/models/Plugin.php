@@ -182,8 +182,6 @@ class Plugin
 			'file'	=> CORE_ROOT.'/plugins/'.$plugin_id.'/'.$class_name.'.php',
 			'permissions' => $permissions
 		);
-        
-        //AutoLoader::addFile($class_name, self::$controllers[$plugin_id]->file);
 	}
 
 } // end Plugin class
