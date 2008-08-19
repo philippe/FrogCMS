@@ -9,6 +9,7 @@ Sigla:
 
 ?.?.? - release ???
 
+. Corrected the default RSS Feed, should now validate. Also added RSS subscription link tag to default Normal template.
 - Fixed bug where "Files" tab was accessible to users without roles. Now restricted to "administrator,developer,editor" (issue 42)
 - Fixed bug where using permissions string as parameter to addController had no effect (issue 41)
 + Added admin section option to choose default tab after login (issue 29)
