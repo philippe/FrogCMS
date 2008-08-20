@@ -9,6 +9,7 @@ Sigla:
 
 ?.?.? - release ???
 
+. Changed default footer snippet to read copyright Madebyfrog.com instead of Philworks.com
 - Fixed incorrect return and if statement in DoPgsql.php
 - Fixed accidental assignment bug in Framework.php (issue 43)
 . Corrected the default RSS Feed, should now validate. Also added RSS subscription link tag to default Normal template.
