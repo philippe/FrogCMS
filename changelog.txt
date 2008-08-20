@@ -9,6 +9,7 @@ Sigla:
 
 ?.?.? - release ???
 
+- Fixed accidental assignment bug in Framework.php (issue 43)
 . Corrected the default RSS Feed, should now validate. Also added RSS subscription link tag to default Normal template.
 - Fixed bug where "Files" tab was accessible to users without roles. Now restricted to "administrator,developer,editor" (issue 42)
 - Fixed bug where using permissions string as parameter to addController had no effect (issue 41)

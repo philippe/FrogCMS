@@ -105,7 +105,8 @@ final class Dispatcher
         // requested_url will be equal to: /controller/action/var1
         if ($requested_url === null) {
             //$requested_url = count($_GET) >= 1 ? key($_GET) : '/';
-            if ($pos = strpos($_SERVER['QUERY_STRING'], '&') !== false) {
+            $pos = strpos($_SERVER['QUERY_STRING'], '&');
+            if ($pos !== false) {
                 $requested_url = substr($_SERVER['QUERY_STRING'], 0, $pos);
             } else {
                 $requested_url = $_SERVER['QUERY_STRING'];
