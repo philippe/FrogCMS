@@ -129,9 +129,9 @@ function find_page_by_slug($slug, &$parent)
     
     $parent_id = $parent ? $parent->id: 0;
     
-    $sql = 'SELECT page.*, creator.name AS created_by_name, updator.name AS updated_by_name '
+    $sql = 'SELECT page.*, author.name AS author, updator.name AS updator '
          . 'FROM '.TABLE_PREFIX.'page AS page '
-         . 'LEFT JOIN '.TABLE_PREFIX.'user AS creator ON creator.id = page.created_by_id '
+         . 'LEFT JOIN '.TABLE_PREFIX.'user AS author ON author.id = page.created_by_id '
          . 'LEFT JOIN '.TABLE_PREFIX.'user AS updator ON updator.id = page.updated_by_id '
          . 'WHERE slug = ? AND parent_id = ? AND (status_id='.Page::STATUS_REVIEWED.' OR status_id='.Page::STATUS_PUBLISHED.' OR status_id='.Page::STATUS_HIDDEN.')';
     
