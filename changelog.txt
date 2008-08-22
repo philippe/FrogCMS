@@ -9,6 +9,9 @@ Sigla:
 
 ?.?.? - release ???
 
+- Fixed security issue with DB username password in index.php
+. Removed comments css code from admin.css
+. Updated default Layout to find metadata from Edit.Page.Metadata tab
 . Changed default footer snippet to read copyright Madebyfrog.com instead of Philworks.com
 - Fixed incorrect return and if statement in DoPgsql.php
 - Fixed accidental assignment bug in Framework.php (issue 43)

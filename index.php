@@ -36,7 +36,15 @@ if ( ! defined('DEBUG')) { header('Location: install/'); exit(); }
 
 if (USE_PDO)
 {
-    $__FROG_CONN__ = new PDO(DB_DSN, DB_USER, DB_PASS);
+    try 
+	{
+        $__FROG_CONN__ = new PDO(DB_DSN, DB_USER, DB_PASS);
+	} 
+	catch (PDOException $error) 
+	{
+        die('DB Connection failed: '.$error->getMessage());
+	}
+    
     if ($__FROG_CONN__->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql')
         $__FROG_CONN__->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 }
