@@ -9,6 +9,7 @@ Sigla:
 
 ?.?.? - release ???
 
+- Added "Tag to use this snippet" in the Snippets tab
 - Fixed security issue with DB username password in index.php
 . Removed comments css code from admin.css
 . Updated default Layout to find metadata from Edit.Page.Metadata tab
