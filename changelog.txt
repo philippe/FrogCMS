@@ -7,7 +7,7 @@ Sigla:
 . other development
 ======
 
-?.?.? - release ???
+0.9.4 - released 2008.08.30???
 
 - Added "Tag to use this snippet" in the Snippets tab
 - Fixed security issue with DB username password in index.php
