@@ -542,6 +542,12 @@ table.index td.note {
 .textbox {
   border: 1px solid #ccc;
 }
+#snippet_name {
+	width:96.7%;
+	border: 1px solid #ccc;
+	font-size:200%;
+	margin:10px 10px 0 20px;
+}
 .buttons {
   font-size: 80%;
   margin-top: 2.5em;
