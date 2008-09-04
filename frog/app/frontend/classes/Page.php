@@ -296,7 +296,7 @@ class Page
              . "$where_string ORDER BY $order $limit_string";
         
         $stmt = $__FROG_CONN__->prepare($sql);
-        $stmt->execute($values);
+        $stmt->execute($value);
         
         return (int) $stmt->fetchColumn();
     }
