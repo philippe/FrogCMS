@@ -3,6 +3,7 @@
 /**
    Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
    Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+   Copyright (C) 2008 Bebliuc George <bebliuc.george@gmail.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as
@@ -34,12 +35,14 @@ class CommentController extends PluginController
             redirect(get_url('login'));
         
         $this->setLayout('backend');
+        $this->assignToLayout('sidebar', new View('../../../plugins/comment/views/sidebar'));
     }
     
-    function index()
+    function index($page)
     {
         $this->display('comment/views/index', array(
-            'comments' => Comment::findAll()
+            'comments' => Comment::findAll(),
+            'page' => $page
         ));
     }
     
@@ -106,7 +109,7 @@ class CommentController extends PluginController
         }
         else Flash::set('error', __('Comment not found!'));
         
-        redirect(get_url('plugin/comment'));
+        redirect(get_url('plugin/comment/moderation'));
     }
     
     function unapprove($id)
@@ -122,5 +125,70 @@ class CommentController extends PluginController
         
         redirect(get_url('plugin/comment'));
     }
-
+   
+    function settings() {
+    	
+    	error_reporting(E_ALL);
+    	
+		global $__FROG_CONN__;
+    	$sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'auto_approve_comment'";
+		$stmt = $__FROG_CONN__->prepare($sql);
+		$stmt->execute();
+		$auto_approve = $stmt->fetchObject();
+        
+        $sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'use_captcha'";
+		$stmt = $__FROG_CONN__->prepare($sql);
+		$stmt->execute();
+		$captcha = $stmt->fetchObject();
+		
+		$sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'rowspage'";
+		$stmt = $__FROG_CONN__->prepare($sql);
+		$stmt->execute();
+		$rowspage = $stmt->fetchObject();
+		
+            $this->display('comment/views/settings', array(
+				'approve' => $auto_approve->value,
+				'captcha' => $captcha->value,
+				'rowspage' => $rowspage->value
+				));
+		
+    }
+    
+	function save() {
+		error_reporting(E_ALL);
+		$approve = mysql_escape_string($_POST['autoapprove']);
+        $captcha = mysql_escape_string($_POST['captcha']);
+        $rowspage = mysql_escape_string($_POST['rowspage']);
+        
+        global $__FROG_CONN__;
+        $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$approve' WHERE name = 'auto_approve_comment'"; 
+        $PDO = $__FROG_CONN__->prepare($sql);
+        $approve_var = $PDO->execute() !== false;
+        
+        $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$captcha' WHERE name = 'use_captcha'"; 
+        $PDO = $__FROG_CONN__->prepare($sql);
+        $captcha_var = $PDO->execute() !== false;
+        
+        $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$rowspage' WHERE name = 'rowspage'"; 
+        $PDO = $__FROG_CONN__->prepare($sql);
+        $rowspage_var = $PDO->execute() !== false;
+        
+        if ($captcha_var){
+                Flash::set('success', __('The settings have been update :)'));
+            }
+        else{
+                Flash::set('error', 'An error has occured. Seems MySQL hates you :(');
+            }
+           redirect(get_url('plugin/comment/settings'));   
+	}
+	
+	function documentation() {
+    	$this->display('comment/views/documentation'); 
+    }
+    function moderation($page) {
+    	 $this->display('comment/views/moderation', array(
+            'comments' => Comment::findAll(),
+            'page' => $page
+        ));
+    }
 } // end CommentController class

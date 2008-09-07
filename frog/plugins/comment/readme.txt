@@ -27,7 +27,11 @@ errors.
 == LICENSE:
 
 Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+
+Comments plugin:
+
 Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+and parts are Copyright (C) 2008 Bebliuc George <bebliuc.george@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as

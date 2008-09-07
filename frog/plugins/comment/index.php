@@ -86,20 +86,35 @@ else // list of fonctions, classes used by the frontend
 
 	function comment_save(&$page)
 	{
+		global $__FROG_CONN__;
+		$sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'use_captcha'";
+		$stmt = $__FROG_CONN__->prepare($sql);
+		$stmt->execute();
+		$captcha = $stmt->fetchObject();
+		session_start();
+		$data = $_POST['comment'];
+		if (is_null($data)) return;
 		// check if we need to save a comment
 		if ( ! isset($_POST['comment'])) return;
-
-		global $__FROG_CONN__;
+		
+		if($captcha->value == "1") {
+		if(isset($data['secure']))
+		{
+			if ($data['secure'] == "" OR empty($data['secure']) OR $data['secure'] != $_SESSION['security_number']) return;
+		}
+		else {
+			return;
+		}
+		}
 
 		if ($page->comment_status != Comment::OPEN) return;
 
-		$data = $_POST['comment'];
-
-		if (is_null($data)) return;
 		if ( ! isset($data['author_name']) or trim($data['author_name']) == '') return;
 		if ( ! isset($data['author_email']) or trim($data['author_email']) == '') return;
+ 		if ( ! preg_match('/[^\x00-\x20()<>@,;:\\".[\]\x7f-\xff]+(?:\.[^\x00-\x20()<>@,;:\\".[\]\x7f-\xff]+)*\@[^\x00-\x20()<>@,;:\\".[\]\x7f-\xff]+(?:\.[^\x00-\x20()<>@,;:\\".[\]\x7f-\xff]+)+/i', $data['author_email'])) return;
 		if ( ! isset($data['body']) or trim($data['body']) == '') return;
-
+		
+		
 		use_helper('Kses');
 
 		$allowed_tags = array(
@@ -125,26 +140,62 @@ else // list of fonctions, classes used by the frontend
 			'strike' => array(),
 			'strong' => array()
 		);
-
-		// get the setting for comments moderations
-		//$sql = 'SELECT value FROM '.TABLE_PREFIX.'setting WHERE name=\'auto_approve_comment\'';
-		//$stmt = $__FROG_CONN__->prepare($sql);
-		//$stmt->execute();
-		//$auto_approve_comment = (int) $stmt->fetchColumn();
-		$auto_approve_comment = 1;
-
-		$sql = 'INSERT INTO '.TABLE_PREFIX.'comment (page_id, author_name, author_email, author_link, body, is_approved, created_on) VALUES ('.
+		$sql = 'SELECT value FROM '.TABLE_PREFIX.'setting WHERE name=\'auto_approve_comment\'';
+		$stmt = $__FROG_CONN__->prepare($sql);
+		$stmt->execute();
+		$auto_approve_comment = (int) $stmt->fetchColumn();
+		
+		$sql = 'INSERT INTO '.TABLE_PREFIX.'comment (page_id, author_name, author_email, author_link, ip, body, is_approved, created_on) VALUES ('.
 				'\''.$page->id.'\', '.
 				$__FROG_CONN__->quote(strip_tags($data['author_name'])).', '.
 				$__FROG_CONN__->quote(strip_tags($data['author_email'])).', '.
 				$__FROG_CONN__->quote(strip_tags($data['author_link'])).', '.
+				$__FROG_CONN__->quote($data['author_ip']).', '.
 				$__FROG_CONN__->quote(kses($data['body'], $allowed_tags)).', '.
 				$__FROG_CONN__->quote($auto_approve_comment).', '.
 				$__FROG_CONN__->quote(date('Y-m-d H:i:s')).')';
-
 		$__FROG_CONN__->exec($sql);
 	}
-
+	
+	function captcha() {
+		global $__FROG_CONN__;
+		$sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'use_captcha'";
+		$stmt = $__FROG_CONN__->prepare($sql);
+		$stmt->execute();
+		$captcha = $stmt->fetchObject();
+		if($captcha->value == "1") {
+		$ip = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR']:($_SERVER['REMOTE_ADDR']);
+			if($data['secure'] != $_SESSION['security_number'] AND !empty($data['secure'])) {
+				echo 'Oh, come on! This is second grade math!<br />';
+			}
+			else {
+				echo 'Please insert the result of the arithmetical operation from the following image<br />';
+			}
+			
+			echo "<img src=\"".URL_PUBLIC."frog/plugins/comment/image.php\" alt=\"Enter the result of the arithmetical operation from this image\">";
+			echo " <br /><br /><input class=\"input\" type=\"text\" name=\"comment[secure]\" />";
+			echo "<input type=\"hidden\" value=\"".$ip."\" name=\"comment[author_ip]\" /> ";
+		}
+	
+		$sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'auto_approve_comment'";
+		$stmt = $__FROG_CONN__->prepare($sql);
+		$stmt->execute();
+		$approve = $stmt->fetchObject();
+		
+		$data = $_POST['comment'];
+		
+		if(isset($_POST['commit-comment'])) {
+			if($data['secure'] == $_SESSION['security_number']) {
+				if(isset($_POST['commit-comment']) AND  $approve->value = "2") {
+					echo '<p>Your comment is waiting for moderation.</p>';
+				}
+			}
+		else {
+			echo '<p>Oh, come on! This is second grade math!</p>';
+			}
+		}
+	}
+	
 	class Comment
 	{
 		const NONE = 0;
@@ -173,6 +224,12 @@ else // list of fonctions, classes used by the frontend
 		function date($format='%a, %e %b %Y')
 		{
 			return strftime($format, strtotime($this->created_on));
+		}
+		
+		function gravatar($size = "80") {
+			$default = URL_PUBLIC.'public/images/gravatar.png';
+			$grav_url = "http://www.gravatar.com/avatar.php?gravatar_id=".md5($this->author_email)."&amp;default=".urlencode($default)."&amp;size=".$size;
+			echo $grav_url;
 		}
 
 	} // end Comment class

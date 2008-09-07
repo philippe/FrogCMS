@@ -1,0 +1,4 @@
+<p class="button"><a href="<?php echo get_url('plugin/comment/'); ?>"><img src="../frog/plugins/comment/images/comment.png" align="middle" alt="page icon" /> <?php echo __('Comments'); ?></a></p>
+<p class="button"><a href="<?php echo get_url('plugin/comment/moderation/'); ?>"><img src="../frog/plugins/comment/images/moderation.png" align="middle" alt="page icon" /> <?php echo __('Moderation'); ?></a></p>
+<p class="button"><a href="<?php echo get_url('plugin/comment/settings'); ?>"><img src="../frog/plugins/comment/images/settings.png" align="middle" alt="page icon" /> <?php echo __('Settings'); ?></a></p>
+<p class="button"><a href="<?php echo get_url('plugin/comment/documentation/'); ?>"><img src="../frog/plugins/comment/images/documentation.png" align="middle" alt="page icon" /> <?php echo __('Documentation'); ?></a></p>
