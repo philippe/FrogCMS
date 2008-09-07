@@ -9,7 +9,10 @@ Sigla:
 
 0.9.4 - released 2008.08.30???
 
-- Added "Tag to use this snippet" in the Snippets tab
++ Updated the comments plugin
++ Added Indonesian translation
++ Added "View this page" link in the Edit page screen
++ Added "Tag to use this snippet" in the Snippets tab
 - Fixed security issue with DB username password in index.php
 . Removed comments css code from admin.css
 . Updated default Layout to find metadata from Edit.Page.Metadata tab
