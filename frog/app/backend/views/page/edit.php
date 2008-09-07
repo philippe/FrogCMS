@@ -1,3 +1,6 @@
+<?php if ($action == 'edit') { ?>
+    <span style="float: right;"><a href="<?php echo URL_PUBLIC; echo (USE_MOD_REWRITE == false) ? '?' : ''; echo $page->getUri().URL_SUFFIX; ?>">View this page</a></span>
+<?php } ?>
 <h1><?php echo __(ucfirst($action).' Page'); ?></h1>
 
 <form action="<?php if ($action == 'add') echo get_url('page/add'); else echo  get_url('page/edit/'.$page->id); ?>" method="post">

@@ -88,6 +88,21 @@ class Page extends Record
         
         return true;
     }
+
+    public function getUri()
+    {
+        $result = null;
+
+        $parent = $this->findById($this->parent_id);
+        if ($parent != null && $parent->slug != '') {
+            $result = $parent->getUri().'/'.$this->slug;
+        }
+        else {
+            $result = $this->slug;
+        }
+
+        return $result;
+    }
     
     public function getTags()
     {
