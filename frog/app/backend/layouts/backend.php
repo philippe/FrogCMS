@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title><?php echo Setting::get('admin_title') . ' - ' . ucfirst($ctrl = Dispatcher::getController(Setting::get('default_tab'))); ?></title>
+    <title><?php use_helper('Kses'); echo kses(Setting::get('admin_title'), array()) . ' - ' . ucfirst($ctrl = Dispatcher::getController(Setting::get('default_tab'))); ?></title>
     
     <base href="<?php echo trim(BASE_URL, '?/').'/'; ?>" />
     
