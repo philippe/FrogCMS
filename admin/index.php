@@ -20,7 +20,7 @@
 
 //  Constantes  --------------------------------------------------------------
 
-define('FROG_VERSION', '0.9.3');
+define('FROG_VERSION', '0.9.4');
 
 define('FROG_ROOT', dirname(__FILE__).'/..');
 define('CORE_ROOT', FROG_ROOT.'/frog');
