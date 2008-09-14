@@ -53,8 +53,6 @@ class Page extends Record
     public $updated_by_id;
     public $position;
     public $is_protected;
-
-    public $url = null;
     
     public function beforeInsert()
     {
@@ -104,14 +102,6 @@ class Page extends Record
         }
 
         return $result;
-    }
-    
-    public function save() {
-        $newUrl = $this->getUri();
-        
-        if ($newUrl != null && $newUrl != '') $this->url = $newUrl;
-
-        return parent::save();
     }
     
     public function getTags()

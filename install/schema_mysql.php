@@ -41,7 +41,6 @@ $PDO->exec("CREATE TABLE ".TABLE_PREFIX."page (
   id int(11) unsigned NOT NULL auto_increment,
   title varchar(255) default NULL,
   slug varchar(100) default NULL,
-  url varchar(255) default NULL,
   breadcrumb varchar(160) default NULL,
   keywords varchar(255) default NULL,
   description text,
