@@ -1,5 +1,5 @@
 <?php if ($action == 'edit') { ?>
-    <span style="float: right;"><a href="<?php echo URL_PUBLIC; echo (USE_MOD_REWRITE == false) ? '?' : ''; echo $page->getUri().URL_SUFFIX; ?>">View this page</a></span>
+    <span style="float: right;"><a onclick="target='_blank'" onkeypress="target='_blank'" href="<?php echo URL_PUBLIC; echo (USE_MOD_REWRITE == false) ? '?' : ''; echo $page->getUri().URL_SUFFIX; ?>">View this page</a></span>
 <?php } ?>
 <h1><?php echo __(ucfirst($action).' Page'); ?></h1>
 
