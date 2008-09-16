@@ -41,6 +41,7 @@ if ($driver == 'mysql')
 	) ENGINE=MyISAM  DEFAULT CHARSET=utf8");
 	
 	$PDO->exec("ALTER TABLE ".TABLE_PREFIX."page ADD comment_status tinyint(1) NOT NULL default '0' AFTER status_id");
+    $PDO->exec("ALTER TABLE ".TABLE_PREFIX."comment ADD ip char(100) NOT NULL default '0' AFTER author_link");
 }
 else if ($driver == 'sqlite')
 {
@@ -57,7 +58,9 @@ else if ($driver == 'sqlite')
 	
 	$PDO->exec("CREATE INDEX comment_page_id ON comment (page_id)");
 	$PDO->exec("CREATE INDEX comment_created_on ON comment (created_on)");
-	
+    
+    $PDO->exec("ALTER TABLE page ADD comment_status tinyint(1) NOT NULL default '0'");
+    $PDO->exec("ALTER TABLE comment ADD ip char(100) NOT NULL default '0'");	
 }
 
 
@@ -68,4 +71,3 @@ $PDO->exec("INSERT INTO ".TABLE_PREFIX."snippet (name, filter_id, content, conte
 $PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('auto_approve_comment', '0')");
 $PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('use_captcha', '1')");
 $PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('rowspage', '15')");
-$PDO->exec("ALTER TABLE ".TABLE_PREFIX."comment ADD ip char(100) NOT NULL default '0' AFTER author_link");
