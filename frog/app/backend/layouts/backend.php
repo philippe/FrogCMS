@@ -13,7 +13,7 @@
 
     <!-- IE6 PNG support fix -->
     <!--[if lt IE 7]>
-        <script type="text/javascript" src="unitpngfix.js"></script>
+        <script type="text/javascript" charset="utf-8" src="javascripts/unitpngfix.js"></script>
     <![endif]-->
     <script type="text/javascript" charset="utf-8" src="javascripts/prototype.js"></script>
     <script type="text/javascript" charset="utf-8" src="javascripts/effects.js"></script>
