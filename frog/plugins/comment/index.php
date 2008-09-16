@@ -22,10 +22,11 @@ Plugin::setInfos(array(
 	'id'          => 'comment',
 	'title'       => 'Comments',
 	'description' => 'Provides interface to add page comments.',
-	'version'     => '1.0',
+	'version'     => '1.1.0',
 	'license'     => 'MIT',
 	'author'      => 'Philippe Archambault',
 	'website'     => 'http://www.madebyfrog.com/',
+    'update_url'  => 'http://www.madebyfrog.com/plugin-versions.xml',
 	'require_frog_version' => '0.9.3'
 ));
 

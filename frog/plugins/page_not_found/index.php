@@ -22,9 +22,10 @@ Plugin::setInfos(array(
     'id'          => 'page_not_found',
     'title'       => 'Page not found', 
     'description' => 'Provides Page not found page types.', 
-    'version'     => '1.0', 
-    'website'     => 'http://www.madebyfrog.com/')
-);
+    'version'     => '1.0.0', 
+    'website'     => 'http://www.madebyfrog.com/',
+    'update_url'  => 'http://www.madebyfrog.com/plugin-versions.xml'
+));
 
 Behavior::add('page_not_found', '');
 Observer::observe('page_not_found', 'behavior_page_not_found');

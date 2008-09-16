@@ -22,8 +22,9 @@ Plugin::setInfos(array(
     'id'          => 'markdown',
     'title'       => 'Markdown filter', 
     'description' => 'Allows you to compose page parts or snippets using the Markdown text filter.', 
-    'version'     => '1.0', 
-    'website'     => 'http://www.madebyfrog.com/')
-);
+    'version'     => '1.0.0', 
+    'website'     => 'http://www.madebyfrog.com/',
+    'update_url'  => 'http://www.madebyfrog.com/plugin-versions.xml'
+));
 
 Filter::add('markdown', 'markdown/filter_markdown.php');
