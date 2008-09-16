@@ -53,7 +53,12 @@ class SettingController extends Controller
     
     private function _save()
     {
-        Setting::saveFromData($_POST['setting']);
+        $data = $_POST['setting'];
+        
+        if (!isset($data['allow_html_title']))
+            $data['allow_html_title'] = 'off';
+        
+        Setting::saveFromData($data);
         
         Flash::set('success', __('Settings has been saved!'));
         

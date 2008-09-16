@@ -102,8 +102,10 @@ class PageController extends Controller
 
         // Make sure the title doesn't contain HTML
         // TODO - Replace this by HTML Purifier?.
-        use_helper('Kses');
-        $data['title'] = kses(trim($data['title']), array());
+        if (Setting::get('allow_html_title') == 'off') {
+            use_helper('Kses');
+            $data['title'] = kses(trim($data['title']), array());
+        }
         
         $page = new Page($data);
         
@@ -207,8 +209,10 @@ class PageController extends Controller
         
         // Make sure the title doesn't contain HTML
         // TODO - Replace this by HTML Purifier?.
-        use_helper('Kses');
-        $data['title'] = kses(trim($data['title']), array());
+        if (Setting::get('allow_html_title') == 'off') {
+            use_helper('Kses');
+            $data['title'] = kses(trim($data['title']), array());
+        }
         
         $page->setFromData($data);
  

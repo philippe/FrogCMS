@@ -96,6 +96,13 @@
         <td colspan="3"><h3><?php echo __('Page options'); ?></h3></td>
       </tr>
       <tr>
+        <td class="label"><label for="setting_allow_html_title"><?php echo __('Allow HTML in Title'); ?></label></td>
+        <td class="field">
+          <input type="checkbox" name="setting[allow_html_title]" <?php if (Setting::get('allow_html_title') == 'on') echo ' checked="checked"'; ?> />
+        </td>
+        <td class="help"><?php echo __('Determines whether or not HTML code is allowed in a page\'s title.'); ?></td>
+      </tr>
+      <tr>
         <td class="label"><label for="setting_default_status_id-draft"><?php echo __('Default Status'); ?></label></td>
         <td class="field">
           <input class="radio" id="setting_default_status_id-draft" name="setting[default_status_id]" size="10" type="radio" value="<?php echo Page::STATUS_DRAFT; ?>"<?php if (Setting::get('default_status_id') == Page::STATUS_DRAFT) echo ' checked="checked"'; ?> /><label for="setting_default_status_id-draft"> <?php echo __('Draft'); ?> </label> &nbsp; 
