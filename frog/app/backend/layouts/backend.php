@@ -10,7 +10,11 @@
     <link href="stylesheets/admin.css" media="screen" rel="Stylesheet" type="text/css" />
     <link href="stylesheets/toolbar.css" media="screen" rel="Stylesheet" type="text/css" />
     <link href="themes/<?php echo Setting::get('theme'); ?>/styles.css" id="css_theme" media="screen" rel="Stylesheet" type="text/css" />
-    
+
+    <!-- IE6 PNG support fix -->
+    <!--[if lt IE 7]>
+        <script type="text/javascript" src="unitpngfix.js"></script>
+    <![endif]-->
     <script type="text/javascript" charset="utf-8" src="javascripts/prototype.js"></script>
     <script type="text/javascript" charset="utf-8" src="javascripts/effects.js"></script>
     <script type="text/javascript" charset="utf-8" src="javascripts/dragdrop.js"></script>
