@@ -111,6 +111,7 @@ return array(
 'This will set your language for the backend.' => 'Dit stelt uw taal voor de backend in.',
 'This will change your Administration theme.' => 'Dit wijzigt uw Administratie thema.',
 'Only for filter in pages, NOT in snippets' => 'Alleen voor filter in paginas, NIET in snippers',
+'by' => 'door',
 
 // snippets
 'New Snippet' => 'Nieuwe Snipper',

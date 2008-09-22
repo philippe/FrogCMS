@@ -7,15 +7,16 @@ Sigla:
 . other development
 ======
 
-0.9.4 - released 2008.08.30???
+0.9.4 - released 2008-09-29
 
-+ Updated the comments plugin
 + Added Indonesian translation
 + Added "View this page" link in the Edit page screen
 + Added "Tag to use this snippet" in the Snippets tab
 + Added en-messages.php.template to i18n directory of core to assist translators
 + Added admin section option to choose default tab after login (issue 29)
 + Added display of latest plugin version in Frog admin section
++ Added option to admin screen: allow html in page title. (default: false) (issue 66)
+- Fixed lacking PNG support for IE6 (issue 64)
 - Fixed bug allowing HTML code in page title, now filtered with Kses
 - $values => $value in Page.childrenCount()
 - Fixed security issue with DB username password in index.php
@@ -23,14 +24,18 @@ Sigla:
 - Fixed accidental assignment bug in Framework.php (issue 43)
 - Fixed bug where "Files" tab was accessible to users without roles. Now restricted to "administrator,developer,editor" (issue 42)
 - Fixed bug where using permissions string as parameter to addController had no effect (issue 41)
+. Updated core plugin index.php files to make use of the new "latest" functionality
+. Updated the comments plugin
 . Updated dutch translation
+. Updated default Layout to find metadata from Edit.Page.Metadata tab
+. Updated default Normal Layout to check for existence of keywords, otherwise use default strings
 . Corrected the default RSS Feed, should now validate. Also added RSS subscription link tag to default Normal template.
 . Modified the place of the "filter" input in Snippets
 . Removed comments css code from admin.css
-. Updated default Layout to find metadata from Edit.Page.Metadata tab
 . Changed default footer snippet to read copyright Madebyfrog.com instead of Philworks.com
+. Changed plugin list "from ..." wording to "by ...".
 
-0.9.3 - released 2008.08.14
+0.9.3 - released 2008-08-14
 
 + license change to AGPLv3
 + auto page tabs generation "javascript"
