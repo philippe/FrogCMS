@@ -13,6 +13,7 @@
   <thead>
     <tr>
       <th class="plugin"><?php echo __('Plugin'); ?></th>
+      <th class="pluginSettings"><?php echo __('Settings'); ?></th>
       <th class="website"><?php echo __('Website'); ?></th>
       <th class="version"><?php echo __('Version'); ?></th>
       <th class="latest"><?php echo __('Latest'); ?></th>
@@ -28,6 +29,14 @@
       <td class="plugin">
         <h4><?php echo $plugin->title; ?><span class="from"><?php if (isset($plugin->author)) echo ' '.__('by').' '.$plugin->author; ?></span></h4>
         <p><?php echo $plugin->description; ?> <?php if ($disabled) echo '<span class="notes">'.__('This plugin CAN NOT be enable. It require Frog version :v', array(':v' => $plugin->require_frog_version)).'</span>'; ?></p>
+      </td>
+      <td class="pluginSettings">
+      <?php
+        if (isset($loaded_plugins[$plugin->id]) && array_key_exists($plugin->id, Plugin::$controllers) && method_exists(Plugin::$controllers[$plugin->id]->class_name, 'settings') )
+          echo '<a href="'.get_url('plugin/'.$plugin->id.'/settings').'" target="_blank">'.__('Settings').'</a>';
+        else
+          echo __('n/a');
+      ?>
       </td>
       <td class="website"><a href="<?php echo $plugin->website; ?>" target="_blank"><?php echo __('Website') ?></a></td>
       <td class="version"><?php echo $plugin->version; ?></td>

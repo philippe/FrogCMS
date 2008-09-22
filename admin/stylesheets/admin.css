@@ -370,6 +370,12 @@ table.index td.note {
   right: 10px;
 }
 
+#plugins th, #plugins td {
+    text-align: center;
+}
+#plugins th.plugin, #plugins td.plugin {
+    text-align: left;
+}
 #plugins .disabled td {
 	color: #a22;
 }
