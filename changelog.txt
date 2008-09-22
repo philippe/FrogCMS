@@ -18,6 +18,7 @@ Sigla:
 + Added admin section option to choose default tab after login (issue 29)
 + Added display of latest plugin version in Frog admin section
 + Added option to admin screen: allow html in page title. (default: false) (issue 66)
++ Added favicon
 - Fixed lacking PNG support for IE6 (issue 64)
 - Fixed bug allowing HTML code in page title, now filtered with Kses
 - $values => $value in Page.childrenCount()
