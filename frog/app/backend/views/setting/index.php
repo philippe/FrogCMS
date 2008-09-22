@@ -27,7 +27,15 @@
     <?php $disabled = (isset($plugin->require_frog_version) and $plugin->require_frog_version > FROG_VERSION); ?>
     <tr<?php if ($disabled) echo ' class="disabled"'; ?>>
       <td class="plugin">
-        <h4><?php echo $plugin->title; ?><span class="from"><?php if (isset($plugin->author)) echo ' '.__('by').' '.$plugin->author; ?></span></h4>
+        <h4>
+        <?php
+          if (isset($loaded_plugins[$plugin->id]) && array_key_exists($plugin->id, Plugin::$controllers) && method_exists(Plugin::$controllers[$plugin->id]->class_name, 'documentation') )
+            echo '<a href="'.get_url('plugin/'.$plugin->id.'/documentation').'" target="_blank">'.$plugin->title.'</a>';
+          else
+            echo $plugin->title;
+        ?>
+        <span class="from"><?php if (isset($plugin->author)) echo ' '.__('by').' '.$plugin->author; ?></span>
+        </h4>
         <p><?php echo $plugin->description; ?> <?php if ($disabled) echo '<span class="notes">'.__('This plugin CAN NOT be enable. It require Frog version :v', array(':v' => $plugin->require_frog_version)).'</span>'; ?></p>
       </td>
       <td class="pluginSettings">
