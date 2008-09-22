@@ -29,7 +29,7 @@ Sigla:
 - Fixed bug where using permissions string as parameter to addController had no effect (issue 41)
 . Updated core plugin index.php files to make use of the new "latest" functionality
 . Updated the comments plugin
-. Updated dutch translation
+. Updated Dutch translation
 . Updated default Layout to find metadata from Edit.Page.Metadata tab
 . Updated default Normal Layout to check for existence of keywords, otherwise use default strings
 . Corrected the default RSS Feed, should now validate. Also added RSS subscription link tag to default Normal template.
@@ -37,6 +37,7 @@ Sigla:
 . Removed comments css code from admin.css
 . Changed default footer snippet to read copyright Madebyfrog.com instead of Philworks.com
 . Changed plugin list "from ..." wording to "by ...".
+. Updated Russian translation
 
 0.9.3 - released 2008-08-14
 
