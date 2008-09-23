@@ -26,6 +26,11 @@
 <?php if (file_exists(CORE_ROOT . '/plugins/' . $plugin_id . '/' . $plugin_id . '.js')): ?>
     <script type="text/javascript" charset="utf-8" src="../frog/plugins/<?php echo $plugin_id.'/'.$plugin_id; ?>.js"></script>
 <?php endif; ?>
+<?php foreach(Plugin::$javascripts as $jscript_plugin_id => $javascript): ?>
+<?php if ($jscript_plugin_id == $plugin_id) { ?>
+    <script type="text/javascript" charset="utf-8" src="../frog/plugins/<?php echo $plugin_id.'/'.$javascript; ?>"></script>
+<?php } ?>
+<?php endforeach; ?>
 <?php if (file_exists(CORE_ROOT . '/plugins/' . $plugin_id . '/' . $plugin_id . '.css')): ?>
     <link href="../frog/plugins/<?php echo $plugin_id.'/'.$plugin_id; ?>.css" media="screen" rel="Stylesheet" type="text/css" />
 <?php endif; ?>

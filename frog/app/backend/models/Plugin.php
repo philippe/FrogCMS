@@ -33,6 +33,7 @@ class Plugin
 	static $plugins_infos = array();
 
 	static $controllers = array();
+    static $javascripts = array();
 
 	/**
 	 * Initialize all activated plugin by including is index.php file
@@ -185,5 +186,20 @@ class Plugin
         
         AutoLoader::addFile($class_name, self::$controllers[$plugin_id]->file);
 	}
+
+    /**
+     * Add a javascript file to be added to the html page for a plugin.
+     * Backend only right now.
+     *
+     * @param $plugin_id    string  The folder name of the plugin
+     * @param $file         string  The path to the javascript file relative to plugin root
+     */
+    static function addJavascript($plugin_id, $file)
+    {
+        if (file_exists(CORE_ROOT . '/plugins/' . $plugin_id . '/' . $file))
+        {
+            self::$javascripts[$plugin_id] = $file;
+        }
+    }
 
 } // end Plugin class
