@@ -445,7 +445,7 @@ table.index td.note {
 #site-map-def { margin-top: 20px; position: relative; }
 #site-map-def .page {}
 #site-map-def .status { position: absolute; top: 0; right: 75px; width: 70px }
-#site-map-def .tag { position: absolute; top: 0; right: 375px; width: 130px }
+#site-map-def .tag { position: absolute; top: 0; right: 375px; width: 150px; }
 #site-map-def .modify { position: absolute; top: 0; right: 5px; width: 50px; }
 #site-map-def div {
   padding: 2px 4px;
@@ -480,7 +480,7 @@ table.index td.note {
 #site-map .status.draft-status { color: #c00; }
 #site-map .status.published-status { color: #000; }
 #site-map .status.hidden-stats { color: #0c0; }
-#snippet_1 .tag, #snippets .tag { font-size:10px; position: absolute; top: 10px; right: 207px; width:300px }
+#snippet_1 .tag, #snippets .tag { font-size:10px; position: absolute; top: 10px; right: 237px; width:300px }
 /* Form Elements ---------------------------------------------------------- */
 
 .form-area {
