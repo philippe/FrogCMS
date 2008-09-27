@@ -173,7 +173,7 @@ class Plugin
 	 *
 	 * @return void
 	 */
-	static function addController($plugin_id, $label, $permissions=false)
+	static function addController($plugin_id, $label, $permissions=false, $show_tab=true)
 	{
 		$class_name = Inflector::camelize($plugin_id).'Controller';
 
@@ -181,11 +181,13 @@ class Plugin
 			'label' => ucfirst($label),
 			'class_name' => $class_name,
 			'file'	=> CORE_ROOT.'/plugins/'.$plugin_id.'/'.$class_name.'.php',
-			'permissions' => $permissions
+			'permissions' => $permissions,
+            'show_tab' => $show_tab
 		);
         
         AutoLoader::addFile($class_name, self::$controllers[$plugin_id]->file);
 	}
+    
 
     /**
      * Add a javascript file to be added to the html page for a plugin.
@@ -201,5 +203,20 @@ class Plugin
             self::$javascripts[$plugin_id] = $file;
         }
     }
-
+    
+    
+    static function hasSettingsPage($plugin_id)
+    {
+        $class_name = Inflector::camelize($plugin_id).'Controller';
+        
+        return (array_key_exists($plugin_id, Plugin::$controllers) && method_exists($class_name, 'settings'));
+    }
+    
+    
+    static function hasDocumentationPage($plugin_id)
+    {
+        $class_name = Inflector::camelize($plugin_id).'Controller';
+        
+        return (array_key_exists($plugin_id, Plugin::$controllers) && method_exists($class_name, 'documentation'));
+    }
 } // end Plugin class

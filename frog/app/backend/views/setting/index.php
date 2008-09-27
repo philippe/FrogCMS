@@ -29,7 +29,7 @@
       <td class="plugin">
         <h4>
         <?php
-          if (isset($loaded_plugins[$plugin->id]) && array_key_exists($plugin->id, Plugin::$controllers) && method_exists(Plugin::$controllers[$plugin->id]->class_name, 'documentation') )
+        if (isset($loaded_plugins[$plugin->id]) && Plugin::hasDocumentationPage($plugin->id) )
             echo '<a href="'.get_url('plugin/'.$plugin->id.'/documentation').'">'.$plugin->title.'</a>';
           else
             echo $plugin->title;
@@ -40,7 +40,7 @@
       </td>
       <td class="pluginSettings">
       <?php
-        if (isset($loaded_plugins[$plugin->id]) && array_key_exists($plugin->id, Plugin::$controllers) && method_exists(Plugin::$controllers[$plugin->id]->class_name, 'settings') )
+      if (isset($loaded_plugins[$plugin->id]) && Plugin::hasSettingsPage($plugin->id) )
           echo '<a href="'.get_url('plugin/'.$plugin->id.'/settings').'">'.__('Settings').'</a>';
         else
           echo __('n/a');

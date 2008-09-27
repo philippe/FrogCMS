@@ -50,7 +50,7 @@
 <?php endif; ?>
 
 <?php foreach (Plugin::$controllers as $plugin_name => $plugin): ?>
-<?php if (AuthUser::hasPermission($plugin->permissions) || AuthUser::hasPermission('administrator')): ?>
+<?php if ($plugin->show_tab && (AuthUser::hasPermission($plugin->permissions) || AuthUser::hasPermission('administrator'))): ?>
           <li class="plugin"><a href="<?php echo get_url('plugin/'.$plugin_name); ?>"<?php if ($ctrl=='plugin' && $action==$plugin_name) echo ' class="current"'; ?>><?php echo __($plugin->label); ?></a></li>
     <?php endif; ?>
 <?php endforeach; ?>
