@@ -107,10 +107,14 @@ return array(
 'Auto approve comments' => 'Keur opmerkingen automatisch goed',
 'Display stats' => 'Toon stats',
 'Display file manager' => 'Toon bestandsbeheerder',
+'Default tab' => 'Standaard tab',
+'Allow HTML in Title' => 'Sta HTML toe in Titel',
 'By using <strong>&lt;img src="img_path" /&gt;</strong> you can set your company logo instead of a title.' => 'Door <strong>&lt;img src="img_path" /&gt;</strong> te gebruiken kunt u uw bedrijfslogo gebruiken in plaats van een titel.',
 'This will set your language for the backend.' => 'Dit stelt uw taal voor de backend in.',
 'This will change your Administration theme.' => 'Dit wijzigt uw Administratie thema.',
 'Only for filter in pages, NOT in snippets' => 'Alleen voor filter in paginas, NIET in snippers',
+'This allows you to specify which tab (controller) you will see by default after login.' => 'Dit stelt u in staat om the bepalen welke tab (controller) standaard getoond wordt na het aanmelden.',
+'Determines whether or not HTML code is allowed in a page\'s title.' => 'Bepaald of HTML code is toegestaan in een pagina z\'n titel.',
 'by' => 'door',
 
 // snippets
@@ -122,10 +126,12 @@ return array(
 'Add Snippet' => 'Voeg Snipper toe',
 'Edit Snippet' => 'Bewerk Snipper',
 'Remove Snippet' => 'Verwijder Snipper',
+'Tag to use this snipper' => 'Tag om deze Snipper te gebruiken',
+'Just replace <b>snippet</b> by the snippet name you want to include.' => 'Vervang simpelweg <strong>snippet</strong> door de snipper naam die u wilt invoegen.',
 
 
 // users
-'Add User' => 'Voeg Gebruiker toe',
+'Add user' => 'Gebruiker toevoegen',
 'Edit user' => 'Bewerk Gebruiker',
 'Username' => 'Gebruikersnaam',
 'E-mail' => 'E-mail',

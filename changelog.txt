@@ -20,6 +20,7 @@ Sigla:
 + Added display of latest plugin version in Frog admin section
 + Added option to admin screen: allow html in page title. (default: false) (issue 66)
 + Added favicon
++ Added option to Plugin::addController to allow for controller without displaying a tab
 - Fixed lacking PNG support for IE6 (issue 64)
 - Fixed bug allowing HTML code in page title, now filtered with Kses
 - $values => $value in Page.childrenCount()
@@ -29,6 +30,7 @@ Sigla:
 - Fixed bug where "Files" tab was accessible to users without roles. Now restricted to "administrator,developer,editor" (issue 42)
 - Fixed bug where using permissions string as parameter to addController had no effect (issue 41)
 - Fixed "s" echo for count in comment-each snippet of comment plugin
+- Fixed Gravatar bug to display default user image.
 . Updated core plugin index.php files to make use of the new "latest" functionality
 . Updated the comments plugin
 . Updated Dutch translation
