@@ -31,6 +31,7 @@ Sigla:
 - Fixed bug where using permissions string as parameter to addController had no effect (issue 41)
 - Fixed "s" echo for count in comment-each snippet of comment plugin
 - Fixed Gravatar bug to display default user image.
+. Updated all languages files to move file manager plugin translations to file manager plugin i18n directory
 . Updated core plugin index.php files to make use of the new "latest" functionality
 . Updated the comments plugin
 . Updated Dutch translation

@@ -1,12 +1,11 @@
 <?php
 
 /**
- * this file has been translated by: Philippe Archambault
+ * this file has been translated by: Beres
  */
 
 return array(
 
-// files
 'File' => 'Fichier',
 'Size' => 'Taille',
 'Permissions' => 'Permission',
@@ -16,6 +15,7 @@ return array(
 'Create new directory' => 'Créer un répertoire',
 'Upload file' => 'Télécharger un fichier',
 'rename' => 'renommer',
+
 
 'File :name has been created with success!' => 'Le fichier <strong>:name</strong> a été créé avec succès!',
 'Directory is not writable! File has not been saved!' => 'Vous ne détenez pas les droits d\'écriture sur le répertoire. Le fichier na pas été enregistré',
