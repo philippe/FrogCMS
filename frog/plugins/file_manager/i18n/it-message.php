@@ -1,37 +1,39 @@
 <?php
 
-/**
- * this file has been translated by: Beres
- */
+    /**
+     * Translated by: Beres <email@domain.something>
+     * Plugin       : file_manager
+     * Frog version : 0.9.4
+     */
 
-return array(
-
-'File' => 'Fichier',
-'Size' => 'Taille',
-'Permissions' => 'Permission',
-'Change mode' => 'Changer le mode',
-'Remove file' => 'Supprimer le fichier',
-'Create new file' => 'Créer un fichier',
-'Create new directory' => 'Créer un répertoire',
-'Upload file' => 'Télécharger un fichier',
-'rename' => 'renommer',
-
-
-'File :name has been created with success!' => 'Le fichier <strong>:name</strong> a été créé avec succès!',
-'Directory is not writable! File has not been saved!' => 'Vous ne détenez pas les droits d\'écriture sur le répertoire. Le fichier na pas été enregistré',
-'File :name has been created!' => 'Le fichier <strong>:name</strong> a été créé!',
-'File :name has not been created!' => 'Le fichier <strong>:name</strong> n\'a pas été créé!',
-'Directory :name has been created!' => 'Le répertoire <strong>:name</strong> a été créé!',
-'Directory :name has not been created!' => 'Le répertoire <strong>:name</strong> n\'a pas été créé!',
-'File :name has been deleted with success!' => 'Le fichier <strong>:name</strong> a été supprimé avec succès!',
-'File :name has not been deleted!' => 'Le fichier <strong>:name</strong> n\'a pas été supprimé!',
-'Directory :name has been deleted with success!' => 'Le répertoire <strong>:name</strong> a été supprimé avec succès!',
-'Directory :name has not been deleted!' => 'Le répertoire <strong>:name</strong> n\'a pas été supprimé!',
-'File :name has been uploaded with success!' => 'Le fichier <strong>:name</strong> a été téléchargé avec succès!',
-'File has not been uploaded!' => 'Le fichier n\'a pas été téléchargé!',
-'Permissions of file has been changed!' => 'Les permissions sur le fichier ont été modifiées!',
-'Permissions of directory has been changed!' => 'Les permissions sur le répertoire on été modifiées!',
-'Change mode has not been done!' => 'Le changement de permission n\'a pas fonctionné!',
-'File or directory not found!' => 'Le fichier ou le répertoire n\'a pas été trouvé!',
-
-);
+    return array(
+        'Action' => 'Azione',
+        'Are you sure you wish to delete' => 'Sicuro di volerlo eliminare',
+        'Cancel' => 'Annulla',
+//        'Change mode' => '',
+        'Close' => 'Chiudi',
+//        'Create' => '',
+//        'Create new directory' => '',
+//        'Create new file' => '',
+//        'Directory :name has not been created!' => '',
+//        'Directory is not writable! File has not been saved!' => '',
+//        'File' => '',
+//        'File :name has been created with success!' => '',
+//        'File :name has not been created!' => '',
+//        'File has been saved with success!' => '',
+//        'File has not been uploaded!' => '',
+//        'File is not writable! File has not been saved!' => '',
+//        'File or directory not found!' => '',
+        'Modify' => 'Modifica',
+//        'Permission denied!' => '',
+//        'Permissions' => '',
+//        'Rename' => '',
+        'Save' => 'Salva',
+        'Save and Continue Editing' => 'Salva e continua ad editare',
+//        'Size' => '',
+//        'Upload' => '',
+//        'Upload file' => '',
+        'You do not have permission to access the requested page!' => 'Permessi insufficenti per accedere alla pagina richiesta',
+        'or' => 'o',
+//        'overwrite it?' => '',
+    );

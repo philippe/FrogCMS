@@ -10,6 +10,7 @@ Sigla:
 0.9.5 - released ????-??-??
 
 + Added translation template generator to help out translators with translating Frog core and plugins.
+. Updated file_manager plugin translations to conform to new template
 
 0.9.4 - released 2008-09-29
 

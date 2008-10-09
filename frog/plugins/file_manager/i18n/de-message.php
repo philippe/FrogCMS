@@ -1,33 +1,39 @@
 <?php
 
-return array(
+    /**
+     * Translated by: Your Name <email@domain.something>
+     * Plugin       : file_manager
+     * Frog version : 0.9.4
+     */
 
-// files
-'File' => 'Datei',
-'Size' => 'Grösse',
-'Permissions' => 'Zugriffsrecht',
-'Change mode' => 'Ändere Rechte',
-'Remove file' => 'Datei löschen',
-'Create new file' => 'Neue Datei anlegen',
-'Create new directory' => 'Neues Verzeichnis anlegen',
-'Upload file' => 'Datei hochladen',
-'rename' => 'umbenennen',
-
-'File :name has been created with success!' => 'Datei :name wurde erfolgreich erstellt!',
-'Directory is not writable! File has not been saved!' => 'Verzeichnis ist nicht beschreibbar! Datei wurde nicht gespeichert!',
-'File :name has been created!' => 'Die Datei :name wurde erstellt!',
-'File :name has not been created!' => 'Fehler beim erstellen der Datei :name!',
-'Directory :name has been created!' => 'Das Verzeichnis :name wurde erstellt!',
-'Directory :name has not been created!' => 'Fehler beim erstellen des Verzeichnisses :name!',
-'File :name has been deleted with success!' => 'Die Datei :name wurde erfolgreich gelöscht!',
-'File :name has not been deleted!' => 'Fehler beim löschen der Datei :name!',
-'Directory :name has been deleted with success!' => 'Das Verzeichnis :name wurde erfolgreich gelöscht!',
-'Directory :name has not been deleted!' => 'Fehler beim löschen des Verzeichnisses :name!',
-'File :name has been uploaded with success!' => 'Die Datei :name wurde erfolgreich hochgeladen!',
-'File has not been uploaded!' => 'Fehler beim hochladen der Datei!',
-'Permissions of file has been changed!' => 'Die Zugriffsrechte der Datei wurden geändert!',
-'Permissions of directory has been changed!' => 'Die Zugriffsrechte des Verzeichnisses wurden geändert!',
-'Change mode has not been done!' => 'Das ändern der Rechte hat nicht geklappt!',
-'File or directory not found!' => 'Datei oder Verzeichnis nicht gefunden!',
-
-);
+    return array(
+        'Action' => 'Aktion',
+        'Are you sure you wish to delete' => 'Soll wirklich gelöscht werden',
+        'Cancel' => 'Abbrechen',
+        'Change mode' => 'Ändere Rechte',
+        'Close' => 'Schliessen',
+//        'Create' => '',
+        'Create new directory' => 'Neues Verzeichnis anlegen',
+        'Create new file' => 'Neue Datei anlegen',
+        'Directory :name has not been created!' => 'Fehler beim erstellen des Verzeichnisses :name!',
+        'Directory is not writable! File has not been saved!' => 'Verzeichnis ist nicht beschreibbar! Datei wurde nicht gespeichert!',
+        'File' => 'Datei',
+        'File :name has been created with success!' => 'Datei :name wurde erfolgreich erstellt!',
+        'File :name has not been created!' => 'Fehler beim erstellen der Datei :name!',
+//        'File has been saved with success!' => '',
+        'File has not been uploaded!' => 'Fehler beim hochladen der Datei!',
+//        'File is not writable! File has not been saved!' => '',
+        'File or directory not found!' => 'Datei oder Verzeichnis nicht gefunden!',
+        'Modify' => 'Modifizieren',
+//        'Permission denied!' => '',
+        'Permissions' => 'Zugriffsrecht',
+        'Rename' => 'Umbenennen',
+        'Save' => 'Speichern',
+        'Save and Continue Editing' => 'Speichern und weiterbearbeiten',
+        'Size' => 'Grösse',
+        'Upload' => 'Hochladen',
+        'Upload file' => 'Datei hochladen',
+        'You do not have permission to access the requested page!' => 'Zugriff zur angeforderten Seite verweigert: Sie haben nicht genügend Rechte!',
+        'or' => 'oder',
+//        'overwrite it?' => '',
+    );

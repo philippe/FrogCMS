@@ -267,7 +267,7 @@ class FileManagerController extends PluginController
         }
         else
         {
-            Flash::set('error', __('File or directory not found! '.$file));
+            Flash::set('error', __('File or directory not found!'.$file));
         }
         
         redirect(get_url('plugin/file_manager/browse/'.$path));

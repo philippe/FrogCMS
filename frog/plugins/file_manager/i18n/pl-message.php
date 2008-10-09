@@ -1,36 +1,39 @@
 <?php
 
-/**
- * this file has been translated by: Marcin Chwedziak
- */
+    /**
+     * Translated by: Marcin Chwedziak <email@domain.something>
+     * Plugin       : file_manager
+     * Frog version : 0.9.4
+     */
 
-return array(
-// files
-'File' => 'Plik',
-'Size' => 'Rozmiar',
-'Permissions' => 'Uprawnienia',
-'Change mode' => 'Zmień tryb',
-'Remove file' => 'Usuń plik',
-'Create new file' => 'Stwórz nowy plik',
-'Create new directory' => 'Stwórz nowy folder',
-'Upload file' => 'Wgraj plik z dysku',
-'rename' => 'zmień nazwę',
-
-'File :name has been created with success!' => 'Plik<strong>:name</strong> został utworzony!',
-'Directory is not writable! File has not been saved!' => 'Nie można pliku zapisać do folderu.',
-'File :name has been created!' => 'Plik <strong>:name</strong> został utworzony!',
-'File :name has not been created!' => 'Plik <strong>:name</strong> nie został utworzony!',
-'Directory :name has been created!' => 'Folder <strong>:name</strong> został utworzony!',
-'Directory :name has not been created!' => 'Folder <strong>:name</strong> nie został utworzony!',
-'File :name has been deleted with success!' => 'Le fichier <strong>:name</strong> został usunięty!',
-'File :name has not been deleted!' => 'Le fichier <strong>:name</strong> nie został usunięty!',
-'Directory :name has been deleted with success!' => 'Folder <strong>:name</strong> został usunięty!',
-'Directory :name has not been deleted!' => 'Folder <strong>:name</strong> nie został usunięty!',
-'File :name has been uploaded with success!' => 'Plik<strong>:name</strong> został wgrany!',
-'File has not been uploaded!' => 'Nie wgrano żadnego pliku!',
-'Permissions of file has been changed!' => 'Zmieniono uprawnienia pliku!',
-'Permissions of directory has been changed!' => 'Zmieniono uprawienia folderu!',
-'Change mode has not been done!' => 'Nie można zmienić trybu!',
-'File or directory not found!' => 'Plik lub folder nie istnieją!',
-    
-);
+    return array(
+        'Action' => 'Akcja',
+        'Are you sure you wish to delete' => 'Czy na pewno chcesz usunąć',
+        'Cancel' => 'Anuluj',
+        'Change mode' => 'Zmień tryb',
+        'Close' => 'Zamknij',
+//        'Create' => '',
+        'Create new directory' => 'Stwórz nowy folder',
+        'Create new file' => 'Stwórz nowy plik',
+        'Directory :name has not been created!' => 'Folder <strong>:name</strong> nie został utworzony!',
+        'Directory is not writable! File has not been saved!' => 'Nie można pliku zapisać do folderu.',
+        'File' => 'Plik',
+        'File :name has been created with success!' => 'Plik<strong>:name</strong> został utworzony!',
+        'File :name has not been created!' => 'Plik <strong>:name</strong> nie został utworzony!',
+//        'File has been saved with success!' => '',
+        'File has not been uploaded!' => 'Nie wgrano żadnego pliku!',
+//        'File is not writable! File has not been saved!' => '',
+        'File or directory not found!' => 'Plik lub folder nie istnieją!',
+        'Modify' => 'Zmień',
+//        'Permission denied!' => '',
+        'Permissions' => 'Uprawnienia',
+        'Rename' => 'Zmień nazwę',
+        'Save' => 'Zapisz',
+        'Save and Continue Editing' => 'Zapisz i kontynuuj edycję',
+        'Size' => 'Rozmiar',
+        'Upload' => 'Wgraj',
+        'Upload file' => 'Wgraj plik z dysku',
+        'You do not have permission to access the requested page!' => 'Nie masz uprawnień do tej strony!',
+        'or' => 'lub',
+//        'overwrite it?' => '',
+    );
