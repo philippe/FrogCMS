@@ -7,6 +7,10 @@ Sigla:
 . other development
 ======
 
+0.9.5 - released ????-??-??
+
++ Added translation template generator to help out translators with translating Frog core and plugins.
+
 0.9.4 - released 2008-09-29
 
 + Added function to allow plugin devs to add one or more javascript file to the backend html for their plugin. (issue 35)
