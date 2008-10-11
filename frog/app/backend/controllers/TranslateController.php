@@ -34,8 +34,13 @@ class TranslateController extends Controller {
                     $data = substr($data, strpos($data, '__(\'')+4);
                     $tmp = explode('__(\'', $data);
 
-                    foreach ($tmp as $string)
-                        $strings[] = substr($string, 0, strpos($string, '\''));
+                    foreach ($tmp as $string) {
+                        $endpos = strpos($string, '\'');
+                        while (substr($string, $endpos-1, 1) == "\\") {
+                            $endpos = $endpos + strpos(substr($string, $endpos+1, strpos($string, '\'')), '\'') + 1;
+                        }
+                        $strings[] = substr($string, 0, $endpos);
+                    }
 
                     if (sizeof($strings) > 0)
                         $complete = array_merge($complete, $strings);
@@ -65,8 +70,13 @@ class TranslateController extends Controller {
                     $data = substr($data, strpos($data, '__(\'')+4);
                     $tmp = explode('__(\'', $data);
 
-                    foreach ($tmp as $string)
-                        $strings[] = substr($string, 0, strpos($string, '\''));
+                    foreach ($tmp as $string) {
+                        $endpos = strpos($string, '\'');
+                        while (substr($string, $endpos-1, 1) == "\\") {
+                            $endpos = $endpos + strpos(substr($string, $endpos+1, strpos($string, '\'')), '\'') + 1;
+                        }
+                        $strings[] = substr($string, 0, $endpos);
+                    }
 
                     if (sizeof($strings) > 0)
                         $files[$path] = $strings;
