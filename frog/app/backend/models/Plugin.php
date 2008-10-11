@@ -148,18 +148,18 @@ class Plugin
     static function checkLatest($plugin)
     {
         if ( ! isset($plugin->update_url) || ! $xml = simplexml_load_file($plugin->update_url)) {
-            return 'unknown';
+            return __('unknown');
         }
 
         foreach($xml as $node) {
             if ($plugin->id == $node->id)
                 if ($plugin->version == $node->version)
-                    return 'latest';
+                    return __('latest');
                 else
                     return (string) $node->version;
         }
 
-        return 'error';
+        return __('error');
     }
 
 

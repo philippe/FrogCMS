@@ -10,13 +10,13 @@
     <p>&nbsp;</p>
     <table class="fieldset" cellpadding="0" cellspacing="0" border="0">
       <tr>
-        <td><label for="layout_content_type">Content-Type</label></td>
+        <td><label for="layout_content_type"><?php echo __('Content-Type'); ?></label></td>
         <td class="field"><input class="textbox" id="layout_content_type" maxlength="40" name="layout[content_type]" size="40" type="text" value="<?php echo $layout->content_type; ?>" /></td>
       </tr>
     </table>
     
     <p class="content">
-      <label for="layout_content">Body</label>
+      <label for="layout_content"><?php echo __('Body'); ?></label>
       <textarea class="textarea" cols="40" id="layout_content" name="layout[content]" rows="20" style="width: 100%" onkeydown="return allowTab(event, this);"><?php echo htmlentities($layout->content, ENT_COMPAT, 'UTF-8'); ?></textarea>
     </p>
     <p class="clear">&nbsp;</p>

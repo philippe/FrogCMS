@@ -78,7 +78,7 @@
 <?php endforeach; ?>
           </select>
         </td>
-        <td class="help"><?php echo __('This will set your language for the backend.'); ?><br />Help us <a href="<?php echo get_url('translate'); ?>">translate Frog</a>!</td>
+        <td class="help"><?php echo __('This will set your language for the backend.'); ?><br /><?php echo __('Help us <a href="').get_url('translate').__('">translate Frog</a>!'); ?></td>
       </tr>
       <tr>
         <td class="label"><label for="setting_theme"><?php echo __('Administration Theme'); ?></label></td>

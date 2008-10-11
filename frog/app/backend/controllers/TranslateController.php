@@ -48,6 +48,13 @@ class TranslateController extends Controller {
             }
         }
 
+        // These are a few generated strings which the TranslateController cannot pick out.
+        // So we add them manually for now.
+        $complete = array_merge($complete, array('Add Page', 'Edit Page', 'Add snippet',
+                                                 'Edit snippet', 'Add layout' ,'Edit layout',
+                                                 'Add user', 'Edit user'
+                                                ));
+
         $this->display('translate/core', array('complete' => $complete));
     }
     
