@@ -6,7 +6,6 @@
      */
 
     return array(
-        //'">translate Frog</a>!' => '',
         //'<b>Information!</b> New Frog version available (v. <b>:version</b>)! Visit <a href="http://www.madebyfrog.com/">http://www.madebyfrog.com/</a> to upgrade your version!' => '',
         //'A translatable string with a %param% system.' => '',
         //'A translatable string.' => '',
@@ -61,7 +60,7 @@
         'Filter' => '编辑器',
         'Forgot password' => '忘记密码',
         'Forgot password?' => '忘记密码?',
-        'Help us <a href="' => '',
+        //'Help us <a href=":url">translate Frog</a>!' => '',
         'Hidden' => '隐藏',
         //'Just replace <b>snippet</b> by the snippet name you want to include.' => '',
         //'Keywords' => '',
