@@ -1,4 +1,4 @@
-Options +FollowSymLinks
+Options -Indexes +FollowSymLinks
 AddDefaultCharset UTF-8
 
 <IfModule mod_rewrite.c>
