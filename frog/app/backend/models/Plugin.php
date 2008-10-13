@@ -170,6 +170,7 @@ class Plugin
 	 * @param label         string  The tab label
 	 * @param permissions   string  List of roles that will have the tab displayed
 	 *                              separate by coma ie: 'administrator,developer'
+     * @param show_tab      boolean Either 'true' or 'false'. Defaults to true.
 	 *
 	 * @return void
 	 */
