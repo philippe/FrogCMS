@@ -24,7 +24,7 @@ return array(
 'on' => 'на',
 'Upload' => 'Загрузить',
 'Are you sure you wish to delete' => 'Вы уверены, что хотите удалить',
-'Published' => 'Опублекован',
+'Published' => 'Опубликован',
 'Draft' => 'Черновик',
 'Reviewed' => 'Просмотрен',
 'Hidden' => 'Скрыт',
