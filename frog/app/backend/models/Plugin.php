@@ -201,7 +201,7 @@ class Plugin
     {
         if (file_exists(CORE_ROOT . '/plugins/' . $plugin_id . '/' . $file))
         {
-            self::$javascripts[$plugin_id] = $file;
+            self::$javascripts[] = $plugin_id.'/'.$file;
         }
     }
     
