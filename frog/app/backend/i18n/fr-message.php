@@ -1,7 +1,13 @@
 <?php
 
 /**
- * this file has been translated by: Philippe Archambault
+ * French language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Philippe Archambault
+ * @version Frog x.y.z
  */
 
 return array(

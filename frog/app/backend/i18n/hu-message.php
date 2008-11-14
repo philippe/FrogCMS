@@ -1,7 +1,13 @@
 <?php
 
 /**
- * this file has been translated by: H.S.Laszlo http://www.bluedesign.hu
+ * Hungarian language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author H.S.Laszlo <http://www.bluedesign.hu>
+ * @version Frog x.y.z
  */
 
 return array(

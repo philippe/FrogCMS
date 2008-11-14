@@ -1,7 +1,13 @@
 <?php
 
 /**
- * this file has been translated by: Marcin Chwedziak
+ * Polish language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Marcin Chwedziak
+ * @version Frog x.y.z
  */
 
 return array(

@@ -17,8 +17,13 @@ function writeTemplate($strings) {
     echo '<?php
 
     /**
-     * Translated by: Your Name <email@domain.something>
-     * Frog version : x.y.z
+     * YourLanguage language file
+     *
+     * @package frog
+     * @subpackage translations
+     *
+     * @author Your Name <email@domain.something>
+     * @version Frog x.y.z
      */
 
     return array(

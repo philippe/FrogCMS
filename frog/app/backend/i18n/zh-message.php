@@ -1,9 +1,14 @@
 <?php
 
-    /**
-     * Translated by: westup <email@domain.something>
-     * Frog version : 0.9.4
-     */
+/**
+ * Chinese language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author westup <email@domain.something>
+ * @version Frog x.y.z
+ */
 
     return array(
         //'<b>Information!</b> New Frog version available (v. <b>:version</b>)! Visit <a href="http://www.madebyfrog.com/">http://www.madebyfrog.com/</a> to upgrade your version!' => '',

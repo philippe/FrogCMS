@@ -1,7 +1,13 @@
 ﻿<?php
 
 /**
- *  this file has been translated by: Shuvro Prakash Paul <shuvro.paul@gmail.com>
+ * Bengali language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Shuvro Prakash Paul <shuvro.paul@gmail.com>
+ * @version Frog x.y.z
  */
 
 return array(

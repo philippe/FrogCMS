@@ -1,10 +1,14 @@
 <?php
 
-    /**
-     * Translated by: Philippe Archambault <email@domain.something>
-     * Plugin       : file_manager
-     * Frog version : 0.9.4
-     */
+/**
+ * French language file for plugin file_manager
+ *
+ * @package frog
+ * @subpackage plugin.file_manager.translations
+ *
+ * @author Philippe Archambault <email@domain.something>
+ * @version Frog 0.9.4
+ */
 
     return array(
         'Action' => 'Action',

@@ -1,7 +1,13 @@
 <?php
 
 /**
- * This file has been translated by: Martijn van der Kleijn
+ * Dutch language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Martijn van der Kleijn <martijn.niji@gmail.com>
+ * @version Frog x.y.z
  */
 
 return array(

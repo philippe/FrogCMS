@@ -1,7 +1,13 @@
 <?php
 
 /**
- * this file has been translated by: Beres
+ * Italian language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Beres
+ * @version Frog x.y.z
  */
 
 return array(

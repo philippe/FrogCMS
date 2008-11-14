@@ -1,5 +1,23 @@
 <?php
 
+/*
+ * Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+ */
+
+/**
+ * HTML/XHTML filter that only allows some elements and attributes.
+ *
+ * @package frog
+ * @subpackage helpers
+ *
+ * @author Ulf Harnhammar <metaur@users.sourceforge.net>
+ * @version 0.2.2
+ * @since Frog version beta 1
+ * @license http://www.gnu.org/licenses/gpl.html GPL License
+ * @copyright Ulf Harnhammar, 2002, 2003, 2005
+ */
+
+
 # kses 0.2.2 - HTML/XHTML filter that only allows some elements and attributes
 # Copyright (C) 2002, 2003, 2005  Ulf Harnhammar
 #
@@ -29,7 +47,9 @@
 #
 # [kses strips evil scripts!]
 
-
+/**
+ *
+ */
 function kses($string, $allowed_html, $allowed_protocols =
                array('http', 'https', 'ftp', 'mailto'))
 ###############################################################################

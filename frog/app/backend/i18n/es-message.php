@@ -1,7 +1,13 @@
 ﻿<?php
 
 /**
- * this file has been translated by: gothw
+ * Spanish language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author gothw
+ * @version Frog x.y.z
  */
 
 return array(

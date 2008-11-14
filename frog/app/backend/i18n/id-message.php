@@ -1,10 +1,14 @@
 <?php
 
 /**
- * this file has been translated by: Rendra Stanfordi
- * Email: renstanford@gmail.com
- * Website: http://okecoy.com
- * Date: 29 August 2008
+ * Indonesian language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Rendra Stanfordi <renstanford@gmail.com>
+ * @version Frog 0.9.4
+ * @link http://okecoy.com
  */
 
 return array(

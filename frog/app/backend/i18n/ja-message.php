@@ -1,7 +1,13 @@
 <?php
 
 /**
- * this file has been translated by: Sunao Hara
+ * Japanese language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Sunao Hara
+ * @version Frog x.y.z
  */
  
 return array(

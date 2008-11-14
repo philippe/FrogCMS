@@ -1,21 +1,38 @@
 <?php
 
-/**
- * Simple Zip library 
+/*
+ * Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
  *
- * methods:
- *      - void addFile($data, $name, [$time])
- *      - string file()
- *      - void save([$filename='archive.zip'])
- *      - void download([$filename='archive.zip'])
- *      - void clear()
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
- * @version 0.1
- * @package Frog
- * @author Philippe Archambault <philippe.archambault@gmail.com>
- * @license http://www.opensource.org/licenses/mit-license.html MIT License
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Simple Zip library
+ *
+ * @package frog
+ * @subpackage helpers
+ *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @version 0.1
+ * @since Frog version beta 1
+ * @license http://www.gnu.org/licenses/agpl.html AGPL License
+ * @copyright Philippe Archambault, 2007
+ */
+
+/**
+ *
+ */
 class Zip
 {
     private $_data   = array();

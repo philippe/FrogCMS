@@ -1,7 +1,13 @@
 <?php
 
 /**
- * This file has been translated by: Philip Suffren
+ * Norwegian language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Philip Suffren
+ * @version Frog x.y.z
  */
 
 return array(

@@ -1,10 +1,14 @@
 <?php
 
-    /**
-     * Translated by: Your Name <email@domain.something>
-     * Plugin       : file_manager
-     * Frog version : 0.9.4
-     */
+/**
+ * German language file for plugin file_manager
+ *
+ * @package frog
+ * @subpackage plugin.file_manager.translations
+ *
+ * @author unknown <email@domain.something>
+ * @version Frog 0.9.4
+ */
 
     return array(
         'Action' => 'Aktion',

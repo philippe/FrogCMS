@@ -1,27 +1,38 @@
 <?php
 
-/**
-   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
-   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU Affero General Public License as
-   published by the Free Software Foundation, either version 3 of the
-   License, or (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Affero General Public License for more details.
-
-   You should have received a copy of the GNU Affero General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+/*
+ * Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
-   Version 1.6
+ * The Framework file is a modified version of the so-called Green Framework.
+ * 
+ * @package framework
+ *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @version 1.6
+ * @license http://www.gnu.org/licenses/agpl.html AGPL License
+ * @copyright Philippe Archambault, 2008
+ *
+ * @todo replace the customized Framework with the latest uncustomized Green Framework?
  */
 
+/**
+ * 
+ */
 define('FRAMEWORK_STARTING_MICROTIME', get_microtime());
 
 // all constants that you can define before to costumize your framework
@@ -53,21 +64,23 @@ else
     putenv('TZ='.DEFAULT_TIMEZONE);
 
 /**
- * The Dispatcher main Core class is responsible for mapping urls /
- * routes to Controller methods. Each route that has the same number of directory
- * components as the current requested url is tried, and the first method that
- * returns a response with a non false / non null value will be returned via the
- * Dispatcher::dispatch() method. For example:
- *
- * A route string can be a literal url such as '/pages/about' or contain
- * wildcards (:any or :num) and/or regex like '/blog/:num' or '/page/:any'.
+ * The Dispatcher main Core class is responsible for mapping urls/routes to Controller methods.
  * 
- * Dispatcher::addRoute(array(
+ * Each route that has the same number of directory components as the current
+ * requested url is tried, and the first method that returns a response with a
+ * non false/non null value will be returned via the Dispatcher::dispatch() method.
+ *
+ * For example:
+ *
+ * A route string can be a literal url such as '/pages/about' or can contain
+ * wildcards (:any or :num) and/or regex like '/blog/:num' or '/page/:any'.
+ *
+ * <code>Dispatcher::addRoute(array(
  *  '/' => 'page/index',
  *  '/about' => 'page/about,
  *  '/blog/:num' => 'blog/post/$1',
  *  '/blog/:num/comment/:num/delete' => 'blog/deleteComment/$1/$2'
- * ));
+ * ));</code>
  *
  * Visiting /about/ would call PageController::about(),
  * visiting /blog/5 would call BlogController::post(5)
@@ -226,6 +239,12 @@ final class Dispatcher
 } // end Dispatcher class
 
 
+/**
+ * The Record class represents a database record.
+ * 
+ * It is used as an abstraction layer so classes don't need to implement their own
+ * database functionality.
+ */
 class Record
 {
     const PARAM_BOOL = 5;

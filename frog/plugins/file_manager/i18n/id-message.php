@@ -1,10 +1,14 @@
 <?php
 
-    /**
-     * Translated by: Rendra Stanfordi <renstanford@gmail.com>
-     * Plugin       : file_manager
-     * Frog version : 0.9.4
-     */
+/**
+ * Indonesian language file for plugin file_manager
+ *
+ * @package frog
+ * @subpackage plugin.file_manager.translations
+ *
+ * @author Rendra Stanfordi <renstanford@gmail.com>
+ * @version Frog 0.9.4
+ */
 
     return array(
         'Action' => 'Aksi',

@@ -1,30 +1,40 @@
 <?php 
 
-/**
-   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
-   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU Affero General Public License as
-   published by the Free Software Foundation, either version 3 of the
-   License, or (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Affero General Public License for more details.
-
-   You should have received a copy of the GNU Affero General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+/*
+ * Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
-   Class LoginController
+ * @package frog
+ * @subpackage controllers
+ *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @version 0.1
+ * @license http://www.gnu.org/licenses/agpl.html AGPL License
+ * @copyright Philippe Archambault, 2008
+ */
 
-   Log a use in and out and send a mail with something on 
-   if the user doesn't remember is password !!!
-
-   Since  0.1
+/**
+ * Class LoginController
+ *
+ * Log a use in and out and send a mail with something on
+ * if the user doesn't remember is password !!!
+ *
+ * @version 0.1
+ * @since  0.1
  */
 
 class LoginController extends Controller
@@ -82,6 +92,11 @@ class LoginController extends Controller
         $this->display('login/forgot', array('email' => Flash::get('email')));
     }
     
+    /**
+     * This method is used to send a newly generated password to a user.
+     * 
+     * @param string $email The user's email adress.
+     */
     function _sendPasswordTo($email)
     {
         $user = User::findBy('email', $email);
@@ -110,7 +125,12 @@ class LoginController extends Controller
             redirect(get_url('login/forgot'));
         }
     }
-    
+
+    /**
+     * Checks what the latest Frog version is that is available at madebyfrog.com
+     *
+     * @todo Make this check optional through the configuration file
+     */
     function _checkVersion()
     {
         $v = file_get_contents('http://www.madebyfrog.com/version/');

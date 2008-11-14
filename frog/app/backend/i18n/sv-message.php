@@ -1,7 +1,14 @@
 <?php
 
 /**
- * This file has been translated by: Andreas Johansson, www.ibuypink.com
+ * Swedish language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Andreas Johansson
+ * @version Frog x.y.z
+ * @link http://www.ibuypink.com
  */
 
 return array(

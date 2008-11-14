@@ -48,9 +48,13 @@ function writeTemplate($pluginname, $strings) {
     echo '<?php
 
     /**
-     * Translated by: Your Name <email@domain.something>
-     * Plugin       : '.$pluginname.'
-     * Frog version : x.y.z
+     * YourLanguage file for plugin '.$pluginname.'
+     *
+     * @package frog
+     * @subpackage plugin.'.$pluginname.'.translations
+     *
+     * @author Your Name <email@domain.something>
+     * @version Frog x.y.z
      */
 
     return array(

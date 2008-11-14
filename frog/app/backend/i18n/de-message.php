@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * German language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author unknown
+ * @version Frog x.y.z
+ */
+
 return array(
 
 // general

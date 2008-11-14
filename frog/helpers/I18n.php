@@ -1,42 +1,49 @@
 <?php
 
-/**
-   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
-   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU Affero General Public License as
-   published by the Free Software Foundation, either version 3 of the
-   License, or (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Affero General Public License for more details.
-
-   You should have received a copy of the GNU Affero General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+/*
+ * Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Simple internationalisation library
+ *
+ * @package frog
+ * @subpackage helpers
+ *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @version 0.1
+ * @since Frog version beta 1
+ * @license http://www.gnu.org/licenses/agpl.html AGPL License
+ * @copyright Philippe Archambault, 2007
+ */
+
+/**
+ * 
+ */
 defined('I18N_PATH') or define('I18N_PATH', APP_PATH.DIRECTORY_SEPARATOR.'i18n');
 define('DEFAULT_LOCALE', 'en');
 
 /**
- * I18n : Internationalisation function and class
+ * This function is as flexible as possible, you can choose your own pattern for variables in
+ * the string.
  *
- * @author Philippe Archambault <philippe.archambault@gmail.com>
- * @copyright 2007 Philippe Archambault
- * @package Frog
- * @version 0.1
- * @license http://www.opensource.org/licenses/mit-license.html MIT License
- */
-
-
-/**
- * this function is the must permisive as possible, you cand chose your own pattern for vars in 
- * the string, it could be ':var_name', '#var_name', '{varname}', '%varname', '%varname%', 'VARNAME' ...
+ * Examples of variables are: ':var_name', '#var_name', '{varname}',
+ * '%varname', '%varname%', 'VARNAME', etc...
  *
- *
+ * <code>
  * return = array('hello world!' => 'bonjour le monde!',
  *                'user ":user" is logged in' => 'l\'utilisateur ":user" est connecté',
  *                'Posted by %user% on %month% %day% %year% at %time%' => 'Publié par %user% le %day% %month% %year% à %time%'
@@ -50,6 +57,7 @@ define('DEFAULT_LOCALE', 'en');
  *      '%day%' => $day, 
  *      '%year%' => $year, 
  *      '%time%' => $time)); // Publié par demo le 3 janvier 2006 à 19:30
+ * </code>
  */
 function __($string, $args=null)
 {
@@ -61,6 +69,10 @@ function __($string, $args=null)
 	return strtr($string, $args);
 }
 
+/**
+ * I18n : Internationalisation function and class
+ *
+ */
 class I18n 
 {
 	private static $locale = DEFAULT_LOCALE;

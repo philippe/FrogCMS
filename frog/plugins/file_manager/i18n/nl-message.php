@@ -1,10 +1,14 @@
 <?php
 
-    /**
-     * Translated by: Martijn van der Kleijn <martijn.niji@gmail.com>
-     * Plugin       : file_manager
-     * Frog version : 0.9.4
-     */
+/**
+ * Dutch language file for plugin file_manager
+ *
+ * @package frog
+ * @subpackage plugin.file_manager.translations
+ *
+ * @author Martijn van der Kleijn <martijn.niji@gmail.com>
+ * @version Frog 0.9.4
+ */
 
     return array(
         'Action' => 'Aktie',

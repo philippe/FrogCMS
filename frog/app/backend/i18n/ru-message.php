@@ -1,7 +1,13 @@
 <?php
 
 /**
- * this file has been translated by: Maslakov Alexander (jmas.ukraine@gmail.com)
+ * Russian language file
+ *
+ * @package frog
+ * @subpackage translations
+ *
+ * @author Maslakov Alexander <jmas.ukraine@gmail.com>
+ * @version Frog x.y.z
  */
 
 return array(
