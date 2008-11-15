@@ -32,7 +32,10 @@
  *
  * Plugin controller to dispatch to all plugins controllers.
  *
- * @since Frog version 0.9
+ * @package frog
+ * @subpackage controllers
+ *
+ * @since 0.9
  */
 class PluginController extends Controller
 {

@@ -30,7 +30,10 @@
 /**
  * Class SettingsController
  *
- * @since Frog version 0.8.7
+ * @package frog
+ * @subpackage controllers
+ *
+ * @since 0.8.7
  */
 class SettingController extends Controller
 {

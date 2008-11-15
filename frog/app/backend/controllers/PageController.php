@@ -29,8 +29,11 @@
 
 /**
  * Class PagesController
+ * 
+ * @package frog
+ * @subpackage controllers
  *
- * since Frog version 0.1
+ * @since 0.1
  */
 class PageController extends Controller
 {
@@ -108,8 +111,11 @@ class PageController extends Controller
             redirect(get_url('page/add'));
         }
 
-        // Make sure the title doesn't contain HTML
-        // TODO - Replace this by HTML Purifier?.
+        /**
+         * Make sure the title doesn't contain HTML
+         * 
+         * @todo Replace this by HTML Purifier?
+         */
         if (Setting::get('allow_html_title') == 'off') {
             use_helper('Kses');
             $data['title'] = kses(trim($data['title']), array());
@@ -215,8 +221,11 @@ class PageController extends Controller
         // need to do this because the use of a checkbox
         $data['is_protected'] = !empty($data['is_protected']) ? 1: 0;
         
-        // Make sure the title doesn't contain HTML
-        // TODO - Replace this by HTML Purifier?.
+        /**
+         * Make sure the title doesn't contain HTML
+         *
+         * @todo Replace this by HTML Purifier?
+         */
         if (Setting::get('allow_html_title') == 'off') {
             use_helper('Kses');
             $data['title'] = kses(trim($data['title']), array());

@@ -34,6 +34,8 @@
 /**
  * class CommentController
  *
+ * @package frog
+ * @subpackage plugin.comment
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @since Frog version 0.6
  */

@@ -28,22 +28,31 @@
  */
 
 /**
- * Class LoginController
+ * Allows a user to access login/logout related functionality.
+ * 
+ * It also has functionality to email a new password to the user if that user
+ * cannot remember his or her password.
  *
- * Log a use in and out and send a mail with something on
- * if the user doesn't remember is password !!!
- *
+ * @package frog
+ * @subpackage controllers
+ * 
  * @version 0.1
- * @since  0.1
+ * @since 0.1
  */
-
 class LoginController extends Controller
 {
+    /**
+     * Sets up the LoginController.
+     */
     function __construct()
     {
         AuthUser::load();
     }
-    
+
+    /**
+     * Checks if a user is already logged in, otherwise it redirects the user
+     * to the login screen.
+     */
     function index()
     {
         // already log in ?
@@ -55,7 +64,10 @@ class LoginController extends Controller
             'username' => Flash::get('username')
         ));
     }
-    
+
+    /**
+     * Allows a user to login.
+     */
     function login()
     {
         // already log in ?
@@ -77,13 +89,21 @@ class LoginController extends Controller
         redirect(get_url('login'));
         
     }
-    
+
+    /**
+     * Allows a user to logout.
+     */
     function logout()
     {
         AuthUser::logout();
         redirect(get_url());
     }
-    
+
+    /**
+     * Allows a user to request a new password be mailed to him/her.
+     *
+     * @return <type> ???
+     */
     function forgot()
     {
         if (get_request_method() == 'POST')
@@ -97,7 +117,7 @@ class LoginController extends Controller
      * 
      * @param string $email The user's email adress.
      */
-    function _sendPasswordTo($email)
+    private function _sendPasswordTo($email)
     {
         $user = User::findBy('email', $email);
         if ($user)
@@ -131,7 +151,7 @@ class LoginController extends Controller
      *
      * @todo Make this check optional through the configuration file
      */
-    function _checkVersion()
+    private function _checkVersion()
     {
         $v = file_get_contents('http://www.madebyfrog.com/version/');
         if ($v > FROG_VERSION)

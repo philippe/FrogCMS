@@ -1,4 +1,32 @@
-<?php if ($action == 'edit') { ?>
+<?php
+/*
+ * Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * @package frog
+ * @subpackage views
+ *
+ * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @version 0.1
+ * @license http://www.gnu.org/licenses/agpl.html AGPL License
+ * @copyright Philippe Archambault, 2008
+ */
+
+if ($action == 'edit') { ?>
     <span style="float: right;"><a id="site-view-page" onclick="target='_blank'" onkeypress="target='_blank'" href="<?php echo URL_PUBLIC; echo (USE_MOD_REWRITE == false) ? '?' : ''; echo $page->getUri().URL_SUFFIX; ?>"><?php echo __('View this page'); ?></a></span>
 <?php } ?>
 <h1><?php echo __(ucfirst($action).' Page'); ?></h1>

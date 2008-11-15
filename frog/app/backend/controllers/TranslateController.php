@@ -32,7 +32,10 @@
  *
  * This controller allows users to generate a template for a translation file.
  *
- * @since Frog version 0.9.4
+ * @package frog
+ * @subpackage controllers
+ *
+ * @since 0.9.4
  */
 class TranslateController extends Controller {
     

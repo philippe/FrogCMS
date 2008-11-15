@@ -209,7 +209,10 @@ else // list of fonctions, classes used by the frontend
 		}
 	}
 	
-	class Comment
+	/**
+     * @ignore
+     */
+    class Comment
 	{
 		const NONE = 0;
 		const OPEN = 1;

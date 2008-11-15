@@ -30,7 +30,10 @@
 /**
  * Class UserController
  *
- * @since Frog version 0.1
+ * @package frog
+ * @subpackage controllers
+ *
+ * @since 0.1
  */
 class UserController extends Controller
 {

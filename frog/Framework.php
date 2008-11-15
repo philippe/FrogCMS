@@ -27,7 +27,7 @@
  * @license http://www.gnu.org/licenses/agpl.html AGPL License
  * @copyright Philippe Archambault, 2008
  *
- * @todo replace the customized Framework with the latest uncustomized Green Framework?
+ * @todo Replace the customized Framework with the latest uncustomized Green Framework?
  */
 
 /**
