@@ -12,6 +12,7 @@ Sigla:
 + Added translation template generator to help out translators with translating Frog core and plugins.
 + Added Norwegian and Swedish core translations
 . Updated file_manager plugin translations to conform to new template
+. Updated comments in preparation for PHPDoc documentation
 
 0.9.4 - released 2008-09-29
 
