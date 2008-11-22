@@ -1,6 +1,6 @@
 <?php echo '<?php'; ?> 
 
-// database informations
+// database information
 // for sqlite, use sqlite:/tmp/frog.db (SQlite 3)
 // the path can only be absolute path or :memory:
 // for more info look at: www.php.net/pdo
@@ -20,7 +20,7 @@ define('DEBUG', false);
 // The full URL of your Frog CMS install
 define('URL_PUBLIC', 'http://<?php echo substr(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), 0, strrpos(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), '/')); ?>/');
 
-// The directory name of your Frog CMS administration (you will need to change it manualy)
+// The directory name of your Frog CMS administration (you will need to change it manually)
 define('ADMIN_DIR', 'admin');
 
 // Change this setting to enable mod_rewrite. Set to "true" to remove the "?" in the URL.
@@ -28,13 +28,13 @@ define('ADMIN_DIR', 'admin');
 // Frog CMS root directory to ".htaccess"
 define('USE_MOD_REWRITE', false);
 
-// add a suffix to pages (simluating static pages '.html')
+// Add a suffix to pages (simluating static pages '.html')
 define('URL_SUFFIX', '<?php echo $url_suffix; ?>');
 
-// if your server doesn't have PDO (with MySQL driver) set the below to false
+// If your server doesn't have PDO (with MySQL driver) set the below to false:
 define('USE_PDO', <?php echo $use_pdo ? 'true': 'false'; ?>);
 
-// Set the timezone of your choise
-// go here for more information of the available timezone:
+// Set the timezone of your choice.
+// Go here for more information on the available timezones:
 // http://php.net/timezones
 define('DEFAULT_TIMEZONE', '<?php $tz = date('e'); echo $tz != 'e' ? $tz: 'GMT'; ?>');
