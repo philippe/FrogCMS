@@ -87,6 +87,8 @@ class Page
     public $parent = false;
     public $level = false;
     public $tags = false;
+
+    public $needs_login;
     
     public function __construct($object, $parent)
     {

@@ -18,10 +18,10 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define('FRAMEWORK_STARTING_MICROTIME', get_microtime());
+//define('FRAMEWORK_STARTING_MICROTIME', get_microtime());
 
-require APP_PATH . '/frontend/classes/Plugin.php'; // Setting, Plugin, Behavior and Filter classes
-require APP_PATH . '/frontend/classes/Page.php';
+require APP_PATH . '/models/Plugin.php';
+require APP_PATH . '/classes/Page.php';
 
 if ( ! defined('HELPER_PATH')) define('HELPER_PATH', CORE_ROOT.'/helpers');
 if ( ! defined('URL_SUFFIX')) define('URL_SUFFIX', '');
@@ -45,7 +45,7 @@ Plugin::init();
  *
  * @param  string helpers in CamelCase
  * @return void
- */
+ *
 function use_helper()
 {
     static $_helpers = array();
@@ -67,6 +67,7 @@ function use_helper()
         $_helpers[] = $helper;
     }
 }
+ */
 
 /**
  * Explode an URI and make a array of params
@@ -201,6 +202,7 @@ function url_start_with($url)
     return false;
 }
 
+/*
 function execution_time()
 {
     return sprintf("%01.4f", get_microtime() - FRAMEWORK_STARTING_MICROTIME);
@@ -233,6 +235,7 @@ function page_not_found()
     include FROG_ROOT . '/404.php';
     exit;
 }
+*/
 
 function main()
 {
@@ -269,6 +272,16 @@ function main()
     // if we fund it, display it!
     if (is_object($page))
     {
+        // If page needs login, redirect to login
+        if ($page->needs_login)
+        {
+            AuthUser::load();
+            if (!AuthUser::isLoggedIn()) {
+                Flash::set('redirect', $page->url());
+                redirect(URL_PUBLIC.ADMIN_DIR.(USE_MOD_REWRITE ? '/': '/?/').'login');
+            }
+        }       
+        
         Observer::notify('page_found', $page);
         $page->_executeLayout();
     }

@@ -56,12 +56,17 @@ class LoginController extends Controller
     function index()
     {
         // already log in ?
-        if (AuthUser::isLoggedIn())
-            redirect(get_url());
+        if (AuthUser::isLoggedIn()) {
+            if (Flash::get('redirect') != null)
+                redirect(Flash::get('redirect'));
+            else
+                redirect(get_url());
+        }
         
         // show it!
         $this->display('login/login', array(
-            'username' => Flash::get('username')
+            'username' => Flash::get('username'),
+            'redirect' => Flash::get('redirect')
         ));
     }
 
@@ -72,18 +77,26 @@ class LoginController extends Controller
     {
         // already log in ?
         if (AuthUser::isLoggedIn())
-            redirect(get_url());
+            if (Flash::get('redirect') != null)
+                redirect(Flash::get('redirect'));
+            else
+                redirect(get_url());
         
-        $data = isset($_POST['login']) ? $_POST['login']: array('username' => '', 'password' => '');
-        Flash::set('username', $data['username']);
+        if (get_request_method() == 'POST') {
+            $data = isset($_POST['login']) ? $_POST['login']: array('username' => '', 'password' => '');
+            Flash::set('username', $data['username']);
         
-        if (AuthUser::login($data['username'], $data['password'], isset($data['remember'])))
-        {
-            $this->_checkVersion();
-            // redirect to defaut controller and action
-            redirect(get_url());
+            if (AuthUser::login($data['username'], $data['password'], isset($data['remember'])))
+            {
+                $this->_checkVersion();
+                // redirect to defaut controller and action
+                if ($data['redirect'] != null && $data['redirect'] != 'null')
+                    redirect($data['redirect']);
+                else
+                    redirect(get_url());
+            }
+            else Flash::set('error', __('Login failed. Please check your login data and try again.'));
         }
-        else Flash::set('error', __('Login failed. Please check your login data and try again.'));
         
         // not find or password is wrong
         redirect(get_url('login'));
