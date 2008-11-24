@@ -11,7 +11,7 @@
  */
 
     return array(
-        'Action' => '动作',
+        'Action' => '操作',
         'Are you sure you wish to delete' => '你确定删除吗',
         'Cancel' => '取消',
         'Change mode' => '改变模式',
@@ -33,11 +33,11 @@
         'Permissions' => '权限',
         'Rename' => '重命名',
         'Save' => '保存',
-        'Save and Continue Editing' => '保存并继续编辑',
+        'Save and Continue Editing' => '保存后继续编辑',
         'Size' => '大小',
         'Upload' => '上传',
         'Upload file' => '上传文件',
         'You do not have permission to access the requested page!' => '你没有权限读取此页!',
-        'or' => '或',
+        'or' => '或者',
         'overwrite it?' => '覆盖?',
     );
