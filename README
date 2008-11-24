@@ -1,0 +1,30 @@
+# FROG CMS - INFORMATION
+
+## About
+
+Frog CMS began as migration of Radiant CMS from Ruby-on-Rails to PHP.
+This product has been made available under the terms of the GNU AGPL version 3.
+Please read the license.txt for the exact details;
+
+The official Frog website can be found at www.madebyfrog.com - visit for further
+information and resources.
+
+## Requirements
+
+PHP 5 and MySQL with InnoDB support. Apache is recommended.
+
+* PHP    : http://www.php.net/
+* MySQL  : http://www.mysql.com/
+* Apache : http://www.apache.org/
+
+Note that Frog CMS does *not* run on PHP 4.
+PDO is recommended, but not required.
+Frog CMS can also run on SQLite 3 as the database.
+
+
+
+## Notes
+
+Password is in sha1 so if you change it manually in the database, you know how!!
+
+(c) 2007 by Philippe Archambault
