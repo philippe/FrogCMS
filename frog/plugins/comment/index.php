@@ -222,9 +222,14 @@ else // list of fonctions, classes used by the frontend
 		{
 			if ($this->author_link != '')
 			{
+				if ($class != '') {
+					$fullclass = 'class="'.$class.'" ';
+				} else {
+					$fullclass = '';
+				};
 				return sprintf(
-					'<a class="%s" href="%s" title="%s">%s</a>',
-					$class,
+					'<a %s href="%s" title="%s">%s</a>',
+					$fullclass,
 					$this->author_link,
 					$this->author_name,
 					$this->author_name

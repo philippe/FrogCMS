@@ -51,7 +51,7 @@ class CommentController extends PluginController
         $this->assignToLayout('sidebar', new View('../../plugins/comment/views/sidebar'));
     }
     
-    function index($page)
+    function index($page = 0)
     {
         $this->display('comment/views/index', array(
             'comments' => Comment::findAll(),
@@ -198,7 +198,7 @@ class CommentController extends PluginController
 	function documentation() {
     	$this->display('comment/views/documentation'); 
     }
-    function moderation($page) {
+    function moderation($page = 0) {
     	 $this->display('comment/views/moderation', array(
             'comments' => Comment::findAll(),
             'page' => $page
