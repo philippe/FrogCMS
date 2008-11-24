@@ -31,10 +31,10 @@ require FROG_ROOT.'/config.php';
 
 define('BASE_URL', URL_PUBLIC . (USE_MOD_REWRITE ? '': '?'));
 
-require CORE_ROOT.'/Framework.php';
-
 // if you have installed frog and see this line, you can comment it or delete it :)
 if ( ! defined('DEBUG')) { header('Location: install/'); exit(); }
+
+require CORE_ROOT.'/Framework.php';
 
 if (USE_PDO)
 {

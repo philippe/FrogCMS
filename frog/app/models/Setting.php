@@ -57,6 +57,12 @@ class Setting extends Record
         }
     }
     
+    /**
+     * Get the value of a setting
+     *
+     * @param name  string  The setting name
+     * @return string the value of the setting name
+     */
     public static function get($name)
     {
         return isset(self::$settings[$name]) ? self::$settings[$name]: false;

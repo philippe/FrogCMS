@@ -52,10 +52,10 @@ class PluginController extends Controller
     {
         if ($this->layout)
         {
-            $this->layout_vars['content_for_layout'] = new View('../../../plugins/'.$view, $vars);
+            $this->layout_vars['content_for_layout'] = new View('../../plugins/'.$view, $vars);
             return new View('../layouts/'.$this->layout, $this->layout_vars);
         }
-        else return new View('../../../plugins/'.$view, $vars);
+        else return new View('../../plugins/'.$view, $vars);
     }
     
     public function execute($action, $params)
