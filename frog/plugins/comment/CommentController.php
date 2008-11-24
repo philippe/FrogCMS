@@ -48,7 +48,7 @@ class CommentController extends PluginController
             redirect(get_url('login'));
         
         $this->setLayout('backend');
-        $this->assignToLayout('sidebar', new View('../../../plugins/comment/views/sidebar'));
+        $this->assignToLayout('sidebar', new View('../../plugins/comment/views/sidebar'));
     }
     
     function index($page)

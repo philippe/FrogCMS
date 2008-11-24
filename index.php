@@ -31,6 +31,8 @@ require FROG_ROOT.'/config.php';
 
 define('BASE_URL', URL_PUBLIC . (USE_MOD_REWRITE ? '': '?'));
 
+require CORE_ROOT.'/Framework.php';
+
 // if you have installed frog and see this line, you can comment it or delete it :)
 if ( ! defined('DEBUG')) { header('Location: install/'); exit(); }
 
@@ -54,7 +56,17 @@ else
     $__FROG_CONN__ = new DoLite(DB_DSN, DB_USER, DB_PASS);
 }
 
-$__FROG_CONN__->exec("set names 'utf8'");
+//$__FROG_CONN__->exec("set names 'utf8'");
+Record::connection($__FROG_CONN__);
+Record::getConnection()->exec("set names 'utf8'");
+
+Setting::init();
+
+use_helper('I18n');
+I18n::setLocale(Setting::get('language'));
+
+//Plugin::init();
+
 
 // run everything!
-require APP_PATH.'/frontend/main.php';
+require APP_PATH.'/main.php';

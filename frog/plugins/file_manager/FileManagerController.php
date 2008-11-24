@@ -56,7 +56,7 @@ class FileManagerController extends PluginController
     public function __construct()
     {
         $this->setLayout('backend');
-        $this->assignToLayout('sidebar', new View('../../../plugins/file_manager/views/sidebar'));
+        $this->assignToLayout('sidebar', new View('../../plugins/file_manager/views/sidebar'));
     }
     
     public function index()

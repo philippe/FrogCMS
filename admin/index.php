@@ -25,7 +25,7 @@ define('FROG_VERSION', '0.9.4');
 define('FROG_ROOT', dirname(__FILE__).'/..');
 define('CORE_ROOT', FROG_ROOT.'/frog');
 
-define('APP_PATH',  CORE_ROOT.'/app/backend');
+define('APP_PATH',  CORE_ROOT.'/app');
 
 define('SESSION_LIFETIME', 3600);
 define('REMEMBER_LOGIN_LIFETIME', 1209600); // two weeks
@@ -37,11 +37,11 @@ define('COOKIE_PATH', '/');
 define('COOKIE_DOMAIN', '');
 define('COOKIE_SECURE', false);
 
-include FROG_ROOT.'/config.php';
+require FROG_ROOT.'/config.php';
 
 define('BASE_URL', URL_PUBLIC . ADMIN_DIR . (USE_MOD_REWRITE ? '/': '/?/'));
 
-include CORE_ROOT.'/Framework.php';
+require CORE_ROOT.'/Framework.php';
 
 
 //  Database connection  -----------------------------------------------------
