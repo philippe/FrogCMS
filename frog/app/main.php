@@ -285,7 +285,11 @@ function main()
         Observer::notify('page_found', $page);
         $page->_executeLayout();
     }
-    else page_not_found();
+    else {
+        Observer::notify('page_not_found');
+        
+        page_not_found();
+    }
     
 } // main
 
