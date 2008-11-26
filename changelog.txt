@@ -10,9 +10,15 @@ Sigla:
 0.9.5 - released ????-??-??
 
 + Added translation template generator to help out translators with translating Frog core and plugins.
-+ Added Norwegian and Swedish core translations
-. Updated file_manager plugin translations to conform to new template
-. Updated comments in preparation for PHPDoc documentation
++ Added Norwegian and Swedish core translations.
++ Added updated Chinese translation.
+- Fixed XHTML compatibility problem with Comment plugin.
+- Fixes issue where only the last addJavascript was accepted.
+. Updated file_manager plugin translations to conform to new template.
+. Updated comments in preparation for PHPDoc documentation.
+. Renamed root dir text files to avoid name conflicts and accomodate Windows users.
+. Renamed style.css into screen.css for more consistency with print.css in Normal layout.
+. Added an ID to the "view this page" link so it can be styled.
 
 0.9.4 - released 2008-09-29
 
