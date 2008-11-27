@@ -9,6 +9,7 @@ Sigla:
 
 0.9.5 - released ????-??-??
 
++ Added a new core plugin called skeleton to help out new plugin developers.
 + Added translation template generator to help out translators with translating Frog core and plugins.
 + Added Norwegian and Swedish core translations.
 + Added updated Chinese translation.
