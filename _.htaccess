@@ -1,5 +1,14 @@
-Options -Indexes +FollowSymLinks
+#
+# Setting Frog requirements
+#
+
+php_flag magic_quotes_gpc off
 AddDefaultCharset UTF-8
+Options -Indexes +FollowSymLinks
+
+#
+# Setting rewrite rules
+#
 
 <IfModule mod_rewrite.c>
   RewriteEngine On

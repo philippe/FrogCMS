@@ -9,17 +9,23 @@ Please read the license.txt for the exact details;
 The official Frog website can be found at www.madebyfrog.com - visit for further
 information and resources.
 
-## Requirements
+## Required
 
-PHP 5 and MySQL with InnoDB support. Apache is recommended.
+- An HTTP server
+- PHP 5
+    - PHP: magic_quotes_gpc should be turned OFF.
+    - PHP: Frog CMS does *not* run on PHP 4.
+- MySQL with InnoDB support.
 
-* PHP    : http://www.php.net/
-* MySQL  : http://www.mysql.com/
-* Apache : http://www.apache.org/
+## Recommended
 
-Note that Frog CMS does *not* run on PHP 4.
-PDO is recommended, but not required.
-Frog CMS can also run on SQLite 3 as the database.
+- The Apache HTTP server is recommended.
+- PDO support is recommended, but not required.
+- Frog CMS can also run on SQLite 3 as the database.
+
+PHP    : http://www.php.net/
+MySQL  : http://www.mysql.com/
+Apache : http://www.apache.org/
 
 ## Notes
 
