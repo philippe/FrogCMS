@@ -286,8 +286,6 @@ function main()
         $page->_executeLayout();
     }
     else {
-        Observer::notify('page_not_found');
-        
         page_not_found();
     }
     

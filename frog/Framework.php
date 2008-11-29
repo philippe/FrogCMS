@@ -1197,6 +1197,8 @@ function remove_xss($string)
  */
 function page_not_found()
 {
+    Observer::notify('page_not_found');
+
     header("HTTP/1.0 404 Not Found");
     echo new View('404');
     exit;
