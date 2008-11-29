@@ -23,7 +23,7 @@ return array(
 'Action' => 'Utför',
 'Close' => 'Stäng',
 'Save' => 'Spara',
-'Save and Continue Editing' => 'Spar & fortsätt redigera sidan',
+'Save and Continue Editing' => 'Spar & fortsätt redigera',
 'or' => 'eller',
 'Cancel' => 'Avbryt',
 'Name' => 'Namn',
