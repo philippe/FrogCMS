@@ -33,6 +33,10 @@
 ?>
 <h3>How to use this plugin</h3>
 <p>
+    The comments plugin tab displays for example: "Comments (2/5)". This means that two comments are
+    waiting for approval in the moderation list out of five total comments.
+</p>
+<p>
   On each page edit screen, you will have a drop-down box available called "Comments".
   From this, you can choose between three options:
 </p>
@@ -67,7 +71,8 @@
 </p>
 <p>
   Copyright (C) 2008 Philippe Archambault &lt;philippe.archambault@gmail.com&gt;<br/>
-  Copyright (C) 2008 Bebliuc George &lt;bebliuc.george@gmail.com&gt;
+  Copyright (C) 2008 Bebliuc George &lt;bebliuc.george@gmail.com&gt;<br/>
+  Copyright (C) 2008 Martijn van der Kleijn &lt;martijn.niji@gmail.com&gt;
 </p>
 <p>
   Please see the full license statement in this plugin's readme.txt file.

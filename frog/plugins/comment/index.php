@@ -52,6 +52,7 @@ Plugin::addController('comment', 'Comments');
 // Observe the necessary events.
 Observer::observe('view_page_edit_plugins', 'comment_display_dropdown');
 Observer::observe('page_found', 'comment_save');
+Observer::observe('view_backend_list_plugin', 'comment_display_moderatable_count');
 
 /**
  * Allows for a dropdown box with comment status on the edit page view in the backend.
@@ -65,6 +66,12 @@ function comment_display_dropdown(&$page)
     echo '<option value="'.Comment::OPEN.'"'.($page->comment_status == Comment::OPEN ? ' selected="selected"': '').'>'.__('Open').'</option>';
     echo '<option value="'.Comment::CLOSED.'"'.($page->comment_status == Comment::CLOSED ? ' selected="selected"': '').'>'.__('Closed').'</option>';
     echo '</select></p>';
+}
+
+function comment_display_moderatable_count(&$plugin_name, &$plugin) {
+    if ($plugin_name == 'comment') {
+        $plugin->label = $plugin->label.' <span id="comment-badge">('.comments_count_moderatable().'/'.comments_count_total().')</span>';
+    }
 }
 
 /**
@@ -84,13 +91,38 @@ function comments(&$page)
 /**
  * Returns the number of approved comments for a particular page.
  *
- * @global <type> $__FROG_CONN__
- * @param <type> $page The object instance of a particular page.
- * @return <type> 
+ * @param Page $page The object instance of a particular page.
+ * @return int Number of approved comments for a page.
  */
 function comments_count(&$page)
 {
     return (int) count(comments($page));
+}
+
+/**
+ * Returns the number of moderatable comments.
+ *
+ * @return int Number of comments waiting for moderation.
+ */
+function comments_count_moderatable()
+{
+    return (int) count(Comment::find(array('where' => 'is_approved=0')));
+}
+
+/**
+ * Returns the total number of comments.
+ *
+ * @return int Number of comments.
+ */
+function comments_count_total()
+{
+    global $__FROG_CONN__;
+    $sql = 'SELECT COUNT(*) AS count FROM '.TABLE_PREFIX.'comment';
+    $stmt = $__FROG_CONN__->prepare($sql);
+    $stmt->execute();
+    $total = $stmt->fetchObject();
+
+    return (int) $total->count;
 }
 
 /**

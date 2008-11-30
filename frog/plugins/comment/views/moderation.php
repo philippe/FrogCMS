@@ -73,8 +73,7 @@ if($comments_count <= $rowspage) { $lastpage = 0; } else { $lastpage = abs($last
 
 <?php while ($comment = $stmt->fetchObject()): ?>
     <li class="<?php echo odd_even(); ?> moderate">
-          <a href="<?php echo get_url('plugin/comment/edit/' . $comment->id); ?>"><b><?php echo
-        $comment->title; ?></b></a>
+          <strong><a href="<?php echo get_url('plugin/comment/edit/' . $comment->id); ?>"><?php echo $comment->author_name.' '.__('about').' "'.$comment->title.'"'; ?></a></strong>
           <p><?php echo $comment->body; ?></p>
           <div class="infos">
               <?php echo date('D, j M Y', strtotime($comment->created_on)); ?> &#8212; 
