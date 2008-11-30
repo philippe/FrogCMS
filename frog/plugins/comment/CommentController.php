@@ -187,10 +187,10 @@ class CommentController extends PluginController
         $rowspage_var = $PDO->execute() !== false;
         
         if ($captcha_var){
-                Flash::set('success', __('The settings have been update :)'));
+                Flash::set('success', __('The settings have been updated. :)'));
             }
         else{
-                Flash::set('error', 'An error has occured. Seems MySQL hates you :(');
+                Flash::set('error', 'An error has occured. Seems MySQL hates you. :(');
             }
            redirect(get_url('plugin/comment/settings'));   
 	}
