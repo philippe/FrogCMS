@@ -64,7 +64,7 @@
         ?>
         <span class="from"><?php if (isset($plugin->author)) echo ' '.__('by').' '.$plugin->author; ?></span>
         </h4>
-        <p><?php echo $plugin->description; ?> <?php if ($disabled) echo '<span class="notes">'.__('This plugin CAN NOT be enable. It require Frog version :v', array(':v' => $plugin->require_frog_version)).'</span>'; ?></p>
+        <p><?php echo $plugin->description; ?> <?php if ($disabled) echo '<span class="notes">'.__('This plugin CANNOT be enabled! It requires Frog version :v.', array(':v' => $plugin->require_frog_version)).'</span>'; ?></p>
       </td>
       <td class="pluginSettings">
       <?php
