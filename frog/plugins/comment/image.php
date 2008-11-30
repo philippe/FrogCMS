@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
  *
@@ -25,10 +24,11 @@
  *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @author Bebliuc George <bebliuc.george@gmail.com>
- * @version 1.1.0
+ * @author Martijn van der Kleijn <martijn.niji@gmail.com>
+ * @version 1.2.0
  * @since Frog version 0.9.3
  * @license http://www.gnu.org/licenses/agpl.html AGPL License
- * @copyright Philippe Archambault & Bebliuc George, 2008
+ * @copyright Philippe Archambault, Bebliuc George & Martijn van der Kleijn, 2008
  */
 	session_start();
 	$operators=array('+','-','*');

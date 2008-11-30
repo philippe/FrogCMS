@@ -25,10 +25,11 @@
  *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @author Bebliuc George <bebliuc.george@gmail.com>
- * @version 1.1.0
+ * @author Martijn van der Kleijn <martijn.niji@gmail.com>
+ * @version 1.2.0
  * @since Frog version 0.9.3
  * @license http://www.gnu.org/licenses/agpl.html AGPL License
- * @copyright Philippe Archambault & Bebliuc George, 2008
+ * @copyright Philippe Archambault, Bebliuc George & Martijn van der Kleijn, 2008
  */
 
 /**
@@ -140,9 +141,6 @@ class CommentController extends PluginController
     }
    
     function settings() {
-    	
-    	error_reporting(E_ALL);
-    	
 		global $__FROG_CONN__;
     	$sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'auto_approve_comment'";
 		$stmt = $__FROG_CONN__->prepare($sql);
@@ -168,7 +166,6 @@ class CommentController extends PluginController
     }
     
 	function save() {
-		error_reporting(E_ALL);
 		$approve = mysql_escape_string($_POST['autoapprove']);
         $captcha = mysql_escape_string($_POST['captcha']);
         $rowspage = mysql_escape_string($_POST['rowspage']);
@@ -187,10 +184,10 @@ class CommentController extends PluginController
         $rowspage_var = $PDO->execute() !== false;
         
         if ($captcha_var){
-                Flash::set('success', __('The settings have been updated. :)'));
+                Flash::set('success', __('The settings have been updated.'));
             }
         else{
-                Flash::set('error', 'An error has occured. Seems MySQL hates you. :(');
+                Flash::set('error', 'An error has occured.');
             }
            redirect(get_url('plugin/comment/settings'));   
 	}
