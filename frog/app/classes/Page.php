@@ -183,10 +183,15 @@ class Page
         
     }
     
-    public function hasContent($part) { return isset($this->part->$part); }
+    public function hasContent($part) {
+        $part = strtolower($part);
+        
+        return isset($this->part->$part);
+    }
     
     public function content($part='body', $inherit=false)
     {
+        $part = strtolower($part);
         // if part exist we generate the content en execute it!
         if (isset($this->part->$part))
         {
