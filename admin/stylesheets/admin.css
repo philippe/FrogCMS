@@ -52,6 +52,8 @@ h3, h4 { margin: .5em 0; font-size: 1.2em; font-weight: bold; }
 .warning { color: #D42B27; }
 
 .handle { display: none; cursor: move; }
+.handle_reorder { display: none; cursor: move; }
+.handle_copy { display: none; cursor: move; }
 
 /* Header ----------------------------------------------------------------- */
 
@@ -618,7 +620,7 @@ table.fieldset .error-with-field small {
   padding-top: 6px;
   padding-bottom: 4px;
   text-decoration: none;
-  text-transform: capitalize;
+  text-transform: none;
   background-color: #ddd;
   color: #000;
 }

@@ -29,7 +29,7 @@
 <h1><?php echo __('Pages'); ?></h1>
 
 <div id="site-map-def">
-    <div class="page"><?php echo __('Page'); ?> (<a href="#" onclick="toggle_handle = !toggle_handle; $$('.handle').each(function(e) { e.style.display = toggle_handle ? 'inline': 'none'; }); return false;"><?php echo __('reorder'); ?></a>)</div>
+    <div class="page"><?php echo __('Page'); ?> (<a href="#" id="toggle_reorder" onclick="toggle_reorder = !toggle_reorder; toggle_copy = false; $$('.handle_reorder').each(function(e) { e.style.display = toggle_reorder ? 'inline': 'none'; }); $$('.handle_copy').each(function(e) { e.style.display = toggle_copy ? 'inline': 'none'; }); return false;"><?php echo __('reorder'); ?></a> or <a id="toggle_copy" href="#" onclick="toggle_copy = !toggle_copy; toggle_reorder = false; $$('.handle_copy').each(function(e) { e.style.display = toggle_copy ? 'inline': 'none'; }); $$('.handle_reorder').each(function(e) { e.style.display = toggle_reorder ? 'inline': 'none'; }); return false;"><?php echo __('copy'); ?></a>)</div>
     <div class="status"><?php echo __('Status'); ?></div>
     <div class="modify"><?php echo __('Modify'); ?></div>
 </div>
