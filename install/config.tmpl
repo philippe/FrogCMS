@@ -17,6 +17,9 @@ define('TABLE_PREFIX', '<?php echo $table_prefix; ?>');
 
 define('DEBUG', false);
 
+// The number of seconds before the check for a new Frog version times out in case of problems.
+define('CHK_TIMEOUT', 2);
+
 // The full URL of your Frog CMS install
 define('URL_PUBLIC', 'http://<?php echo substr(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), 0, strrpos(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), '/')); ?>/');
 

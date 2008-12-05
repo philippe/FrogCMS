@@ -166,7 +166,10 @@ class LoginController extends Controller
      */
     private function _checkVersion()
     {
-        $v = file_get_contents('http://www.madebyfrog.com/version/');
+        if (!defined('CHK_TIMEOUT')) define('CHK_TIMEOUT', 5);
+        $ctx = stream_context_create(array('http' => array('timeout' => CHK_TIMEOUT)));
+        
+        $v = file_get_contents('http://www.maebyfrog.com/version/', 0, $ctx);
         if ($v > FROG_VERSION)
         {
             Flash::set('error', __('<b>Information!</b> New Frog version available (v. <b>:version</b>)! Visit <a href="http://www.madebyfrog.com/">http://www.madebyfrog.com/</a> to upgrade your version!',

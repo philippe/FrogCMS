@@ -39,6 +39,7 @@ class Plugin
 {
 	static $plugins = array();
 	static $plugins_infos = array();
+    static $updatefile_cache = array();
 
 	static $controllers = array();
     static $javascripts = array();
@@ -148,16 +149,40 @@ class Plugin
 
     /**
      * Check the file mentioned as update_url for the latest plugin version available.
+     * Messages that can be returned:
+     * unknown - returned if the plugin doesn't provide an update url
+     * latest  - returned if the plugin version matches the version number registerd at the url
+     * error   - returned if the update url could not be reached or for any other reason
      *
      * @param plugin     object A plugin object.
      *
-     * @return           string The latest version number or 'n/a' when latest version couldn't be determined.
+     * @return           string The latest version number or a localized message.
      */
     static function checkLatest($plugin)
     {
-        if ( ! isset($plugin->update_url) || ! $xml = simplexml_load_file($plugin->update_url)) {
+        $data = null;
+
+        // Check if plugin has update file url set
+        if ( ! isset($plugin->update_url) )
             return __('unknown');
+
+        // Check if update file was already cached and is no older than 30 minutes
+        if (array_key_exists($plugin->update_url, Plugin::$updatefile_cache) && (Plugin::$updatefile_cache[$plugin->update_url]['time'] + 30 * 60) < time()) {
+            unset(Plugin::$updatefile_cache[$plugin->update_url]);
         }
+
+        if (!array_key_exists($plugin->update_url, Plugin::$updatefile_cache)) {
+            // Read and cache the update file
+            if (!defined('CHK_TIMEOUT')) define('CHK_TIMEOUT', 50);
+            $ctx = stream_context_create(array('http' => array('timeout' => CHK_TIMEOUT)));
+
+            if ( ! $data = file_get_contents($plugin->update_url, 0, $ctx)) {
+                return __('error');
+            }
+            Plugin::$updatefile_cache[$plugin->update_url] = array('time' => time(), 'data' => $data);
+        }
+
+        $xml = simplexml_load_string(Plugin::$updatefile_cache[$plugin->update_url]['data']);
 
         foreach($xml as $node) {
             if ($plugin->id == $node->id)
