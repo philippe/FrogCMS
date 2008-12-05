@@ -173,7 +173,7 @@ class Plugin
 
         if (!array_key_exists($plugin->update_url, Plugin::$updatefile_cache)) {
             // Read and cache the update file
-            if (!defined('CHK_TIMEOUT')) define('CHK_TIMEOUT', 50);
+            if (!defined('CHK_TIMEOUT')) define('CHK_TIMEOUT', 5);
             $ctx = stream_context_create(array('http' => array('timeout' => CHK_TIMEOUT)));
 
             if ( ! $data = file_get_contents($plugin->update_url, 0, $ctx)) {
