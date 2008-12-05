@@ -60,6 +60,7 @@
       <div class="clean"></div>
       <div style="margin-top: 6px">
         <input id="login-remember-me" type="checkbox" class="checkbox" name="login[remember]" value="checked" />
+        <input id="login-redirect" type="hidden" name="login[redirect]" value="<?php echo $redirect; ?>" />
         <label class="checkbox" for="login-remember-me"><?php echo __('Remember me for 14 days'); ?></label>
       </div>
       <div id="login_submit">

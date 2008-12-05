@@ -23,7 +23,7 @@
  * @author Philippe Archambault <philippe.archambault@gmail.com>
  * @version 0.1
  * @license http://www.gnu.org/licenses/agpl.html AGPL License
- * @copyright Philippe Archambault, 2008
+ * @copyright Philippe Archambault, Martijn van der Kleijn, 2008
  */
 
 if ($action == 'edit') { ?>
@@ -150,7 +150,10 @@ if ($action == 'edit') { ?>
     <p class="clear">&nbsp;</p>
     
 <?php if (AuthUser::hasPermission('administrator') || AuthUser::hasPermission('developer')): ?>
-    <p style="float: right"><input id="page_is_protected" name="page[is_protected]" class="checkbox" type="checkbox" value="1"<?php if ($page->is_protected) echo ' checked="checked"'; ?>/><label for="page_is_protected"> <?php echo __('protected'); ?> </label></p>
+    <p style="float: right">
+        <input id="page_is_protected" name="page[is_protected]" class="checkbox" type="checkbox" value="1"<?php if ($page->is_protected) echo ' checked="checked"'; ?>/><label for="page_is_protected" title="<?php echo __('When enabled, only users who are an administor can edit the page.'); ?>"> <?php echo __('Protected'); ?> </label>
+        <input id="page_needs_login" name="page[needs_login]" class="checkbox" type="checkbox" value="1"<?php if ($page->needs_login) echo ' checked="checked"'; ?>/><label for="page_needs_login" title="<?php echo __('When enabled, users have to login before they can view the page.'); ?>"> <?php echo __('Login required'); ?> </label>
+    </p>
 <?php endif; ?>
     <p><small>
 <?php if (isset($page->updated_on)): ?>
