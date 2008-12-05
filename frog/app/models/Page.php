@@ -267,6 +267,7 @@ class Page extends Record
         $clone->parent_id = (int)$parent_id;
         $clone->id = null;
         $clone->title .= " (copy)";
+        $clone->slug .= "_copy";
         $clone->save();
         
         /* Also clone the page parts. */

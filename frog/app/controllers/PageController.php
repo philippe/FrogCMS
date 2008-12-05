@@ -299,12 +299,19 @@ class PageController extends Controller
             redirect(get_url('page/edit/'.$id));
     }
     
+    /**
+     * Used to delete a page.
+     * 
+     * TODO - make sure we not only delete the page but also all parts and all children!
+     *
+     * @param int $id Id of page to delete
+     */
     public function delete($id)
     {
         // security (dont delete the root page)
         if ($id > 1)
         {
-            // find the user to delete
+            // find the page to delete
             if ($page = Record::findByIdFrom('Page', $id))
             {
                 // check for permission to delete this page
