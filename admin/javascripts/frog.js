@@ -176,8 +176,9 @@ var SiteMap = Class.create(RuledList, {
     $super(element);
     this.id = element;
     this.readExpandedCookie();
-    this.sortablize();
     Event.observe(element, 'click', this.onMouseClickRow.bindAsEventListener(this));
+    Event.observe('toggle_copy', 'click', this.copyalize.bindAsEventListener(this));
+    Event.observe('toggle_reorder', 'click', this.sortablize.bindAsEventListener(this));
   },
   
   onMouseClickRow: function(event)
@@ -273,10 +274,25 @@ var SiteMap = Class.create(RuledList, {
     { 
        constraint: 'vertical',
        scroll: window,
-       handle: 'handle',
+       handle: 'handle_reorder',
        tree: true,
        onChange: this.adjustLevelOf,
        onUpdate: this.update
+    });
+  },
+    
+  copyalize: function()
+  {
+    Sortable.destroy(this.id);
+    this.sortable = Sortable.create(this.id,
+    { 
+       constraint: 'vertical',
+       scroll: window,
+       handle: 'handle_copy',
+       tree: true,
+       ghosting: true,
+       onChange: this.adjustLevelOf,
+       onUpdate: this.copy
     });
   },
   
@@ -385,6 +401,36 @@ var SiteMap = Class.create(RuledList, {
       data += 'pages[]='+SiteMap.prototype.extractPageId(pages[i])+'&';
   
     new Ajax.Request('index.php?/page/reorder/'+parent_id, {method: 'post', parameters: { 'data': data }});
+  },
+  
+  copy: function(element) 
+  {
+    var parent = currentElementSelected.parentNode;
+    var parent_id = 1;
+    var pages = [];
+    var data = '';
+  
+    if (/page_(\d+)/i.test(currentElementSelected.parentNode.parentNode.id)) 
+      parent_id = RegExp.$1.toInteger();      
+
+    /* Dragged page. */
+    data  = 'dragged_id=' + SiteMap.prototype.extractPageId(currentElementSelected) + '&';
+  
+    /* We still need this for sorting. */
+    pages = Element.findChildren(parent, false, false, 'LI');
+    
+    for(var i=0; i<pages.length; i++) 
+      data += 'pages[]='+SiteMap.prototype.extractPageId(pages[i]) + '&';      
+  
+    new Ajax.Request('index.php?/page/copy/'+parent_id, {
+      method: 'post',
+      parameters: { 'data': data },
+      onSuccess: function(transport) {
+        /* Ugly hack until I figure out how to update only the sitemap. */
+        window.location.reload();
+      }
+    });
+    
   }
 
 });
@@ -619,4 +665,5 @@ function center(element) {
   element.style.left = ((header.offsetWidth - dim.width) / 2) + 'px';
 }
 
-var toggle_handle = false;
+var toggle_reorder = false;
+var toggle_copy = false;
