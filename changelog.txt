@@ -7,14 +7,16 @@ Sigla:
 . other development
 ======
 
-0.9.5 - released ????-??-??
+0.9.5 - released 2008-12-??
 
++ Added drag-to-copy feature for better multi-language support. Thanks tuupola.
 + Added a new core plugin called skeleton to help out new plugin developers.
 + Added translation template generator to help out translators with translating Frog core and plugins.
 + Added Norwegian and Swedish core translations.
 + Added updated Chinese translation.
++ Removed split between frontend and backend.
 - Fixed XHTML compatibility problem with Comment plugin.
-- Fixes issue where only the last addJavascript was accepted.
+- Fixed issue where only the last addJavascript was accepted.
 . Updated file_manager plugin translations to conform to new template.
 . Updated comments in preparation for PHPDoc documentation.
 . Renamed root dir text files to avoid name conflicts and accomodate Windows users.

@@ -9,7 +9,15 @@ Please read the license.txt for the exact details;
 The official Frog website can be found at www.madebyfrog.com - visit for further
 information and resources.
 
-## UPDATING FROM 0.9.3 to 0.9.4
+Please be aware that we only support single version upgrades. That means you upgrade
+from 0.9.3 to 0.9.4 and only then to 0.9.5.
+
+## UPDATING FROM 0.9.4 to 0.9.5  -- TO BE CHECKED AND UPDATED --
+
+WARNING - The split between frontend and backend in the Frog code has been removed in this
+          version. This has led to significant code changes. You will need to update ALL files.
+
+Please remember to MAKE BACKUPS before trying to update!
 
 Updating consists of a few seperate steps. When executed correctly, this method of upgrading will keep
 downtime to a minimum. Please READ CAREFULLY:
@@ -28,6 +36,8 @@ downtime to a minimum. Please READ CAREFULLY:
 
 7. Copy all the non-core plugin directories from ../frog/plugins to your temporary location's ../frog/plugins directory.
 
+--- CHECK step 8 ---
+
 8. Execute the following two SQL statements on your database:
     INSERT INTO setting (name, value) VALUES ('default_tab', '');
     INSERT INTO setting (name, value) VALUES ('allow_html_title', 'off');
@@ -39,18 +49,9 @@ downtime to a minimum. Please READ CAREFULLY:
 You're done!
 (though you may want to read through the item below)
 
-## CHANGES TO THE POST INSTALL DATA between 0.9.3 and 0.9.4:
+## CHANGES TO THE POST INSTALL DATA between 0.9.4 and 0.9.5:
 
 NOTE: please CHECK that the SQL statements below don't do harm on your particular installation.
 
-- The following line was added to the Normal layout: <link rel="favourites icon" href="<?php echo URL_PUBLIC; ?>favicon.ico"/>
-- The following lines were changed in the Normal layout:
-    <meta name="description" content="<?php echo ($this->description() != '') ? $this->description() : 'Default description goes here'; ?>" />
-    <meta name="keywords" content="<?php echo ($this->keywords() != '') ? $this->keywords() : 'default, keywords, here'; ?>" />
-    <link rel="alternate" type="application/rss+xml" title="Frog Default RSS Feed" href="<?php echo URL_PUBLIC.(USE_MOD_REWRITE)?'':'?/'; ?>rss.xml" />
-- Some textual changes were made to the demo content
-- Changed default footer snippet to read copyright Madebyfrog.com instead of Philworks.com
-- Added a new RSS page: INSERT INTO layout (id, name, content_type, content, created_on, updated_on, created_by_id, updated_by_id) VALUES (3, 'RSS XML', 'application/rss+xml', '<?php echo \$this->content(); ?>', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1)
-- Changed "RSS Feed" page to use the new "RSS XML" layout.
-- Changed "RSS Feed" page's slug to "rss.xml" (used to be "rss")
-- Changed content of "RSS Feed" page: INSERT INTO page_part (id, name, filter_id, content, content_html, page_id) VALUES (2, 'body', '', '<?php echo ''<?''; ?>xml version=\"1.0\" encoding=\"UTF-8\"<?php echo ''?>''; ?> \r\n<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\r\n<channel>\r\n	<title>Frog CMS</title>\r\n	<link><?php echo BASE_URL ?></link>\r\n	<atom:link href=\"<?php echo BASE_URL ?>/rss.xml\" rel=\"self\" type=\"application/rss\+xml\" />\r\n	<language>en-us</language>\r\n	<copyright>Copyright <?php echo date(''Y''); ?>, madebyfrog.com</copyright>\r\n	<pubDate><?php echo strftime(''%a, %d %b %Y %H:%M:%S %z''); ?></pubDate>\r\n	<lastBuildDate><?php echo strftime(''%a, %d %b %Y %H:%M:%S %z''); ?></lastBuildDate>\r\n	<category>any</category>\r\n	<generator>Frog CMS</generator>\r\n	<description>The main news feed from Frog CMS.</description>\r\n	<docs>http://www.rssboard.org/rss-specification</docs>\r\n	<?php \$articles = \$this->find(''articles''); ?>\r\n	<?php foreach (\$articles->children(array(''limit'' => 10, ''order'' => ''page.created_on DESC'')) as \$article): ?>\r\n	<item>\r\n		<title><?php echo \$article->title(); ?></title>\r\n		<description><?php if (\$article->hasContent(''summary'')) { echo \$article->content(''summary''); } else { echo strip_tags(\$article->content()); } ?></description>\r\n		<pubDate><?php echo \$article->date(''%a, %d %b %Y %H:%M:%S %z''); ?></pubDate>\r\n		<link><?php echo \$article->url(); ?></link>\r\n		<guid><?php echo \$article->url(); ?></guid>\r\n	</item>\r\n	<?php endforeach; ?>\r\n</channel>\r\n</rss>', '<?php echo ''<?''; ?>xml version=\"1.0\" encoding=\"UTF-8\"<?php echo ''?>''; ?> \r\n<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\r\n<channel>\r\n	<title>Frog CMS</title>\r\n	<link><?php echo BASE_URL ?></link>\r\n	<atom:link href=\"<?php echo BASE_URL ?>/rss.xml\" rel=\"self\" type=\"application/rss\+xml\" />\r\n	<language>en-us</language>\r\n	<copyright>Copyright <?php echo date(''Y''); ?>, madebyfrog.com</copyright>\r\n	<pubDate><?php echo strftime(''%a, %d %b %Y %H:%M:%S %z''); ?></pubDate>\r\n	<lastBuildDate><?php echo strftime(''%a, %d %b %Y %H:%M:%S %z''); ?></lastBuildDate>\r\n	<category>any</category>\r\n	<generator>Frog CMS</generator>\r\n	<description>The main news feed from Frog CMS.</description>\r\n	<docs>http://www.rssboard.org/rss-specification</docs>\r\n	<?php \$articles = \$this->find(''articles''); ?>\r\n	<?php foreach (\$articles->children(array(''limit'' => 10, ''order'' => ''page.created_on DESC'')) as \$article): ?>\r\n	<item>\r\n		<title><?php echo \$article->title(); ?></title>\r\n		<description><?php if (\$article->hasContent(''summary'')) { echo \$article->content(''summary''); } else { echo strip_tags(\$article->content()); } ?></description>\r\n		<pubDate><?php echo \$article->date(''%a, %d %b %Y %H:%M:%S %z''); ?></pubDate>\r\n		<link><?php echo \$article->url(); ?></link>\r\n		<guid><?php echo \$article->url(); ?></guid>\r\n	</item>\r\n	<?php endforeach; ?>\r\n</channel>\r\n</rss>', 2)
+--- CHECK these items ---
+- The following line was added to the Normal layout...

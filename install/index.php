@@ -137,7 +137,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
             if (driver == 'sqlite')
             {
               //$('use_pdo-yes').checked = 'checked';
-              $('help-db-name').innerHTML = 'Required. Write the <strong>absolute</strong> path to the database file.';
+              $('help-db-name').innerHTML = 'Required. Enter the <strong>absolute</strong> path to the database file.';
             }
             else if (driver == 'mysql')
             {
@@ -146,7 +146,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
           }
         </script>
       </td>
-      <td class="help">Required. PDO and SQLite 3 plugin is require to use SQLite 3.</td>
+      <td class="help">Required. PDO support and the SQLite 3 plugin are required to use SQLite 3.</td>
     </tr>
     <tr id="row-db-host">
       <td class="label"><label for="config_db_host">Database server</label></td>
@@ -172,7 +172,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
     <tr id="row-table-prefix">
       <td class="label"><label class="optional" for="config_table_prefix">Table prefix</label></td>
       <td class="field"><input class="textbox" id="config_table_prefix" maxlength="40" name="config[table_prefix]" size="40" type="text" value="" /></td>
-      <td class="help">Optional. To prevent conflicts if you have, or plan to have, multiple Frog installations with a single database.</td>
+      <td class="help">Optional. Usefull to prevent conflicts if you have, or plan to have, multiple Frog installations with a single database.</td>
     </tr>
     <tr>
       <td colspan="3"><h3>Other information</h3></td>
@@ -207,7 +207,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
 </div>
 
 <div id="footer">
-  <p>This site was made with <a href="http://www.php.net" target="_blank">PHP</a> and is powered by <a href="http://www.madebyfrog.com/">Frog CMS</a></p>
+  <p>This system was made with <a href="http://www.php.net" target="_blank">PHP</a> and is powered by <a href="http://www.madebyfrog.com/">Frog CMS</a></p>
 </div>
 </body>
 </html>

@@ -10,9 +10,9 @@
    http://www.mysite.com/frog/install if Frog is in a subdirectory) and
    answer all questions!
 3. When you have finished with the install, you will get a success message
-   which includes a link for you to go to your_frog_dir/admin/. Don't forget
-   to delete the /install directory.
-4. Login as admin/password. You should change your admin passsword to
+   which includes a link for you to go to your_frog_dir/admin/.
+4. Don't forget to delete the /install directory.
+5. Login as admin/password. You should change your admin passsword to
    something private and secure!
 
 ## Optional (to remove the ? in the url)
