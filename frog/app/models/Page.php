@@ -22,15 +22,17 @@
  * @subpackage models
  *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @author Martijn van der Kleijn <martijn.niji@gmail.com>
  * @version 0.1
  * @license http://www.gnu.org/licenses/agpl.html AGPL License
- * @copyright Philippe Archambault, 2008
+ * @copyright Philippe Archambault, Martijn van der Kleijn, 2008
  */
 
 /**
  * class Page
  *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
+ * @author Martijn van der Kleijn <martijn.niji@gmail.com>
  * @since Frog version 0.1
  */
 class Page extends Record
@@ -41,6 +43,10 @@ class Page extends Record
     const STATUS_REVIEWED = 50;
     const STATUS_PUBLISHED = 100;
     const STATUS_HIDDEN = 101;
+
+    const LOGIN_INHERIT = 0;
+    const LOGIN_REQUIRED = 1;
+    const LOGIN_NOT_REQUIRED = 2;
     
     public $title;
     public $slug;
@@ -267,7 +273,7 @@ class Page extends Record
         $clone->parent_id = (int)$parent_id;
         $clone->id = null;
         $clone->title .= " (copy)";
-        $clone->slug .= "_copy";
+        $clone->slug .= "-copy";
         $clone->save();
         
         /* Also clone the page parts. */

@@ -1,21 +1,22 @@
 <?php
 
 /**
-   Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
-   Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU Affero General Public License as
-   published by the Free Software Foundation, either version 3 of the
-   License, or (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Affero General Public License for more details.
-
-   You should have received a copy of the GNU Affero General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Frog CMS - Content Management Simplified. <http://www.madebyfrog.com>
+ * Copyright (C) 2008 Philippe Archambault <philippe.archambault@gmail.com>
+ * Copyright (C) 2008 Martijn van der Kleijn <martijn.niji@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -39,13 +40,13 @@ $PDO->exec("INSERT INTO ".TABLE_PREFIX."layout (id, name, content_type, content,
 
 //  Dumping data for table: page ---------------------------------------------
 
-$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected) VALUES (1, 'Home Page', '', 'Home Page', 0, 2, '', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 1)");
-$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected) VALUES (2, 'RSS Feed', 'rss.xml', 'RSS Feed', 1, 3, '', 101, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 2, 1)");
-$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected) VALUES (3, 'About us', 'about_us', 'About us', 1, 0, '', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 0)");
-$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected) VALUES (4, 'Articles', 'articles', 'Articles', 1, 0, 'archive', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 1, 1)");
-$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected) VALUES (5, 'My first article', 'my_first_article', 'My first article', 4, 0, '', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 0)");
-$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected) VALUES (6, 'My second article', 'my_second_article', 'My second article', 4, 0, '', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 0)");
-$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected) VALUES (7, '%B %Y archive', 'monthly_archive', '%B %Y archive', 4, 0, 'archive_month_index', 101, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 1)");
+$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected, needs_login) VALUES (1, 'Home Page', '', 'Home Page', 0, 2, '', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 1, 2)");
+$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected, needs_login) VALUES (2, 'RSS Feed', 'rss.xml', 'RSS Feed', 1, 3, '', 101, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 2, 1, 2)");
+$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected, needs_login) VALUES (3, 'About us', 'about_us', 'About us', 1, 0, '', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 0, 0)");
+$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected, needs_login) VALUES (4, 'Articles', 'articles', 'Articles', 1, 0, 'archive', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 1, 1, 0)");
+$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected, needs_login) VALUES (5, 'My first article', 'my_first_article', 'My first article', 4, 0, '', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 0, 0)");
+$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected, needs_login) VALUES (6, 'My second article', 'my_second_article', 'My second article', 4, 0, '', 100, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 0, 0)");
+$PDO->exec("INSERT INTO ".TABLE_PREFIX."page (id, title, slug, breadcrumb, parent_id, layout_id, behavior_id, status_id, created_on, published_on, updated_on, created_by_id, updated_by_id, position, is_protected, needs_login) VALUES (7, '%B %Y archive', 'monthly_archive', '%B %Y archive', 4, 0, 'archive_month_index', 101, '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1, 0, 1, 0)");
 
 
 //  Dumping data for table: page_part ----------------------------------------
