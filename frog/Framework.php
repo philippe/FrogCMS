@@ -35,7 +35,7 @@
  */
 define('FRAMEWORK_STARTING_MICROTIME', get_microtime());
 
-// all constants that you can define before to costumize your framework
+// All constants that can be defined before customizing your framework
 if (!defined('DEBUG'))              define('DEBUG', false);
 
 if (!defined('CORE_ROOT'))          define('CORE_ROOT',   dirname(__FILE__));
@@ -47,10 +47,10 @@ if (!defined('BASE_URL'))           define('BASE_URL', 'http://'.dirname($_SERVE
 if (!defined('DEFAULT_CONTROLLER')) define('DEFAULT_CONTROLLER', 'index');
 if (!defined('DEFAULT_ACTION'))     define('DEFAULT_ACTION', 'index');
 
-// setting error display depending on debug mode or not
+// Setting error display depending on debug mode or not
 error_reporting((DEBUG ? E_ALL : 0));
 
-// no more quotes escaped with a backslash
+// No more quotes escaped with a backslash
 if (PHP_VERSION < 6)
     set_magic_quotes_runtime(0);
 
@@ -113,7 +113,7 @@ final class Dispatcher
     {
         Flash::init();
 
-        // if no url passed, we will get the first key from the _GET array
+        // If no url passed, we will get the first key from the _GET array
         // that way, index.php?/controller/action/var1&email=example@example.com
         // requested_url will be equal to: /controller/action/var1
         if ($requested_url === null) {
@@ -132,50 +132,50 @@ final class Dispatcher
             $requested_url = $default;
         }
         
-        // requested url MUST start with a slash (for route convention)
+        // Requested url MUST start with a slash (for route convention)
         if (strpos($requested_url, '/') !== 0) {
             $requested_url = '/' . $requested_url;
         }
         
         self::$requested_url = $requested_url;
         
-        // this is only trace for debuging
+        // This is only trace for debugging
         self::$status['requested_url'] = $requested_url;
         
-        // make the first split of the current requested_url
+        // Make the first split of the current requested_url
         self::$params = self::splitUrl($requested_url);
         
-        // do we even have any custom routing to deal with?
+        // Do we even have any custom routing to deal with?
         if (count(self::$routes) === 0) {
             return self::executeAction(self::getController(), self::getAction(), self::getParams());
         }
         
-        // is there a literal match? If so we're done
+        // Is there a literal match? If so we're done
         if (isset(self::$routes[$requested_url])) {
             self::$params = self::splitUrl(self::$routes[$requested_url]);
             return self::executeAction(self::getController(), self::getAction(), self::getParams());
         }
         
-        // loop through the route array looking for wildcards
+        // Loop through the route array looking for wildcards
         foreach (self::$routes as $route => $uri) {
-            // convert wildcards to regex
+            // Convert wildcards to regex
             if (strpos($route, ':') !== false) {
                 $route = str_replace(':any', '(.+)', str_replace(':num', '([0-9]+)', $route));
             }
-            // does the regex match?
+            // Does the regex match?
             if (preg_match('#^'.$route.'$#', $requested_url)) {
-                // do we have a back-reference?
+                // Do we have a back-reference?
                 if (strpos($uri, '$') !== false && strpos($route, '(') !== false) {
                     $uri = preg_replace('#^'.$route.'$#', $uri, $requested_url);
                 }
                 self::$params = self::splitUrl($uri);
-                // we fund it, so we can break the loop now!
+                // We found it, so we can break the loop now!
                 break;
             }
         }
         
         return self::executeAction(self::getController(), self::getAction(), self::getParams());
-    } // dispatch
+    } // Dispatch
     
     public static function getCurrentUrl()
     {
@@ -222,7 +222,7 @@ final class Dispatcher
         $controller_class = Inflector::camelize($controller);
         $controller_class_name = $controller_class . 'Controller';
         
-        // get a instance of that controller
+        // Get an instance of that controller
         if (class_exists($controller_class_name)) {
             $controller = new $controller_class_name();
         } else {
@@ -232,7 +232,7 @@ final class Dispatcher
             throw new Exception("Class '{$controller_class_name}' does not extends Controller class!");
         }
 
-        // execute the action
+        // Execute the action
         $controller->execute($action, $params);
     }
 
@@ -406,7 +406,7 @@ class Record
     }
     
     /**
-     * Generates a insert or update string from the supplied data and execute it
+     * Generates an insert or update string from the supplied data and executes it
      *
      * @return boolean
      */
@@ -422,7 +422,7 @@ class Record
             
             $columns = $this->getColumns();
             
-            // escape and format for SQL insert query
+            // Escape and format for SQL insert query
             foreach ($columns as $column) {
                 if (isset($this->$column)) {
                     $value_of[$column] = self::$__CONN__->quote($this->$column);
@@ -443,7 +443,7 @@ class Record
             
             $columns = $this->getColumns();
             
-            // escape and format for SQL update query
+            // Escape and format for SQL update query
             foreach ($columns as $column) {
                 if (isset($this->$column)) {
                     $value_of[$column] = $column.'='.self::$__CONN__->quote($this->$column);
@@ -467,7 +467,7 @@ class Record
     }
 
     /**
-     * Generates a delete string and execute it
+     * Generates a delete string and executes it
      *
      * @param string $table the table name
      * @param string $where the query condition
@@ -501,8 +501,8 @@ class Record
     public function afterDelete() { return true; }
     
     /**
-     * return a array of all columns in the table
-     * it is a good idea to rewrite this method in all your model classes
+     * Return an array of all columns in the table
+     * It is a good idea to rewrite this method in all your model classes;
      * used in save() for creating the insert and/or update sql query
      */
     public function getColumns()
@@ -532,7 +532,7 @@ class Record
     {
         $setters = array();
         
-        // prepare request by binding keys
+        // Prepare request by binding keys
         foreach ($data as $key => $value) {
             $setters[] = $key.'='.self::$__CONN__->quote($value);
         }
@@ -556,7 +556,7 @@ class Record
     }
     
     //
-    // note: lazy finder or getter methode. Pratical when you need something really 
+    // Note: lazy finder or getter method. Pratical when you need something really 
     //       simple no join or anything will only generate simple select * from table ...
     //
     
@@ -895,14 +895,14 @@ if ( ! function_exists('__autoload')) {
  * Purpose of this service is to make some data available across pages. Flash
  * data is available on the next page but deleted when execution reach its end.
  *
- * Usual use of Flash is to make possible that current page pass some data
+ * Usual use of Flash is to make it possible for the current page to pass some data
  * to the next one (for instance success or error message before HTTP redirect).
  *
  * Flash::set('errors', 'Blog not found!');
- * Flass::set('success', 'Blog have been saved with success!');
+ * Flass::set('success', 'Blog has been saved with success!');
  * Flash::get('success');
  *
- * Flash service as a concep is taken from Rails. This thing is really useful!
+ * Flash service as a concept is taken from Rails. This thing is really useful!
  */
 final class Flash
 {
@@ -924,7 +924,7 @@ final class Flash
 
     /**
      * Add specific variable to the flash. This variable will be available on the
-     * next page unlease removed with the removeVariable() or clear() method
+     * next page unless removed with the removeVariable() or clear() method
      *
      * @param string $var Variable name
      * @param mixed $value Variable value
@@ -992,7 +992,7 @@ final class Inflector
     }
     
     /**
-     * Return an Humanized syntaxed (Like this dear reader) from something like_this_dear_reader.
+     * Return a Humanized syntaxed (Like this dear reader) from something like_this_dear_reader.
      *
      * @param  string $string CamelCased word to be "underscorized"
      * @return string Underscored version of the $string
@@ -1038,7 +1038,7 @@ function use_helper()
 }
 
 /**
- * Load model class from the model file (faster then waiting for the __autoload function)
+ * Load model class from the model file (faster than waiting for the __autoload function)
  *
  * syntax:
  * use_model('Blog');
@@ -1069,10 +1069,10 @@ function use_model()
 
 
 /**
- * create a real nice url like http://www.example.com/controller/action/params#anchor
+ * Create a really nice url like http://www.example.com/controller/action/params#anchor
  *
- * you can put many params as you want,
- * if a params start with # it is considerated a Anchor
+ * you can put as many params as you want,
+ * if a params start with # it is considered to be an Anchor
  *
  * get_url('controller/action/param1/param2') // I always use this method
  * get_url('controller', 'action', 'param1', 'param2');
@@ -1132,13 +1132,13 @@ function html_encode($string)
 
 function remove_xss($string)
 {
-    // remove all non-printable characters. CR(0a) and LF(0b) and TAB(9) are allowed
-    // this prevents some character re-spacing such as <java\0script>
-    // note that you have to handle splits with \n, \r, and \t later since they *are* allowed in some inputs
+    // Remove all non-printable characters. CR(0a) and LF(0b) and TAB(9) are allowed
+    // This prevents some character re-spacing such as <java\0script>
+    // Note that you have to handle splits with \n, \r, and \t later since they *are* allowed in some inputs
     $string = preg_replace('/([\x00-\x08,\x0b-\x0c,\x0e-\x19])/', '', $string);
 
-    // straight replacements, the user should never need these since they're normal characters
-    // this prevents like <IMG SRC=&#X40&#X61&#X76&#X61&#X73&#X63&#X72&#X69&#X70&#X74&#X3A&#X61&#X6C&#X65&#X72&#X74&#X28&#X27&#X58&#X53&#X53&#X27&#X29>
+    // Straight replacements, the user should never need these since they're normal characters
+    // This prevents like <IMG SRC=&#X40&#X61&#X76&#X61&#X73&#X63&#X72&#X69&#X70&#X74&#X3A&#X61&#X6C&#X65&#X72&#X74&#X28&#X27&#X58&#X53&#X53&#X27&#X29>
     $search = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()~`";:?+/={}[]-_|\'\\';
     $search_count = count($search);
     for ($i = 0; $i < $search_count; $i++) {
@@ -1150,7 +1150,7 @@ function remove_xss($string)
         $string = preg_replace('/(&#0{0,8}'.ord($search[$i]).';?)/', $search[$i], $string); // with a ;
     }
 
-    // now the only remaining whitespace attacks are \t, \n, and \r
+    // Now the only remaining whitespace attacks are \t, \n, and \r
     $ra = array('javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'link', 'style', 
                 'script', 'embed', 'object', 'iframe', 'frame', 'frameset', 'ilayer', 'layer', 'bgsound', 
                 'title', 'base',
@@ -1169,7 +1169,7 @@ function remove_xss($string)
                 'onselectstart', 'onstart', 'onstop', 'onsubmit', 'onunload'); 
     $ra_count = count($ra);
 
-    $found = true; // keep replacing as long as the previous round replaced something
+    $found = true; // Keep replacing as long as the previous round replaced something
     while ($found == true) {
         $string_before = $string;
         for ($i = 0; $i < $ra_count; $i++) {
@@ -1213,7 +1213,7 @@ function convert_size($num)
     return $num;
 }
 
-// information about time and memory
+// Information about time and memory
 
 function memory_usage()
 {
