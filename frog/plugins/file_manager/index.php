@@ -45,8 +45,8 @@ define('BASE_FILES_DIR', URL_PUBLIC . 'public');
 
 Plugin::setInfos(array(
     'id'          => 'file_manager',
-    'title'       => 'Files Manager', 
-    'description' => 'Provides interface to manage file from the administration.', 
+    'title'       => 'File Manager', 
+    'description' => 'Provides interface to manage files from the administration.', 
     'version'     => '1.0.0', 
     'website'     => 'http://www.madebyfrog.com/',
     'update_url'  => 'http://www.madebyfrog.com/plugin-versions.xml'
