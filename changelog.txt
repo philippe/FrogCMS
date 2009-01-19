@@ -17,6 +17,7 @@ Sigla:
 + Added updated Chinese translation.
 + Removed split between frontend and backend.
 + Added an ID to the "view this page" link so it can be styled.
+- Fixed broken View Site link for TLDs starting with 'a' - issue 116
 - Fixed XHTML compatibility problem with Comment plugin.
 - Fixed issue where only the last addJavascript was accepted.
 . Updated file_manager plugin translations to conform to new template.
