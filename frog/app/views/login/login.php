@@ -30,7 +30,7 @@
          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title><?php echo __('Login'); ?></title>
+  <title><?php echo __('Login').' - '.Setting::get('admin_title'); ?></title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <link href="stylesheets/login.css" rel="Stylesheet" type="text/css" />
   <link href="themes/<?php echo Setting::get('theme'); ?>/styles.css" id="css_theme" media="screen" rel="Stylesheet" type="text/css" />
@@ -39,7 +39,7 @@
 </head>
 <body>
   <div id="dialog">
-    <h1><?php echo __('Login'); ?></h1>
+    <h1><?php echo __('Login').' - '.Setting::get('admin_title'); ?></h1>
 <?php if (Flash::get('error') !== null) { ?>
         <div id="error" style="display: none"><?php echo Flash::get('error'); ?></div>
         <script type="text/javascript">Effect.Appear('error', {duration:.5});</script>
@@ -69,6 +69,7 @@
       </div>
     </form>
   </div>
+  <p><?php echo __('website:').' '.URL_PUBLIC; ?></p>
   <script type="text/javascript" language="javascript" charset="utf-8">
   // <![CDATA[
   var loginUsername = document.getElementById('login-username');
