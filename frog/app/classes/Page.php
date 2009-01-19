@@ -74,9 +74,9 @@ class Page
     const STATUS_PUBLISHED = 100;
     const STATUS_HIDDEN = 101;
     
-    const LOGIN_INHERIT = 0;
+    const LOGIN_NOT_REQUIRED = 0;
     const LOGIN_REQUIRED = 1;
-    const LOGIN_NOT_REQUIRED = 2;
+    const LOGIN_INHERIT = 2;
 
     public $id;
     public $title = '';
