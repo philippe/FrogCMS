@@ -162,6 +162,9 @@ class Plugin
     {
         $data = null;
 
+        if (!CHECK_UPDATES)
+            return __('unknown');
+
         // Check if plugin has update file url set
         if ( ! isset($plugin->update_url) )
             return __('unknown');

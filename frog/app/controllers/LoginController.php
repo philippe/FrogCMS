@@ -166,6 +166,9 @@ class LoginController extends Controller
      */
     private function _checkVersion()
     {
+        if (!CHECK_UPDATES)
+            return;
+
         if (!defined('CHK_TIMEOUT')) define('CHK_TIMEOUT', 5);
         $ctx = stream_context_create(array('http' => array('timeout' => CHK_TIMEOUT)));
         
