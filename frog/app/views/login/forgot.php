@@ -65,5 +65,6 @@
   document.getElementById('forgot-email').focus();
   // ]]>
   </script>
+<p style="text-align:center;color:#000;"><?php echo __('Website'); ?>: <?php echo Setting::get('admin_title'); ?></p>
 </body>
 </html>
