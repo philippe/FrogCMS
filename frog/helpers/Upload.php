@@ -68,7 +68,7 @@ class Upload {
             $this->initialize($props);
         }
         
-        log_debug("Upload Class Initialized");
+        //log_debug("Upload Class Initialized");
     }
     
     // --------------------------------------------------------------------
@@ -135,7 +135,7 @@ class Upload {
     {
         // Is $_FILES[$field] set? If not, no reason to continue.
         if ( ! isset($_FILES[$field])) {
-            log_error('upload_userfile_not_set');
+            //log_error('upload_userfile_not_set');
             return false;
         }
         
@@ -703,12 +703,12 @@ class Upload {
             foreach ($msg as $val) {
                 $msg = ($CI->lang->line($val) == false) ? $val : $CI->lang->line($val);             
                 $this->error_msg[] = $msg;
-                log_error($msg);
+                //log_error($msg);
             }       
         } else {
             $msg = ($CI->lang->line($msg) == false) ? $msg : $CI->lang->line($msg);
             $this->error_msg[] = $msg;
-            log_error($msg);
+            //log_error($msg);
         }
     }
     
