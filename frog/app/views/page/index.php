@@ -47,7 +47,7 @@
       </div>
       <div class="status published-status"><?php echo __('Published'); ?></div>
       <div class="modify">
-          <a href="<?php echo get_url('page/add/1'); ?>"><img src="images/plus.png" align="middle" alt="<?php echo __('Add child'); ?>" /></a>&nbsp; 
+          <a href="<?php echo get_url('page/add/1'); ?>"><img src="images/plus.png" align="middle" title="<?php echo __('Add child'); ?>" alt="<?php echo __('Add child'); ?>" /></a>&nbsp; 
           <img class="remove" src="images/icon-remove-disabled.gif" align="middle" alt="remove icon disabled" />
       </div>
     </li>
