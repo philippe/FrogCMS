@@ -338,17 +338,14 @@ class FileManagerController extends PluginController
                 // date modification
                 $object->mtime = date('D, j M, Y', $file_stat['mtime']);
                 
-                if ($object->is_dir)
-                    $files['d_'.$i] = $object;
-                else
-                    $files['f_'.$i] = $object;
+                $files[$object->name] = $object;
                 
                 $i++;
             } // while
             closedir($handle);
         }
         
-        ksort($files);
+        uksort($files, 'strnatcmp');
         return $files;
     } // _getListFiles
 
