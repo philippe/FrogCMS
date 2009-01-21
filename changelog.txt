@@ -20,6 +20,7 @@ Sigla:
 + Added updated Chinese translation.
 + Removed split between frontend and backend.
 + Added an ID to the "view this page" link so it can be styled.
+- Fixed previous()/next() functions to work for all levels. Thanks rid - issue 109
 - Fixed "Add child" tooltip for browsers not picking up the alt value of the icon.
 - Fixed broken View Site link for TLDs starting with 'a' - issue 116
 - Fixed XHTML compatibility problem with Comment plugin.

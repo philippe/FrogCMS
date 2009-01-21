@@ -219,7 +219,8 @@ class Page
         if ($this->parent)
             return $this->parent->children(array(
                 'limit' => 1,
-                'where' => 'page.position <= '.$this->position.' AND page.id < '. $this->id
+                'where' => 'page.id < '. $this->id,
+                'order' => 'page.created_on DESC'
             ));
     }
     
@@ -228,7 +229,8 @@ class Page
         if ($this->parent)
             return $this->parent->children(array(
                 'limit' => 1,
-                'where' => 'page.position >= '.$this->position.' AND page.id > '. $this->id
+                'where' => 'page.id > '. $this->id,
+                'order' => 'page.created_on ASC'
             ));
     }
     
