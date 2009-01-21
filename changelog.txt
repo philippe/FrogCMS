@@ -22,6 +22,7 @@ Sigla:
 - Fixed broken View Site link for TLDs starting with 'a' - issue 116
 - Fixed XHTML compatibility problem with Comment plugin.
 - Fixed issue where only the last addJavascript was accepted.
+. Updated readme.txt with requirements detail for MySQL server.
 . Updated file_manager plugin translations to conform to new template.
 . Updated comments in preparation for PHPDoc documentation.
 . Renamed root dir text files to avoid name conflicts and accomodate Windows users.

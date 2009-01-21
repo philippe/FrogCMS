@@ -15,7 +15,7 @@ information and resources.
 - PHP 5
     - PHP: magic_quotes_gpc should be turned OFF.
     - PHP: Frog CMS does *not* run on PHP 4.
-- MySQL with InnoDB support.
+- MySQL 4.1.x or above with InnoDB support.
 
 ## Recommended
 
