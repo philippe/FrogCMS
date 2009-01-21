@@ -85,6 +85,7 @@ class SettingController extends Controller
         }
         
         Plugin::activate($plugin);
+        Observer::notify('plugin_after_enable', $plugin);
     }
     
     public function deactivate_plugin($plugin)
@@ -96,6 +97,7 @@ class SettingController extends Controller
         }
         
         Plugin::deactivate($plugin);
+        Observer::notify('plugin_after_disable', $plugin);
     }
 
 } // end SettingController class

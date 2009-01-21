@@ -88,6 +88,8 @@ class LoginController extends Controller
         
             if (AuthUser::login($data['username'], $data['password'], isset($data['remember'])))
             {
+                Observer::notify('admin_login_success', $data['username']);
+                
                 $this->_checkVersion();
                 // redirect to defaut controller and action
                 if ($data['redirect'] != null && $data['redirect'] != 'null')
@@ -95,7 +97,10 @@ class LoginController extends Controller
                 else
                     redirect(get_url());
             }
-            else Flash::set('error', __('Login failed. Please check your login data and try again.'));
+            else {
+                Flash::set('error', __('Login failed. Please check your login data and try again.'));
+                Observer::notify('admin_login_failed', $data['username']);
+            }
         }
         
         // not find or password is wrong
@@ -108,7 +113,9 @@ class LoginController extends Controller
      */
     function logout()
     {
+        $username = AuthUser::getUserName();
         AuthUser::logout();
+        Observer::notify('admin_after_logout', $username);
         redirect(get_url());
     }
 

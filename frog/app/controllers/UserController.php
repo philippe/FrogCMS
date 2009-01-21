@@ -120,6 +120,7 @@ class UserController extends Controller
                 UserPermission::setPermissionsFor($user->id, $_POST['user_permission']);
             
             Flash::set('success', __('User has been added!'));
+            Observer::notify('user_after_add', $user->name);
         }
         else Flash::set('error', __('User has not been added!'));
         
@@ -186,6 +187,7 @@ class UserController extends Controller
             }
             
             Flash::set('success', __('User has been saved!'));
+            Observer::notify('user_after_edit', $user->name);
         }
         else Flash::set('error', __('User has not been saved!'));
         
@@ -211,7 +213,10 @@ class UserController extends Controller
             if ($user = Record::findByIdFrom('User', $id))
             {
                 if ($user->delete())
+                {
                     Flash::set('success', __('User <strong>:name</strong> has been deleted!', array(':name' => $user->name)));
+                    Observer::notify('user_after_delete', $user->name);
+                }
                 else
                     Flash::set('error', __('User <strong>:name</strong> has not been deleted!', array(':name' => $user->name)));
             }
