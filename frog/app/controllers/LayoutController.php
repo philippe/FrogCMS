@@ -94,7 +94,11 @@ class LayoutController extends Controller
             Flash::set('error', __('Layout has not been added. Name must be unique!'));
             redirect(get_url('layout/add'));
         }
-        else Flash::set('success', __('Layout has been added!'));
+        else
+        {
+            Flash::set('success', __('Layout has been added!'));
+            Observer::notify('layout_after_add', $layout);
+        }
         
         // save and quit or save and continue editing?
         if (isset($_POST['commit']))
@@ -132,7 +136,11 @@ class LayoutController extends Controller
             Flash::set('error', __('Layout has not been saved. Name must be unique!'));
             redirect(get_url('layout/edit/'.$id));
         }
-        else Flash::set('success', __('Layout has been saved!'));
+        else
+        {
+            Flash::set('success', __('Layout has been saved!'));
+            Observer::notify('layout_after_edit', $layout);
+        }
         
         // save and quit or save and continue editing?
         if (isset($_POST['commit']))
@@ -149,7 +157,10 @@ class LayoutController extends Controller
             if ($layout->isUsed())
                 Flash::set('error', __('Layout <b>:name</b> is used! It CAN NOT be deleted!', array(':name'=>$layout->name)));
             else if ($layout->delete())
+            {
                 Flash::set('success', __('Layout <b>:name</b> has been deleted!', array(':name'=>$layout->name)));
+                Observer::notify('layout_after_edit', $layout);
+            }
             else
                 Flash::set('error', __('Layout <b>:name</b> has not been deleted!', array(':name'=>$layout->name)));
         }

@@ -93,7 +93,11 @@ class SnippetController extends Controller
             Flash::set('error', __('Snippet has not been added. Name must be unique!'));
             redirect(get_url('snippet', 'add'));
         }
-        else Flash::set('success', __('Snippet has been added!'));
+        else
+        {
+            Flash::set('success', __('Snippet has been added!'));
+            Observer::notify('snippet_after_add', $snippet);
+        }
         
         // save and quit or save and continue editing?
         if (isset($_POST['commit']))
@@ -134,7 +138,11 @@ class SnippetController extends Controller
             Flash::set('error', __('Snippet :name has not been saved. Name must be unique!', array(':name'=>$snippet->name)));
             redirect(get_url('snippet/edit/'.$id));
         }
-        else Flash::set('success', __('Snippet :name has been saved!', array(':name'=>$snippet->name)));
+        else
+        {
+            Flash::set('success', __('Snippet :name has been saved!', array(':name'=>$snippet->name)));
+            Observer::notify('snippet_after_edit', $snippet);
+        }
         
         // save and quit or save and continue editing?
         if (isset($_POST['commit']))
@@ -149,7 +157,10 @@ class SnippetController extends Controller
         if ($snippet = Record::findByIdFrom('Snippet', $id))
         {
             if ($snippet->delete())
+            {
                 Flash::set('success', __('Snippet :name has been deleted!', array(':name'=>$snippet->name)));
+                Observer::notify('snippet_after_delete', $snippet);
+            }
             else
                 Flash::set('error', __('Snippet :name has not been deleted!', array(':name'=>$snippet->name)));
         }

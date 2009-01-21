@@ -206,6 +206,12 @@ function comment_save(&$page)
            $__FROG_CONN__->quote(date('Y-m-d H:i:s')).')';
 
     $__FROG_CONN__->exec($sql);
+
+    // FIXME - If code above used Comment object for saving data there would be
+    // no need to reload it from database. Using lastInsertId() is unrealiable anyway.
+    $comment_id = Record::lastInsertId();
+    $comment    = Comment::findById($comment_id);
+    Observer::notify('comment_after_add', $comment);
 }
 	
 /**

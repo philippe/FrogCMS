@@ -9,6 +9,7 @@ Sigla:
 
 0.9.5 - released 2008-12-??
 
++ Added new events - issue 94
 + Added site identifiers to login screens (both login.php and forgot.php) based on Admin screen title setting.
 + Added front-end login feature similar to layout selector. (login required, not required, inherit)
 + Added drag-to-copy feature for better multi-language support. Thanks tuupola.

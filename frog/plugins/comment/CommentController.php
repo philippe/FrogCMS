@@ -92,7 +92,11 @@ class CommentController extends PluginController
             Flash::set('error', __('Comment has not been saved!'));
             redirect(get_url('plugin/comment/edit/'.$id));
         }
-        else Flash::set('success', __('Comment has been saved!'));
+        else
+        {
+            Flash::set('success', __('Comment has been saved!'));
+            Observer::notify('comment_after_edit', $comment);
+        }
         
         redirect(get_url('plugin/comment'));
     }
@@ -103,7 +107,10 @@ class CommentController extends PluginController
         if ($comment = Record::findByIdFrom('Comment', $id))
         {
             if ($comment->delete())
+            {
                 Flash::set('success', __('Comment has been deleted!'));
+                Observer::notify('comment_after_delete', $comment);
+            }
             else
                 Flash::set('error', __('Comment has not been deleted!'));
         }
@@ -119,7 +126,10 @@ class CommentController extends PluginController
         {
             $comment->is_approved = 1;
             if ($comment->save())
+            {
                 Flash::set('success', __('Comment has been approved!'));
+                Observer::notify('comment_after_approve', $comment);
+            }
         }
         else Flash::set('error', __('Comment not found!'));
         
@@ -133,7 +143,10 @@ class CommentController extends PluginController
         {
             $comment->is_approved = 0;
             if ($comment->save())
+            {
                 Flash::set('success', __('Comment has been unapproved!'));
+                Observer::notify('comment_after_unapprove', $comment);
+            }
         }
         else Flash::set('error', __('Comment not found!'));
         
