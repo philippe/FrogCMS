@@ -420,7 +420,7 @@ class FileManagerController extends PluginController
 function upload_file($origin, $dest, $tmp_name, $overwrite=false)
 {
     FileManagerController::_checkPermission();
-    $origin = strtolower(basename($origin));
+    $origin = basename($origin);
     $full_dest = $dest.$origin;
     $file_name = $origin;
     for ($i=1; file_exists($full_dest); $i++)
