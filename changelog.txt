@@ -9,6 +9,7 @@ Sigla:
 
 0.9.5 - released 2008-12-??
 
++ Added MySQL port to install screen. Thanks gilles.doge - issue 107
 + Added new events - issue 94
 + Added site identifiers to login screens (both login.php and forgot.php) based on Admin screen title setting.
 + Added front-end login feature similar to layout selector. (login required, not required, inherit)

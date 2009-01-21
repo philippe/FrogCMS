@@ -130,6 +130,7 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
           function db_driver_change(driver)
           {
             Element.toggle('row-db-host');
+            Element.toggle('row-db-port');
             Element.toggle('row-db-user');
             Element.toggle('row-db-pass');
             Element.toggle('row-table-prefix');
@@ -152,6 +153,11 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
       <td class="label"><label for="config_db_host">Database server</label></td>
       <td class="field"><input class="textbox" id="config_db_host" maxlength="100" name="config[db_host]" size="100" type="text" value="localhost" /></td>
       <td class="help">Required.</td>
+    </tr>
+    <tr id="row-db-port">
+      <td class="label"><label for="config_db_port">Port</label></td>
+      <td class="field"><input class="textbox" id="config_db_port" maxlength="10" name="config[db_port]" size="100" type="text" value="3306" /></td>
+      <td class="help">Optional. Default: 3306</td>
     </tr>
     <tr id="row-db-user">
       <td class="label"><label for="config_db_user">Database user</label></td>
