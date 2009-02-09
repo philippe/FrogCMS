@@ -38,39 +38,6 @@ Setting::init();
 Plugin::init();
 
 /**
- * Load all functions from the helper file
- *
- * syntax:
- * use_helper('Cookie');
- * use_helper('Number', 'Javascript', 'Cookie', ...);
- *
- * @param  string helpers in CamelCase
- * @return void
- *
-function use_helper()
-{
-    static $_helpers = array();
-    
-    $helpers = func_get_args();
-    
-    foreach ($helpers as $helper)
-    {
-        if (in_array($helper, $_helpers)) continue;
-        
-        $helper_file = HELPER_PATH.DIRECTORY_SEPARATOR.$helper.'.php';
-        
-        if ( ! file_exists($helper_file))
-        {
-            throw new Exception("Helper file '{$helper}' not found!");
-        }
-        
-        include $helper_file;
-        $_helpers[] = $helper;
-    }
-}
- */
-
-/**
  * Explode an URI and make a array of params
  */
 function explode_uri($uri)
@@ -202,41 +169,6 @@ function url_start_with($url)
     
     return false;
 }
-
-/*
-function execution_time()
-{
-    return sprintf("%01.4f", get_microtime() - FRAMEWORK_STARTING_MICROTIME);
-}
-
-function get_microtime()
-{
-    $time = explode(' ', microtime());
-    return doubleval($time[0]) + $time[1];
-}
-
-function convert_size($num)
-{
-    if ($num >= 1073741824) $num = round($num / 1073741824 * 100) / 100 .' gb';
-    else if ($num >= 1048576) $num = round($num / 1048576 * 100) / 100 .' mb';
-    else if ($num >= 1024) $num = round($num / 1024 * 100) / 100 .' kb';
-    else $num .= ' b';
-    return $num;
-}
-
-function memory_usage()
-{
-    return convert_size(memory_get_usage());
-}
-
-function page_not_found()
-{
-    Observer::notify('page_not_found');
-    
-    include FROG_ROOT . '/404.php';
-    exit;
-}
-*/
 
 function main()
 {

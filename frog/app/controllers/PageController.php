@@ -107,6 +107,27 @@ class PageController extends Controller
         
         if (empty($data['title']))
         {
+            // Rebuilding original page
+            $part = $_POST['part'];
+            if (!empty($part)) {
+                $tmp = false;
+                foreach ($part as $key => $val) {
+                    $tmp[$key] = (object) $val;
+                }
+                $part = $tmp;
+            }
+
+            $page = $_POST['page'];
+            if (!empty($page) && !array_key_exists('is_protected', $page)) {
+                $page = array_merge($page, array ('is_protected' => 0));
+            }
+
+            $tags = $_POST['page_tag'];
+
+            Flash::set('page', (object) $page);
+            Flash::set('page_parts', (object) $part);
+            Flash::set('page_tag', $tags);
+
             Flash::set('error', __('You have to specify a title!'));
             redirect(get_url('page/add'));
         }

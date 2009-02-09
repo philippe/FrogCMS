@@ -27,6 +27,16 @@
  * @copyright Philippe Archambault, Martijn van der Kleijn, 2008
  */
 
+// TODO: clean up code/solution
+$pagetmp = Flash::get('page');
+$parttmp = Flash::get('page_parts');
+$tagstmp = Flash::get('page_tag');
+if ($pagetmp != null && !empty($pagetmp) && $parttmp != null && !empty($parttmp) && $tagstmp != null && !empty($tagstmp)) {
+    $page = $pagetmp;
+    $page_parts = $parttmp;
+    $tags = $tagstmp;
+}
+
 if ($action == 'edit') { ?>
     <span style="float: right;"><a id="site-view-page" onclick="target='_blank'" onkeypress="target='_blank'" href="<?php echo URL_PUBLIC; echo (USE_MOD_REWRITE == false) ? '?' : ''; echo $page->getUri().URL_SUFFIX; ?>"><?php echo __('View this page'); ?></a></span>
 <?php } ?>
