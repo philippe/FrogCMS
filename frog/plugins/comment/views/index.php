@@ -33,7 +33,6 @@
 ?>
 
 <h1><?php echo __('Comments'); ?></h1>
-<?php error_reporting(E_ALL); ?>
 <div id="comments-def">
     <div class="comment"><?php echo __('Comments'); ?></div>
     <div class="modify"><?php echo __('Modify'); ?></div>
