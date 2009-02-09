@@ -83,3 +83,4 @@ $PDO->exec("INSERT INTO ".TABLE_PREFIX."snippet (name, filter_id, content, conte
 $PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('auto_approve_comment', '0')");
 $PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('use_captcha', '1')");
 $PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('rowspage', '15')");
+$PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('numlabel', '1')");

@@ -155,6 +155,9 @@ class CommentController extends PluginController
    
     function settings() {
 		global $__FROG_CONN__;
+
+        // TODO - improve this bullshit so we only need one call.
+        // Plugins need their own collective settings table.
     	$sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'auto_approve_comment'";
 		$stmt = $__FROG_CONN__->prepare($sql);
 		$stmt->execute();
@@ -169,11 +172,17 @@ class CommentController extends PluginController
 		$stmt = $__FROG_CONN__->prepare($sql);
 		$stmt->execute();
 		$rowspage = $stmt->fetchObject();
+
+        $sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'numlabel'";
+		$stmt = $__FROG_CONN__->prepare($sql);
+		$stmt->execute();
+		$numlabel = $stmt->fetchObject();
 		
             $this->display('comment/views/settings', array(
 				'approve' => $auto_approve->value,
 				'captcha' => $captcha->value,
-				'rowspage' => $rowspage->value
+				'rowspage' => $rowspage->value,
+                'numlabel' => $numlabel->value
 				));
 		
     }
@@ -182,7 +191,9 @@ class CommentController extends PluginController
 		$approve = mysql_escape_string($_POST['autoapprove']);
         $captcha = mysql_escape_string($_POST['captcha']);
         $rowspage = mysql_escape_string($_POST['rowspage']);
-        
+        $numlabel = mysql_escape_string($_POST['numlabel']);
+
+        // TODO - cleanup
         global $__FROG_CONN__;
         $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$approve' WHERE name = 'auto_approve_comment'"; 
         $PDO = $__FROG_CONN__->prepare($sql);
@@ -195,14 +206,17 @@ class CommentController extends PluginController
         $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$rowspage' WHERE name = 'rowspage'"; 
         $PDO = $__FROG_CONN__->prepare($sql);
         $rowspage_var = $PDO->execute() !== false;
+
+        $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$numlabel' WHERE name = 'numlabel'";
+        $PDO = $__FROG_CONN__->prepare($sql);
+        $numlabel_var = $PDO->execute() !== false;
         
-        if ($captcha_var){
-                Flash::set('success', __('The settings have been updated.'));
-            }
-        else{
-                Flash::set('error', 'An error has occured.');
-            }
-           redirect(get_url('plugin/comment/settings'));   
+        if ($captcha_var)
+            Flash::set('success', __('The settings have been updated.'));
+        else
+            Flash::set('error', 'An error has occured.');
+
+        redirect(get_url('plugin/comment/settings'));
 	}
 	
 	function documentation() {

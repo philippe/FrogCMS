@@ -63,7 +63,17 @@
 					<input type="text" class="textinput" value="<?php echo $rowspage; ?>" name="rowspage" />
 				</td>
                 <td class="help"><?php echo __('Sets the number of comments to be displayed per page in the backend.'); ?></td>
-        	</tr>	
+        	</tr>
+            <tr>
+                <td class="label"><label for="numlabel"><?php echo __('Enhance comments tab'); ?>: </label></td>
+                <td class="field">
+					<select name="numlabel">
+						<option value="1" <?php if($numlabel == "1") echo 'selected ="";' ?>><?php echo __('Yes'); ?></option>
+						<option value="0" <?php if($numlabel == "0") echo 'selected ="";' ?>><?php echo __('No'); ?></option>
+					</select>
+				</td>
+                <td class="help"><?php echo __("Choose yes if you want to display the number of to-be-moderated &amp; total number of comment in the Comment plugin's tab."); ?></td>
+            </tr>
         </table>
     </fieldset>
     <br/>

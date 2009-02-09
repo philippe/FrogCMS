@@ -33,7 +33,7 @@
 ?>
 <h3>How to use this plugin</h3>
 <p>
-    The comments plugin tab displays for example: "Comments (2/5)". This means that two comments are
+    By default, the comments plugin tab displays for example: "Comments (2/5)". This means that two comments are
     waiting for approval in the moderation list out of five total comments.
 </p>
 <p>

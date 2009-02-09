@@ -68,9 +68,20 @@ function comment_display_dropdown(&$page)
     echo '</select></p>';
 }
 
-function comment_display_moderatable_count(&$plugin_name, &$plugin) {
-    if ($plugin_name == 'comment') {
-        $plugin->label = $plugin->label.' <span id="comment-badge">('.comments_count_moderatable().'/'.comments_count_total().')</span>';
+function comment_display_moderatable_count(&$plugin_name, &$plugin)
+{
+    if ($plugin_name == 'comment')
+    {
+        global $__FROG_CONN__;
+        $sql = 'SELECT * FROM '.TABLE_PREFIX.'setting WHERE name = "numlabel"';
+        $stmt = $__FROG_CONN__->prepare($sql);
+        $stmt->execute();
+        $numlabel = $stmt->fetchObject();
+
+        if ($numlabel != null && $numlabel->value == '1')
+        {
+            $plugin->label = $plugin->label.' <span id="comment-badge">('.comments_count_moderatable().'/'.comments_count_total().')</span>';
+        }
     }
 }
 
