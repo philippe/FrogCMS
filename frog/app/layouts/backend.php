@@ -66,11 +66,22 @@
       <div id="content-wrapper"><div id="content">
 <?php if (Flash::get('error') !== null): ?>
         <div id="error" style="display: none"><?php echo Flash::get('error'); ?></div>
-        <script type="text/javascript">Effect.Appear('error', {duration:.5});</script>
+        <script type="text/javascript" language="javascript">
+        // <![CDATA[
+            Effect.Appear('error', { queue: {scope: 'fadeovers', position: 'end' }});
+            Effect.Fade('error',{ queue: {scope: 'fadeovers', position: 'end'}, delay: 1.5 });
+        // ]]>
+        </script>
 <?php endif; ?>
 <?php if (Flash::get('success') !== null): ?>
         <div id="success" style="display: none"><?php echo Flash::get('success'); ?></div>
-        <script type="text/javascript">Effect.Appear('success', {duration:.5});</script>
+        <script type="text/javascript" language="javascript">
+        // <![CDATA[
+            Effect.Appear('success', { queue: {scope: 'fadeovers', position: 'end' }});
+            Effect.Fade('success',{ queue: {scope: 'fadeovers', position: 'end'}, delay: 1.5 });
+        // ]]>
+        </script>
+
 <?php endif; ?>
         <!-- content -->
         <?php echo $content_for_layout; ?>
