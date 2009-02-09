@@ -104,7 +104,7 @@ class Behavior
     {
         $behavior_page_class = 'Page'.str_replace(' ','',ucwords(str_replace('_',' ', $behavior_id)));
 
-        if (class_exists($behavior_page_class))
+        if (class_exists($behavior_page_class, false))
             return $behavior_page_class;
         else
             return 'Page';

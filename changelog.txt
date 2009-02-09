@@ -21,6 +21,7 @@ Sigla:
 + Added updated Chinese translation.
 + Removed split between frontend and backend.
 + Added an ID to the "view this page" link so it can be styled.
+- Fixed issue where AutoLoader did not find file for 'PageArchiveMonthIndex' - issue 101
 - Fixed issue where saving a page without title results in loss of entered content - issue 68
 - Fixed issue with filename lowercasing during upload of files. Thanks david - issue 113
 - Fixed previous()/next() functions to work for all levels. Thanks rid - issue 109
