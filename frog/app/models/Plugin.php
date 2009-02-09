@@ -162,7 +162,7 @@ class Plugin
     {
         $data = null;
 
-        if (!CHECK_UPDATES)
+        if (!defined('CHECK_UPDATES') || !CHECK_UPDATES)
             return __('unknown');
 
         // Check if plugin has update file url set
@@ -176,8 +176,8 @@ class Plugin
 
         if (!array_key_exists($plugin->update_url, Plugin::$updatefile_cache)) {
             // Read and cache the update file
-            if (!defined('CHK_TIMEOUT')) define('CHK_TIMEOUT', 5);
-            $ctx = stream_context_create(array('http' => array('timeout' => CHK_TIMEOUT)));
+            if (!defined('CHECK_TIMEOUT')) define('CHECK_TIMEOUT', 5);
+            $ctx = stream_context_create(array('http' => array('timeout' => CHECK_TIMEOUT)));
 
             if ( ! $data = file_get_contents($plugin->update_url, 0, $ctx)) {
                 return __('error');

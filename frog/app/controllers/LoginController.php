@@ -173,11 +173,11 @@ class LoginController extends Controller
      */
     private function _checkVersion()
     {
-        if (!CHECK_UPDATES)
+        if (!defined('CHECK_UPDATES') || !CHECK_UPDATES)
             return;
 
-        if (!defined('CHK_TIMEOUT')) define('CHK_TIMEOUT', 5);
-        $ctx = stream_context_create(array('http' => array('timeout' => CHK_TIMEOUT)));
+        if (!defined('CHECK_TIMEOUT')) define('CHECK_TIMEOUT', 5);
+        $ctx = stream_context_create(array('http' => array('timeout' => CHECK_TIMEOUT)));
         
         $v = file_get_contents('http://www.madebyfrog.com/version/', 0, $ctx);
         if ($v > FROG_VERSION)

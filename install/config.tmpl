@@ -17,8 +17,11 @@ define('TABLE_PREFIX', '<?php echo $table_prefix; ?>');
 
 define('DEBUG', false);
 
+// Should frog check for updates on Frog itself and the installed plugins?
+define('CHECK_UPDATES', true);
+
 // The number of seconds before the check for a new Frog version times out in case of problems.
-define('CHK_TIMEOUT', 5);
+define('CHECK_TIMEOUT', 5);
 
 // The full URL of your Frog CMS install
 define('URL_PUBLIC', 'http://<?php echo substr(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), 0, strrpos(dirname($_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']), '/')); ?>/');
