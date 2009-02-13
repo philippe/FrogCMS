@@ -22,9 +22,10 @@
  * @subpackage models
  *
  * @author Philippe Archambault <philippe.archambault@gmail.com>
- * @version 0.1
+ * @author Martijn van der Kleijn <martijn.niji@gmail.com>
+ * @version 0.9.5
  * @license http://www.gnu.org/licenses/agpl.html AGPL License
- * @copyright Philippe Archambault, 2008
+ * @copyright Philippe Archambault, Martijn van der Kleijn 2008
  */
 
 /**
@@ -255,5 +256,143 @@ class Plugin
         $class_name = Inflector::camelize($plugin_id).'Controller';
         
         return (array_key_exists($plugin_id, Plugin::$controllers) && method_exists($class_name, 'documentation'));
+    }
+
+    /**
+     * Stores all settings from a name<->value pair array in the database.
+     *
+     * @param array $settings Array of name-value pairs
+     * @param string $plugin_id     The folder name of the plugin
+     */
+    static function setAllSettings($array=null, $plugin_id=null)
+    {
+        if ($array == null || $plugin_id == null) return false;
+
+        global $__FROG_CONN__;
+        $tablename = TABLE_PREFIX.'plugin_settings';
+        $plugin_id = $__FROG_CONN__->quote($plugin_id);
+
+        $existingSettings = array();
+
+        $sql = "SELECT name FROM $tablename WHERE plugin_id=$plugin_id";
+        $stmt = $__FROG_CONN__->prepare($sql);
+        $stmt->execute(array($plugin_id));
+
+        while ($settingname = $stmt->fetchColumn())
+            $existingSettings[$settingname] = $settingname;
+
+        foreach ($array as $name => $value)
+        {
+            if (array_key_exists($name, $existingSettings))
+            {
+                $name = $__FROG_CONN__->quote($name);
+                $value = $__FROG_CONN__->quote($value);
+                $sql = "UPDATE $tablename SET value=$value WHERE name=$name AND plugin_id=$plugin_id";
+            }
+            else
+            {
+                $name = $__FROG_CONN__->quote($name);
+                $value = $__FROG_CONN__->quote($value);
+                $sql = "INSERT INTO $tablename (value, name, plugin_id) VALUES ($value, $name, $plugin_id)";
+            }
+
+            $stmt = $__FROG_CONN__->prepare($sql);
+            $stmt->execute();
+        }
+    }
+
+    /**
+     * Allows you to store a single setting in the database.
+     *
+     * @param string $name          Setting name
+     * @param string $value         Setting value
+     * @param string $plugin_id     Plugin folder name
+     */
+    static function setSetting($name=null, $value=null, $plugin_id=null)
+    {
+        if ($name == null || $value == null || $plugin_id == null) return false;
+
+        global $__FROG_CONN__;
+        $tablename = TABLE_PREFIX.'plugin_settings';
+        $plugin_id = $__FROG_CONN__->quote($plugin_id);
+
+        $existingSettings = array();
+
+        $sql = "SELECT name FROM $tablename WHERE plugin_id=$plugin_id";
+        $stmt = $__FROG_CONN__->prepare($sql);
+        $stmt->execute(array($plugin_id));
+
+        while ($settingname = $stmt->fetchColumn())
+            $existingSettings[$settingname] = $settingname;
+
+        if (in_array($name, $existingSettings))
+        {
+            $name = $__FROG_CONN__->quote($name);
+            $value = $__FROG_CONN__->quote($value);
+            $sql = "UPDATE $tablename SET value=$value WHERE name=$name AND plugin_id=$plugin_id";
+        }
+        else
+        {
+            $name = $__FROG_CONN__->quote($name);
+            $value = $__FROG_CONN__->quote($value);
+            $sql = "INSERT INTO $tablename (value, name, plugin_id) VALUES ($value, $name, $plugin_id)";
+        }
+
+        $stmt = $__FROG_CONN__->prepare($sql);
+        $stmt->execute();
+    }
+
+    /**
+     * Retrieves all settings for a plugin and returns an array of name-value pairs.
+     * Returns empty array when unsuccessful in retrieving the settings.
+     *
+     * @param <type> $plugin_id
+     */
+    static function getAllSettings($plugin_id=null)
+    {
+        if ($plugin_id == null) return false;
+
+        global $__FROG_CONN__;
+        $tablename = TABLE_PREFIX.'plugin_settings';
+        $plugin_id = $__FROG_CONN__->quote($plugin_id);
+
+        $settings = array();
+
+        $sql = "SELECT name,value FROM $tablename WHERE plugin_id=$plugin_id";
+        $stmt = $__FROG_CONN__->prepare($sql);
+        $stmt->execute();
+
+        while ($obj = $stmt->fetchObject()) {
+            $settings[$obj->name] = $obj->value;
+        }
+
+        return $settings;
+    }
+
+    /**
+     * Returns the value for a specified setting.
+     * Returns false when unsuccessful in retrieving the setting.
+     *
+     * @param <type> $name
+     * @param <type> $plugin_id
+     */
+    static function getSetting($name=null, $plugin_id=null)
+    {
+        if ($name == null || $plugin_id == null) return false;
+
+        global $__FROG_CONN__;
+        $tablename = TABLE_PREFIX.'plugin_settings';
+        $plugin_id = $__FROG_CONN__->quote($plugin_id);
+        $name = $__FROG_CONN__->quote($name);
+
+        $existingSettings = array();
+
+        $sql = "SELECT value FROM $tablename WHERE plugin_id=$plugin_id AND name=$name LIMIT 1";
+        $stmt = $__FROG_CONN__->prepare($sql);
+        $stmt->execute();
+
+        if ($value = $stmt->fetchColumn()) return $value;
+        else return false;
+
     }
 } // end Plugin class

@@ -98,6 +98,16 @@ $PDO->exec("CREATE TABLE setting (
 $PDO->exec("CREATE UNIQUE INDEX setting_id ON setting (name)");
 
 
+// Table structure for table: plugin_settings ----------------------------------------
+
+$PDO->exec("CREATE TABLE plugin_settings (
+    plugin_id varchar(40) NOT NULL ,
+    name varchar(40) NOT NULL ,
+    value varchar(255) NOT NULL
+)");
+$PDO->exec("CREATE UNIQUE INDEX plugin_setting_id ON plugin_settings (plugin_id,name)");
+
+
 // Table structure for table: snippet ----------------------------------------
 
 $PDO->exec("CREATE TABLE snippet ( 

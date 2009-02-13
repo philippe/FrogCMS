@@ -101,6 +101,16 @@ $PDO->exec("CREATE TABLE ".TABLE_PREFIX."setting (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 
 
+// Table structure for table: plugin_settings ----------------------------------------
+
+$PDO->exec("CREATE TABLE ".TABLE_PREFIX."plugin_settings (
+  plugin_id varchar(40) NOT NULL,
+  name varchar(40) NOT NULL,
+  value varchar(255) NOT NULL,
+  UNIQUE KEY plugin_setting_id (plugin_id,name)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+
+
 // Table structure for table: snippet ----------------------------------------
 
 $PDO->exec("CREATE TABLE ".TABLE_PREFIX."snippet (
