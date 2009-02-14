@@ -37,6 +37,7 @@ Sigla:
 . Updated comments in preparation for PHPDoc documentation.
 . Renamed root dir text files to avoid name conflicts and accomodate Windows users.
 . Renamed style.css into screen.css for more consistency with print.css in Normal layout.
+. Simplified Comment plugin to make use of Plugin::getAllSettings() and friends.
 
 0.9.4 - released 2008-09-29
 

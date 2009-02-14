@@ -72,13 +72,9 @@ function comment_display_moderatable_count(&$plugin_name, &$plugin)
 {
     if ($plugin_name == 'comment')
     {
-        global $__FROG_CONN__;
-        $sql = 'SELECT * FROM '.TABLE_PREFIX.'setting WHERE name = "numlabel"';
-        $stmt = $__FROG_CONN__->prepare($sql);
-        $stmt->execute();
-        $numlabel = $stmt->fetchObject();
+        $numlabel = Plugin::getSetting('numlabel', 'comment');
 
-        if ($numlabel != null && $numlabel->value == '1')
+        if ($numlabel && $numlabel == '1')
         {
             $plugin->label = $plugin->label.' <span id="comment-badge">('.comments_count_moderatable().'/'.comments_count_total().')</span>';
         }
@@ -151,13 +147,9 @@ function comment_save(&$page)
     $data = $_POST['comment'];
     if (is_null($data)) return;
 
-    global $__FROG_CONN__;
-    $sql = 'SELECT * FROM '.TABLE_PREFIX.'setting WHERE name = "use_captcha"';
-    $stmt = $__FROG_CONN__->prepare($sql);
-    $stmt->execute();
-    $captcha = $stmt->fetchObject();
+    $captcha = Plugin::getSetting('use_captcha', 'comment');
 
-    if($captcha->value == '1') {
+    if($captcha && $captcha == '1') {
         if(isset($data['secure']))
         {
             if ($data['secure'] == "" OR empty($data['secure']) OR $data['secure'] != $_SESSION['security_number']) return;
@@ -201,10 +193,9 @@ function comment_save(&$page)
         'strong' => array()
     );
 
-    $sql = 'SELECT value FROM '.TABLE_PREFIX.'setting WHERE name=\'auto_approve_comment\'';
-    $stmt = $__FROG_CONN__->prepare($sql);
-    $stmt->execute();
-    $auto_approve_comment = (int) $stmt->fetchColumn();
+    $auto_approve_comment = Plugin::getSetting('auto_approve_comment', 'comment');
+
+    global $__FROG_CONN__;
 		
     $sql = 'INSERT INTO '.TABLE_PREFIX.'comment (page_id, author_name, author_email, author_link, ip, body, is_approved, created_on) VALUES ('.
            '\''.$page->id.'\', '.
@@ -244,19 +235,11 @@ function captcha()
     }
 
     // Get settings
-    global $__FROG_CONN__;
-    $sql = 'SELECT * FROM '.TABLE_PREFIX.'setting WHERE name = "use_captcha"';
-    $stmt = $__FROG_CONN__->prepare($sql);
-    $stmt->execute();
-    $captcha = $stmt->fetchObject();
-
-    $sql = 'SELECT * FROM '.TABLE_PREFIX.'setting WHERE name = "auto_approve_comment"';
-    $stmt = $__FROG_CONN__->prepare($sql);
-    $stmt->execute();
-    $approve = $stmt->fetchObject();
+    $captcha = Plugin::getSetting('use_captcha', 'comment');
+    $approve = Plugin::getSetting('auto_approve_comment', 'comment');
 
     // Display captcha if required
-    if ($captcha->value == '1') {
+    if ($captcha && $captcha == '1') {
         if($data && ($data['secure'] != $_SESSION['security_number'] && !empty($data['secure'])) ) {
             echo '<p class="comment-captcha-error">'.__('Incorrect result value. Please try again:').'</p>';
         }
@@ -274,8 +257,8 @@ function captcha()
 	
 	// Display results
     if (isset($_POST['commit-comment'])) {
-        if ($captcha->value != '1' || $data['secure'] == $_SESSION['security_number']) {
-            if($approve->value == '1') {
+        if (($captcha && $captcha != '1') || $data['secure'] == $_SESSION['security_number']) {
+            if($approve && $approve == '1') {
                 echo '<p class="comment-captcha-success">'.__('Thank you for your comment. It has been added.').'</p>';
             }
             else {

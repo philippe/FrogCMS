@@ -154,37 +154,13 @@ class CommentController extends PluginController
     }
    
     function settings() {
-		global $__FROG_CONN__;
-
-        // TODO - improve this bullshit so we only need one call.
-        // Plugins need their own collective settings table.
-    	$sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'auto_approve_comment'";
-		$stmt = $__FROG_CONN__->prepare($sql);
-		$stmt->execute();
-		$auto_approve = $stmt->fetchObject();
-        
-        $sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'use_captcha'";
-		$stmt = $__FROG_CONN__->prepare($sql);
-		$stmt->execute();
-		$captcha = $stmt->fetchObject();
-		
-		$sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'rowspage'";
-		$stmt = $__FROG_CONN__->prepare($sql);
-		$stmt->execute();
-		$rowspage = $stmt->fetchObject();
-
-        $sql = "SELECT * FROM ".TABLE_PREFIX."setting WHERE name = 'numlabel'";
-		$stmt = $__FROG_CONN__->prepare($sql);
-		$stmt->execute();
-		$numlabel = $stmt->fetchObject();
-		
-            $this->display('comment/views/settings', array(
-				'approve' => $auto_approve->value,
-				'captcha' => $captcha->value,
-				'rowspage' => $rowspage->value,
-                'numlabel' => $numlabel->value
-				));
-		
+        $tmp = Plugin::getAllSettings('comment');
+        $settings = array('approve' => $tmp['auto_approve_comment'],
+                          'captcha' => $tmp['use_captcha'],
+                          'rowspage' => $tmp['rowspage'],
+                          'numlabel' => $tmp['numlabel']
+                         );
+        $this->display('comment/views/settings', $settings);
     }
     
 	function save() {
@@ -193,25 +169,15 @@ class CommentController extends PluginController
         $rowspage = mysql_escape_string($_POST['rowspage']);
         $numlabel = mysql_escape_string($_POST['numlabel']);
 
-        // TODO - cleanup
-        global $__FROG_CONN__;
-        $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$approve' WHERE name = 'auto_approve_comment'"; 
-        $PDO = $__FROG_CONN__->prepare($sql);
-        $approve_var = $PDO->execute() !== false;
+        $settings = array('auto_approve_comment' => $approve,
+                          'use_captcha' => $captcha,
+                          'rowspage' => $rowspage,
+                          'numlabel' => $numlabel
+                         );
+                         
+        $ret = Plugin::setAllSettings($settings, 'comment');
         
-        $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$captcha' WHERE name = 'use_captcha'"; 
-        $PDO = $__FROG_CONN__->prepare($sql);
-        $captcha_var = $PDO->execute() !== false;
-        
-        $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$rowspage' WHERE name = 'rowspage'"; 
-        $PDO = $__FROG_CONN__->prepare($sql);
-        $rowspage_var = $PDO->execute() !== false;
-
-        $sql = "UPDATE " . TABLE_PREFIX . "setting SET value='$numlabel' WHERE name = 'numlabel'";
-        $PDO = $__FROG_CONN__->prepare($sql);
-        $numlabel_var = $PDO->execute() !== false;
-        
-        if ($captcha_var)
+        if ($ret)
             Flash::set('success', __('The settings have been updated.'));
         else
             Flash::set('error', 'An error has occured.');

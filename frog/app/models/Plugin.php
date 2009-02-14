@@ -281,6 +281,8 @@ class Plugin
         while ($settingname = $stmt->fetchColumn())
             $existingSettings[$settingname] = $settingname;
 
+        $ret = false;
+
         foreach ($array as $name => $value)
         {
             if (array_key_exists($name, $existingSettings))
@@ -297,8 +299,10 @@ class Plugin
             }
 
             $stmt = $__FROG_CONN__->prepare($sql);
-            $stmt->execute();
+            $ret = $stmt->execute();
         }
+
+        return $ret;
     }
 
     /**

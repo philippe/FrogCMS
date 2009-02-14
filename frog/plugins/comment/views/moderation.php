@@ -49,11 +49,7 @@ if (isset($page)) {
 } else {
     $CurPage = 0;
 }
-$sql = "SELECT * FROM " . TABLE_PREFIX . "setting WHERE name = 'rowspage'";
-$stmt = $__FROG_CONN__->prepare($sql);
-$stmt->execute();
-$rowspage = $stmt->fetchObject();
-$rowspage = $rowspage->value;
+$rowspage = Plugin::getSetting('rowspage', 'comment');
 $start = $CurPage * $rowspage;
 
 $totalrecords = $comments_count;
