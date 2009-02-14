@@ -24,6 +24,6 @@ Options -Indexes +FollowSymLinks
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l
   # Main URL rewriting.
-  RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+  RewriteRule ^(.*)$ index.php?QS=$1 [L,QSA]
 
 </IfModule>

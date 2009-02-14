@@ -173,7 +173,7 @@ function url_start_with($url)
 function main()
 {
     // get the uri string from the query
-    $uri = $_SERVER['QUERY_STRING'];
+    $uri = @$_GET['QS'];
     
     // real integration of GET
     if (strpos($uri, '?') !== false)
