@@ -65,7 +65,7 @@ else if ($driver == 'sqlite')
 	    author_email varchar(100) default NULL ,
 	    author_link varchar(100) default NULL , 
 	    is_approved tinyint(1) NOT NULL default '1' , 
-	    created_on datetime default NULL ,
+	    created_on datetime default NULL
 	)");
 	
 	$PDO->exec("CREATE INDEX comment_page_id ON comment (page_id)");
@@ -81,7 +81,6 @@ $PDO->exec("INSERT INTO ".TABLE_PREFIX."snippet (name, filter_id, content, conte
 $PDO->exec("INSERT INTO ".TABLE_PREFIX."snippet (name, filter_id, content, content_html, created_on, created_by_id) VALUES ('comment-each', '', '<p><strong><?php echo \$num_comments = comments_count(\$this); ?></strong> comment<?php if (\$num_comments != 1) { echo ''s''; } ?></p>\r\n<?php \$comments = comments(\$this); ?>\r\n<ol class=\"comments\">\r\n<?php foreach (\$comments as \$comment): ?>\r\n  <li class=\"comment\">\r\n    <p><?php echo \$comment->body(); ?></p>\r\n    <p> &#8212; <?php echo \$comment->name(); ?> <small class=\"comment-date\"><?php echo \$comment->date(); ?></small></p>\r\n  </li>\r\n<?php endforeach; // comments; ?>\r\n</ol>', '<p><strong><?php echo \$num_comments = comments_count(\$this); ?></strong> comment<?php if (\$num_comments != 1) { echo ''s''; } ?></p>\r\n<?php \$comments = comments(\$this); ?>\r\n<ol class=\"comments\">\r\n<?php foreach (\$comments as \$comment): ?>\r\n  <li class=\"comment\">\r\n    <p><?php echo \$comment->body(); ?></p>\r\n    <p> — <?php echo \$comment->name(); ?> <small class=\"comment-date\"><?php echo \$comment->date(); ?></small></p>\r\n  </li>\r\n<?php endforeach; // comments; ?>\r\n</ol>', '".date('Y-m-d H:i:s')."', 1)");
 
 // Store settings new style
-
 $settings = array('auto_approve_comment' => '0',
                   'use_captcha' => '1',
                   'rowspage' => '15',
@@ -89,8 +88,3 @@ $settings = array('auto_approve_comment' => '0',
                  );
 
 Plugin::setAllSettings($settings, 'comment');
-
-//$PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('auto_approve_comment', '0')");
-//$PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('use_captcha', '1')");
-//$PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('rowspage', '15')");
-//$PDO->exec("INSERT INTO ".TABLE_PREFIX."setting (name, value) VALUES ('numlabel', '1')");
