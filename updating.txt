@@ -19,34 +19,15 @@ WARNING - The split between frontend and backend in the Frog code has been remov
 
 Please remember to MAKE BACKUPS before trying to update!
 
-Updating consists of a few seperate steps. When executed correctly, this method of upgrading will keep
-downtime to a minimum. Please READ CAREFULLY:
+The best and most comprehensive method of upgrading to Frog 0.9.5 is to install Frog from scratch,
+including the database.
 
-1. Make a backup of your current Frog installation.
+NOTES:
 
-2. Make a backup of your current Frog database.
+- The public directory now contains a themes subdirectory.
+  It is advised that all themes for Frog follow the same approach as the Normal theme.
+- It is advised to always use the htaccess file. You can dis/enable the url rewriting by setting RewriteEngine to On/Off.
 
-3. Create a temporary directory. We'll use this to prepare the upgrade in.
-
-4. Unzip the Frog package into the temporary directory as if you would install into it.
-
-5. Remove the "public" directory and everything in it from the temporary directory.
-
-6. Remove the config.php and _.htaccess files from the temporary directory.
-
-7. Copy all the non-core plugin directories from ../frog/plugins to your temporary location's ../frog/plugins directory.
-
---- CHECK step 8 ---
-
-8. Execute the following two SQL statements on your database:
-    INSERT INTO setting (name, value) VALUES ('default_tab', '');
-    INSERT INTO setting (name, value) VALUES ('allow_html_title', 'off');
-
-9. Copy all the files from the temporary directory to your installation's root, replacing the old files.
-
-10. Check your site to see if the upgrade didn't break anything.
-
-You're done!
 (though you may want to read through the item below)
 
 ## CHANGES TO THE POST INSTALL DATA between 0.9.4 and 0.9.5:
@@ -54,4 +35,4 @@ You're done!
 NOTE: please CHECK that the SQL statements below don't do harm on your particular installation.
 
 --- CHECK these items ---
-- The following line was added to the Normal layout...
+- A plugin_settings table was added: CREATE TABLE plugin_settings (plugin_id varchar(40) NOT NULL, name varchar(40) NOT NULL, value varchar(255) NOT NULL, UNIQUE KEY plugin_setting_id (plugin_id,name)) ENGINE=MyISAM DEFAULT CHARSET=utf8

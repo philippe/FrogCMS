@@ -69,7 +69,7 @@
       </div>
     </form>
   </div>
-  <p><?php echo __('website:').' '.URL_PUBLIC; ?></p>
+  <p><?php echo __('website:').' <a href="'.URL_PUBLIC.'">'.URL_PUBLIC.'</a>'; ?></p>
   <script type="text/javascript" language="javascript" charset="utf-8">
   // <![CDATA[
   var loginUsername = document.getElementById('login-username');
