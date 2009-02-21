@@ -45,7 +45,7 @@ Plugin::setInfos(array(
     'id'          => 'skeleton',
     'title'       => 'Skeleton',
     'description' => 'Provides a basic plugin implementation. (try enabling it!)',
-    'version'     => '1.0.0',
+    'version'     => '1.1.0',
    	'license'     => 'AGPL',
 	'author'      => 'Martijn van der Kleijn',
     'website'     => 'http://www.madebyfrog.com/',

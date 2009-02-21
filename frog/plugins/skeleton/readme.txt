@@ -1,4 +1,4 @@
-Use the readme.txt file to explain to plugin users how to install the plugin!
+== WHAT IT IS ==
 
 The skeleton plugin serves as a basic plugin template.
 
@@ -10,8 +10,32 @@ This skeleton plugin makes use/provides the following features:
 - A settings page (that does nothing except display some text)
 - Code that gets run when the plugin is enabled (enable.php)
 
-Note: to use the settings and documentation pages, you will first need to enable
-the plugin!
+== HOW TO USE IT ==
 
-Note 2: in index.php, change the value of require_frog_version into a non-existant Frog
-        version and look at the plugins list (in the administration section) again.
+* To use the settings and documentation pages, you will first need to enable the
+  plugin!
+* Use the readme.txt file to explain to plugin users how to install the plugin!
+* Use this example layout as a basis.
+* Apart from enable.php, you can also create a disable.php
+* The settings() function in the SkeletonController.php file demonstrates the
+  use of getAllSettings(). The API also provides getSetting(), setSetting() and
+  setAllSettings().
+
+== NOTES ==
+
+* To use the settings and documentation pages, you will first need to enable
+  the plugin!
+
+* In index.php, change the value of require_frog_version into a non-existant
+  Frog version and look at the plugins list (in the administration section)
+  again.
+
+* Did you know you can have the controller make a visible tab (or not)? Change
+    Plugin::addController('skeleton', 'Skeleton', 'administrator', false);
+  to
+    Plugin::addController('skeleton', 'Skeleton', 'administrator', true);
+  to have the plugin controller create a tab.
+
+== LICENSE ==
+
+This demo plugin is licensed under the AGPL License. <http://www.gnu.org/licenses/agpl.html>

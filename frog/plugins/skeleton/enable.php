@@ -42,5 +42,5 @@
  */
 
 /*
- * This code gets executed each time the plugin is enabled.
+ * Any code below gets executed each time the plugin is enabled.
  */
