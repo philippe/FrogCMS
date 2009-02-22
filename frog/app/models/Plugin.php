@@ -77,8 +77,8 @@ class Plugin
 	}
 
 	/**
-	 * Activate a plugin
-	 * Notes: it will execute the install.php file of the plugin is founded
+	 * Activate a plugin. This will execute the enable.php file of the plugin
+     * when found.
 	 *
 	 * @param plugin_id string	The plugin name to activate
 	 */
@@ -256,6 +256,19 @@ class Plugin
         $class_name = Inflector::camelize($plugin_id).'Controller';
         
         return (array_key_exists($plugin_id, Plugin::$controllers) && method_exists($class_name, 'documentation'));
+    }
+
+    /**
+     * Returns true if a plugin is enabled for use.
+     *
+     * @param string $plugin_id
+     */
+    static function isEnabled($plugin_id)
+    {
+        if (array_key_exists($plugin_id, Plugin::$plugins) && Plugin::$plugins[$plugin_id] == 1)
+            return true;
+        else
+            return 0;
     }
 
     /**
