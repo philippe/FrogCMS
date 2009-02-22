@@ -9,6 +9,7 @@ Sigla:
 
 0.9.5 - released 2009-02-??
 
++ Added Plugin::isEnabled($plugin_id) to Plugin class for plugin devs. (allows for basic plugin dependancies.)
 + Added getSetting(), setSetting(), getAllSettings() and setAllSettings() to Plugin class for plugin devs - issue 128
 + Added comments plugin option to display to-be-moderated comments on plugin tab (default true)
 + Added MySQL port to install screen. Thanks gilles.doge - issue 107
@@ -31,6 +32,7 @@ Sigla:
 - Fixed broken View Site link for TLDs starting with 'a' - issue 116
 - Fixed XHTML compatibility problem with Comment plugin.
 - Fixed issue where only the last addJavascript was accepted.
+. Updated comment plugin to make use of statistics_api plugin if available and enabled.
 . Restricted access to backend to roles administrator, developer and editor - issue 122
 . Updated backend layout to make error and success messages automatically dissappear after 1.5 sec.
 . Updated readme.txt with requirements detail for MySQL server.

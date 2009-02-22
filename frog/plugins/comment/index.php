@@ -34,12 +34,12 @@ Plugin::setInfos(array(
 	'id'          => 'comment',
 	'title'       => 'Comments',
 	'description' => 'Provides interface to add page comments.',
-	'version'     => '1.2.0',
+	'version'     => '1.2.1',
 	'license'     => 'AGPL',
 	'author'      => 'Philippe Archambault',
 	'website'     => 'http://www.madebyfrog.com/',
     'update_url'  => 'http://www.madebyfrog.com/plugin-versions.xml',
-	'require_frog_version' => '0.9.3'
+	'require_frog_version' => '0.9.5'
 ));
 
 
@@ -53,6 +53,9 @@ Plugin::addController('comment', 'Comments');
 Observer::observe('view_page_edit_plugins', 'comment_display_dropdown');
 Observer::observe('page_found', 'comment_save');
 Observer::observe('view_backend_list_plugin', 'comment_display_moderatable_count');
+
+if (Plugin::isEnabled('statistics_api'))
+    Observer::observe('stats_comment_after_add', 'StatisticsEvent::registerEvent');
 
 /**
  * Allows for a dropdown box with comment status on the edit page view in the backend.
@@ -214,6 +217,15 @@ function comment_save(&$page)
     $comment_id = Record::lastInsertId();
     $comment    = Comment::findById($comment_id);
     Observer::notify('comment_after_add', $comment);
+
+    if (Plugin::isEnabled('statistics_api'))
+    {
+        $event = array('event_type'  => 'comment_added',            // simple event type identifier
+                       'description' => __('A comment was added.'), // translatable description
+                       'ipaddress'   => $comment->ip,
+                       'username'    => $comment->author_name);
+        Observer::notify('stats_comment_after_add', $event);
+    }
 }
 	
 /**
