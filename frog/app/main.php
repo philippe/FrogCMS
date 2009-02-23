@@ -173,11 +173,13 @@ function url_start_with($url)
 function main()
 {
     // get the uri string from the query
-    $uri = @$_GET['QS'];
-    
-    // real integration of GET
-    if (strpos($uri, '?') !== false)
+    $uri = $_SERVER['QUERY_STRING'];
+
+    // START processing $_GET variables
+    // If we're NOT using mod_rewrite, we check for GET variables we need to integrate
+    if (!USE_MOD_REWRITE && strpos($uri, '?') !== false)
     {
+        $_GET = array(); // empty $_GET array since we're going to rebuild it
         list($uri, $get_var) = explode('?', $uri);
         $exploded_get = explode('&', $get_var);
         
@@ -190,16 +192,32 @@ function main()
             }
         }
     }
-    
+    // We're NOT using mod_rewrite, and there's no question mark wich points to GET variables in combination with site root.
+    else if (!USE_MOD_REWRITE && (strpos($uri, '&') !== false || strpos($uri, '=') !== false))
+    {
+        $uri='';
+    }
+
+    // If we're using mod_rewrite, we should have a PAGE entry.
+    if (USE_MOD_REWRITE && array_key_exists('PAGE', $_GET))
+    {
+        $uri = $_GET['PAGE'];
+        unset($_GET['PAGE']);
+    }
+    else if (USE_MOD_REWRITE)   // We're using mod_rewrite but don't have a PAGE entry, assume site root.
+        $uri = '';
+
+    // END processing $_GET variables
+
     // remove suffix page if founded
     if (URL_SUFFIX !== '' and URL_SUFFIX !== '/')
         $uri = preg_replace('#^(.*)('.URL_SUFFIX.')$#i', "$1", $uri);
     
     define('CURRENT_URI', trim($uri, '/'));
-    
+
     Observer::notify('page_requested', $_SERVER['QUERY_STRING']);
     
-    // this is where 80% of the things is done 
+    // this is where 80% of the things is done
     $page = find_page_by_uri($uri);
     
     // if we fund it, display it!
