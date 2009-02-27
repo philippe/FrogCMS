@@ -96,7 +96,7 @@ $PDO->exec("CREATE TABLE ".TABLE_PREFIX."permission (
 
 $PDO->exec("CREATE TABLE ".TABLE_PREFIX."setting (
   name varchar(40) NOT NULL,
-  value varchar(255) NOT NULL,
+  value text NOT NULL,
   UNIQUE KEY id (name)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 

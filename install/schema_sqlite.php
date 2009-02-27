@@ -93,7 +93,7 @@ $PDO->exec("CREATE UNIQUE INDEX permission_name ON permission (name)");
 
 $PDO->exec("CREATE TABLE setting (
     name varchar(40) NOT NULL ,
-    value varchar(255) NOT NULL
+    value text NOT NULL
 )");
 $PDO->exec("CREATE UNIQUE INDEX setting_id ON setting (name)");
 
