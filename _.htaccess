@@ -12,6 +12,7 @@ Options -Indexes +FollowSymLinks
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  # Set next line to your Frog root - if not in subdir, then just / 
   RewriteBase /frog/
   
   RewriteCond %{REQUEST_FILENAME} !-f
