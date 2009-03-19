@@ -56,10 +56,12 @@ if ($action == 'edit') { ?>
             </div>
             <div id="div-metadata" title="<?php echo __('Metadata'); ?>">
               <table cellpadding="0" cellspacing="0" border="0">
+                <?php if ($page->id != 1) : ?>
                 <tr>
                   <td class="label"><label for="page_slug"><?php echo __('Slug'); ?></label></td>
                   <td class="field"><input class="textbox" id="page_slug" maxlength="100" name="page[slug]" size="100" type="text" value="<?php echo $page->slug; ?>" /></td>
                 </tr>
+                <?php endif; ?>
                 <tr>
                   <td class="label"><label for="page_breadcrumb"><?php echo __('Breadcrumb'); ?></label></td>
                   <td class="field"><input class="textbox" id="page_breadcrumb" maxlength="160" name="page[breadcrumb]" size="160" type="text" value="<?php echo htmlentities($page->breadcrumb, ENT_COMPAT, 'UTF-8'); ?>" /></td>
