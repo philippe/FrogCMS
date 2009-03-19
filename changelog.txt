@@ -33,6 +33,7 @@ Sigla:
 - Fixed broken View Site link for TLDs starting with 'a' - issue 116
 - Fixed XHTML compatibility problem with Comment plugin.
 - Fixed issue where only the last addJavascript was accepted.
+- Fixed admin CSS so that foreground colours are declared - issue 137
 . Updated comment plugin to make use of statistics_api plugin if available and enabled.
 . Restricted access to backend to roles administrator, developer and editor - issue 122
 . Updated backend layout to make error and success messages automatically dissappear after 1.5 sec.

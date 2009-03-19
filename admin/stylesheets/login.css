@@ -73,6 +73,7 @@ input {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 11px;
   background: white;
+  color: black;
 }
 
 input:hover {
