@@ -56,7 +56,7 @@ if ($action == 'edit') { ?>
             </div>
             <div id="div-metadata" title="<?php echo __('Metadata'); ?>">
               <table cellpadding="0" cellspacing="0" border="0">
-                <?php if ($page->id != 1) : ?>
+                <?php if ($page->parent_id != 0) : ?>
                 <tr>
                   <td class="label"><label for="page_slug"><?php echo __('Slug'); ?></label></td>
                   <td class="field"><input class="textbox" id="page_slug" maxlength="100" name="page[slug]" size="100" type="text" value="<?php echo $page->slug; ?>" /></td>

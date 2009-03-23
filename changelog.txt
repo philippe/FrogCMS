@@ -44,7 +44,7 @@ Sigla:
 . Renamed style.css into screen.css for more consistency with print.css in Normal layout.
 . Simplified Comment plugin to make use of Plugin::getAllSettings() and friends.
 . Commented .htaccess file for new users.
-. Removed slug field from Homepage metadata.
+. Removed slug field from Homepage metadata (and initial code fixed).
 . Enhanced comments in config.php template
 
 0.9.4 - released 2008-09-29
