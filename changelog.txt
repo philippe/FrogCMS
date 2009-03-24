@@ -23,6 +23,7 @@ Sigla:
 + Added updated Chinese translation.
 + Removed split between frontend and backend.
 + Added an ID to the "view this page" link so it can be styled.
++ Added Danish translation for admin and file manager. Thanks Kenan.
 - Fixed issue with settings table. Changed table setting's field value to TEXT instead of VARCHAR.
 - Fixed GET variables not being available in Frog's frontend. - issue 75
 - Fixed issue where AutoLoader did not find file for 'PageArchiveMonthIndex' - issue 101
