@@ -39,7 +39,7 @@ define('COOKIE_SECURE', false);
 
 require FROG_ROOT.'/config.php';
 
-define('BASE_URL', URL_PUBLIC . ADMIN_DIR . (USE_MOD_REWRITE ? '/': '/?/'));
+define('BASE_URL', URL_PUBLIC . ADMIN_DIR . (USE_MOD_REWRITE ? '': '?/'));
 
 require CORE_ROOT.'/Framework.php';
 

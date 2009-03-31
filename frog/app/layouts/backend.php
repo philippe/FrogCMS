@@ -111,7 +111,7 @@
         <span class="separator"> | </span>
         <a href="<?php echo get_url('login/logout'); ?>"><?php echo __('Log Out'); ?></a>
         <span class="separator"> | </span>
-        <a href="<?php echo URL_PUBLIC . (USE_MOD_REWRITE ? '/': '/?/'); ?>" target="_blank"><?php echo __('View Site'); ?></a>
+        <a href="<?php echo URL_PUBLIC . (USE_MOD_REWRITE ? '': '?/'); ?>" target="_blank"><?php echo __('View Site'); ?></a>
       </p>
     </div>
   </body>
