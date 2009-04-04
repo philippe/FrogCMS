@@ -29,10 +29,10 @@ define('APP_PATH', CORE_ROOT.'/app');
 
 require FROG_ROOT.'/config.php';
 
+define('BASE_URL', URL_PUBLIC . (USE_MOD_REWRITE ? '': '?'));
+
 // if you have installed frog and see this line, you can comment it or delete it :)
 if ( ! defined('DEBUG')) { header('Location: install/'); exit(); }
-
-define('BASE_URL', URL_PUBLIC . (USE_MOD_REWRITE ? '': '?'));
 
 require CORE_ROOT.'/Framework.php';
 

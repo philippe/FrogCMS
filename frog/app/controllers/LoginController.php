@@ -99,8 +99,6 @@ class LoginController extends Controller
             }
             else {
                 Flash::set('error', __('Login failed. Please check your login data and try again.'));
-                if ($data['redirect'] != null && $data['redirect'] != 'null')
-                    redirect($data['redirect']);
                 Observer::notify('admin_login_failed', $data['username']);
             }
         }
