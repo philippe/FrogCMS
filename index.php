@@ -27,9 +27,18 @@ define('APP_PATH', CORE_ROOT.'/app');
 
 require_once(CORE_ROOT.'/utils.php');
 
-//  Init  --------------------------------------------------------------------
+$config_file = FROG_ROOT.'/config.php';
 
-require FROG_ROOT.'/config.php';
+// Security checks -----------------------------------------------------------
+if (isWritable($config_file)) {
+    echo '<h1>Frog CMS automatically disabled!</h1>';
+    echo '<p>Frog CMS has been disabled as a security precaution.</p>';
+    echo '<p><strong>Reason:</strong> the configuration file was found to be writable.';
+    exit();
+}
+
+//  Init  --------------------------------------------------------------------
+require_once($config_file);
 
 // if you have installed frog and see this line, you can comment it or delete it :)
 if ( ! defined('DEBUG')) { header('Location: install/'); exit(); }

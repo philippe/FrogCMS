@@ -27,6 +27,18 @@ define('CORE_ROOT', FROG_ROOT.'/frog');
 
 require_once(CORE_ROOT.'/utils.php');
 
+$config_file = FROG_ROOT.'/config.php';
+
+// Security checks -----------------------------------------------------------
+if (isWritable($config_file)) {
+    echo '<h1>Frog CMS automatically disabled!</h1>';
+    echo '<p>Frog CMS has been disabled as a security precaution.</p>';
+    echo '<p><strong>Reason:</strong> the configuration file was found to be writable.';
+    exit();
+}
+
+require_once(CORE_ROOT.'/utils.php');
+
 define('APP_PATH',  CORE_ROOT.'/app');
 
 define('SESSION_LIFETIME', 3600);
@@ -39,7 +51,7 @@ define('COOKIE_PATH', '/');
 define('COOKIE_DOMAIN', '');
 define('COOKIE_SECURE', false);
 
-require FROG_ROOT.'/config.php';
+require_once($config_file);
 
 define('BASE_URL', URL_PUBLIC . (endsWith(URL_PUBLIC, '/') ? '': '/') . ADMIN_DIR . (endsWith(ADMIN_DIR, '/') ? '': '/') . (USE_MOD_REWRITE ? '': '?/'));
 

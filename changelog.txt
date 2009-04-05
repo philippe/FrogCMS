@@ -9,6 +9,7 @@ Sigla:
 
 0.9.5 - released 2009-02-??
 
++ Added check to make sure config.php isn't writable.
 + Added inheritence to hasContent() function. - issue 142
 + Added icon to directories in file_manager plugin - issue 140
 + Added Plugin::isEnabled($plugin_id) to Plugin class for plugin devs. (allows for basic plugin dependancies.)
@@ -26,6 +27,7 @@ Sigla:
 + Removed split between frontend and backend.
 + Added an ID to the "view this page" link so it can be styled.
 + Added Danish translation for admin and file manager. Thanks Kenan.
+
 - Fixed issue where using '..' would allow access to files outside public directory - issue 148
 - Fixed issue where saving page layout without title did not result in error - issue 146
 - Fixed setAllSettings failing to update settings with SQLite - issue 145
@@ -44,6 +46,7 @@ Sigla:
 - Fixed issue where only the last addJavascript was accepted.
 - Fixed admin CSS so that foreground colours are declared - issue 137
 - Fixed MOD_REWRITE test which produced double slashes - issue 150
+
 . Updated comment plugin to make use of statistics_api plugin if available and enabled.
 . Restricted access to backend to roles administrator, developer and editor - issue 122
 . Updated backend layout to make error and success messages automatically dissappear after 1.5 sec.
