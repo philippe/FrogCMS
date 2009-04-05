@@ -289,7 +289,7 @@ class Plugin
 
         $sql = "SELECT name FROM $tablename WHERE plugin_id=$plugin_id";
         $stmt = $__FROG_CONN__->prepare($sql);
-        $stmt->execute(array($plugin_id));
+        $stmt->execute();
 
         while ($settingname = $stmt->fetchColumn())
             $existingSettings[$settingname] = $settingname;
