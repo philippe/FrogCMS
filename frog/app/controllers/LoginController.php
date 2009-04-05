@@ -104,7 +104,10 @@ class LoginController extends Controller
         }
         
         // not find or password is wrong
-        redirect(get_url('login'));
+        if ($data['redirect'] != null && $data['redirect'] != 'null')
+            redirect($data['redirect']);
+        else
+            redirect(get_url('login'));
         
     }
 
