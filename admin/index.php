@@ -25,6 +25,8 @@ define('FROG_VERSION', '0.9.5');
 define('FROG_ROOT', dirname(__FILE__).'/..');
 define('CORE_ROOT', FROG_ROOT.'/frog');
 
+require_once(CORE_ROOT.'/utils.php');
+
 define('APP_PATH',  CORE_ROOT.'/app');
 
 define('SESSION_LIFETIME', 3600);
@@ -39,7 +41,7 @@ define('COOKIE_SECURE', false);
 
 require FROG_ROOT.'/config.php';
 
-define('BASE_URL', URL_PUBLIC . ADMIN_DIR . (USE_MOD_REWRITE ? '': '?/'));
+define('BASE_URL', URL_PUBLIC . (endsWith(URL_PUBLIC, '/') ? '': '/') . ADMIN_DIR . (endsWith(ADMIN_DIR, '/') ? '': '/') . (USE_MOD_REWRITE ? '': '?/'));
 
 require CORE_ROOT.'/Framework.php';
 

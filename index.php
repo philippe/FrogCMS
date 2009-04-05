@@ -25,11 +25,13 @@ define('CORE_ROOT', FROG_ROOT.'/frog');
 
 define('APP_PATH', CORE_ROOT.'/app');
 
+require_once(CORE_ROOT.'/utils.php');
+
 //  Init  --------------------------------------------------------------------
 
 require FROG_ROOT.'/config.php';
 
-define('BASE_URL', URL_PUBLIC . (USE_MOD_REWRITE ? '': '?'));
+define('BASE_URL', URL_PUBLIC . (endsWith(URL_PUBLIC, '/') ? '': '/') . (USE_MOD_REWRITE ? '': '?'));
 
 // if you have installed frog and see this line, you can comment it or delete it :)
 if ( ! defined('DEBUG')) { header('Location: install/'); exit(); }
