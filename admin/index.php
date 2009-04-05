@@ -31,10 +31,13 @@ $config_file = FROG_ROOT.'/config.php';
 
 // Security checks -----------------------------------------------------------
 if (isWritable($config_file)) {
-    echo '<h1>Frog CMS automatically disabled!</h1>';
-    echo '<p>Frog CMS has been disabled as a security precaution.</p>';
-    echo '<p><strong>Reason:</strong> the configuration file was found to be writable.';
-    exit();
+    // Windows systems always have writable config files... skip those.
+    if (substr(PHP_OS, 0, 3) != 'WIN') {
+        echo '<h1>Frog CMS automatically disabled!</h1>';
+        echo '<p>Frog CMS has been disabled as a security precaution.</p>';
+        echo '<p><strong>Reason:</strong> the configuration file was found to be writable.';
+        exit();
+    }
 }
 
 require_once(CORE_ROOT.'/utils.php');
