@@ -39,7 +39,7 @@
  * link([label], [class])
  * date([format])
  *
- * hasContent(part_name)
+ * hasContent(part_name, [inherit])
  * content([part_name], [inherit])
  * breadcrumbs([between])
  *
@@ -195,7 +195,16 @@ class Page
         
     }
     
-    public function hasContent($part) { return isset($this->part->$part); }
+    public function hasContent($part, $inherit=false)
+    {
+        if ( isset($this->part->$part) ) {
+            return true;
+        }
+        else if ( $inherit && $this->parent )
+        {
+            return $this->parent->hasContent($part, true);
+        }
+    }
     
     public function content($part='body', $inherit=false)
     {
