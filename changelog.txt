@@ -9,6 +9,7 @@ Sigla:
 
 0.9.5 - released 2009-02-??
 
++ Added icon to directories in file_manager plugin - issue 140
 + Added Plugin::isEnabled($plugin_id) to Plugin class for plugin devs. (allows for basic plugin dependancies.)
 + Added getSetting(), setSetting(), getAllSettings() and setAllSettings() to Plugin class for plugin devs - issue 128
 + Added comments plugin option to display to-be-moderated comments on plugin tab (default true)
