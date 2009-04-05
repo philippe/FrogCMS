@@ -215,7 +215,7 @@ function main()
     
     define('CURRENT_URI', trim($uri, '/'));
 
-    Observer::notify('page_requested', $_SERVER['QUERY_STRING']);
+    Observer::notify('page_requested', $uri);
     
     // this is where 80% of the things is done
     $page = find_page_by_uri($uri);
