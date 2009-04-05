@@ -24,6 +24,7 @@ Sigla:
 + Removed split between frontend and backend.
 + Added an ID to the "view this page" link so it can be styled.
 + Added Danish translation for admin and file manager. Thanks Kenan.
+- Fixed USE_MOD_REWRITE is undefined in case of system not yet being installed - issue 132
 - Fixed issue with failed login redirecting to admin section once logged in. - issue 131
 - Fixed issue with settings table. Changed table setting's field value to TEXT instead of VARCHAR.
 - Fixed GET variables not being available in Frog's frontend. - issue 75
