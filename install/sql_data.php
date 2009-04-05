@@ -23,6 +23,11 @@
  * This file will insert all basic data to database
  */
 
+// Securtiy feature - make sure this is called from the install sequence
+if (!defined('INSTALL_SEQUENCE') || !isset($admin_name) || !isset($admin_passwd)) {
+    die('Attempt to call setup file outside of install sequence!');
+}
+
 function frog_datetime_incrementor()
 {
     static $cpt=1;
@@ -89,7 +94,7 @@ $PDO->exec("INSERT INTO ".TABLE_PREFIX."snippet (id, name, filter_id, content, c
 
 //  Dumping data for table: user ---------------------------------------------
 
-$PDO->exec("INSERT INTO ".TABLE_PREFIX."user (id, name, email, username, password, created_on, updated_on, created_by_id, updated_by_id) VALUES (1, 'Administrator', 'admin@yoursite.com', 'admin', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1)");
+$PDO->exec("INSERT INTO ".TABLE_PREFIX."user (id, name, email, username, password, created_on, updated_on, created_by_id, updated_by_id) VALUES (1, 'Administrator', 'admin@yoursite.com', '".$admin_name."', '".$admin_passwd."', '".frog_datetime_incrementor()."', '".frog_datetime_incrementor()."', 1, 1)");
 
 
 //  Dumping data for table: user_permission ----------------------------------

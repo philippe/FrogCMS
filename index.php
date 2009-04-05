@@ -29,19 +29,23 @@ require_once(CORE_ROOT.'/utils.php');
 
 $config_file = FROG_ROOT.'/config.php';
 
-// Security checks -----------------------------------------------------------
-if (isWritable($config_file)) {
-    echo '<h1>Frog CMS automatically disabled!</h1>';
-    echo '<p>Frog CMS has been disabled as a security precaution.</p>';
-    echo '<p><strong>Reason:</strong> the configuration file was found to be writable.';
-    exit();
-}
-
-//  Init  --------------------------------------------------------------------
 require_once($config_file);
 
 // if you have installed frog and see this line, you can comment it or delete it :)
 if ( ! defined('DEBUG')) { header('Location: install/'); exit(); }
+
+// Security checks -----------------------------------------------------------
+if (isWritable($config_file)) {
+    // Windows systems always have writable config files... skip those.
+    if (substr(PHP_OS, 0, 3) != 'WIN') {
+        echo '<h1>Frog CMS automatically disabled!</h1>';
+        echo '<p>Frog CMS has been disabled as a security precaution.</p>';
+        echo '<p><strong>Reason:</strong> the configuration file was found to be writable.';
+        exit();
+    }
+}
+
+//  Init  --------------------------------------------------------------------
 
 define('BASE_URL', URL_PUBLIC . (endsWith(URL_PUBLIC, '/') ? '': '/') . (USE_MOD_REWRITE ? '': '?'));
 
