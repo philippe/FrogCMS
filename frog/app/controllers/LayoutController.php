@@ -87,6 +87,18 @@ class LayoutController extends Controller
         $data = $_POST['layout'];
         Flash::set('post_data', (object) $data);
         
+        if (empty($data['name']))
+        {
+            Flash::set('error', __('You have to specify a name!'));
+            redirect(get_url('layout/add'));
+        }
+
+        if (empty($data['content_type']))
+        {
+            Flash::set('error', __('You have to specify a content-type!'));
+            redirect(get_url('layout/add'));
+        }
+
         $layout = new Layout($data);
         
         if ( ! $layout->save())
