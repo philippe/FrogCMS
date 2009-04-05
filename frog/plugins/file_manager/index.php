@@ -53,3 +53,8 @@ Plugin::setInfos(array(
 ));
 
 Plugin::addController('file_manager', 'Files', 'developer,editor');
+
+// Make sure possible hack attempts get registered if the statistics API is available.
+if (Plugin::isEnabled('statistics_api')) {
+    Observer::observe('stats_file_manager_hack_attempt', 'StatisticsEvent::registerEvent');
+}

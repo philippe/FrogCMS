@@ -78,6 +78,21 @@ class FileManagerController extends PluginController
         
         // we dont allow back link
         //$this->path = preg_replace('/\./', '', $this->path);
+        if (strpos($this->path, '..') !== false)
+        {
+            if (Plugin::isEnabled('statistics_api'))
+            {
+                $user = null;
+                if (AuthUser::isLoggedIn())
+                    $user = AuthUser::getUserName();
+                $ip = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR']:($_SERVER['REMOTE_ADDR']);
+                $event = array('event_type'  => 'hack_attempt',            // simple event type identifier
+                               'description' => __('A possible hack attempt was detected.'), // translatable description
+                               'ipaddress'   => $ip,
+                               'username'    => $user);
+                Observer::notify('stats_file_manager_hack_attempt', $event);
+            }
+        }
         $this->path = str_replace('..', '', $this->path);
         
         // clean up nicely
@@ -103,9 +118,36 @@ class FileManagerController extends PluginController
     {
         $this->_checkPermission();
         $params = func_get_args();
-        
         $content = '';
+
         $filename = urldecode(join('/', $params));
+
+        // Sanitize filename for securtiy
+
+        // We don't allow backlinks
+        if (strpos($filename, '..') !== false)
+        {
+            if (Plugin::isEnabled('statistics_api'))
+            {
+                $user = null;
+                if (AuthUser::isLoggedIn())
+                    $user = AuthUser::getUserName();
+                $ip = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR']:($_SERVER['REMOTE_ADDR']);
+                $event = array('event_type'  => 'hack_attempt',            // simple event type identifier
+                               'description' => __('A possible hack attempt was detected.'), // translatable description
+                               'ipaddress'   => $ip,
+                               'username'    => $user);
+                Observer::notify('stats_file_manager_hack_attempt', $event);
+            }
+        }
+        $filename = str_replace('..', '', $filename);
+
+        // Clean up nicely
+        $filename = str_replace('//', '', $filename);
+
+        // We don't allow leading slashes
+        $filename = preg_replace('/^\//', '', $filename); 
+
         $file = FILES_DIR.'/'.$filename;
         if ( ! $this->_isImage($file) && file_exists($file))
         {
