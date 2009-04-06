@@ -77,7 +77,6 @@ class FileManagerController extends PluginController
         //security
         
         // we dont allow back link
-        //$this->path = preg_replace('/\./', '', $this->path);
         if (strpos($this->path, '..') !== false)
         {
             if (Plugin::isEnabled('statistics_api'))
@@ -96,8 +95,6 @@ class FileManagerController extends PluginController
         $this->path = str_replace('..', '', $this->path);
         
         // clean up nicely
-        //$this->path = preg_replace('/\/\//', '', $this->path);
-        
         $this->path = str_replace('//', '', $this->path);
         
         // we dont allow leading slashes
@@ -442,7 +439,6 @@ class FileManagerController extends PluginController
                  (($perms & 0x0200) ? 't' : 'x' ) :
                  (($perms & 0x0200) ? 'T' : '-'));
 
-        //$info .= ' ('.substr(sprintf('%o', $perms), -4, 4).')';
         return array($info, substr(sprintf('%o', $perms), -4, 4)); // (perm, chmod)
     } // _getPermissions
 

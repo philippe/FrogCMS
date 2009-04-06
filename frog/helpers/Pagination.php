@@ -107,13 +107,6 @@ class Pagination
         $output .= $this->first_tag_open.'<a href="'.$this->base_url.'">'.$this->first_link.'</a>'.$this->first_tag_close;
       }
 
-      // Render the "previous" link
-      //if ($this->cur_page > 1) {
-      //  $previous = $this->cur_page - 1; // -1 for the offset 0 and -1 for the previous = -2
-      //  if ($previous == 0) $previous = '';
-      //  $output .= $this->prev_tag_open.'<a href="'.$this->base_url.$previous.'">'.$this->prev_link.'</a>'.$this->prev_tag_close;
-      //}
-
       // Write the digit links
       for ($page = $start -1; $page <= $end; $page++) {
         if ($page > 0) {
@@ -125,11 +118,6 @@ class Pagination
           } // if
         } // if
       } // for
-
-      // Render the "next" link
-      //if ($this->cur_page < $num_pages) {
-      //  $output .= $this->next_tag_open.'<a href="'.$this->base_url.($this->cur_page+1).'">'.$this->next_link.'</a>'.$this->next_tag_close;
-      //}
 
       // Render the "Last" link
       if (($this->cur_page + $this->num_links) < $num_pages) {

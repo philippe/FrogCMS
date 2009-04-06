@@ -117,7 +117,6 @@ final class Dispatcher
         // that way, index.php?/controller/action/var1&email=example@example.com
         // requested_url will be equal to: /controller/action/var1
         if ($requested_url === null) {
-            //$requested_url = count($_GET) >= 1 ? key($_GET) : '/';
             $pos = strpos($_SERVER['QUERY_STRING'], '&');
             if ($pos !== false) {
                 $requested_url = substr($_SERVER['QUERY_STRING'], 0, $pos);
@@ -226,7 +225,6 @@ final class Dispatcher
         if (class_exists($controller_class_name)) {
             $controller = new $controller_class_name();
         } else {
-            //page_not_found();
         }
         if ( ! $controller instanceof Controller) {
             throw new Exception("Class '{$controller_class_name}' does not extends Controller class!");
@@ -431,7 +429,6 @@ class Record
             
             $sql = 'INSERT INTO '.self::tableNameFromClassName(get_class($this)).' ('
                  . implode(', ', array_keys($value_of)).') VALUES ('.implode(', ', array_values($value_of)).')';
-            //Flash::set('error', $sql);
             $return = self::$__CONN__->exec($sql) !== false;
             $this->id = self::lastInsertId(); 
              
@@ -454,7 +451,6 @@ class Record
             
             $sql = 'UPDATE '.self::tableNameFromClassName(get_class($this)).' SET '
                  . implode(', ', $value_of).' WHERE id = '.$this->id;
-            //Flash::set('error', $sql);
             $return = self::$__CONN__->exec($sql) !== false;
             
             if ( ! $this->afterUpdate()) return false;

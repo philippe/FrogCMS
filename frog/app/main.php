@@ -19,8 +19,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//define('FRAMEWORK_STARTING_MICROTIME', get_microtime());
-
 require APP_PATH . '/models/Plugin.php';
 require APP_PATH . '/classes/Page.php';
 

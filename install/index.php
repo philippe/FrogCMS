@@ -62,10 +62,6 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
 
         $admin_passwd_precrypt = '12'.dechex(rand(100000000, 4294967295)).'K';
         $admin_passwd = sha1($admin_passwd_precrypt);
-
-        //echo '<p>name: '.$admin_name.'<br/>password: '.$admin_passwd_precrypt.'</p>';
-        //echo '<p>name: '.$admin_name.'<br/>password: '.$admin_passwd.'</p>';
-        //exit;
     }
     
     if (USE_PDO)
@@ -159,7 +155,6 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
 
             if (driver == 'sqlite')
             {
-              //$('use_pdo-yes').checked = 'checked';
               $('help-db-name').innerHTML = 'Required. Enter the <strong>absolute</strong> path to the database file.';
             }
             else if (driver == 'mysql')

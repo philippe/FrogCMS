@@ -138,7 +138,7 @@ class Archive
         $stmt->execute(array($this->page->id));
         
         while ($date = $stmt->fetchColumn())
-            $out[] = $date; // str_replace('-', '/', substr($date, 0, 7));
+            $out[] = $date;
         
         return $out;
     }

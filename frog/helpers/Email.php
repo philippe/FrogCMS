@@ -571,15 +571,11 @@ class Email
     public function validateEmail($email)
     {   
         if ( ! is_array($email)) {
-            //$this->_set_error_message('email_must_be_array');
-            //log_error('Email address must be an array');   
-            //return false;
             $email = array($email);
         }
 
         foreach ($email as $val) {
             if ( ! $this->validEmail($val)) {
-                //$this->_set_error_message('email_invalid_address', $val);
                 log_error('Email address invalid: "'.$val.'"');   
                 return false;
             }
@@ -903,8 +899,6 @@ class Email
             $ctype = $this->_attach_type[$i];
                         
             if ( ! file_exists($filename)) {
-                //$this->_set_error_message('email_attachment_missing', $filename);
-                //log_error('Email attachment missing: "'.$filename.'"');
                 return;
             }           
 
@@ -918,8 +912,6 @@ class Email
             $file = filesize($filename) +1;
             
             if ( ! $fp = fopen($filename, 'r')) {
-                //$this->_set_error_message('email_attachment_unredable', $filename);
-                //log_error('Email attachment unreadable: "'.$filename.'"');
                 return;
             }
             
@@ -949,8 +941,6 @@ class Email
         if (( ! isset($this->_recipients) && ! isset($this->_headers['To']))  &&
             ( ! isset($this->_bcc_array) && ! isset($this->_headers['Bcc'])) &&
             ( ! isset($this->_headers['Cc']))) {
-            //$this->_set_error_message('email_no_recipients');
-            //log_error('Email without recipients');
             return false;
         }
 
@@ -1049,29 +1039,21 @@ class Email
         switch ($this->_getProtocol()) {
             case 'mail':
                 if ( ! $this->_sendWithMail()) {
-                    //$this->_set_error_message('email_send_failure_phpmail');
-                    //log_error('Email send a "mail" failure');
                     return false;
                 }
                 break;
             case 'sendmail':
                 if ( ! $this->_sendWithSendmail()) {
-                    //$this->_set_error_message('email_send_failure_sendmail');
-                    //log_error('Email send a "sendmail" failure');
                     return false;
                 }
                 break;
             case 'smtp':
                 if ( ! $this->_sendWithSmtp()) {
-                    //$this->_set_error_message('email_send_failure_smtp');
-                    //log_error('Email send a "SMTP" failure');
                     return false;
                 }
                 break;
         }
 
-        //$this->_set_error_message('email_sent', $this->_get_protocol());
-        //log_error('Email wrong protocol used: "'.$this->_getProtocol().'"');
         return true;
     }   
 
@@ -1105,8 +1087,6 @@ class Email
         $fp = @popen($this->mailpath . " -oi -f ".$this->cleanEmail($this->_headers['From'])." -t", 'w');
         
         if ( ! is_resource($fp)) {                               
-            //$this->_set_error_message('email_no_socket');
-            //log_error('Email "sendmail" without socket');
             return false;
         }
         
@@ -1125,8 +1105,6 @@ class Email
     private function _sendWithSmtp()
     {   
         if ($this->smtp_host == '') {   
-            //$this->_set_error_message('email_no_hostname');
-            //log_error('Email without hostname');
             return false;
         }
 
@@ -1160,12 +1138,9 @@ class Email
 
         $reply = $this->_getSmtpData();
         
-        //$this->_set_error_message($reply);          
         log_error($reply);
         
         if (substr($reply, 0, 3) != '250') {
-            //$this->_set_error_message('email_smtp_error', $reply);
-            //log_error('SMPT error: "'.$reply.'"');
             return false;
         }
 
@@ -1190,13 +1165,9 @@ class Email
 
         if( ! is_resource($this->_smtp_connect))
         {                               
-            //$this->_set_error_message('email_smtp_error', $errno." ".$errstr);
-            //log_error('SMPT error: "'.$errno." ".$errstr.'"');
             return false;
         }
 
-        //$this->_set_error_message($this->_get_smtp_data());
-        //log_error($this->_getSmtpData());
         return $this->_sendCommand('hello');
     }
 
@@ -1240,8 +1211,6 @@ class Email
         $this->_debug_msg[] = "<pre>".$cmd.": ".$reply."</pre>";
 
         if (substr($reply, 0, 3) != $resp) {
-            //$this->_set_error_message('email_smtp_error', $reply);
-            //log_error('SMPT error: "'.$reply.'"');
             return false;
         }
             
@@ -1262,8 +1231,6 @@ class Email
             return true;
             
         if ($this->smtp_user == ""  &&  $this->smtp_pass == "") {
-            //$this->_set_error_message('email_no_smtp_unpw');
-            //log_error('SMPT authentification without login/password');
             return false;
         }
 
@@ -1272,8 +1239,6 @@ class Email
         $reply = $this->_getSmtpData();           
 
         if (substr($reply, 0, 3) != '334') {
-            //$this->_set_error_message('email_filed_smtp_login', $reply);
-            //log_error('SMPT login: "'.$reply.'"');
             return false;
         }
 
@@ -1282,8 +1247,6 @@ class Email
         $reply = $this->_getSmtpData();           
 
         if (substr($reply, 0, 3) != '334') {
-            //$this->_set_error_message('email_smtp_auth_un', $reply);
-            //log_error('SMPT authentification failed: "'.$reply.'"');
             return false;
         }
 
@@ -1292,8 +1255,6 @@ class Email
         $reply = $this->_getSmtpData();           
 
         if (substr($reply, 0, 3) != '235') {
-            //$this->_set_error_message('email_smtp_auth_pw', $reply);
-            //log_error('SMPT authentification password: "'.$reply.'"');
             return false;
         }
     
@@ -1308,8 +1269,6 @@ class Email
     private function _sendData($data)
     {
         if ( ! fwrite($this->_smtp_connect, $data . $this->newline)) {
-            //$this->_set_error_message('email_smtp_data_failure', $data);
-            //log_error('SMPT email data failure with: "'.$data.'"');
             return false;
         } else
             return true;
