@@ -54,7 +54,6 @@ Sigla:
 
 . Updated comment plugin to make use of statistics_api plugin if available and enabled.
 . Restricted access to backend to roles administrator, developer and editor - issue 122
-. Updated backend layout to make error and success messages automatically dissappear after 1.5 sec.
 . Updated readme.txt with requirements detail for MySQL server.
 . Updated file_manager plugin translations to conform to new template.
 . Updated comments in preparation for PHPDoc documentation.
