@@ -48,7 +48,11 @@ class SnippetController extends Controller
         else if ( ! AuthUser::hasPermission('administrator') && ! AuthUser::hasPermission('developer'))
         {
             Flash::set('error', __('You do not have permission to access the requested page!'));
-            redirect(get_url());
+
+            if (Setting::get('default_tab') === 'snippet')
+                redirect(get_url('page'));
+            else
+                redirect(get_url());
         }
         
         $this->setLayout('backend');

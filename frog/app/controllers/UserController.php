@@ -53,7 +53,11 @@ class UserController extends Controller
         if ( ! AuthUser::hasPermission('administrator'))
         {
             Flash::set('error', __('You do not have permission to access the requested page!'));
-            redirect(get_url());
+
+            if (Setting::get('default_tab') === 'user')
+                redirect(get_url('page'));
+            else
+                redirect(get_url());
         }
         
         $this->display('user/index', array(
