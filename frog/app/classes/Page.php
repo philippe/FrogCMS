@@ -143,20 +143,13 @@ class Page
         return $this->tags;
     }
     
-    public function link($label=null, $options='', $title=null)
+    public function link($label=null, $options='')
     {
         if ($label == null)
             $label = $this->title();
         
-        if ($title == null)
-            $title = $this->title();
-        
-        use_helper('Kses');
-        $title = kses(trim($title), array());
-        
-        return sprintf('<a href="%s" title="%s" %s>%s</a>',
+        return sprintf('<a href="%s" %s>%s</a>',
                $this->url(),
-               $title,
                $options,
                $label
         );
