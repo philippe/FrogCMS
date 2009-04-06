@@ -31,6 +31,7 @@ Sigla:
 + Removed split between frontend and backend.
 + Added an ID to the "view this page" link so it can be styled.
 + Added Danish translation for admin and file manager. Thanks Kenan.
++ Added Croatian translation for admin and file manager. Thanks jackie.
 
 - Fixed default_tab setting causing endless redirect - issue 106
 - Fixed issue with 'title' attribute in link(). Removed auto-generation of attribute for accessibility purposes. - issue 154
