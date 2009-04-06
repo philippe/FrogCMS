@@ -3,10 +3,11 @@
 ## About
 
 Frog CMS began as migration of Radiant CMS from Ruby-on-Rails to PHP.
-This product has been made available under the terms of the GNU AGPL version 3.
-Please read the license.txt for the exact details;
+This product has been made available under the terms of the GNU GPL version 3.
 
-The official Frog website can be found at www.madebyfrog.com - visit for further
+Please read the license.txt for the exact license details.
+
+The official Frog website can be found at www.madebyfrog.com - visit it for more
 information and resources.
 
 ## Required
@@ -20,7 +21,7 @@ information and resources.
 ## Recommended
 
 - The Apache HTTP server is recommended.
-- PDO support is recommended, but not required.
+- PDO support is strongly recommended, but not required.
 - Frog CMS can also run on SQLite 3 as the database.
 
 PHP    : http://www.php.net/
@@ -31,4 +32,6 @@ Apache : http://www.apache.org/
 
 Password is in sha1 so if you change it manually in the database, you know how!!
 
-(c) 2007 by Philippe Archambault
+Enjoy,
+
+The Frog CMS team.

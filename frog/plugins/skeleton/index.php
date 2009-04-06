@@ -50,7 +50,7 @@ Plugin::setInfos(array(
 	'author'      => 'Martijn van der Kleijn',
     'website'     => 'http://www.madebyfrog.com/',
     'update_url'  => 'http://www.madebyfrog.com/plugin-versions.xml',
-    'require_frog_version' => '0.9.5'
+    'require_frog_version' => '0.9.5 RC2'
 ));
 
 Plugin::addController('skeleton', 'Skeleton', 'administrator', false);
