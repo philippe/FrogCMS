@@ -233,7 +233,8 @@ if ( ! defined('DEBUG') && isset($_POST['commit']) && (file_exists($config_file)
         <p>
             <strong>Frog CMS</strong> is installed, <b>you should now:</b><br />
             1. delete the <em>install/</em> folder!<br />
-            2. remove all write permissions from the <em>config.php</em> file!
+            2. remove all write permissions from the <em>config.php</em> file!<br />
+            3. remove changelog.txt and similar files to enhance security.
         </p>
     <?php endif; ?>
 

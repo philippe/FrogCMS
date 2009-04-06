@@ -9,6 +9,7 @@ Sigla:
 
 0.9.5 - released 2009-02-??
 
++ Added advisory about removing changelog.txt to install screen.
 + Added output buffering around main() - issue 114
 + Added option to choose administrator name in install screen. - issue 149
 + Added function that generates administrator password during install routine. - issue 149
