@@ -22,6 +22,18 @@
  * available outside the Framework.
  */
 
+
+/**
+ * Tests if a text starts with an given string.
+ *
+ * @param     string
+ * @param     string
+ * @return    bool
+ */
+function startsWith($haystack, $needle){
+    return strpos($haystack, $needle) === 0;
+}
+
 /**
  * Tests whether a text ends with the given string or not.
  *

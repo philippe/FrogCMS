@@ -30,6 +30,7 @@ Sigla:
 + Added an ID to the "view this page" link so it can be styled.
 + Added Danish translation for admin and file manager. Thanks Kenan.
 
+- Fixed issue with Comment plugin where leave off http:// in website link would cause malformed url - issue 151
 - Fixed issue where using '..' would allow access to files outside public directory - issue 148
 - Fixed issue where saving page layout without title did not result in error - issue 146
 - Fixed setAllSettings failing to update settings with SQLite - issue 145

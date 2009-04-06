@@ -198,6 +198,13 @@ function comment_save(&$page)
 
     $auto_approve_comment = Plugin::getSetting('auto_approve_comment', 'comment');
 
+    // Check for and correct problems with website link
+    if (isset($data['author_link']) && $data['author_link'] !== '') {
+        if (strpos($data['author_link'], 'http://') !== 0 && strpos($data['author_link'], 'https://') !== 0) {
+            $data['author_link'] = 'http://'.$data['author_link'];
+        }
+    }
+
     global $__FROG_CONN__;
 		
     $sql = 'INSERT INTO '.TABLE_PREFIX.'comment (page_id, author_name, author_email, author_link, ip, body, is_approved, created_on) VALUES ('.
