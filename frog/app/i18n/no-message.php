@@ -22,6 +22,7 @@ return array(
 'Action'          => 'Handling',
 'Close'           => 'Lukk',
 'Save'            => 'Arkiver',
+'Save en Close'   => 'Arkiver og Lukk',
 'Save and Continue Editing' => 'Arkiver og Fortsett Redigering',
 'or'              => 'eller',
 'Cancel'          => 'Kanseler',

@@ -23,6 +23,7 @@ return array(
 'Action' => 'Actie',
 'Close' => 'Sluit',
 'Save' => 'Bewaar',
+'Save and Close' => 'Bewaar en Sluit',
 'Save and Continue Editing' => 'Bewaar en Blijf Bewerken',
 'or' => 'of',
 'Cancel' => 'Annuleer',

@@ -127,6 +127,7 @@
 	'Roles' => 'Uloge',
 	'Roles restrict user privileges and turn parts of the administrative interface on or off.' => 'Uloge ograničavaju korisničke ovlasti i isključuju ili uključuju dijelove administracijskog sučelja.',
 	'Save' => 'Spremi',
+	'Save and Close' => 'Spremi i Zatvori',
 	'Save and Continue Editing' => 'Spremi i Nastavi uređivati',
 	'Send password' => 'Pošalji lozinku',
 	'Settings' => 'Postavke',

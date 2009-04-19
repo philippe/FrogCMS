@@ -23,6 +23,7 @@ return array(
 'Action'          => 'Aksi',
 'Close'           => 'Tutup',
 'Save'            => 'Simpan',
+'Save and Close'  => 'Simpan dan Tutup',
 'Save and Continue Editing' => 'Simpan dan Lanjutkan Menyunting',
 'or'              => 'atau',
 'Cancel'          => 'Batal',

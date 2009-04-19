@@ -22,6 +22,7 @@ return array(
 'Action' => 'Action',
 'Close' => 'Fermer',
 'Save' => 'Enregistrer',
+'Save and Close' => 'Enregistrer et Fermer',
 'Save and Continue Editing' => 'Enregistrer et continuer à éditer',
 'or' => 'ou',
 'Cancel' => 'Annuler',

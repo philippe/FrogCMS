@@ -22,6 +22,7 @@ return array(
 'Action' => 'Действие',
 'Close' => 'Закрыть',
 'Save' => 'Сохранить',
+'Save and Close' => 'Сохранить и Закрыть',
 'Save and Continue Editing' => 'Сохранить и продолжить',
 'or' => 'или',
 'Cancel' => 'Отмена',

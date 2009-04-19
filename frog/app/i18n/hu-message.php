@@ -22,6 +22,7 @@ return array(
 'Action' => 'Művelet',
 'Close' => 'Bezár',
 'Save' => 'Mentés',
+'Save and Close' => 'Mentés és Bezár',
 'Save and Continue Editing' => 'Ment és tovább szerkeszt',
 'or' => 'vagy',
 'Cancel' => 'Mégsem',

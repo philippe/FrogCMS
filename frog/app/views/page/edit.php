@@ -182,7 +182,7 @@ if ($action == 'edit') { ?>
 
   </div>
   <p class="buttons">
-    <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save'); ?>" />
+    <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save and Close'); ?>" />
     <input class="button" name="continue" type="submit" accesskey="e" value="<?php echo __('Save and Continue Editing'); ?>" />
     <?php echo __('or'); ?> <a href="<?php echo get_url('page'); ?>"><?php echo __('Cancel'); ?></a>
   </p>

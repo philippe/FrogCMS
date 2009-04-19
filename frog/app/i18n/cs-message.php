@@ -43,6 +43,7 @@ return array(
 'Action' => 'Akce',
 'Close' => 'Zavřít',
 'Save' => 'Uložit',
+'Save and Close' => 'Uložit a Zavřít',
 'Save and Continue Editing' => 'Uložit a pokračovat v úpravách',
 'or' => 'nebo',
 'Cancel' => 'Zrušit',

@@ -41,10 +41,6 @@ if (DEBUG == false && isWritable($config_file)) {
         exit();
     }
 }
-elseif (DEBUG) {
-    ob_start();
-        echo '<div style="text-align: center; margin: 0; clear: both; color: #000; background-color: #ff3;"><strong>WARNING - <strong>Debug mode is turned on, you are advised to turn off debug mode on production systems.</div>'."\n";
-}
 
 require_once(CORE_ROOT.'/utils.php');
 
@@ -97,7 +93,3 @@ Plugin::init();
 //  Get controller and action and execute  -----------------------------------
 
 Dispatcher::dispatch(null, Setting::get('default_tab'));
-
-// Make sure to flush the buffer one last time if DEBUG if turned on - for the warning.
-if (DEBUG)
-    ob_end_flush();
