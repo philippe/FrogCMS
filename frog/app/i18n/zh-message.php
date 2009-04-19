@@ -1,15 +1,16 @@
 <?php
 
 /**
- * Chinese language file
+ * Chinese-simple language file
  *
  * @package frog
  * @subpackage translations
  *
  * @author westup <email@domain.something>
+ * @link http://www.lintaorun.com
  * @author SunUltimate <jzb1987@gmail.com>
  * @link http://blog.ultimatesun.cn
- * @version Frog x.y.z
+ * @version Frog 0.9.5
  */
 
     return array(
@@ -44,7 +45,7 @@
         //'Content-Type' => '',
         //'Create Core template' => '',
         //'Create Plugin templates' => '',
-        //'Created date' => '',
+        'Created date' => '创建日期',
         'Default Filter' => '默认过滤器',
         'Default Status' => '默认状态',
         //'Default tab' => '',
@@ -69,7 +70,7 @@
         'Forgot password?' => '忘记密码?',
         //'Help us <a href=":url">translate Frog</a>!' => '',
         'Hidden' => '隐藏',
-        //'Just replace <b>snippet</b> by the snippet name you want to include.' => '',
+        'Just replace <b>snippet</b> by the snippet name you want to include.' => '只需要用共用片段名称来替换，代码格式如下',
         //'Keywords' => '',
         'Language' => '语言',
         'Last updated by' => '最后更新',
@@ -95,7 +96,7 @@
         'New Layout' => '新建布局',
         'New Snippet' => '新片段',
         'New User' => '新用户',
-        //'No comments found.' => '',
+        'No comments found.' => '没有评论.',
         'Only for filter in pages, NOT in snippets' => '只对页面过滤,不会在片段里.',
         'Optional. Please use a valid e-mail address.' => '选填. 请使用正确的电子邮箱地址.',
         'Page' => '页面',
@@ -114,8 +115,8 @@
         'Plugin' => '插件',
         'Plugins' => '插件',
         'Published' => '已发布',
-        //'Published date' => '',
-        //'Reject' => '',
+        'Published date' => '发布日期',
+        'Reject' => '拒绝',
         'Remember me for 14 days' => '记住我，14天内不用再登录',
         'Remove Layout' => '删除布局',
         'Remove Tab' => '移除标签',
@@ -142,7 +143,7 @@
         'Snippets' => '片段',
         'Snippets are generally small pieces of content which are included in other pages or layouts.' => '片段一般是指包含在其他<strong>页面</strong>或<strong>布局</strong>中的共用小块.',
         'Status' => '状态',
-        //'Tag to use this snippet' => '',
+        'Tag to use this snippet' => '共用片段使用方法',
         //'Tags' => '',
         'Thank you for using' => '感谢您使用',
         'The avatars are automatically linked for those with a <a href="http://www.gravatar.com/" target="_blank">Gravatar</a> (a free service) account.' => '头像链接来源于<a href="http://www.gravatar.com" target="_blank">Gravatar</a>,一个免费的头像接口网站.',
@@ -181,7 +182,7 @@
         'none' => '无',
         'on' => '于',
         'or' => '或者',
-        //'protected' => '',
+        'protected' => '已保护',
         'reorder' => '重新排序',
         'seconds' => '第二',
         //'unknown' => '',
