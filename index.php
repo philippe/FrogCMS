@@ -35,12 +35,14 @@ require_once($config_file);
 if ( ! defined('DEBUG')) { header('Location: install/'); exit(); }
 
 // Security checks -----------------------------------------------------------
-if (isWritable($config_file)) {
+if (DEBUG == false && isWritable($config_file)) {
     // Windows systems always have writable config files... skip those.
     if (substr(PHP_OS, 0, 3) != 'WIN') {
+        echo '<html><head><title>Frog CMS automatically disabled!</title></head><body>';
         echo '<h1>Frog CMS automatically disabled!</h1>';
         echo '<p>Frog CMS has been disabled as a security precaution.</p>';
-        echo '<p><strong>Reason:</strong> the configuration file was found to be writable.';
+        echo '<p><strong>Reason:</strong> the configuration file was found to be writable.</p>';
+        echo '</body></html>';
         exit();
     }
 }

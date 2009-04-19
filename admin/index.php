@@ -30,14 +30,20 @@ require_once(CORE_ROOT.'/utils.php');
 $config_file = FROG_ROOT.'/config.php';
 
 // Security checks -----------------------------------------------------------
-if (isWritable($config_file)) {
+if (DEBUG == false && isWritable($config_file)) {
     // Windows systems always have writable config files... skip those.
     if (substr(PHP_OS, 0, 3) != 'WIN') {
+        echo '<html><head><title>Frog CMS automatically disabled!</title></head><body>';
         echo '<h1>Frog CMS automatically disabled!</h1>';
         echo '<p>Frog CMS has been disabled as a security precaution.</p>';
-        echo '<p><strong>Reason:</strong> the configuration file was found to be writable.';
+        echo '<p><strong>Reason:</strong> the configuration file was found to be writable.</p>';
+        echo '</body></html>';
         exit();
     }
+}
+elseif (DEBUG) {
+    ob_start();
+        echo '<div style="text-align: center; margin: 0; clear: both; color: #000; background-color: #ff3;"><strong>WARNING - <strong>Debug mode is turned on, you are advised to turn off debug mode on production systems.</div>'."\n";
 }
 
 require_once(CORE_ROOT.'/utils.php');
@@ -91,3 +97,7 @@ Plugin::init();
 //  Get controller and action and execute  -----------------------------------
 
 Dispatcher::dispatch(null, Setting::get('default_tab'));
+
+// Make sure to flush the buffer one last time if DEBUG if turned on - for the warning.
+if (DEBUG)
+    ob_end_flush();
