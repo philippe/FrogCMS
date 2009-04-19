@@ -57,8 +57,17 @@ class Comment extends Record
         $tablename = self::tableNameFromClassName('Comment');
 
         // Prepare SQL
-        $sql = "SELECT * FROM $tablename AS comment " .
-            "WHERE $where $order_by_string $limit_string";
+        // FIXME - do this in a better way (sqlite doesn't like empty WHEREs)
+        if ($where != '')
+        {
+            $sql = "SELECT * FROM $tablename AS comment " .
+                "WHERE $where $order_by_string $limit_string";
+        }
+        else
+        {
+            $sql = "SELECT * FROM $tablename AS comment " .
+                "$order_by_string $limit_string";
+        }
 
         $stmt = self::$__CONN__->prepare($sql);
         $stmt->execute();

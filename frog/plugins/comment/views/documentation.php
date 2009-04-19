@@ -49,12 +49,15 @@
   You will need to add this code to your layout:
 </p>
 <pre>
-    &lt;?php
-      if ($this-&gt;comment_status != Comment::NONE)
-          $this-&gt;includeSnippet('comment-each');
-      if ($this-&gt;comment_status == Comment::OPEN)
-          $this-&gt;includeSnippet('comment-form');
-    ?&gt;
+&lt;?php
+    if (Plugins::isEnabled('comment'))
+    {
+        if ($this->comment_status != Comment::NONE)
+            $this->includeSnippet('comment-each');
+        if ($this->comment_status == Comment::OPEN)
+            $this->includeSnippet('comment-form');
+    }
+?&gt;
 </pre>
 
 <h3>Notes</h3>
@@ -62,7 +65,7 @@
   When you disable the comments plugin, the database table, snippets and page.comment_status stay available.
 </p>
 <p>
-  If you do disable the comments plugin, do not forget to remove the code you added earlier on from your layout, otherwise you will get PHP errors.
+  If you disable the comments plugin, you can leave the code you added to the layout if you want. Use of the isEnabled() function prevents any PHP errors.
 </p>
 
 <h3>License</h3>

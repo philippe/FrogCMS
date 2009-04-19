@@ -38,11 +38,10 @@
 </div>
 <?php
 global $__FROG_CONN__;
-$sql = "SELECT * FROM " . TABLE_PREFIX . "comment WHERE is_approved = 0";
-$stmt = $__FROG_CONN__->prepare($sql);
-$stmt->execute();
-
-$comments_count = $stmt->rowCount();
+$sql = "SELECT COUNT(*) FROM ".TABLE_PREFIX."comment WHERE is_approved = 0";
+$stmt = $__FROG_CONN__->query($sql);
+$comments_count = $stmt->fetchColumn();
+$stmt->closeCursor();
 
 if (isset($page)) {
     $CurPage = $page;
