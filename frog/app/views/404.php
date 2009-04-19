@@ -26,26 +26,24 @@
  * @copyright Philippe Archambault, 2008
  */
 ?>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>404 Not Found</title>
+  <title>Content Not Found</title>
+  <meta name="description" content="The content you requested was not found." />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="generator" content="frog-cms" />
 </head>
 <body>
-  <h1>Not Found</h1>
-  <p>The requested URL <?php echo Dispatcher::getStatus('requested_url'); ?> was not found on this server.</p>
-  <hr/>
-  <address>KISS 'Keep It Simple, Stupid'</address>
+  <h1>Content Not Found (404)</h1>
+  <p>The content you requested was not found. It may have been deleted or you may have entered an incorrect address.</p>
+  <p>Please return to the <a href="<?php echo URL_PUBLIC; ?>">home page</a> to view the main navigation.</p>
 </body>
 </html>
 
 <!--
-   - Unfortunately, Microsoft has added a clever new 'feature' to Internet Explorer. 
+   - Unfortunately, Microsoft added a clever 'feature' to Internet Explorer. 
    - If the text of an error's message is 'too small', specifically less than 512 bytes, 
    - Internet Explorer returns its own error message. You can turn that off, but it's 
-   - pretty tricky to find switch called 'smart error messages'. That means, of course,
-   - that short error messages are censored by default.
-   - 
-   - The workaround is pretty simple: pad the error message with a big comment like this 
-   - to push it over the five hundred and twelve bytes minimum. Of course, that's exactly 
-   - what you're reading right now.
-   -->
+   - tricky to find. This comment serves as padding to prevent that behaviour in IE.
+-->
