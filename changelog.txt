@@ -33,6 +33,7 @@ Sigla:
 + Added Danish translation for admin and file manager. Thanks Kenan.
 + Added Croatian translation for admin and file manager. Thanks jackie.
 
+- Fixed bug with default tab listing showing controller which had set show_tab to false.
 - Fixed some SQLite related problems in the comment plugin
 - Fixed some i18n issues - issue 158
 - Fixed default_tab setting causing endless redirect - issue 106

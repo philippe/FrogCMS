@@ -131,8 +131,9 @@
             <option value="user"<?php if ($current_default_tab == 'user') echo ' selected="selected"'; ?>><?php echo __('Users'); ?></option>
             <option value="setting"<?php if ($current_default_tab == 'setting') echo ' selected="selected"'; ?>><?php echo __('Administration'); ?></option>
 <?php foreach(Plugin::$controllers as $key=>$controller): ?>
-        <?php if ($controller->show_tab) ?>
+        <?php if ($controller->show_tab === true) { ?>
             <option value="plugin/<?php echo $key; ?>"<?php if ('plugin/'.$key == $current_default_tab) echo ' selected="selected"'; ?>><?php echo $controller->label; ?></option>
+        <?php } ?>
 <?php endforeach; ?>
           </select>
         </td>
