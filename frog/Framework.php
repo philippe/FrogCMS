@@ -39,6 +39,12 @@ define('FRAMEWORK_STARTING_MICROTIME', get_microtime());
 if (!defined('DEBUG'))              define('DEBUG', false);
 
 if (!defined('CORE_ROOT'))          define('CORE_ROOT',   dirname(__FILE__));
+
+// Turn on experimental XSS filtering?
+if (defined('GLOBAL_XSS_FILTERING') && GLOBAL_XSS_FILTERING) {
+    cleanXSS();
+}
+
 if (!defined('APP_PATH'))           define('APP_PATH',    CORE_ROOT.DIRECTORY_SEPARATOR.'app');
 if (!defined('HELPER_PATH'))        define('HELPER_PATH', CORE_ROOT.DIRECTORY_SEPARATOR.'helpers');
 
@@ -1147,9 +1153,10 @@ function remove_xss($string)
     }
 
     // Now the only remaining whitespace attacks are \t, \n, and \r
-    $ra = array('javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'link', 'style', 
+    $ra = array('javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'style', 
                 'script', 'embed', 'object', 'iframe', 'frame', 'frameset', 'ilayer', 'layer', 'bgsound', 
-                'title', 'base',
+                'title', 'link',
+                'base',
                 'onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 
                 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 
                 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 
@@ -1187,6 +1194,58 @@ function remove_xss($string)
     }
     return $string;
 } // remove_xss
+
+/**
+ * Prevent some basic XSS attacks, filters arrays
+ */
+function cleanArrayXSS($ar) {
+    $ret = array();
+
+    foreach ($ar as $k => $v) {
+        if (is_array($k)) $k = cleanArrayXSS($k);
+        else $k = remove_xss($k);
+
+        if (is_array($v)) $v = cleanArrayXSS($v);
+        else $v = remove_xss($v);
+
+        $ret[$k] = $v;
+    }
+
+    return $ret;
+}
+
+/**
+ * Prevent some basic XSS attacks
+ */
+function cleanXSS() {
+    $in = array(&$_GET, &$_COOKIE, &$_SERVER); //, &$_POST);
+
+    while (list($k,$v) = each($in)) {
+        foreach ($v as $key => $val) {
+            $oldkey = $key;
+
+            if (!is_array($val)) {
+                 $val = remove_xss($val);
+            }
+            else {
+                $val = cleanArrayXSS($val);
+            }
+
+            if (!is_array($key)) {
+                 $key = remove_xss($key);
+            }
+            else {
+                $key = cleanArrayXSS($key);
+            }
+
+            unset($in[$k][$oldkey]);
+            $in[$k][$key] = $val; continue;
+            $in[] =& $in[$k][$key];
+        }
+    }
+    unset($in);
+    return;
+}
 
 /**
  * Display a 404 page not found and exit

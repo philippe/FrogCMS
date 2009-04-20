@@ -29,6 +29,8 @@ require_once(CORE_ROOT.'/utils.php');
 
 $config_file = FROG_ROOT.'/config.php';
 
+require_once($config_file);
+
 // Security checks -----------------------------------------------------------
 if (DEBUG == false && isWritable($config_file)) {
     // Windows systems always have writable config files... skip those.
@@ -42,8 +44,6 @@ if (DEBUG == false && isWritable($config_file)) {
     }
 }
 
-require_once(CORE_ROOT.'/utils.php');
-
 define('APP_PATH',  CORE_ROOT.'/app');
 
 define('SESSION_LIFETIME', 3600);
@@ -56,12 +56,9 @@ define('COOKIE_PATH', '/');
 define('COOKIE_DOMAIN', '');
 define('COOKIE_SECURE', false);
 
-require_once($config_file);
-
 define('BASE_URL', URL_PUBLIC . (endsWith(URL_PUBLIC, '/') ? '': '/') . ADMIN_DIR . (endsWith(ADMIN_DIR, '/') ? '': '/') . (USE_MOD_REWRITE ? '': '?/'));
 
 require CORE_ROOT.'/Framework.php';
-
 
 //  Database connection  -----------------------------------------------------
 
