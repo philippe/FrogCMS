@@ -39,8 +39,10 @@ Object.extend(String.prototype, {
   toSlug: function()
   {
     return this.strip().downcase()
-        .replace(/[àâä]/g,"a").replace(/[éèêë]/g,"e").replace(/[îï]/g,"i")
-        .replace(/[ôö]/g,"o").replace(/[ùûü]/g,"u")
+        .replace(/[àâ]/g,"a").replace(/[éèêë]/g,"e").replace(/[îï]/g,"i")
+        .replace(/[ô]/g,"o").replace(/[ùû]/g,"u").replace(/[ñ]/g,"n")
+        .replace(/[äæ]/g,"ae").replace(/[öø]/g,"oe").replace(/[ü]/g,"ue")
+        .replace(/[ß]/g,"ss").replace(/[å]/g,"aa")
         .replace(/[^-a-z0-9~\s\.:;+=_]/g, '').replace(/[\s\.:;=+]+/g, '-');
   }
 
