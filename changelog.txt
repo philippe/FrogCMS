@@ -33,6 +33,7 @@ Sigla:
 + Added Danish translation for admin and file manager. Thanks Kenan.
 + Added Croatian translation for admin and file manager. Thanks jackie.
 
+- Fixed small bug with wrong link to rss feed in Normal theme - issue 166
 - Fixed bug with default tab listing showing controller which had set show_tab to false.
 - Fixed some SQLite related problems in the comment plugin
 - Fixed some i18n issues - issue 158
