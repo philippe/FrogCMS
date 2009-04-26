@@ -4,9 +4,10 @@
 
 Frog CMS began as migration of Radiant CMS from Ruby-on-Rails to PHP.
 This product has been made available under the terms of the GNU GPL version 3
-with a special exception for plugins. Please see exception.txt for more details.
+with a special exception for plugins.
 
-Please read the license.txt for the exact license details.
+Please read the license.txt for the exact license details and see exception.txt
+for more details on the exception Frog CMS makes on the GNU GPL version 3.
 
 The official Frog website can be found at www.madebyfrog.com - visit it for more
 information and resources.

@@ -38,4 +38,6 @@ This skeleton plugin makes use/provides the following features:
 
 == LICENSE ==
 
-This demo plugin is licensed under the AGPL License. <http://www.gnu.org/licenses/agpl.html>
+Copyright 2008-2009, Martijn van der Kleijn. <martijn.niji@gmail.com>
+This demo plugin is licensed under the GPLv3 License.
+<http://www.gnu.org/licenses/gpl.html>
