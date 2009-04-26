@@ -8,6 +8,10 @@ upgrade from 0.9.3 to 0.9.4 and only then to 0.9.5.
 
 If you're upgrading from a pre-0.9.4 release, consider installing from scratch.
 
+Please be aware that all Frog 0.9.4 plugins except the core plugins will require
+some minor updates to work with Frog 0.9.5. Please check with the plugin authors
+for updated plugins.
+
 
 ## UPDATING FROM 0.9.4 to 0.9.5 ##
 
@@ -37,8 +41,8 @@ Note: consider testing this upgrade process on a local test system before
     - The "public" directory.
     - The config.php file.
 
-5. Remove ALL the files of your old Frog 0.9.4 installation except the "public"
-   directory.
+5. Remove ALL the files of your old Frog 0.9.4 installation EXCEPT the "public"
+   directory. (and except any custom files you may have added offcourse)
 
 6. Copy/upload ALL files from the temporary directory to your old 0.9.4 Frog
    installation's directory.
@@ -82,8 +86,12 @@ Note: consider testing this upgrade process on a local test system before
 
 ## NOTES ##
 
+- The plugin system was changed in Frog 0.9.5 so download and install plugins
+  that are compatible with Frog 0.9.5.
+
 - The public directory now contains a themes subdirectory.
   It is advised that all themes for Frog follow the same approach as the
   Normal theme.
+
 - It is advised to always use the htaccess file. You can dis/enable the url
   rewriting by setting RewriteEngine to On/Off.
