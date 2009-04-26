@@ -60,6 +60,7 @@ Sigla:
 - Fixed admin CSS so that foreground colours are declared - issue 137
 - Fixed MOD_REWRITE test which produced double slashes - issue 150
 
+. Updated license statements to reflect change to GNU GPLv3 with an exception.
 . Improved replacement of letters like ö in the slug
 . Improved default 404 message for useability. - issue 163
 . Updated chinese translation - thanks westup
