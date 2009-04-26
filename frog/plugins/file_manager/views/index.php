@@ -65,7 +65,14 @@
   <tbody>
 <?php foreach ($files as $file): ?>
     <tr class="<?php echo odd_even(); ?>">
-      <td><?php if (!is_file($file->name)) { ?><img src="../frog/plugins/file_manager/images/dir_16.png" align="top" alt="dir icon" /> <?php } ?><?php echo $file->link; ?></td>
+      <td>
+        <?php if ($file->is_dir) { ?>
+            <img src="../frog/plugins/file_manager/images/dir_16.png" align="top" alt="dir icon" />
+        <?php } else { ?>
+            <img src="../frog/plugins/file_manager/images/page_16.png" align="top" alt="page icon" />
+        <?php } ?>
+        <?php echo $file->link; ?>
+      </td>
       <td><code><?php echo $file->size; ?></code></td>
       <td><code><?php echo $file->perms; ?> (<a href="#" onclick="toggle_chmod_popup('<?php echo $dir.$file->name; ?>'); return false;" title="<?php echo __('Change mode'); ?>"><?php echo $file->chmod; ?></a>)</code></td>
       <td><code><?php echo $file->mtime; ?></code></td>
