@@ -41,7 +41,6 @@
       <input class="textbox" id="layout_name" maxlength="100" name="layout[name]" size="100" type="text" value="<?php echo $layout->name; ?>" />
     </p>
     
-    <p>&nbsp;</p>
     <table class="fieldset" cellpadding="0" cellspacing="0" border="0">
       <tr>
         <td><label for="layout_content_type"><?php echo __('Content-Type'); ?></label></td>
@@ -53,7 +52,6 @@
       <label for="layout_content"><?php echo __('Body'); ?></label>
       <textarea class="textarea" cols="40" id="layout_content" name="layout[content]" rows="20" style="width: 100%" onkeydown="return allowTab(event, this);"><?php echo htmlentities($layout->content, ENT_COMPAT, 'UTF-8'); ?></textarea>
     </p>
-    <p class="clear">&nbsp;</p>
 <?php if (isset($layout->updated_on)) { ?>
     <p style="clear: left"><small><?php echo __('Last updated by'); ?> <?php echo $layout->updated_by_name; ?> <?php echo __('on'); ?> <?php echo date('D, j M Y', strtotime($layout->updated_on)); ?></small></p>
 <?php } ?>
