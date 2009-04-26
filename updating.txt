@@ -1,31 +1,86 @@
 # FROG CMS - INFORMATION ABOUT UPDATING
 
-## General
+
+## General ##
 
 Please be aware that we only support single version upgrades. That means you
 upgrade from 0.9.3 to 0.9.4 and only then to 0.9.5.
 
-## UPDATING FROM 0.9.4 to 0.9.5  -- TO BE CHECKED AND UPDATED --
+If you're upgrading from a pre-0.9.4 release, consider installing from scratch.
+
+
+## UPDATING FROM 0.9.4 to 0.9.5 ##
 
 WARNING - The split between frontend and backend in the Frog code has been
-          removed in this version. This has led to significant code changes.
+          removed in this version. This has led to significant code and path
+          changes.
 
           You will need to update *ALL* files.
 
 Please remember to MAKE BACKUPS of Frog and your DB before trying to update!
+The upgrade sequence described below will remove all the old files. Be sure to
+have a full backup!
 
-The best and most comprehensive method of upgrading to Frog 0.9.5 is
-unfortunately to install Frog from scratch, including the database.
 
-You can then import pages, comments, etc. manually from the DB backup you made.
+## UPGRADE STEPS ##
 
-Due to the large number of significant changes, this is the only recommended
-method of upgrading to 0.9.5.
+Note: consider testing this upgrade process on a local test system before
+      upgrading your production system.
 
-To prevent this from happening in next versions, an export/import function will
-be made available in post-0.9.5. releases.
+1. Create a FULL backup of your database. (structure and data)
 
-## NOTES
+2. Create a FULL backup of your files.
+
+3. Download and unzip Frog 0.9.5 to a temporary directory.
+
+4. Remove the following files/directories from your temporary 0.9.5 directory:
+    - The "public" directory.
+    - The config.php file.
+
+5. Remove ALL the files of your old Frog 0.9.4 installation except the "public"
+   directory.
+
+6. Copy/upload ALL files from the temporary directory to your old 0.9.4 Frog
+   installation's directory.
+
+7. Copy over the original config.php file.
+
+8. Run the following SQL commands on your Frog database after adding a prefix to
+   the table names if necessary:
+
+    ### NOTE: MYSQL commands, but SQLite commands should be almost the same.
+
+    CREATE TABLE `plugin_settings` (
+      `plugin_id` varchar(40) NOT NULL,
+      `name` varchar(40) NOT NULL,
+      `value` varchar(255) NOT NULL,
+      UNIQUE KEY `plugin_setting_id` (plugin_id,name)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+    ALTER TABLE `page`
+        ADD `needs_login` tinyint(1) NOT NULL DEFAULT '0' COMMENT '' AFTER is_protected;
+
+    ALTER TABLE `setting`
+        MODIFY `value` text NOT NULL DEFAULT '' COMMENT '' COLLATE utf8_general_ci;
+
+9. Enable the new htaccess file by removing the underscore.
+
+10. Check the new htaccess file settings against your old htaccess file.
+
+11. Lastly, you need to add some options to the config.php file that were added
+    in Frog 0.9.5:
+
+    // Should Frog check for updates on Frog itself and the installed plugins?
+    define('CHECK_UPDATES', true);
+
+    // The number of seconds before the check for a new Frog version times out in case of problems.
+    define('CHECK_TIMEOUT', 3);
+
+12. That should be it! Test out your new Frog 0.9.5 system.
+    Remember to remove the write permissions from config.php, otherwise, Frog
+    will complain.
+
+## NOTES ##
 
 - The public directory now contains a themes subdirectory.
   It is advised that all themes for Frog follow the same approach as the
