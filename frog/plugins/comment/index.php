@@ -46,7 +46,7 @@ Plugin::setInfos(array(
 	'author'      => 'Philippe Archambault',
 	'website'     => 'http://www.madebyfrog.com/',
     'update_url'  => 'http://www.madebyfrog.com/plugin-versions.xml',
-	'require_frog_version' => '0.9.5 RC2'
+	'require_frog_version' => '0.9.5'
 ));
 
 

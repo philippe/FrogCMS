@@ -31,9 +31,11 @@ have a full backup!
 Note: consider testing this upgrade process on a local test system before
       upgrading your production system.
 
+PLEASE READ THROUGH ALL OF THE STEPS BEFORE STARTING THE PROCEDURE.
+
 1. Create a FULL backup of your database. (structure and data)
 
-2. Create a FULL backup of your files.
+2. Create a FULL backup of your all your files. (including config.php)
 
 3. Download and unzip Frog 0.9.5 to a temporary directory.
 
@@ -41,15 +43,19 @@ Note: consider testing this upgrade process on a local test system before
     - The "public" directory.
     - The config.php file.
 
-5. Remove ALL the files of your old Frog 0.9.4 installation EXCEPT the "public"
-   directory. (and except any custom files you may have added offcourse)
+5. Login to the admin section of your 0.9.4 installation and disable all plugins.
+   (plugins generally shouldn't remove data from the database when being
+    disabled, so this shouldn't be a problem.)
 
-6. Copy/upload ALL files from the temporary directory to your old 0.9.4 Frog
+6. Remove ALL the files of your old Frog 0.9.4 installation EXCEPT the "public"
+   directory. (and except any custom files you may have added of course)
+
+7. Copy/upload ALL files from the temporary directory to your old 0.9.4 Frog
    installation's directory.
 
-7. Copy over the original config.php file.
+8. Copy the original config.php file to your new installation.
 
-8. Run the following SQL commands on your Frog database after adding a prefix to
+9. Run the following SQL commands on your Frog database after adding a prefix to
    the table names if necessary:
 
     ### NOTE: MYSQL commands, but SQLite commands should be almost the same.
@@ -67,11 +73,11 @@ Note: consider testing this upgrade process on a local test system before
     ALTER TABLE `setting`
         MODIFY `value` text NOT NULL DEFAULT '' COMMENT '' COLLATE utf8_general_ci;
 
-9. Enable the new htaccess file by removing the underscore.
+10. Enable the new htaccess file by removing the underscore.
 
-10. Check the new htaccess file settings against your old htaccess file.
+11. Check the new htaccess file settings against your old htaccess file.
 
-11. Lastly, you need to add some options to the config.php file that were added
+12. Lastly, you need to add some options to the config.php file that were added
     in Frog 0.9.5:
 
     // Should Frog check for updates on Frog itself and the installed plugins?
@@ -80,18 +86,29 @@ Note: consider testing this upgrade process on a local test system before
     // The number of seconds before the check for a new Frog version times out in case of problems.
     define('CHECK_TIMEOUT', 3);
 
-12. That should be it! Test out your new Frog 0.9.5 system.
+13. Re-install any old plugins that your Frog installation were using.
+
+14. Re-enable the plugins one-by-one, each time checking your site remains working.
+
+15. That should be it! Test out your new Frog 0.9.5 system.
     Remember to remove the write permissions from config.php, otherwise, Frog
     will complain.
 
-## NOTES ##
+## TROUBLESHOOTING / NOTES ##
 
-- The plugin system was changed in Frog 0.9.5 so download and install plugins
-  that are compatible with Frog 0.9.5.
+- If you don't see your old comments in the administration area, try disabling and
+  then re-enabling the comment plugin.
 
-- The public directory now contains a themes subdirectory.
+- The plugin system was changed in Frog 0.9.5 so try to download and install
+  plugins that are compatible with Frog 0.9.5. Older plugins may or may not work.
+
+- The public directory now contains a themes subdirectory in a default installation.
   It is advised that all themes for Frog follow the same approach as the
   Normal theme.
 
 - It is advised to always use the htaccess file. You can dis/enable the url
   rewriting by setting RewriteEngine to On/Off.
+
+- Please be very aware that this upgrade procedure DID NOT TOUCH or upgrade your
+  "public" directory. It also DID NOT ALTER or upgrade any data in the database.
+  This means you're still using a pre-0.9.5 Normal theme.
