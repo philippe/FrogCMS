@@ -70,6 +70,7 @@ class PageController extends Controller
         $page = new Page($data);
         $page->parent_id = $parent_id;
         $page->status_id = Setting::get('default_status_id');
+        $page->needs_login = Page::LOGIN_INHERIT;
         
         $page_parts = Flash::get('post_parts_data');
         
