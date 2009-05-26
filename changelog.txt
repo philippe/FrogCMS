@@ -10,6 +10,7 @@ Sigla:
 0.9.[5+]
 + Added Slovak translation. Thanks Payo.
 - Fixed backend favicon tag not closed - issue 178
+. Changed include to include_once in PluginController - issue 179
 
 0.9.5 - released 2009-04-27
 
