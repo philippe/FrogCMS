@@ -9,6 +9,7 @@ Sigla:
 
 0.9.[5+]
 + Added Slovak translation. Thanks Payo.
++ Added Slovenian translation. Thanks skye28.
 - Fixed backend favicon tag not closed - issue 178
 - Fixed faulty code in comment plugin documentation - thanks stevesmc
 . Changed include to include_once in PluginController - issue 179
