@@ -12,7 +12,7 @@ Please be aware that all Frog 0.9.4 plugins except the core plugins will require
 
 ## UPDATING FROM 0.9.4 to 0.9.5 ##
 
-###### WARNING 
+#### WARNING 
 
 The split between frontend and backend in the Frog code has been removed in this version. This has led to significant code and path changes.
 
@@ -47,9 +47,9 @@ PLEASE READ THROUGH ALL OF THE STEPS BEFORE STARTING THE PROCEDURE.
 
 9. Run the following SQL commands on your Frog database after adding a prefix to  the table names if necessary:
 
-###### NOTE: MYSQL commands, but SQLite commands should be almost the same.
+  #### NOTE: MYSQL commands, but SQLite commands should be almost the same.
 
-```sql
+  ```sql
     CREATE TABLE `plugin_settings` (
       `plugin_id` varchar(40) NOT NULL,
       `name` varchar(40) NOT NULL,
@@ -60,7 +60,7 @@ PLEASE READ THROUGH ALL OF THE STEPS BEFORE STARTING THE PROCEDURE.
     ALTER TABLE `page` ADD `needs_login` tinyint(1) NOT NULL DEFAULT '0' COMMENT '' AFTER is_protected;
 
     ALTER TABLE `setting` MODIFY `value` text NOT NULL DEFAULT '' COMMENT '' COLLATE utf8_general_ci;
-```
+  ```
 
 10. Enable the new htaccess file by removing the underscore.
 
@@ -69,12 +69,12 @@ PLEASE READ THROUGH ALL OF THE STEPS BEFORE STARTING THE PROCEDURE.
 12. Lastly, you need to add some options to the config.php file that were added
     in Frog 0.9.5:
 
-```php
-// Should Frog check for updates on Frog itself and the installed plugins?
-define('CHECK_UPDATES', true);
-// The number of seconds before the check for a new Frog version times out in case of problems.
-define('CHECK_TIMEOUT', 3);
-```
+  ```php
+  // Should Frog check for updates on Frog itself and the installed plugins?
+  define('CHECK_UPDATES', true);
+  // The number of seconds before the check for a new Frog version times out in case of problems.
+  define('CHECK_TIMEOUT', 3);
+  ```
 
 13. Re-install any old plugins that your Frog installation were using.
 
