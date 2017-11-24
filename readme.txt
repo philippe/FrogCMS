@@ -9,7 +9,7 @@ with a special exception for plugins.
 Please read the license.txt for the exact license details and see exception.txt
 for more details on the exception Frog CMS makes on the GNU GPL version 3.
 
-The official Frog website can be found at www.madebyfrog.com - visit it for more
+The official Frog website can be found at https://github.com/philippe/FrogCMS - visit it for more
 information and resources.
 
 ## Required
